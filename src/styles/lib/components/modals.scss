@@ -1,4 +1,4 @@
-@use '../utilities' as *;
+@use "../utilities" as *;
 
 @mixin modal {
   position: fixed;
@@ -25,13 +25,13 @@
       flex-grow: 1;
     }
     .text {
-       width: 100%;
+      width: 100%;
     }
     .icon {
-        cursor: pointer;
+      cursor: pointer;
     }
     .icon:hover {
-        opacity: 0.5;
+      opacity: 0.5;
     }
   }
   .body {
@@ -41,7 +41,6 @@
   .footer {
     padding: 10px;
   }
-
 }
 
 .modal {
@@ -54,7 +53,6 @@
   &[aria-hidden="false"] {
     .-overlay {
       @include fadeIn;
-      
     }
     .-container {
       @include slideIn;
@@ -80,34 +78,34 @@
     justify-content: center;
     align-items: center;
     will-change: transform;
-    
   }
   &.-container {
     background-color: #fff;
-      padding: 30px;
-      max-width: 500px;
-      max-height: 100vh;
-      border-radius: 4px;
-      overflow-y: auto;
-      box-sizing: border-box;
-      will-change: transform;
+    padding: 30px;
+    max-width: 500px;
+    max-height: 100vh;
+    border-radius: 4px;
+    overflow-y: auto;
+    box-sizing: border-box;
+    will-change: transform;
   }
   header {
     display: flex;
-      justify-content: space-between;
-      align-items: center;
+    justify-content: space-between;
+    align-items: center;
   }
   &.-title {
     margin-top: 0;
-      margin-bottom: 0;
-      font-weight: 600;
-      font-size: 1.25rem;
-      line-height: 1.25;
-      box-sizing: border-box;
+    margin-bottom: 0;
+    font-weight: 600;
+    font-size: 1.25rem;
+    line-height: 1.25;
+    box-sizing: border-box;
   }
   &.-close {
     background: transparent;
     border: 0;
+
     &::before {
       content: "\2715";
     }
@@ -121,10 +119,10 @@
   footer {
     display: flex;
     justify-content: flex-end;
+
     ::slotted(div) {
       display: flex;
       gap: 0.5rem;
-      
     }
   }
 }

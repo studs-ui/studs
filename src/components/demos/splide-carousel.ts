@@ -4,7 +4,7 @@ import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import Splide from "@splidejs/splide";
 import "@splidejs/splide/css";
-import style from "../../styles/lib/components/carousel.scss?inline";
+import style from "styles/carousel.scss?inline";
 
 @customElement("studs-splide-carousel")
 export class StudsSplideCarousel extends LitElement {

@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import styles from "../../styles/lib/components/buttons.scss?inline";
+import styles from "styles/buttons.scss?inline";
 
 export interface ButtonProps {
   buttonType:

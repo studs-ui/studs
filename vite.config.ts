@@ -12,4 +12,10 @@ export default defineConfig({
       },
     },
   },
+  resolve: {
+    alias: {
+      "@": "/src",
+      styles: "/src/styles/lib/components",
+    },
+  },
 });

@@ -1,7 +1,7 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import style from "../../styles/lib/components/chip.scss?inline";
+import style from "styles/chip.scss?inline";
 
 export interface ChipProps {
   label?: string;
