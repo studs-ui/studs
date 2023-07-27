@@ -2,7 +2,7 @@ import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
-import tableStyle from "../../styles/lib/components/table.scss?inline";
+import tableStyle from "styles/table.scss?inline";
 import paginationStyle from "../../styles/lib/demo/pagination.scss?inline";
 import {
   VirtualizerHostElement,

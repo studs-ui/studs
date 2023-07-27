@@ -1,6 +1,6 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import style from "../../styles/lib/components/tooltips.scss?inline";
+import style from "styles/tooltips.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
 
 export interface TooltipProps {
