@@ -1,0 +1,19 @@
+@use '../utilities' as *;
+@use 'overlays' as *;
+
+.tooltip {
+  @include tooltip();
+  &.-wrapper {
+        .-container {
+            display: none;
+            visibility: hidden;
+            @include fadeIn;
+        }
+      &:hover {
+          .-container {
+              display: block;
+              visibility: visible;
+          }
+      }
+  }
+}

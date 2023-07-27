@@ -1,0 +1,170 @@
+// refer to base/_fontFaces.scss for which fonts and names to use
+
+$font-body: 'Helvetica Neue LT W05_55 Roman', 'Helvetica', 'Arial', sans-serif;
+$font-italic: 'Helvetica Neue LT W05_56 Italic', 'Helvetica', 'Arial',
+  sans-serif;
+$font-banner: 'Helvetica Neue LT W05_53 Ext', 'Helvetica', 'Arial', sans-serif;
+$font-heading: 'Helvetica Neue LT W05_83 Hv Ex', 'Helvetica', 'Arial',
+  sans-serif;
+$font-material-sharp: 'Material Symbols Sharp';
+$font-material-outline: 'Material Symbols Outlined';
+$font-material-rounded: 'Material Symbols Rounded';
+
+@mixin fonts {
+  --font-normal: #{$font-body};
+  --font-italic: #{$font-italic};
+  --font-medium: #{$font-body};
+  --font-medium-italic: #{$font-italic};
+  --font-bold: #{$font-banner};
+  --font-bold-italic: #{$font-banner};
+  --font-extrabold: #{$font-heading};
+  --font-extrabold-italic: #{$font-heading};
+}
+
+@mixin fontSmall {
+  font-size: 0.8rem;
+}
+
+@mixin fontMedium {
+  font-size: 1em;
+}
+
+@mixin fontLarge {
+  font-size: 2rem;
+}
+
+@mixin fontExtraLarge {
+  font-size: 4rem;
+}
+
+@mixin badgeSmall {
+  font-size: 0.3rem;
+}
+
+@mixin badgeMedium {
+  font-size: 0.4em;
+}
+
+@mixin badgeLarge {
+  font-size: 0.8rem;
+}
+
+@mixin badgeExtraLarge {
+  font-size: 1.4rem;
+}
+
+@mixin dotSmall {
+  font-size: 0.4rem;
+}
+
+@mixin dotMedium {
+  font-size: 0.6rem;
+}
+
+@mixin dotLarge {
+  font-size: 1.2rem;
+}
+
+@mixin dotExtraLarge {
+  font-size: 2rem;
+}
+
+@mixin spinnerSmall {
+  width: 30px;
+  height: 30px;
+}
+
+@mixin spinnerMedium {
+  width: 40px;
+  height: 40px;
+}
+
+@mixin spinnerLarge {
+  width: 50px;
+  height: 50px;
+}
+
+@mixin spinnerExtraLarge {
+  width: 80px;
+  height: 80px;
+}
+
+@mixin dividerVerticalSmall {
+  border-left: 1px solid #d3d7da;
+}
+
+@mixin dividerVerticalMedium {
+  border-left: 3px solid #d3d7da;
+}
+
+@mixin dividerVerticalLarge {
+  border-left: 5px solid #d3d7da;
+}
+
+@mixin dividerVerticalExtraLarge {
+  border-left: 7px solid #d3d7da;
+}
+
+@mixin dividerHorizontalSmall {
+  border-bottom: 1px solid #d3d7da;
+}
+
+@mixin dividerHorizontalMedium {
+  border-bottom: 3px solid #d3d7da;
+}
+
+@mixin dividerHorizontalLarge {
+  border-bottom: 5px solid #d3d7da;
+}
+
+@mixin dividerHorizontalExtraLarge {
+  border-bottom: 7px solid #d3d7da;
+}
+
+@mixin materialIcons {
+  .material-symbols {
+    &-sharp {
+      font-family: $font-material-sharp;
+    }
+    &-outlined {
+      font-family: $font-material-outline;
+    }
+    &-rounded {
+      font-family: $font-material-rounded;
+    }
+
+    &-sharp,
+    &-outlined,
+    &-rounded {
+      direction: ltr;
+      -moz-font-feature-settings: 'liga';
+      -moz-osx-font-smoothing: grayscale;
+
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+
+      &.-filled {
+        font-variation-settings: 'FILL' 1;
+      }
+    }
+  }
+}
+
+/*
+// for reference
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*/

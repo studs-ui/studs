@@ -1,0 +1,280 @@
+@use '../utilities' as *;
+
+@mixin datePicker {
+  .dtp-wrapper {
+    float: left;
+    font-weight: 400;
+    position: relative;
+  }
+  .cd-head {
+    float: left;
+    background: #eee;
+    border-radius: 30px;
+  }
+  .dtp-day-w {
+    float: left;
+    width: 140px;
+    overflow: hidden;
+  }
+  .dtp-input-date {
+    display: block;
+    float: left;
+    width: 230px;
+    height: 35px;
+    line-height: 35px;
+    font-size: 12px;
+
+    font-weight: 400;
+    padding: 0 20px;
+    color: #444;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
+  .dtp-input-date:focus {
+    outline: none;
+  }
+  .dtp-body {
+    background: #fff;
+    box-shadow: 2px 3px 25px rgba(0, 0, 0, 0.1);
+    top: 40px;
+    left: 0;
+    padding: 10px;
+    border-radius: 25px;
+    z-index: 1;
+    position: absolute;
+  }
+  .dtp-calendar {
+    float: left;
+    width: 380px;
+    position: relative;
+  }
+  .dtp-year {
+    width: 180px;
+    height: 50px;
+    margin-left: 100px;
+    border-radius: 20px;
+    position: relative;
+  }
+  .dtp-button:hover {
+    z-index: 1000;
+    cursor: pointer;
+  }
+  .dtp-button {
+    float: left;
+    width: 50px;
+    height: 50px;
+    position: relative;
+    border-radius: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 10px;
+    color: #aaa;
+    z-index: 1;
+    box-sizing: border-box;
+  }
+  .dtp-button:nth-last-child(1) {
+    float: right;
+  }
+  .dtpm-month {
+    float: left;
+    color: #666;
+    width: 160px;
+    margin-left: 120px;
+    height: 20px;
+    border-radius: 5px;
+  }
+  .dtpm-month-widget {
+    float: left;
+    width: 100%;
+    height: 100%;
+    line-height: 20px;
+  }
+
+  .cdbcm-months {
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 30px;
+    z-index: 20;
+    padding: 30px;
+    box-sizing: border-box;
+    overflow: auto;
+  }
+  .cdbcmm-container {
+    float: left;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+  }
+  .cdbcmmc-item {
+    float: left;
+    width: 33.3333%;
+    height: 25%;
+    padding: 5px;
+    box-sizing: border-box;
+    position: relative;
+    z-index: 10;
+  }
+  .cdbcmmc-item.disabled {
+    pointer-events: none;
+  }
+  .cdbcmmc-item.disabled span {
+    color: #ddd;
+  }
+  .cdbcmmc-item span:hover {
+    cursor: pointer;
+  }
+  .cdbcmmc-item span {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    text-transform: uppercase;
+    background: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    border-radius: 3px;
+    background: #fafafa;
+  }
+  .cdbcmmc-item-active span:hover,
+  .cdbcmmc-item-active span {
+    background: #c1e2c0;
+    color: #ffffff;
+  }
+  .cdbc-day {
+    float: left;
+    width: 100%;
+    height: 340px;
+    position: relative;
+  }
+
+  .cdbcd-body {
+    float: left;
+    position: absolute;
+    top: 10px;
+    left: 50px;
+    right: 50px;
+    bottom: 20px;
+  }
+  .cdbcdbHead {
+    float: left;
+    width: 100%;
+    height: 30px;
+  }
+  .cdbcdbh-value {
+    float: left;
+    width: 14.285%;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    font-size: 10px;
+    color: #777;
+    font-weight: 700;
+  }
+  .cdbcdb-container {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+  .cdbcdbc-day {
+    float: left;
+    width: 14.285%;
+    height: 16.6666%;
+    position: relative;
+  }
+  .cdbcdbc-day span:hover {
+    /* background: #f5f5f5; */
+    cursor: pointer;
+  }
+  .cdbcdbc-day span {
+    display: block;
+    float: left;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    left: 50%;
+    top: 50%;
+    margin-left: -15px;
+    margin-top: -15px;
+    text-align: center;
+    font-size: 11px;
+    font-weight: 300px;
+    color: #555;
+    border-radius: 100%;
+  }
+  .cdbcdbc-day-disabled {
+    pointer-events: none;
+  }
+  .cdbcyy-value {
+    float: left;
+    width: 100%;
+    height: 34px;
+    margin-top: 8px;
+    font-weight: 700;
+    line-height: 34px;
+    cursor: pointer;
+  }
+
+  .dtp-right-arrow,
+  .dtp-left-arrow,
+  .dtp-right-arrow,
+  .cdbcdbLeftArrow {
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid #aaa;
+    border-right: 2px solid #aaa;
+    margin-left: 16px;
+    border-color: inherit;
+  }
+  .dtp-left-arrow,
+  .cdbcdbLeftArrow {
+    transform: rotate(-135deg);
+  }
+  .dtp-right-arrow,
+  .dtp-right-arrow {
+    transform: rotate(45deg);
+    margin-left: 14px;
+  }
+
+  .dtp-right-arrow,
+  .dtp-left-arrow {
+    display: block;
+    float: left;
+  }
+  .dtp-left-arrow {
+    margin-left: 22px;
+    margin-top: 21px;
+  }
+  .dtp-right-arrow {
+    margin-left: 20px;
+    margin-top: 21px;
+  }
+
+  .cdbcdbc-day.disabled {
+    pointer-events: none;
+  }
+  .cdbcdbc-day.hidden {
+    visibility: hidden;
+  }
+  .cdbcdbc-day.disabled span {
+    color: #ddd;
+  }
+
+  .cdbcdbc-day.highlight span {
+    background: #efdbca;
+  }
+  .cdbcdbc-day.highlight-green span {
+    background: #d4e2cb;
+  }
+}

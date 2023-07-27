@@ -1,0 +1,258 @@
+@use "../utilities/colors" as *;
+@use "../utilities/variables" as *;
+@use "../utilities/fonts" as *;
+
+/* all css colors defined here for both light and dark themes */
+
+@mixin light {
+  --cta: #{$cta};
+  --text-color:   #{colorVal("gray", 80)};;
+  --text-dark:    #{colorVal("gray", 100)};
+  --text-light:   #{colorVal("gray", 20)};
+
+  --info-color:    #{colorVal("gray", 80)};
+  --info-bkg:      #{colorVal("gray", 0)};
+  --info-rgb:      #{toRGB(#444444)};
+  --success-color: #{colorVal("sage", 40)};
+  --success-bkg:   #{colorVal("sage", 0)};
+  --success-rgb:   #{toRGB(#799e7e)};
+  --warning-color: #{colorVal("pumpkin", 30)};
+  --warning-bkg:   #{colorVal("pumpkin", 0)};
+  --warning-rgb:   #{toRGB(#e89f4d)};
+  --error-color:   #{colorVal("terracotta", 70)};
+  --error-bkg:     #{colorVal("terracotta", 0)};
+  --error-rgb:     #{toRGB(#8f3b2f)};
+
+  --link-color:   #{colorVal("gray", 100)};
+  --link-active:  #{colorVal("orange", 70)};
+  --link-hover:   #{colorVal("orange", 50)};
+  --link-visited: #{colorVal("gray", 70)};
+  --link-focus:   #{colorVal("gray", 30)};
+  --link-disabled:#{colorVal("orange", 20)};
+
+  --breadcrumb-color: #{colorVal("gray", 40)};
+  --breadcrumb-current: #{colorVal("orange", 60)};
+  --breadcrumb-hover: #{colorVal("gray", 90)};
+
+  --disabled:     #{colorVal("gray", 30)};
+
+  --heading-color: #{$black};
+  --background: #{colorVal("gray", 10)};
+  --content-background :#{$white};
+
+  --interactive:              #{colorVal("orange", 40)};
+  --interactive-bkg:          #{colorVal("orange", 30)};
+  --interactive-bkg-disabled: #{colorVal("gray", 10)};
+  --interactive-bkg-secondary:#{colorVal("gray", 0)};
+
+  --tooltip-bkg:  #{colorVal("gray", 50)};
+  --tooltip-text: #{colorVal("gray", 0)};
+
+  --button-color:   #{$white};
+  --button-default: #{colorVal("orange", 50)};
+  --button-focused: #{colorVal("orange", 60)};
+  --button-hover:   #{colorVal("orange", 40)};
+  --button-active:  #{colorVal("orange", 70)};
+  --button-fab:     #{colorVal("gray", 0)};
+  --button-shadow-color:  #{toRGB(#df4907)};//@NOTE: due to Sass bug, color needs to be hard-coded to hex for now
+
+  --badge-background: var(--button-default);
+  --badge-color: var(--button-color);
+
+  --checkbox-color:    #{colorVal("orange", 60)};
+  --checkbox-disabled: #{colorVal("gray", 30)};
+
+  --chip-default :  #{colorVal("gray" ,10)};
+  --chip-hover :    #{colorVal("gray", 0)};
+  --chip-active :   #{colorVal("gray", 30)};
+  --chip-selected : #{colorVal("pumpkin", 40)};
+  --chip-selected-hover : #{colorVal("pumpkin", 50)};
+
+  --anchor-color : #{colorVal("gray" ,100)};
+  --anchor-hover-color :  #{colorVal("pumpkin" ,50)};
+  --anchor-visited : #{colorVal("mauve" ,80)};
+  --anchor-color-primary : #{colorVal("steel" ,30)};
+
+  --border-color: #{colorVal("gray", 20)};
+  --nav-border:   #{colorVal("gray", 30)};
+
+  --logo-text:       var(--background);
+  --logo-bkg-top:    var(--text-color);
+  --logo-bkg-bottom: var(--text-color);
+
+  --card-background: #{$white};
+  --card-border:     #{$transparent};
+
+  --shadow-color-rgb: #{toRGB($black)};
+  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 0.2);
+  --box-shadow: 0 0.25rem 0.5rem var(--shadow);
+
+  --dropdown-background-outline: #{$gray-light};
+  --dropdown-background: #{$white};
+
+  --switch-color:    #{colorVal("orange", 50)};
+  --switch-disabled: #{colorVal("gray", 30)};
+
+  @media (prefers-contrast: more) {
+    --text-color: #{$black};
+    --text-dark: #{$black};
+    --text-light: #{$white};
+    --link-focus: #{colorVal("orange", 70)};
+    --background: #{colorVal("gray", 0)};
+    --tooltip-bkg:  #{colorVal("gray", 80)};
+    --tooltip-text: #{$white};
+    --box-shadow: 0 0 0 2px #{colorVal("gray", 70)};
+    --button-shadow-color:  #{toRGB(#000)};
+  }
+}
+
+@mixin dark {
+  --cta: #{$cta};
+  --text-color:  #{colorVal("gray", 20)};
+  --text-dark:   #{colorVal("gray", 0)};
+  --text-light:  #{colorVal("gray", 80)};
+
+   --info-color:    #{colorVal("gray", 0)};
+   --info-bkg:      #{colorVal("gray", 60)};
+   --info-rgb:      #{toRGB(#686868)};
+   --success-color: #{colorVal("sage", 90)};
+   --success-bkg:   #{colorVal("sage", 20)};
+   --success-rgb:      #{toRGB(#b8d0bb)};
+   --warning-color: #{colorVal("pumpkin", 0)};
+   --warning-bkg:   #{colorVal("pumpkin", 40)};
+   --warning-rgb:      #{toRGB(#D38225)};
+   --error-color:   #{colorVal("terracotta", 0)};
+   --error-bkg:     #{colorVal("terracotta", 80)};
+   --error-rgb:      #{toRGB(#7c271a)};
+
+ --link-color:   #{colorVal("gray", 0)};
+  --link-active:  #{colorVal("orange", 30)};
+  --link-hover:   #{colorVal("orange", 30)};
+  --link-visited: #{colorVal("gray", 30)};
+  --link-focus:   #{colorVal("gray", 70)};
+  --link-disabled:#{colorVal("orange", 20)};
+
+  --breadcrumb-color: #{colorVal("gray", 50)};
+  --breadcrumb-current: #{colorVal("orange", 30)};
+  --breadcrumb-hover: #{colorVal("gray", 20)};
+
+  --disabled:    #{colorVal("gray", 50)};
+
+  --heading-color: #{$white};
+  --background: #{colorVal("gray", 90)};
+  --content-background :#{colorVal("gray", 80)};
+
+  --interactive: #{colorVal("orange", 30)};
+  --interactive-bkg: #{colorVal("orange", 10)};
+  --interactive-bkg-disabled: #{colorVal("gray", 50)};
+  --interactive-bkg-secondary:#{colorVal("gray", 80)};
+
+
+  --tooltip-bkg: #{colorVal("gray", 20)};
+  --tooltip-text: #{colorVal("gray", 90)};
+
+  --button-color:   #{$white};
+  --button-default: #{colorVal("orange", 40)};
+  --button-focused: #{colorVal("orange", 60)};
+  --button-hover:   #{colorVal("orange", 40)};
+  --button-active:  #{colorVal("orange", 70)};
+  --button-fab:     #{colorVal("gray", 30)};
+  --button-shadow-color:  #{toRGB(#bb3d06)}; //@NOTE: due to Sass bug, this needs to be hard-coded for now
+
+  --badge-background: var(--button-default);
+  --badge-color: var(--button-color);
+
+  --checkbox-color: #{colorVal("orange", 40)};
+  --checkbox-disabled: #{colorVal("gray", 50)};
+
+  --chip-default :  #{colorVal("gray" ,60)};
+  --chip-hover :    #{colorVal("gray", 50)};
+  --chip-active :   #{colorVal("gray", 40)};
+  --chip-selected : #{colorVal("pumpkin", 40)};
+  --chip-selected-hover : #{colorVal("pumpkin", 50)};
+
+  --anchor-color : #{colorVal("gray" ,100)};
+  --anchor-hover-color :  #{colorVal("pumpkin" ,50)};
+  --anchor-visited : #{colorVal("mauve" ,80)};
+  --anchor-color-primary : #{colorVal("steel" ,30)};
+
+  --border-color: #{colorVar("gray", 90)};
+  --border-color: #{colorVal("gray", 30)};
+  --nav-border: #{$gray-med-light};
+
+  --logo-text: var(--background);
+  --logo-bkg-top: var(--text-color);
+  --logo-bkg-bottom: var(--text-color);
+
+  --card-background: #{colorVal("gray", 90)};
+  --card-border: #{$transparent};
+
+  --shadow-color-rgb: #{toRGB($black)};
+  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 0.9);
+  --box-shadow: 0 0.25rem 5rem var(--shadow);
+
+  --dropdown-background-outline: #{$gray-med-dark};
+  --dropdown-background: #{$gray-med-dark};
+
+  --switch-color:    #{colorVal("orange", 50)};
+  --switch-disabled: #{colorVal("gray", 30)};
+
+
+  @media (prefers-contrast: more) {
+    --text-color: #{$white};
+    --text-dark: #{$white};
+    --text-light: #{$black};
+    --link-focus: #{colorVal("orange", 40)};
+    --background: #{colorVal("gray", 100)};
+    --tooltip-bkg:  #{colorVal("gray", 0)};
+    --tooltip-text: #{$black};
+    --box-shadow: 0 0 0 2px #{colorVal("gray", 10)};
+    --button-shadow-color:  #{toRGB(#000)};
+
+  }
+}
+
+@mixin reducedMotion {
+  --transition-s : #{$transition-s};
+  --transition-m : #{$transition-m};
+  --transition-l : #{$transition-l};
+  --transition-x : #{$transition-x};
+
+  --interactive-feedback: translateY(-.075em) scale(1.01);
+
+
+  @media (prefers-reduced-motion: reduce) {
+    --transition-s : 0s;
+    --transition-m : 0s;
+    --transition-l : 0s;
+    --transition-x : 0s;
+
+    --interactive-feedback: translateY(0) scale(1);
+    }
+}
+
+:root {
+  color-scheme: light;
+  @include light;
+  @include reducedMotion;
+
+  // color-scheme: light dark; // both are supported
+  // @include light;
+
+  // // @media (prefers-color-scheme: dark) {
+  // //   @include dark;
+  // // }
+
+  // @media (prefers-color-scheme: light) {
+  //   @include light;
+  // }
+}
+
+.theme-dark {
+  @include dark;
+}
+
+.theme-light {
+  @include light;
+}
+

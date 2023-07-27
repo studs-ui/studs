@@ -1,0 +1,21 @@
+@use '../utilities' as *;
+
+@mixin buttonGroup {
+  display: flex;
+  align-items: center;
+}
+
+.buttonGroup {
+  @include buttonGroup;
+  ::slotted(studs-button:first-child) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  ::slotted(studs-button) {
+    border-radius: 0px;
+  }
+  ::slotted(studs-button:last-child) {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+}

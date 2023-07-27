@@ -1,0 +1,39 @@
+{
+  "name": "studs-lit",
+  "private": false,
+  "version": "0.0.7",
+  "type": "module",
+  "main": "dist/studs-lit.js",
+  "module": "dist/studs-lit.js",
+  "style": "dist/studs-lit.css",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build-lib": "tsc && vite build",
+    "build": "tsc && vite build && storybook build",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build",
+    "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
+    "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@lit-labs/virtualizer": "^2.0.4",
+    "@splidejs/splide": "^4.1.4",
+    "@storybook/addon-essentials": "^7.1.1",
+    "@storybook/addon-links": "^7.1.1",
+    "@storybook/blocks": "^7.1.1",
+    "@storybook/react-vite": "^7.1.1",
+    "@storybook/web-components": "^7.1.1",
+    "@storybook/web-components-vite": "^7.1.1",
+    "lit": "^2.7.6",
+    "sass": "^1.64.1",
+    "storybook": "^7.1.1",
+    "storybook-addon-performance": "^0.17.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.7"
+  }
+}

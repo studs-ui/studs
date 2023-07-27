@@ -1,0 +1,91 @@
+@use '../utilities' as *;
+
+@mixin inputComponent {
+  position: relative;
+  .inputWrapper {
+    display: inline-flex;
+    align-items: center;
+  }
+  .input {
+    appearance: none;
+    border: 1px solid $gray-med-light;
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0.5rem;
+  }
+  label {
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+  .outlined {
+    border: 1px solid $gray-med-light;
+  }
+  .filled {
+    border: 1px solid $background-light;
+    background-color: $background-light;
+  }
+  .standard {
+    border: 0;
+    outline: none;
+    border-bottom: 1px solid $gray-med-light;
+  }
+  .small {
+    padding: 0.25rem;
+  }
+  .large {
+    padding: 0.75rem;
+  }
+  .start {
+    padding-left: 2rem;
+    &.-withClearButton {
+      padding-right: 1.8rem;
+    }
+  }
+  .end {
+    padding-right: 2rem;
+    &.-withClearButton {
+      padding-right: 3rem;
+    }
+  }
+  .adornmentStart {
+    &.-icon {
+      margin-top: 0.2rem;
+    }
+    position: absolute;
+    padding-left: 0.5rem;
+  }
+  .adornmentEnd {
+    &.-icon {
+      margin-top: 0.3rem;
+    }
+    margin-left: -1.5rem;
+  }
+  .button.interaction {
+    all: unset;
+    cursor: pointer;
+  }
+  .error {
+    border: 1px solid red;
+  }
+  .error-text {
+    margin: 5px;
+    color: red;
+  }
+
+  .clearButton {
+    all: unset;
+    position: absolute;
+    right: 8px;
+    top: 52%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    &.-withAdorment {
+      right: 1.2rem;
+    }
+  }
+  .clearButton:hover {
+    transform: translateY(-50%);
+  }
+}
