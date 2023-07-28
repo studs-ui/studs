@@ -6,6 +6,10 @@
   --toast-shadow: var(--info-rgb);
   --toast-border: #{colorVal("orange", 50)};
 
+  > svg {
+    padding-inline-end: 1em;
+  }
+
   position: fixed;
   right: 2rem;
   bottom: 2rem;
@@ -25,7 +29,7 @@
   gap: 0.25em;
 
   margin: 0.5rem 0;
-  padding: 0.75rem;
+  padding: 1em;
   border-radius: 0.125rem;
   border-left: 3px solid var(--toast-border);
 
@@ -38,6 +42,7 @@
 
   p {
     margin: 0;
+    margin-inline-end: 2em;
   }
 
   &.-error {
@@ -56,10 +61,6 @@
     --toast-border: var(--success-color);
   }
 
-  .actions {
-    margin-left: 1.5rem;
-  }
-
   .-close {
     background: transparent;
     border: 0;
@@ -69,7 +70,7 @@
     }
   }
 
-  &.-demo {
+  &.-static {
     position: relative;
     left: 0;
     right: 0;

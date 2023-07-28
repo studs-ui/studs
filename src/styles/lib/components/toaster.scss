@@ -1,0 +1,27 @@
+.toaster {
+  position: fixed;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: flex-end;
+
+  &.-bottom {
+    &-right {
+      bottom: 0.5em;
+      right: 0.75em;
+    }
+    &-left {
+      bottom: 0.5em;
+      left: 0.75em;
+    }
+  }
+  &.-top {
+    &-right {
+      top: 0.5em;
+      right: 0.75em;
+    }
+    &-left {
+      top: 0.5em;
+      left: 0.75em;
+    }
+  }
+}

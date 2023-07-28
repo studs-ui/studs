@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/src/styles/index.css" />
     <script type="module" src="/src/index.ts"></script>
     <script type="module" src="/src/_presentational/index.ts"></script>
+    <script src="/src/functions/toaster.ts"></script>
   </head>
   <body>
+    <studs-toaster></studs-toaster>
     <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts"]'>
       <div slot="Buttons">
         <div class="group">
@@ -581,7 +583,6 @@
                   <studs-button
                     size="small"
                     buttontype="secondary"
-                    data-micromodal-close
                     aria-label="Close this dialog window"
                   >
                     Close
@@ -714,17 +715,23 @@
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-toast demo title="Info" type="info" message="Info Toast" action="Button" closeable onclick="alert('clicked')"></studs-toast>
+              <studs-toast static heading="Info" type="info" message="Info Toast" action="Button" closeable onactionclick="alert('clicked')"></studs-toast>
             </presentational-component>
             <presentational-component>
-              <studs-toast demo title="Success" type="success" message="Success Toast" closeable onclick="alert('clicked')"></studs-toast>
+              <studs-toast static heading="Success" type="success" message="Success Toast" closeable onactionclick="alert('clicked')"></studs-toast>
             </presentational-component>
             <presentational-component>
-              <studs-toast demo title="Warning" type="warning" message="Warning Toast" onclick="alert('clicked')"></studs-toast>
+              <studs-toast static heading="Warning" type="warning" message="Warning Toast" onactionclick="alert('clicked')"></studs-toast>
             </presentational-component>
             <presentational-component>
-              <studs-toast demo title="Error" type="error" message="Error Toast"></studs-toast>
+              <studs-toast static heading="Error" type="error" message="Error Toast"></studs-toast>
             </presentational-component>
+            <presentational-component>
+              <studs-toast static heading="Custom Children" type="error" message="Children Toast"><studs-button buttontype="primary" size="small">Click me</studs-button></studs-toast>
+            </presentational-component>
+            <div>
+              <studs-button onclick="createToast('test')">Create Toast</studs-button>
+            </div>
           </div>
         </div>
       </div>
