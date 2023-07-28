@@ -15,6 +15,7 @@ import { StudsModal } from "./components/overlays/modal";
 import { StudsPopover } from "./components/overlays/popover";
 import { StudsCard } from "./components/display/card";
 import { StudsTooltip } from "./components/overlays/tooltip";
+import { StudsToast } from "./components/overlays/toast";
 
 // Export Components
 export { StudsSplideCarousel } from "./components/demos/splide-carousel";
@@ -30,6 +31,7 @@ export { StudsModal } from "./components/overlays/modal";
 export { StudsPopover } from "./components/overlays/popover";
 export { StudsCard } from "./components/display/card";
 export { StudsTooltip } from "./components/overlays/tooltip";
+export { StudsToast } from "./components/overlays/toast";
 
 declare global {
   interface HTMLElementTagNameMap {
@@ -46,5 +48,6 @@ declare global {
     "studs-popover": StudsPopover;
     "studs-card": StudsCard;
     "studs-tooltip": StudsTooltip;
+    "studs-toast": StudsToast;
   }
 }
