@@ -4,6 +4,895 @@ import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import pjson from "../../package.json";
 
+@customElement("presentational-page")
+export class PresentationalPage extends LitElement {
+  render() {
+    return html`
+    <studs-toaster></studs-toaster>
+    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers"]'>
+      <div slot="Buttons">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage>
+            <studs-button 
+            onclick="alert('clicked')" 
+            buttontype="primary" 
+            size="medium"
+            icon="<svg>...</svg>"
+            contentdirection="horizontal"
+            iconposition="start"
+            disabled
+            >
+            CTA
+          </studs-button>
+          </presentational-usage>
+        </div>
+        <div class="group">
+          <h2>Examples</h2>
+          <div class="componentGrid">
+            <presentational-component><studs-button onclick="alert('clicked')">CTA</studs-button></presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" onclick="alert('clicked')">Primary</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="secondary" onclick="alert('clicked')">Secondary</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="tertiary" onclick="alert('clicked')">Tertiary</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="link" onclick="alert('clicked')">Link</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="floating" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')"></studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="icon" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')"></studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" iconposition="start" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')">Icon Left</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" iconposition="end" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')">Icon Right</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" contentdirection="vertical" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')">Vertical</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" disabled>Disabled</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" size="large">Large</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button buttontype="primary" size="small">Small</studs-button>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Button Groups">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage><studs-button-group>
+            <studs-button buttontype="primary">One</studs-button>
+            <studs-button buttontype="primary">Two</studs-button>
+            <studs-button buttontype="primary">Three</studs-button>
+          </studs-button-group></presentational-usage>
+        </div>
+        <div class="group">
+          <h2>Examples</h2>
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-button-group>
+                <studs-button buttontype="primary">One</studs-button>
+                <studs-button buttontype="primary">Two</studs-button>
+                <studs-button buttontype="primary">Three</studs-button>
+              </studs-button-group>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Dropdowns">
+        <div class="group">
+          <h2>Usage</h2>
+            <presentational-usage><studs-dropdown label="Dropdown" options='[{"label": "test","value":"test"}, {"label":"test2","value":"test2"}]'></studs-dropdown></presentational-usage>
+        </div>
+        <div class="group">
+          <h2>Notes</h2>
+          <ul>
+            <li>When using inside of a framework, ei. <code>Blazor</code>, <code>Angular</code>, <code>React</code>, <code>etc.</code>, add a <code>.</code> in front of the options attribute.</li>
+          </ul>
+        </div>
+        <div class="group">
+          <h2>Examples</h2>
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-dropdown label="Dropdown" options='[{"label": "test","value":"test"}, {"label":"test2","value":"test2"}]'></studs-dropdown>
+            </presentational-component>
+            <presentational-component>
+              <studs-dropdown disabled label="Disabled" options='[{"label": "test","value":"test"}, {"label":"test2","value":"test2"}]'></studs-dropdown>
+            </presentational-component>
+            <presentational-component>
+              <studs-dropdown label="Placeholder" placeholder="Placeholder" options='[{"label": "test","value":"test"}, {"label":"test2","value":"test2"}]'></studs-dropdown>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Chips">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage><studs-chip>Chip</studs-chip></presentational-usage>
+        </div>
+        <div class="group">
+          <h2>Examples</h2>
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-chip>Chip</studs-chip>
+            </presentational-component>
+            <presentational-component>
+              <studs-chip size="small">Small</studs-chip>
+            </presentational-component>
+            <presentational-component>
+              <studs-chip size="large">Large</studs-chip>
+            </presentational-component>
+            <presentational-component>
+              <studs-chip  deletable onClick="alert('delete')" clickable>Interactable</studs-chip>
+            </presentational-component>
+            <presentational-component>
+              <studs-chip  onDelete="alert('delete')" clickable><img slot="accessory" class="avatar" src="./placeholders/smallUX/smallUX-avatar-sage.svg" alt="avatar">Interactable</studs-chip>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Carousels">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage><studs-carousel perPage="3" slides='[{"id":0,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","alt":"image 1"},{"id":1,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 2"},{"id":2,"image":"https://www.shutterstock.com/image-photo/black-large-heavy-thick-metal-600w-1081705028.jpg","group":"image","alt":"image 3"},{"id":3,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 4"},{"id":4,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","group":"image","alt":"image 5"},{"id":5,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 6"},{"id":6,"image":"https://www.shutterstock.com/image-photo/welded-metal-chain-various-rigging-600w-2238426561.jpg","group":"image","alt":"image 7"},{"id":7,"image":"https://www.shutterstock.com/image-photo/linked-blocks-bank-currencies-money-600w-1962882805.jpg","group":"image","alt":"image 8"},{"id":8,"image":"https://www.shutterstock.com/image-illustration/background-silver-metal-chain-common-600w-2157514199.jpg","group":"image","alt":"image 9"}]'></studs-carousel></presentational-usage>
+        </div>
+        <div class="group">
+          <h2>Examples</h2>
+          <div class="componentGrid -single">
+            <h2>Homebrew</h2>
+            <presentational-component>
+              <studs-carousel perPage="3" slides='[{"id":0,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","alt":"image 1"},{"id":1,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 2"},{"id":2,"image":"https://www.shutterstock.com/image-photo/black-large-heavy-thick-metal-600w-1081705028.jpg","group":"image","alt":"image 3"},{"id":3,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 4"},{"id":4,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","group":"image","alt":"image 5"},{"id":5,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 6"},{"id":6,"image":"https://www.shutterstock.com/image-photo/welded-metal-chain-various-rigging-600w-2238426561.jpg","group":"image","alt":"image 7"},{"id":7,"image":"https://www.shutterstock.com/image-photo/linked-blocks-bank-currencies-money-600w-1962882805.jpg","group":"image","alt":"image 8"},{"id":8,"image":"https://www.shutterstock.com/image-illustration/background-silver-metal-chain-common-600w-2157514199.jpg","group":"image","alt":"image 9"}]'></studs-carousel>
+            </presentational-component>
+            <h2>Splide</h2>
+            <presentational-component>
+              <studs-splide-carousel perPage="3" slides='[{"id":0,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","alt":"image 1"},{"id":1,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 2"},{"id":2,"image":"https://www.shutterstock.com/image-photo/black-large-heavy-thick-metal-600w-1081705028.jpg","group":"image","alt":"image 3"},{"id":3,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 4"},{"id":4,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","group":"image","alt":"image 5"},{"id":5,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 6"},{"id":6,"image":"https://www.shutterstock.com/image-photo/welded-metal-chain-various-rigging-600w-2238426561.jpg","group":"image","alt":"image 7"},{"id":7,"image":"https://www.shutterstock.com/image-photo/linked-blocks-bank-currencies-money-600w-1962882805.jpg","group":"image","alt":"image 8"},{"id":8,"image":"https://www.shutterstock.com/image-illustration/background-silver-metal-chain-common-600w-2157514199.jpg","group":"image","alt":"image 9"}]'></studs-carousel>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Tables">
+        <div class="group">
+          <h2>Usage</h2>
+            <presentational-usage><studs-table fixedheader fixedoffset="-1.5rem">
+              <table>
+                <caption>Table</caption>
+                <thead>
+                  <tr>
+                      <th>first column</th>
+                      <th>second column</th>
+                      <th>third column</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                      <td>1</td>
+                      <td>2</td>
+                      <td>3</td>
+                  </tr>
+                </tbody>
+              </table>
+            </presentational-usage>
+        </div>
+        <div class="group">
+          <h2>Examples</h2>
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-table fixedheader fixedoffset="-1.5rem">
+                <table>
+                  <caption>Table</caption>
+                  <thead>
+                    <tr>
+                        <th>first column</th>
+                        <th>second column</th>
+                        <th>third column</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </studs-table>
+            </presentational-component>
+          </div>
+        </div>
+        
+      </div>
+      <div slot="Grids">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage> <studs-grid
+            wrapperprops="{'style': {'width': '100%', 'margin': 'auto', 'height': '100%'}}"
+            tablecaption="Local Data Grid"
+            pagesize="25"
+            itemsperpageselector="[10, 25, 50, 100]"
+            showborders="true"
+            allowcolumnresizing="true"
+            enableglobalsearch="true"
+          ></studs-grid></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid -single">
+            <presentational-component>
+              <studs-grid
+              wrapperprops="{'style': {'width': '100%', 'margin': 'auto', 'height': '100%'}}"
+              tablecaption="Local Data Grid"
+              pagesize="25"
+              itemsperpageselector="[10, 25, 50, 100]"
+              showborders="true"
+              allowcolumnresizing="true"
+              enableglobalsearch="true"
+            ></studs-grid>
+              
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Modals">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage>               <studs-modal>
+            <studs-button slot="toggle">Open</studs-button>
+            <h2 slot="header" class="modal -title" id="modal-1-title">Micromodal</h2>
+            <p>
+              Try hitting the <code>tab</code> key and notice how the focus
+              stays within the modal itself. Also, <code>esc</code> to close
+              modal.
+            </p>
+            <div slot="footer">
+              <studs-button size="small" buttontype="primary"
+                >Action</studs-button
+              >
+              <studs-button
+                size="small"
+                buttontype="secondary"
+                data-micromodal-close
+                aria-label="Close this dialog window"
+              >
+                Close
+              </studs-button>
+            </div>
+          </studs-modal></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid -single">
+            <presentational-component>
+              <studs-modal>
+                <studs-button slot="toggle">Open</studs-button>
+                <h2 slot="header" class="modal -title" id="modal-1-title">Micromodal</h2>
+                <p>
+                  Try hitting the <code>tab</code> key and notice how the focus
+                  stays within the modal itself. Also, <code>esc</code> to close
+                  modal.
+                </p>
+                <div slot="footer">
+                  <studs-button size="small" buttontype="primary"
+                    >Action</studs-button
+                  >
+                  <studs-button
+                    size="small"
+                    buttontype="secondary"
+                    aria-label="Close this dialog window"
+                  >
+                    Close
+                  </studs-button>
+                </div>
+              </studs-modal>
+              
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Popovers">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage>
+            <studs-popover direction="left" arrowPosition="center">
+              <studs-button buttontype="primary">Left</studs-button>
+              <div slot="popover">This is a left popover</div>
+            </studs-popover>
+          </presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-popover direction="left" arrowPosition="center">
+                <studs-button buttontype="primary">Left</studs-button>
+                <div slot="popover">This is a left popover</div>
+              </studs-popover>
+            </presentational-component>
+            <presentational-component>
+              <studs-popover direction="right" arrowPosition="center">
+                <studs-button buttontype="primary">Right</studs-button>
+                <div slot="popover">This is a right popover</div>
+              </studs-popover>
+            </presentational-component>
+            <presentational-component>
+              <studs-popover direction="top" arrowPosition="center">
+                <studs-button buttontype="primary">Top</studs-button>
+                <div slot="popover">This is a top popover</div>
+              </studs-popover>
+            </presentational-component>
+            <presentational-component>
+              <studs-popover direction="bottom" arrowPosition="center">
+                <studs-button buttontype="primary">Bottom</studs-button>
+                <div slot="popover">This is a bottom popover</div>
+              </studs-popover>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Cards">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-card
+                imageUrl="https://via.placeholder.com/200x200"
+                altText="Studs Card Media"
+                title="Title"
+                customClass="my-custom-class"
+              >
+                <div slot="main">This is my custom body content.</div>
+                <div slot="footer">
+                  <studs-button buttontype="primary" onclick="alert('clicked')">Learn more</studs-button>
+                </div>
+              </studs-card>
+            </presentational-component>
+            <presentational-component>
+              <studs-card
+                imageUrl="https://via.placeholder.com/200x200"
+                altText="Studs Card Media"
+                title="Title"
+                >
+                <div slot="main">This is my custom body content.</div>
+                <div slot="footer">Footer</div>
+              </studs-card>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Tooltips">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage>
+            <studs-tooltip direction="left" arrowPosition="end">
+              <studs-button buttontype="primary">Left</studs-button>
+              <div slot="tooltip">This is a left tooltip</div>
+            </studs-tooltip>
+          </presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-tooltip direction="left" arrowPosition="end">
+                <studs-button buttontype="primary">Left</studs-button>
+                <div slot="tooltip">This is a left tooltip</div>
+              </studs-tooltip>
+            </presentational-component>
+            <presentational-component>
+              <studs-tooltip direction="right" arrowPosition="end">
+                <studs-button buttontype="primary">Right</studs-button>
+                <div slot="tooltip">This is a right tooltip</div>
+              </studs-tooltip>
+            </presentational-component>
+            <presentational-component>
+              <studs-tooltip direction="top" arrowPosition="end">
+                <studs-button buttontype="primary">Top</studs-button>
+                <div slot="tooltip">This is a top tooltip</div>
+              </studs-tooltip>
+            </presentational-component>
+            <presentational-component>
+              <studs-tooltip direction="bottom" arrowPosition="end">
+                <studs-button buttontype="primary">Bottom</studs-button>
+                <div slot="tooltip">This is a bottom tooltip</div>
+              </studs-tooltip>
+            </presentational-component>
+          </div>
+        </div>
+      </div> 
+      <div slot="Toasts">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage>
+            <studs-toast title="Toast"></studs-toast>
+          </presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-toast open static heading="Info" type="info" message="Info Toast" action="Button" closeable onactionclick="alert('clicked')"></studs-toast>
+            </presentational-component>
+            <presentational-component>
+              <studs-toast open static heading="Success" type="success" message="Success Toast" closeable onactionclick="alert('clicked')"></studs-toast>
+            </presentational-component>
+            <presentational-component>
+              <studs-toast open static heading="Warning" type="warning" message="Warning Toast" onactionclick="alert('clicked')"></studs-toast>
+            </presentational-component>
+            <presentational-component>
+              <studs-toast open static heading="Error" type="error" message="Error Toast"></studs-toast>
+            </presentational-component>
+            <presentational-component>
+              <studs-toast open static heading="Custom Children" type="error" message="Children Toast"><studs-button buttontype="primary" size="small">Click me</studs-button></studs-toast>
+            </presentational-component>
+            <presentational-component>
+              <studs-toast open static heading="Long Item" type="error" message="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"><studs-button buttontype="primary" size="small">Click me</studs-button></studs-toast>
+            </presentational-component>
+            <presentational-component>
+              <studs-button onclick="createToast({
+                heading: 'Toast',
+                message: 'New Toast'
+              })">Create Standard Toast</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button onclick="createToast({
+                type: 'error',
+                heading: 'Error',
+                message: 'You Clicked this Toast'
+              })">Create Error Toast</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button onclick="createToast({
+                type: 'warning',
+                heading: 'Warning',
+                message: 'Dont tell JP Kandy won'
+              })">Create Warning Toast</studs-button>
+            </presentational-component>
+            <presentational-component>
+              <studs-button onclick="createToast({
+                type: 'success',
+                heading: 'Success',
+                message: 'Youre a winner, baby',
+                action: 'celebrate',
+                onActionClick: 'alert()'
+              })">Create Success Toast</studs-button>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Switches">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-switch checked="true" label="Checked"></studs-switch>
+            </presentational-component>
+            <presentational-component>
+              <studs-switch></studs-switch>
+            </presentational-component>
+            <presentational-component>
+              <studs-switch disabled label="Disabled"></studs-switch>
+            </presentational-component>
+            <presentational-component>
+              <studs-switch size="medium" checked="true"></studs-switch>
+            </presentational-component>
+            <presentational-component>
+              <studs-switch
+                size="small"
+                checked="true"
+                label="Switch"
+                label-position="start"
+                name="test-switch"
+              >
+              </studs-switch>
+            </presentational-component>
+            <presentational-component>
+              <studs-switch
+                size="small"
+                checked="true"
+                label="Bottom label"
+                label-position="bottom"
+                name="test-switch"
+              >
+              </studs-switch>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Steppers">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage>
+            <studs-stepper>
+              <studs-step>Step 1</studs-step>
+              <studs-step>Step 2</studs-step>
+              <studs-step>Step 3</studs-step>
+            </studs-stepper>
+          </presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid -single">
+            <presentational-component>
+              <studs-stepper step=${1} .steps=${[
+      {
+        id: 1,
+        label: "Step 1",
+        description: "This is step 1",
+      },
+      {
+        id: 2,
+        label: "Step 2",
+        description: "This is step 2",
+      },
+      {
+        id: 3,
+        label: "Step 3",
+        description: "This is step 3",
+      },
+    ]}>
+              </studs-stepper>
+            </presentational-component>
+            <presentational-component>
+              <studs-stepper direction="vertical" step=${1} .steps=${[
+      {
+        id: 1,
+        label: "Step 1",
+        description: "This is step 1",
+      },
+      {
+        id: 2,
+        label: "Step 2",
+        description: "This is step 2",
+      },
+      {
+        id: 3,
+        label: "Step 3",
+        description: "This is step 3",
+      },
+    ]}>
+              </studs-stepper>
+            </presentational-component>
+            <presentational-component>
+              <studs-stepper step=${1} .steps=${[
+      {
+        id: 1,
+        label: "Step 1",
+      },
+      {
+        id: 2,
+        label: "Step 2",
+      },
+      {
+        id: 3,
+        label: "Step 3",
+      },
+      {
+        id: 4,
+        label: "Step 4",
+      },
+      {
+        id: 5,
+        label: "Step 5",
+      },
+    ]}>
+              </studs-stepper>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+    </presentational-tabs>
+    `;
+  }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
+}
+
 @customElement("presentational-tabs")
 export class PresentationalTabs extends LitElement {
   @property({ type: Array }) tabs: string[] = [];
@@ -130,6 +1019,7 @@ export class PresentationalComponent extends LitElement {
       flex-direction: column;
       align-items: center;
 
+      width: 100%;
       height: 100%;
       gap: 1rem;
     }
@@ -290,26 +1180,12 @@ export class PresentationalUsage extends LitElement {
   }
 }
 
-// document.addEventListener("DOMContentLoaded", () => {
-//   const codeBlocks = document.querySelectorAll(".codeBlock");
-//   if (codeBlocks.length) {
-//     codeBlocks.forEach((codeBlock) => {
-//       codeBlock.addEventListener("click", () => {
-//         const content = codeBlock?.textContent;
-//         if (content)
-//           navigator.clipboard.writeText(content).then(function (err) {
-//             console.error("Async: Could not copy text: ", err);
-//           });
-//       });
-//     });
-//   }
-// });
-
 declare global {
   interface HTMLElementTagNameMap {
     "presentational-tabs": PresentationalTabs;
     "presentational-component": PresentationalComponent;
     "presentational-codeblock": PresentationalCodeblock;
     "presentational-usage": PresentationalUsage;
+    "presentational-page": PresentationalPage;
   }
 }
