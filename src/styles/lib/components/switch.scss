@@ -1,84 +1,109 @@
 @use '../utilities' as *;
 
 @mixin switch {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  &.-reverse {
-    flex-direction: row-reverse;
-  }
-  &.-col {
-    flex-direction: column;
-    &.-reverse {
-      flex-direction: column-reverse;
+
+  &.start {
+    .switch-label {
+      order: 2;
     }
   }
-  input { 
-    opacity: 0;
-    width: 0;
-    height: 0;
-    &:checked + .switchSlider {
+
+  &.top,
+  &.bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  &.top .switch-label {
+    order: 2;
+  }
+
+  // Adjust the gap between the switch and the label as needed
+  gap: 10px;
+
+  .switch-label {
+    display: inline-block;
+    align-items: center;
+    position: relative;
+    width: 60px;
+    height: 34px;
+
+    &.small {
+      width: 50px;
+      height: 28px;
+    }
+
+    &.medium {
+      width: 60px;
+      height: 34px;
+    }
+
+    input {
+      display: none;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: #ccc;
+      transition: 0.4s;
+      border-radius: 34px;
+
+      &:before {
+        position: absolute;
+        content: '';
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: #fff;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+    }
+
+    input:checked + .slider {
       background-color: var(--switch-color);
     }
-    &:checked + .switchSlider:before {
-      -webkit-transform: translateX(20px);
-      -ms-transform: translateX(20px);
-      transform: translateX(20px);
+
+    input:focus + .slider {
+      box-shadow: 0 0 1px var(--switch-color);
     }
-    &:disabled + .switchSlider {
-      background-color: var(--switch-disabled);
+
+    input:checked + .slider:before {
+      transform: translateX(26px);
     }
-  }
-  .switchSlider {
-    position: relative;
-    width: 48px;
-    height: 28px;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    -webkit-transition: .3s;
-    transition: .3s;
-    border-radius: 34px;
-    display: inline-block;
-    &:before {
-      position: absolute;
-      content: "";
-      height: 20px;
+
+    &.small .slider:before {
       width: 20px;
-      left: 4px;
-      bottom: 4px;
-      background-color: white;
-      -webkit-transition: .3s;
-      transition: .3s;
-      border-radius: 50%;
+      height: 20px;
+    }
+
+    &.small input:checked + .slider:before {
+      transform: translateX(22px);
+    }
+
+    input:disabled + .slider {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+
+    input:checked:disabled + .slider {
+      background-color: #b3d4fc;
+    }
+
+    input:disabled + .slider:before {
+      background-color: #ccc;
     }
   }
-  span:not(.switchSlider) {
-    padding: 5px;
-  }
-  &.-small {
-    .switchSlider {
-      width: 40px;
-      height: 24px;
-    }
-    input {
-      &:checked + .switchSlider:before {
-        -webkit-transform: translateX(16px);
-        -ms-transform: translateX(16px);
-        transform: translateX(16px);
-      }
-    }
-    .switchSlider {
-      &:before {
-        height: 16px;
-        width: 16px;
-      }
-    }
-    span:not(.switchSlider) {
-      font-size: 12px;
-    }
-  }
+}
+
+.switch {
+  @include switch;
 }
