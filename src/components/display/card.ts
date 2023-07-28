@@ -35,17 +35,17 @@ export class StudsCard extends LitElement {
           : ""}
         ${this.title
           ? html`
-              <div class="cardHeader">
-                <h1>${this.title}</h1>
-              </div>
+              <header>
+                <h2>${this.title}</h2>
+              </header>
             `
           : ""}
-        <div class="cardBody">
-          <slot name="body"></slot>
-        </div>
-        <div class="cardFooter">
+        <main>
+          <slot name="main"></slot>
+        </main>
+        <footer>
           <slot name="footer"></slot>
-        </div>
+        </footer>
       </div>
     `;
   }
