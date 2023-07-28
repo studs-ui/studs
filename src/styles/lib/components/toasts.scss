@@ -8,6 +8,7 @@
 
   > svg {
     padding-inline-end: 1em;
+    min-width: 20px;
   }
 
   position: fixed;
@@ -22,7 +23,6 @@
   background-color: var(--toast-bkg);
   box-shadow: none;
 
-  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -33,16 +33,37 @@
   border-radius: 0.125rem;
   border-left: 3px solid var(--toast-border);
 
-  box-shadow: 0 0 1rem rgba(var(--toast-shadow), 0.4);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   color: var(--toast-text);
   background: var(--toast-bkg);
   overflow: visible;
 
-  animation: fadeIn 0.5s ease-in-out;
+  display: none;
+  max-width: 300px;
 
   p {
     margin: 0;
     margin-inline-end: 2em;
+  }
+
+  &.-open {
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+  }
+
+  &.-row {
+    > div {
+      display: flex;
+      gap: 0.25em;
+    }
+  }
+
+  &.-static {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
   }
 
   &.-error {
@@ -59,63 +80,6 @@
 
   &.-success {
     --toast-border: var(--success-color);
-  }
-
-  .-close {
-    background: transparent;
-    border: 0;
-
-    &::before {
-      content: "\2715";
-    }
-  }
-
-  &.-static {
-    position: relative;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-  }
-
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
-  @keyframes fadeOut {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0;
-    }
-  }
-
-  @keyframes slideFadeLeftIn {
-    0% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  @keyframes slideFadeLeftOut {
-    0% {
-      transform: translateX(0);
-      opacity: 1;
-    }
-    100% {
-      transform: translateX(100%);
-      opacity: 0;
-    }
   }
 
   &.-fadeIn {
@@ -147,4 +111,44 @@
 
 .toast {
   @include toast;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideFadeLeftIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFadeLeftOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }

@@ -13,26 +13,8 @@ export class StudsToaster extends LitElement {
 
   static styles = unsafeCSS(style);
 
-  public createToast() {
-    this.toasts = [
-      ...this.toasts,
-      {
-        type: "info",
-        duration: 3000,
-        closeable: true,
-        heading: "New",
-        message: "Toast",
-        action: "Button",
-      },
-      {
-        type: "info",
-        duration: 3000,
-        closeable: true,
-        heading: "New Toast",
-        message: "This one is longer",
-        action: "Button",
-      },
-    ];
+  public createToast(data: ToastProps) {
+    this.toasts = [...this.toasts, data];
     this.requestUpdate();
   }
 
@@ -45,18 +27,16 @@ export class StudsToaster extends LitElement {
       ${map(this.toasts, (toast) => {
         return html`<studs-toast
           static
-          type=${toast.type}
-          duration=${toast.duration}
-          ?closeable=${toast.closeable}
-          heading=${toast.heading}
-          message=${toast.message}
-          action=${toast.action}
+          open
+          type=${toast?.type || "info"}
+          duration=${toast?.duration || 3000}
+          ?closeable=${toast?.closeable || true}
+          heading=${toast?.heading}
+          message=${toast?.message}
+          action=${toast?.action}
+          onActionClick=${toast?.onActionClick}
         ></studs-toast>`;
       })}
     </div>`;
   }
-
-  //   protected createRenderRoot(): Element | ShadowRoot {
-  //     return this;
-  //   }
 }

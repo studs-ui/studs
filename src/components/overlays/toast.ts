@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, PropertyValueMap, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import style from "styles/toasts.scss?inline";
@@ -28,7 +28,7 @@ export class StudsToast extends LitElement {
   @property({ type: String }) type: ToastElementProps["type"] = "info";
   @property({ type: String }) position: ToastElementProps["position"] =
     "bottom-right";
-  @property({ type: String }) duration: ToastElementProps["duration"] = 3000;
+  @property({ type: String }) duration?: ToastElementProps["duration"];
   @property({ type: Function })
   onActionClick?: ToastElementProps["onActionClick"];
   @property({ type: Boolean }) closeable: ToastElementProps["closeable"] =
@@ -37,6 +37,16 @@ export class StudsToast extends LitElement {
   @property({ type: String }) heading: ToastElementProps["heading"];
   @property({ type: String }) message: ToastElementProps["message"];
   @property({ type: String }) action: ToastElementProps["action"];
+
+  get timeout() {
+    if (this.duration) {
+      if (this.duration < 1000) {
+        return false;
+      } else {
+        return this.duration;
+      }
+    }
+  }
 
   static styles = unsafeCSS(style);
 
@@ -127,19 +137,44 @@ export class StudsToast extends LitElement {
     }
   }
 
+  // Duration Properties
+  value = new Date();
+  private _timerID?: any;
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    if (this.duration && this.open && !this._timerID) {
+      this._timerID = setInterval(() => {
+        this.value = new Date();
+        // Update the host with new value
+        this.onClose();
+      }, this.duration);
+    }
+  }
+
+  hostDisconnected() {
+    // Clear the timer when the host is disconnected
+    clearInterval(this._timerID);
+    this._timerID = undefined;
+  }
+
   render() {
     const classes = {
       toast: true,
       "-static": this.static,
       "-open": this.open,
       [`-${this.type}`]: true,
-      [`-${this.position}`]: true,
+      [`-${this.position}`]: this.static ? false : true,
+      "-row": (this.message && this.message?.length < 20) || false,
     };
 
-    return html`<div class=${classMap(classes)}>
+    return html`<div class=${classMap(classes)} aria-hidden=${!this.open}>
       ${this.renderStatusIcon()}
-      ${this.heading ? html`<strong>${this.heading}</strong>` : ""}
-      ${this.message ? html`<p>${this.message}</p>` : ""}
+      <div>
+        ${this.heading ? html`<strong>${this.heading}</strong>` : ""}
+        ${this.message ? html`<p>${this.message}</p>` : ""}
+      </div>
       <slot></slot>
       ${this.action
         ? html`<div class="actions">
@@ -155,8 +190,13 @@ export class StudsToast extends LitElement {
         <rect width="16" height="16" fill="white" style="mix-blend-mode:multiply"/>
         <path d="M12 4.7L11.3 4L8 7.3L4.7 4L4 4.7L7.3 8L4 11.3L4.7 12L8 8.7L11.3 12L12 11.3L8.7 8L12 4.7Z" fill="#161616"/>
         </svg>`}
+            @click=${this.onClose}
           ></studs-button>`
         : ""}
     </div>`;
+  }
+
+  private onClose() {
+    this.open = false;
   }
 }
