@@ -1,146 +1,154 @@
-@use '../utilities' as *;
+@use "../utilities" as *;
 
 @mixin toast {
+  --toast-text: var(--info-color);
+  --toast-bkg: #{$white};
+  --toast-shadow: var(--info-rgb);
+  --toast-border: #{colorVal("orange", 50)};
+
+  > svg {
+    padding-inline-end: 1em;
+    min-width: 20px;
+  }
+
   position: fixed;
-  left: -2rem;
-  top: 2rem;
+  right: 2rem;
+  bottom: 2rem;
 
   display: flex;
   flex-direction: column;
   width: max-content;
   max-width: $screen-sm;
 
-  background-color: transparent;
+  background-color: var(--toast-bkg);
   box-shadow: none;
 
-  &.-reverse {
-    flex-direction: column-reverse;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25em;
+
+  margin: 0.5rem 0;
+  padding: 1em;
+  border-radius: 0.125rem;
+  border-left: 3px solid var(--toast-border);
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  color: var(--toast-text);
+  background: var(--toast-bkg);
+  overflow: visible;
+
+  display: none;
+  max-width: 300px;
+
+  p {
+    margin: 0;
+    margin-inline-end: 2em;
   }
 
-  .card {
-    --toast-text:   var(--info-color);
-    --toast-bkg:    var(--info-bkg);
-    --toast-shadow: var(--info-rgb);
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-
-    min-height: 50px;
-    margin: .5rem 0;
-    padding: 2rem;
-    border-radius: .5rem;
-    border: 2px solid var(--toast-text);
-    border-left: 1rem solid var(--toast-text);
-
-    box-shadow: 0 0 1rem rgba(var(--toast-shadow), 0.4);
-    color: var(--toast-text);
-    background: var(--toast-bkg);
-    overflow: visible;
-    position: relative;
-
+  &.-open {
     animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+  }
 
-    &.-error {
-      --toast-text:   var(--error-color);
-      --toast-bkg:    var(--error-bkg);
-      --toast-shadow: var(--error-rgb);
+  &.-row {
+    > div {
+      display: flex;
+      gap: 0.25em;
     }
+  }
 
-    &.-warning {
-      --toast-text:   var(--warning-color);
-      --toast-bkg:    var(--warning-bkg);
-      --toast-shadow: var(--warning-rgb);
-    }
+  &.-static {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
 
-    &.-info {
-      --toast-text:   var(--info-color);
-      --toast-bkg:    var(--info-bkg);
-      --toast-shadow: var(--info-rgb);
-    }
+  &.-error {
+    --toast-border: var(--error-color);
+  }
 
-    &.-success {
-      --toast-text:   var(--success-color);
-      --toast-bkg:    var(--success-bkg);
-      --toast-shadow: var(--success-rgb);
-    }
+  &.-warning {
+    --toast-border: var(--warning-color);
+  }
 
-    .content {
-      margin-left: .5rem;
-    }
+  &.-info {
+    --toast-border: var(--info-color);
+  }
 
-    .closeButton {
-      font-size: 1.35em;
-      padding: .25em;
-      background: var(--toast-bkg);
-      border-radius: 50%;
-      border: 2px solid var(--toast-text);
-      position: absolute;
-      top: calc(-0.5rem + -.25em);
-      right: calc(-0.5rem + -.25em);
+  &.-success {
+    --toast-border: var(--success-color);
+  }
 
-      &:hover {
-        cursor: pointer;
-      }
-    }
+  &.-fadeIn {
+    animation: fadeIn 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    opacity: 0;
+  }
 
-    @keyframes fadeIn {
-      from { opacity: 0 }
-        to { opacity: 1 }
-    }
+  &.-fadeOut {
+    animation: fadeOut 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    opacity: 1;
+  }
 
-    @keyframes fadeOut {
-      from { opacity: 1 }
-        to { opacity: 0 }
-    }
+  &.-slideFadeLeftIn {
+    animation: slideFadeLeftIn 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    transform: translateX(100%);
+    opacity: 0;
+  }
 
-    @keyframes slideFadeLeftIn {
-      0% {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      100% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
+  &.-slideFadeLeftOut {
+    animation: slideFadeLeftOut 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-    @keyframes slideFadeLeftOut {
-      0% {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      100% {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-    }
+.toast {
+  @include toast;
+}
 
-    &.-fadeIn {
-      animation: fadeIn 300ms ease-in-out forwards;
-      animation-delay: 100ms;
-      opacity: 0;
-    }
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 
-    &.-fadeOut {
-      animation: fadeOut 300ms ease-in-out forwards;
-      animation-delay: 100ms;
-      opacity: 1;
-    }
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
 
-    &.-slideFadeLeftIn {
-      animation: slideFadeLeftIn 300ms ease-in-out forwards;
-      animation-delay: 100ms;
-      transform: translateX(100%);
-      opacity: 0;
-    }
+@keyframes slideFadeLeftIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
-    &.-slideFadeLeftOut {
-      animation: slideFadeLeftOut 300ms ease-in-out forwards;
-      animation-delay: 100ms;
-      transform: translateX(0);
-      opacity: 1;
-    }
+@keyframes slideFadeLeftOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
   }
 }
