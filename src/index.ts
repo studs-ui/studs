@@ -16,6 +16,7 @@ import { StudsCard } from "./components/display/card";
 import { StudsTooltip } from "./components/overlays/tooltip";
 import { StudsToast } from "./components/overlays/toast";
 import { StudsToaster } from "./components/overlays/toaster";
+import { StudsSwitch } from "./components/inputs/switch";
 
 // Export Components
 export {
@@ -34,6 +35,7 @@ export {
   StudsTooltip,
   StudsToast,
   StudsToaster,
+  StudsSwitch,
   // Export Functions
 };
 
@@ -54,5 +56,6 @@ declare global {
     "studs-tooltip": StudsTooltip;
     "studs-toast": StudsToast;
     "studs-toaster": StudsToaster;
+    "studs-switch": StudsSwitch;
   }
 }
