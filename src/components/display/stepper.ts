@@ -5,21 +5,22 @@ import { map } from "lit/directives/map.js";
 import style from "styles/stepper.scss?inline";
 
 interface Step {
+  id?: string;
   label: string;
-  description: string;
+  description?: string;
 }
 
 export interface StepperProps {
-  steps: Array<any>;
+  steps: Array<Step>;
   step: number;
   direction: "horizontal" | "vertical";
 }
 
 @customElement("studs-stepper")
 export class StudsStepper extends LitElement {
-  @property({ type: Array }) steps: Array<any> = [];
-  @property({ type: Number }) step: number = 0;
-  @property({ type: String }) direction: "horizontal" | "vertical" =
+  @property({ type: Array }) steps: StepperProps["steps"] = [];
+  @property({ type: Number }) step: StepperProps["step"] = 0;
+  @property({ type: String }) direction: StepperProps["direction"] =
     "horizontal";
 
   static styles = unsafeCSS(style);
