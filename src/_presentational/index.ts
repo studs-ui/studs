@@ -3,6 +3,7 @@ import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import pjson from "../../package.json";
+import { createStandardToast, createErrorToast, createWarningToast, createSuccessToast } from '../functions/toaster';
 
 @customElement("presentational-page")
 export class PresentationalPage extends LitElement {
@@ -730,33 +731,16 @@ export class PresentationalPage extends LitElement {
               <studs-toast open static heading="Long Item" type="error" message="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"><studs-button buttontype="primary" size="small">Click me</studs-button></studs-toast>
             </presentational-component>
             <presentational-component>
-              <studs-button onclick="createToast({
-                heading: 'Toast',
-                message: 'New Toast'
-              })">Create Standard Toast</studs-button>
+              <studs-button @click=${createStandardToast}>Create Standard Toast</studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button onclick="createToast({
-                type: 'error',
-                heading: 'Error',
-                message: 'You Clicked this Toast'
-              })">Create Error Toast</studs-button>
+              <studs-button @click=${createErrorToast}>Create Error Toast</studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button onclick="createToast({
-                type: 'warning',
-                heading: 'Warning',
-                message: 'Dont tell JP Kandy won'
-              })">Create Warning Toast</studs-button>
+              <studs-button @click=${createWarningToast}>Create Warning Toast</studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button onclick="createToast({
-                type: 'success',
-                heading: 'Success',
-                message: 'Youre a winner, baby',
-                action: 'celebrate',
-                onActionClick: 'alert()'
-              })">Create Success Toast</studs-button>
+              <studs-button @click=${createSuccessToast}>Create Success Toast</studs-button>
             </presentational-component>
           </div>
         </div>
