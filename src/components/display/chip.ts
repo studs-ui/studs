@@ -35,7 +35,7 @@ export class StudsChip extends LitElement {
   static styles = unsafeCSS(style);
 
   renderDeleteButton() {
-    if (this.deletable || this.onDelete) {
+    if (this.deletable) {
       return html`<studs-button
         class="-close"
         buttontype="icon"
@@ -46,12 +46,11 @@ export class StudsChip extends LitElement {
   }
 
   onDelete(e: Event) {
-    this.dispatchEvent(
-      new CustomEvent("delete", {
-        bubbles: true,
-        composed: true,
-      })
-    );
+    const event = new CustomEvent("delete", {
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
   }
 
   renderIcon() {

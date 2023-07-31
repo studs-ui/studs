@@ -137,12 +137,12 @@ export class PresentationalPage extends LitElement {
               <studs-chip size="large">Large</studs-chip>
             </presentational-component>
             <presentational-component>
-              <studs-chip  deletable onClick="alert('delete')" clickable>Interactable</studs-chip>
+              <studs-chip  deletable @delete=${(e) => {
+                e.target.parentNode.removeChild(e.target);
+              }} clickable>Interactable</studs-chip>
             </presentational-component>
             <presentational-component>
-              <studs-chip  @delete=${(e) => {
-                e.target.parentNode.removeChild(e.target);
-              }}
+              <studs-chip
               clickable><img slot="accessory" class="avatar" src="./placeholders/smallUX/smallUX-avatar-sage.svg" alt="avatar">Interactable</studs-chip>
             </presentational-component>
           </div>
