@@ -1,22 +1,24 @@
-import type { StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { contentDirection, icon, size, variants } from "../utils/_argTypes";
+import { ifDefined } from "lit/directives/if-defined.js";
+import { ButtonProps } from "../components/display/button";
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
-  title: "Studs/Inputs/Button",
+  title: "Studs/Display/Button",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-button
-    buttonType="${args.buttonType}"
-    size="${args.size}"
-    iconPosition="${args.iconPosition}"
-    contentDirection="${args.contentDirection}"
-    class="${args.class}"
-    icon="${args.icon}"
+    buttonType="${ifDefined(args.buttonType)}"
+    size="${ifDefined(args.size)}"
+    iconPosition="${ifDefined(args.iconPosition)}"
+    contentDirection="${ifDefined(args.contentDirection)}"
+    class="${ifDefined(args.class)}"
+    icon="${ifDefined(args.icon)}"
     ?disabled="${args.disabled}"
     onclick="alert('clicked')"
-    .text=${html`${args.children}`}
-  ></studs-button>`,
+    >${args.children}</studs-button
+  >`,
   argTypes: {
     ...variants({
       name: "buttonType",
@@ -26,10 +28,10 @@ const meta = {
     ...contentDirection,
     ...icon,
   },
-};
+} satisfies Meta<ButtonProps>;
 
 export default meta;
-type Story = StoryObj<any>;
+type Story = StoryObj<ButtonProps>;
 
 // More on writing stories with args: https://storybook.js.org/docs/web-components/writing-stories/args
 export const CTA: Story = {

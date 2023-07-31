@@ -7,14 +7,14 @@
 
 .buttonGroup {
   @include buttonGroup;
-  ::slotted(studs-button:first-child) {
+  ::slotted(.-group:first-child) {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
   }
-  ::slotted(studs-button) {
+  ::slotted(.-group) {
     border-radius: 0px;
   }
-  ::slotted(studs-button:last-child) {
+  ::slotted(.-group:last-child) {
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
   }

@@ -1,16 +1,17 @@
 import type { StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta = {
   title: "Studs/Display/SplideCarousel",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-splide-carousel
-    .slides=${args.slides}
-    type=${args.type}
-    perPage=${args.perPage}
-    initialSlide=${args.initialSlide}
-    interval=${args.interval}
-    perMove=${args.perMove}
+    .slides=${ifDefined(args.slides)}
+    type=${ifDefined(args.type)}
+    perPage=${ifDefined(args.perPage)}
+    initialSlide=${ifDefined(args.initialSlide)}
+    interval=${ifDefined(args.interval)}
+    perMove=${ifDefined(args.perMove)}
     ?rewind=${args.rewind}
     ?pagination=${args.pagination}
     ?autoplay=${args.autoplay}

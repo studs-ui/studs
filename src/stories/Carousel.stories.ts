@@ -1,18 +1,20 @@
-import type { StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
+import { CarouselProps } from "../components/display/carousel";
 
 const meta = {
   title: "Studs/Display/Carousel",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-carousel
-    .slides=${args.slides}
-    perSlide=${args.perSlide}
+    .slides=${ifDefined(args.slides)}
+    perSlide=${ifDefined(args.perSlide)}
   ></studs-carousel>`,
   argTypes: {},
-};
+} satisfies Meta<CarouselProps>;
 
 export default meta;
-type Story = StoryObj<any>;
+type Story = StoryObj<CarouselProps>;
 
 export const Carousel: Story = {
   args: {
