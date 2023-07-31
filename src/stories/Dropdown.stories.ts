@@ -1,23 +1,25 @@
-import type { StoryObj } from "@storybook/web-components";
+import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
+import { DropdownProps } from "../components/inputs/dropdown";
 
 const meta = {
   title: "Studs/Inputs/Dropdown",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-dropdown
-    class="${args.class}"
-    label="${args.label}"
-    icon="${args.icon}"
+    class="${ifDefined(args.class)}"
+    label="${ifDefined(args.label)}"
+    icon="${ifDefined(args.icon)}"
     ?disabled="${args.disabled}"
-    .options=${args.options}
-    .selected=${args.selected}
+    .options=${ifDefined(args.options)}
+    .selected=${ifDefined(args.selected)}
   ></studs-dropdown>`,
   argTypes: {},
-};
+} satisfies Meta<DropdownProps>;
 
 export default meta;
 
-type Story = StoryObj<any>;
+type Story = StoryObj<DropdownProps>;
 
 export const Default: Story = {
   args: {

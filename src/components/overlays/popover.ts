@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import style from "styles/popover.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
@@ -6,6 +6,7 @@ import { classMap } from "lit/directives/class-map.js";
 export interface PopoverProps {
   direction: "top" | "bottom" | "left" | "right";
   arrowPosition: "start" | "center" | "end";
+  children?: TemplateResult | HTMLElement | string;
 }
 
 @customElement("studs-popover")

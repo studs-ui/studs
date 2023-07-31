@@ -18,7 +18,7 @@ export interface ButtonProps {
   contentDirection: "horizontal" | "vertical";
   btnClasses: string;
   icon?: string;
-  children?: HTMLElement | TemplateResult;
+  children?: HTMLElement | TemplateResult | string;
 }
 
 @customElement("studs-button")
