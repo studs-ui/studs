@@ -7,7 +7,7 @@
 @mixin button {
   --button-background: var(--button-default);
   --button-border: var(--button-default);
-
+  white-space: nowrap;
   appearance: none;
   padding: 0.75em 1em;
   text-align: center;
@@ -30,7 +30,10 @@
 
   .icon {
     svg {
-      color: var(--button-color);
+      color: currentColor;
+      path {
+        color: currentColor;
+      }
     }
   }
 

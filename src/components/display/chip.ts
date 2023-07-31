@@ -14,7 +14,6 @@ export interface ChipProps {
   selected: boolean;
   clickable: boolean;
   deletable: boolean;
-  onDelete?: Function;
 }
 
 @customElement("studs-chip")
@@ -31,12 +30,12 @@ export class StudsChip extends LitElement {
   @property({ type: Boolean }) selected: ChipProps["selected"] = false;
   @property({ type: Boolean }) clickable: ChipProps["clickable"] = false;
   @property({ type: Boolean }) deletable: ChipProps["deletable"] = false;
-  @property({ type: Function }) onDelete?: ChipProps["onDelete"];
+  // @property({ type: Function }) onDelete?: ChipProps["onDelete"];
 
   static styles = unsafeCSS(style);
 
   renderDeleteButton() {
-    if (this.deletable || this.onDelete) {
+    if (this.deletable) {
       return html`<studs-button
         class="-close"
         buttontype="icon"
@@ -44,6 +43,14 @@ export class StudsChip extends LitElement {
         @click=${this.onDelete}
       ></studs-button>`;
     }
+  }
+
+  onDelete(e: Event) {
+    const event = new CustomEvent("delete", {
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
   }
 
   renderIcon() {
