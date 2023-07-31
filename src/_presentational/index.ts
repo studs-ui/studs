@@ -140,7 +140,10 @@ export class PresentationalPage extends LitElement {
               <studs-chip  deletable onClick="alert('delete')" clickable>Interactable</studs-chip>
             </presentational-component>
             <presentational-component>
-              <studs-chip  onDelete="alert('delete')" clickable><img slot="accessory" class="avatar" src="./placeholders/smallUX/smallUX-avatar-sage.svg" alt="avatar">Interactable</studs-chip>
+              <studs-chip  @delete=${(e) => {
+                e.target.parentNode.removeChild(e.target);
+              }}
+              clickable><img slot="accessory" class="avatar" src="./placeholders/smallUX/smallUX-avatar-sage.svg" alt="avatar">Interactable</studs-chip>
             </presentational-component>
           </div>
         </div>
