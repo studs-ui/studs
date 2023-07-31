@@ -37,3 +37,15 @@ export const variants = ({
     },
   };
 };
+export const direction = {
+  direction: {
+    control: { type: "select" },
+    options: ["top", "bottom", "left", "right"],
+  },
+};
+export const arrowPosition = {
+  arrowPosition: {
+    control: { type: "select" },
+    options: ["start", "center", "end"],
+  },
+};

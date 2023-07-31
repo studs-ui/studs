@@ -1,4 +1,10 @@
-import { LitElement, PropertyValueMap, html, unsafeCSS } from "lit";
+import {
+  LitElement,
+  PropertyValueMap,
+  TemplateResult,
+  html,
+  unsafeCSS,
+} from "lit";
 import {
   customElement,
   property,
@@ -11,6 +17,7 @@ import { classMap } from "lit/directives/class-map.js";
 export interface ModalProps {
   open: boolean;
   closeOnOverlayClick?: boolean;
+  children?: TemplateResult | HTMLElement | string;
 }
 
 @customElement("studs-modal")

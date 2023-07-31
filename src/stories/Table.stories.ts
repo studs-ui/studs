@@ -1,14 +1,15 @@
-import { StoryObj } from "@storybook/web-components";
+import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { TableProps } from "../components/display/table";
 
 const meta = {
   title: "Studs/Display/Table",
   tags: ["autodocs"],
-};
+} satisfies Meta<TableProps>;
 
 export default meta;
 
-export const Default: StoryObj<any> = {
+export const Default: StoryObj<TableProps> = {
   render: () => html`
     <studs-table>
         <table>

@@ -1,10 +1,9 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import style from "styles/chip.scss?inline";
 
 export interface ChipProps {
-  label?: string;
   icon?: string;
   iconPosition?: "start" | "end";
   size: "small" | "medium" | "large";
@@ -14,12 +13,12 @@ export interface ChipProps {
   selected: boolean;
   clickable: boolean;
   deletable: boolean;
+  children?: TemplateResult | HTMLElement | string;
 }
 
 @customElement("studs-chip")
 export class StudsChip extends LitElement {
   // Define Properties
-  @property() label?: ChipProps["label"];
   @property({ type: String }) icon?: ChipProps["icon"];
   @property({ type: String }) iconPosition?: ChipProps["iconPosition"];
   @property({ type: String }) size: ChipProps["size"] = "medium";
