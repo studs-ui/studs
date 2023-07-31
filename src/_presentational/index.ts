@@ -756,7 +756,11 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-switch checked="true" label="Checked"></studs-switch>
+              <studs-switch 
+                checked="true" 
+                label="Checked" 
+                @switch-change=${(e: CustomEvent) => console.log(`Switch changed! Checked status: ${e.detail.checked}`)}
+              ></studs-switch>
             </presentational-component>
             <presentational-component>
               <studs-switch></studs-switch>
