@@ -15,13 +15,13 @@
     cursor: not-allowed;
   }
   &.-small {
-    @include fontSmall;
+    font-size: var(--fontSize-small)
   }
   &.-medium {
-    @include fontMedium;
+    font-size: var(--fontSize-medium)
   }
   &.-large {
-    @include fontLarge;
+    font-size: var(--fontSize-large)
   }
   &.-error {
     color: #ff601b;

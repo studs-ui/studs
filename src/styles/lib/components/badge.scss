@@ -29,16 +29,16 @@ $right: 0;
 
     &.-badge {
       &:where(.-small) {
-        @include badgeSmall;
+        font-size: 0.3rem;
       }
       &:where(.-medium) {
-        @include badgeMedium;
+        font-size: 0.4em;
       }
       &:where(.-large) {
-        @include badgeLarge;
+        font-size: 0.8rem;
       }
       &:where(.-extraLarge) {
-        @include badgeExtraLarge;
+        font-size: 1.4rem;
       }
     }
     &:where(.top-right) {
@@ -72,16 +72,16 @@ $right: 0;
 
     &.-dot {
       &:where(.-small) {
-        @include dotSmall;
+        font-size: 0.4rem;
       }
       &:where(.-medium) {
-        @include dotMedium;
+        font-size: 0.6rem;
       }
       &:where(.-large) {
-        @include dotLarge;
+        font-size: 1.2rem;
       }
       &:where(.-extraLarge) {
-        @include dotExtraLarge;
+        font-size: 2rem;
       }
     }
 

@@ -5,16 +5,19 @@
   fill: inherit;
   &.-font {
     &:where(.-small) {
-      @include fontSmall;
+      font-size: var(--fontSize-small);
     }
+
     &:where(.-medium) {
-      @include fontMedium;
+      font-size: var(--fontSize-medium);
     }
+
     &:where(.-large) {
-      @include fontLarge;
+      font-size: var(--fontSize-large);
     }
+
     &:where(.-extraLarge) {
-      @include fontExtraLarge;
+      font-size: var(--fontSize-xl);
     }
   }
 
