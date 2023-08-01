@@ -51,7 +51,6 @@ export class StudsSlider extends LitElement {
     return Math.round(((value - this.min) / (this.max - this.min)) * 100);
   };
 
-  @state() _isRangeSlider: boolean = this.rangevalue.length > 1;
   @state() _minValue: number = this.rangevalue.length
     ? this.rangevalue[0]
     : this.defaultValue;
@@ -63,31 +62,15 @@ export class StudsSlider extends LitElement {
   @state() _dragging: boolean = false;
   @state() _targetHandle?: HTMLElement | TemplateResult | null;
 
-  @query(".sliderRange") _range!: HTMLElement;
-
   protected updated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {
-    // console.log({
-    //   _isRangeSlider: this._isRangeSlider,
-    //   _minValue: this._minValue,
-    //   _maxValue: this._maxValue,
-    //   _minPercentage: this._minPercentage,
-    //   _maxPercentage: this._maxPercentage,
-    //   _dragging: this._dragging,
-    //   _targetHandle: this._targetHandle,
-    // });
-    if (this._range) {
-      this._range.style.left = `${this._minPercentage}%`;
-      this._range.style.width = `${this._maxPercentage}%`;
-    }
-  }
+  ): void {}
 
   static styles = unsafeCSS(style);
 
   private handleMinValue(event: ChangeEvent<HTMLInputElement>) {
     let value = Number(event.target.value);
-    if (this._isRangeSlider) {
+    if (this.rangevalue?.length > 1) {
       value =
         event.target.value === ""
           ? ""
@@ -102,6 +85,7 @@ export class StudsSlider extends LitElement {
           : (Math.min(Number(event.target.value)) as any);
     }
     this._minValue = value;
+    this._minPercentage = this.getPercent(value);
 
     setTimeout(() => {
       this._dragging = false;
@@ -121,6 +105,7 @@ export class StudsSlider extends LitElement {
             this._minValue + this.step
           ) as any);
     this._maxValue = value;
+    this._maxPercentage = this.getPercent(value);
 
     setTimeout(() => {
       this._dragging = false;
@@ -165,7 +150,7 @@ export class StudsSlider extends LitElement {
 
   private renderInput(type: "min" | "max") {
     if (this.enableInput) {
-      if (this._isRangeSlider) {
+      if (this.rangevalue?.length > 1) {
         if (type === "min")
           return html` <div class="inputNumber">
             <input
@@ -205,6 +190,13 @@ export class StudsSlider extends LitElement {
     }
   }
 
+  private renderRange() {
+    return html`<div
+      class="sliderRange"
+      style="left: ${this._minPercentage}%; width: ${this._maxPercentage}%"
+    ></div>`;
+  }
+
   private renderMarks() {
     if (this.marks)
       return map(this.marks, (mark, key) => {
@@ -216,8 +208,8 @@ export class StudsSlider extends LitElement {
         }%`;
         // console.log('leftMark ', leftMark)
         return html`
-          <span style="left: ${leftMark}" className="sliderMarkValue"></span>
-          <span style="left: ${leftMark}" className="sliderMarkLabel"
+          <span style="left: ${leftMark}" class="sliderMarkValue"></span>
+          <span style="left: ${leftMark}" class="sliderMarkLabel"
             >${mark.label}</span
           >
         `;
@@ -225,43 +217,32 @@ export class StudsSlider extends LitElement {
   }
 
   render() {
-    const leftTooltipClasses = {
-      tooltip: true,
-      "-left": true,
-      hideTooltip: !this._dragging && this.enableTooltip,
-    };
-    const rightTooltipClasses = {
-      tooltip: true,
-      "-right": true,
-      hideTooltip: !this._dragging && this.enableTooltip,
-    };
     return html`<div class="slider">
       ${this.renderInput("min")}
-      <div class="slider -wrapper">
+      <div class="sliderWrapper">
         <div>
           <studs-tooltip
             direction="left"
-            class=${classMap(leftTooltipClasses)}
             style="left: ${this._minPercentage}%"
             ?disabled=${this.enableTooltip}
           >
             <div slot="tooltip">${this.getToolTipValue(this._minValue)}</div>
             <input
               type="range"
+              class="thumb thumbLeft"
               min=${this.min}
               max=${this.max}
               step=${this.step}
               .value=${this._minValue}
               @input=${this.handleMinValue}
               @mousedown=${this.handleRangeMouseDown}
-              className="thumb thumbLeft"
             />
           </studs-tooltip>
-          ${this._isRangeSlider
+
+          ${this.rangevalue?.length > 1
             ? html`
                 <studs-tooltip
                   direction="right"
-                  class=${classMap(rightTooltipClasses)}
                   style="left: ${this._maxPercentage}%"
                   ?disabled=${this.enableTooltip}
                 >
@@ -276,18 +257,17 @@ export class StudsSlider extends LitElement {
                     .value=${this._maxValue}
                     @input=${this.handleMaxValue}
                     @mousedown=${this.handleRangeMouseDown}
-                    className="thumb thumbRight"
+                    class="thumb thumbRight"
                   />
                 </studs-tooltip>
               `
             : nothing}
         </div>
         <div class="sliderTrack">
-          ${this.renderMarks()}
-          <div className="sliderRange"></div>
+          ${this.renderMarks()} ${this.renderRange()}
         </div>
-        ${this.renderInput("max")}
       </div>
+      ${this.renderInput("max")}
     </div> `;
   }
 }

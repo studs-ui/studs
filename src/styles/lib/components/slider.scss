@@ -166,3 +166,7 @@
     @include thumbSlider;
   }
 }
+
+.slider {
+  @include slider;
+}
