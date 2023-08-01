@@ -32,7 +32,7 @@ export class StudsAccordian extends LitElement {
             iconposition="end"
             icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
 <g clip-path="url(#clip0_13874_4085)">
-<rect width="14" height="14" transform="translate(0 0.5)" fill="#DF4907"/>
+<rect width="14" height="14" transform="translate(0 0.5)" fill="var(--cta)"/>
 <path d="M11.0832 8.08341H7.58317V11.5834H6.4165V8.08341H2.9165V6.91675H6.4165V3.41675H7.58317V6.91675H11.0832V8.08341Z" fill="white"/>
 </g>
 <defs>
@@ -48,7 +48,7 @@ export class StudsAccordian extends LitElement {
             @click=${this.onCollapseAll}
             iconposition="end"
             icon='<svg xmlns="http://www.w3.org/2000/svg" width="14" height="15" viewBox="0 0 14 15" fill="none">
-<path d="M11.0832 8.08341H7.58317V11.5834H6.4165V8.08341H2.9165V6.91675H6.4165V3.41675H7.58317V6.91675H11.0832V8.08341Z" fill="#DF4907"/>
+<path d="M11.0832 8.08341H7.58317V11.5834H6.4165V8.08341H2.9165V6.91675H6.4165V3.41675H7.58317V6.91675H11.0832V8.08341Z" fill="var(--cta)"/>
 </svg>'
             >Collapse All</studs-button
           >
