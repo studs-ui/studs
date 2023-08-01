@@ -18,6 +18,8 @@ import { StudsToast } from "./components/overlays/toast";
 import { StudsToaster } from "./components/overlays/toaster";
 import { StudsStepper } from "./components/display/stepper";
 import { StudsSwitch } from "./components/inputs/switch";
+import { StudsAccordian } from "./components/display/accordian";
+import { StudsAccordianItem } from "./components/display/accordian-item";
 
 // Export Components
 export {
@@ -38,7 +40,8 @@ export {
   StudsToaster,
   StudsStepper,
   StudsSwitch,
-  // Export Functions
+  StudsAccordian,
+  StudsAccordianItem,
 };
 
 declare global {
