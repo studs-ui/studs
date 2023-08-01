@@ -1,20 +1,24 @@
 import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, state } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import style from "styles/accordian.scss?inline";
 
+export interface AccordionItemProps {
+  open: boolean;
+}
 @customElement("studs-accordian-item")
 export class StudsAccordianItem extends LitElement {
-  @state() _open: boolean = false;
+  @property({ type: Boolean, reflect: true }) open: AccordionItemProps["open"] =
+    false;
 
   static styles = unsafeCSS(style);
   render() {
     const classes = {
       accordian: true,
       "-panel": true,
-      "-open": this._open,
+      "-open": this.open,
     };
-    return html`<div class=${classMap(classes)} aria-hidden=${!this._open}>
+    return html`<div class=${classMap(classes)} aria-hidden=${!this.open}>
       <header class="accordian -header">
         <slot name="toggle">Accordian Header</slot>
         <studs-button
@@ -26,11 +30,13 @@ export class StudsAccordianItem extends LitElement {
           @click=${this.onToggle}
         ></studs-button>
       </header>
-      <main><slot></slot></main>
+      <main>
+        <div class="content"><slot></slot></div>
+      </main>
     </div>`;
   }
 
   onToggle() {
-    this._open = !this._open;
+    this.open = !this.open;
   }
 }
