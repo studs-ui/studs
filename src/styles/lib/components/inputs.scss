@@ -89,3 +89,7 @@
     transform: translateY(-50%);
   }
 }
+
+.inputComponent {
+  @include inputComponent;
+}
