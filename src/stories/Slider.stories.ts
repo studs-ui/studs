@@ -8,12 +8,15 @@ const meta = {
   tags: ["autodocs"],
   render: (args) =>
     html`<studs-slider
-      .rangevalue=${ifDefined(args.rangevalue)}
+      .rangeValue=${ifDefined(args.rangeValue)}
       .marks=${ifDefined(args.marks)}
+      leftLabel=${ifDefined(args.leftLabel)}
+      rightLabel=${ifDefined(args.rightLabel)}
       ?enableInput=${args.enableInput}
       ?enableTooltip=${args.enableTooltip}
-      .defaultvalue=${args.defaultvalue}
-      .calculateTooltipLabel=${args.calculateTooltipLabel}
+      ?enableLabel=${args.enableLabel}
+      .defaultValue=${args.defaultValue}
+      .calculateTooltipLabel=${ifDefined(args.calculateTooltipLabel)}
       .min=${args.min}
       .max=${args.max}
       .step=${args.step}
@@ -26,7 +29,30 @@ type Story = StoryObj<SliderProps>;
 
 export const Default: Story = {
   args: {
-    rangevalue: [0, 50],
+    rangeValue: [0, 50],
+    min: 0,
+    max: 100,
+    step: 1,
+    leftLabel: "Peanut Butter",
+    rightLabel: "Jelly",
+    enableTooltip: true,
+    enableLabel: true,
+    enableInput: true,
+    marks: [
+      { value: 0, label: "0°" },
+      { value: 25, label: "25" },
+      { value: 50, label: "50" },
+      { value: 75, label: "75" },
+      { value: 100, label: "100°" },
+    ],
+    calculateTooltipLabel: (value: number) => {
+      return value + " for Jelly";
+    },
+  },
+};
+
+export const SingleSlider: Story = {
+  args: {
     min: 0,
     max: 100,
     step: 1,
@@ -43,7 +69,7 @@ export const Default: Story = {
 
 export const Range: Story = {
   args: {
-    rangevalue: [0, 50],
+    rangeValue: [0, 50],
     min: 0,
     max: 100,
     step: 1,
@@ -52,7 +78,7 @@ export const Range: Story = {
 
 export const Marks: Story = {
   args: {
-    rangevalue: [0, 50],
+    rangeValue: [0, 50],
     marks: [
       { value: 0, label: "0°" },
       { value: 25, label: "25" },
@@ -68,7 +94,7 @@ export const Marks: Story = {
 
 export const Input: Story = {
   args: {
-    rangevalue: [0, 50],
+    rangeValue: [0, 50],
     enableInput: true,
     min: 0,
     max: 100,

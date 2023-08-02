@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, css, html, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import style from "styles/tooltips.scss?inline";
 import { classMap } from "lit/directives/class-map.js";
@@ -17,7 +17,15 @@ export class StudsTooltip extends LitElement {
   @property({ type: Boolean }) disabled: TooltipProps["disabled"] = false;
   //   Do these open onclick, or stay open on hover if persistant?
   @state() private _hovered: boolean = false;
-  static styles = unsafeCSS(style);
+  static styles = [
+    unsafeCSS(style),
+    css`
+      :host {
+        // display: inline-block;
+        width: auto;
+      }
+    `,
+  ];
 
   render() {
     const containerClasses = {

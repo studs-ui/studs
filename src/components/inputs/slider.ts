@@ -6,11 +6,12 @@ import {
   nothing,
   unsafeCSS,
 } from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
+import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
+import { styleMap } from "lit/directives/style-map.js";
 import { ChangeEvent } from "react";
-import style from "styles/slider.scss?inline";
+import style from "styles/_temporarySlider.scss?inline";
 
 interface MarkProps {
   value: number;
@@ -18,28 +19,34 @@ interface MarkProps {
 }
 
 export interface SliderProps {
-  rangevalue: number[];
-  marks?: MarkProps[];
-  defaultvalue: number;
   min: number;
   max: number;
   step: number;
+  defaultValue: number;
+  rangeValue: number[];
+  marks?: MarkProps[];
+  leftLabel?: string;
+  rightLabel?: string;
   enableInput: boolean;
+  enableLabel: boolean;
   enableTooltip: boolean;
   calculateTooltipLabel: (value: number) => string;
 }
 
 @customElement("studs-slider")
 export class StudsSlider extends LitElement {
-  @property({ type: Array }) rangevalue: SliderProps["rangevalue"] = [];
-  @property({ type: Array }) marks: SliderProps["marks"];
-  @property({ type: Boolean }) enableInput: SliderProps["enableInput"] = false;
-  @property({ type: Boolean }) enableTooltip: SliderProps["enableTooltip"] =
-    false;
-  @property({ type: Number }) defaultValue: SliderProps["defaultvalue"] = 0;
   @property({ type: Number }) min: SliderProps["min"] = 0;
   @property({ type: Number }) max: SliderProps["max"] = 100;
   @property({ type: Number }) step: SliderProps["step"] = 1;
+  @property({ type: Number }) defaultValue: SliderProps["defaultValue"] = 0;
+  @property({ type: Array }) rangeValue: SliderProps["rangeValue"] = [];
+  @property({ type: Array }) marks: SliderProps["marks"];
+  @property({ type: String }) leftLabel: SliderProps["leftLabel"] = "";
+  @property({ type: String }) rightLabel: SliderProps["rightLabel"] = "";
+  @property({ type: Boolean }) enableInput: SliderProps["enableInput"] = false;
+  @property({ type: Boolean }) enableLabel: SliderProps["enableLabel"] = false;
+  @property({ type: Boolean }) enableTooltip: SliderProps["enableTooltip"] =
+    false;
   @property({ type: Function })
   calculateTooltipLabel: SliderProps["calculateTooltipLabel"] = (
     value: number
@@ -51,11 +58,11 @@ export class StudsSlider extends LitElement {
     return Math.round(((value - this.min) / (this.max - this.min)) * 100);
   };
 
-  @state() _minValue: number = this.rangevalue.length
-    ? this.rangevalue[0]
+  @state() _minValue: number = this.rangeValue.length
+    ? this.rangeValue[0]
     : this.defaultValue;
-  @state() _maxValue: number = this.rangevalue.length
-    ? this.rangevalue[1]
+  @state() _maxValue: number = this.rangeValue.length
+    ? this.rangeValue[1]
     : this.max;
   @state() _minPercentage: number = this.getPercent(this._minValue);
   @state() _maxPercentage: number = this.getPercent(this._maxValue);
@@ -70,7 +77,7 @@ export class StudsSlider extends LitElement {
 
   private handleMinValue(event: ChangeEvent<HTMLInputElement>) {
     let value = Number(event.target.value);
-    if (this.rangevalue?.length > 1) {
+    if (this.rangeValue?.length > 1) {
       value =
         event.target.value === ""
           ? ""
@@ -141,6 +148,28 @@ export class StudsSlider extends LitElement {
     this.requestUpdate();
   }
 
+  private onThumbMouseEnter(event: MouseEvent) {
+    if (this.enableTooltip) {
+      const target = event.target as HTMLElement;
+      const tooltip = target.previousElementSibling;
+      // Check if Tooltip is actually Tooltip
+      if (tooltip?.classList.contains("tooltip")) {
+        tooltip.classList.remove("hideTooltip");
+      }
+    }
+  }
+
+  private onThumbMouseLeave(event: MouseEvent) {
+    if (this.enableTooltip) {
+      const target = event.target as HTMLElement;
+      const tooltip = target.previousElementSibling;
+      // Check if Tooltip is actually Tooltip
+      if (tooltip?.classList.contains("tooltip")) {
+        tooltip.classList.add("hideTooltip");
+      }
+    }
+  }
+
   private getToolTipValue(value: number) {
     if (this.calculateTooltipLabel) {
       return this.calculateTooltipLabel(value);
@@ -148,9 +177,29 @@ export class StudsSlider extends LitElement {
     return value;
   }
 
+  /**
+   * Render Components
+   */
+
+  private renderLabel(position: "left" | "right") {
+    if (this.enableLabel) {
+      if (position === "left") {
+        return html`<div className="leftTxt">
+          ${this.leftLabel ? this.leftLabel?.substring(0, 15) : nothing}
+        </div>`;
+      }
+      if (position === "right") {
+        return html`<div className="rightTxt">
+          ${this.rightLabel ? this.rightLabel?.substring(0, 15) : nothing}
+        </div>`;
+      }
+    }
+    return nothing;
+  }
+
   private renderInput(type: "min" | "max") {
     if (this.enableInput) {
-      if (this.rangevalue?.length > 1) {
+      if (this.rangeValue?.length > 1) {
         if (type === "min")
           return html` <div class="inputNumber">
             <input
@@ -176,34 +225,55 @@ export class StudsSlider extends LitElement {
             />
           </div>`;
       }
-      return html` <div class="inputNumber">
-        <input
-          class="inputNumber"
-          type="number"
-          min=${this.min}
-          max=${this.max}
-          step=${this.step}
-          .value=${this._minValue}
-          @input=${this.handleMinValue}
-        />
-      </div>`;
+      if (type === "max")
+        return html` <div class="inputNumber">
+          <input
+            class="inputNumber"
+            type="number"
+            min=${this.min}
+            max=${this.max}
+            step=${this.step}
+            .value=${this._minValue}
+            @input=${this.handleMinValue}
+          />
+        </div>`;
     }
   }
 
   private renderRange() {
+    const isRangeStyles = {
+      left: `${this._minPercentage}%`,
+      width: `${this._maxPercentage - this._minPercentage}%`,
+    };
+    const isMarkStyles = {
+      width: "0%",
+    };
+    const defaultStyles = {
+      width: `${this._minPercentage}%`,
+    };
+    const classes = {
+      sliderRange:
+        Boolean(this.rangeValue?.length > 1) || Boolean(this.marks) || false,
+    };
     return html`<div
-      class="sliderRange"
-      style="left: ${this._minPercentage}%; width: ${this._maxPercentage}%"
+      class=${classMap(classes)}
+      style=${styleMap(
+        this.rangeValue?.length > 1
+          ? isRangeStyles
+          : this.marks
+          ? isMarkStyles
+          : defaultStyles
+      )}
     ></div>`;
   }
 
   private renderMarks() {
-    if (this.marks)
+    if (this.marks) {
       return map(this.marks, (mark, key) => {
         const leftMark = `${
           ((mark.value - this.marks[0]?.value) /
-            (Math.abs(this.marks[0].value) +
-              Math.abs(this.marks[this.marks.length - 1].value))) *
+            (Math.abs(this.marks[0]?.value) +
+              Math.abs(this.marks[this.marks.length - 1]?.value))) *
           100
         }%`;
         // console.log('leftMark ', leftMark)
@@ -214,52 +284,61 @@ export class StudsSlider extends LitElement {
           >
         `;
       });
+    }
   }
 
   render() {
     return html`<div class="slider">
-      ${this.renderInput("min")}
+      ${this.renderInput("min")} ${this.renderLabel("left")}
       <div class="sliderWrapper">
         <div>
-          <studs-tooltip
-            direction="left"
-            style="left: ${this._minPercentage}%"
-            ?disabled=${this.enableTooltip}
-          >
-            <div slot="tooltip">${this.getToolTipValue(this._minValue)}</div>
-            <input
-              type="range"
-              class="thumb thumbLeft"
-              min=${this.min}
-              max=${this.max}
-              step=${this.step}
-              .value=${this._minValue}
-              @input=${this.handleMinValue}
-              @mousedown=${this.handleRangeMouseDown}
-            />
-          </studs-tooltip>
-
-          ${this.rangevalue?.length > 1
+          ${this.enableTooltip
             ? html`
-                <studs-tooltip
-                  direction="right"
-                  style="left: ${this._maxPercentage}%"
-                  ?disabled=${this.enableTooltip}
+                <span
+                  class="tooltip -leftTooltip -container hideTooltip"
+                  style="left: ${this._minPercentage}%"
                 >
-                  <div slot="tooltip">
-                    ${this.getToolTipValue(this._maxValue)}
-                  </div>
-                  <input
-                    type="range"
-                    min=${this.min}
-                    max=${this.max}
-                    step=${this.step}
-                    .value=${this._maxValue}
-                    @input=${this.handleMaxValue}
-                    @mousedown=${this.handleRangeMouseDown}
-                    class="thumb thumbRight"
-                  />
-                </studs-tooltip>
+                  ${this.getToolTipValue(this._minValue)}
+                </span>
+              `
+            : nothing}
+          <input
+            type="range"
+            class="thumb thumbLeft"
+            min=${this.min}
+            max=${this.max}
+            step=${this.step}
+            .value=${this._minValue}
+            @input=${this.handleMinValue}
+            @mousedown=${this.handleRangeMouseDown}
+            @mouseenter=${this.onThumbMouseEnter}
+            @mouseleave=${this.onThumbMouseLeave}
+          />
+
+          ${this.rangeValue?.length > 1
+            ? html`
+                ${this.enableTooltip
+                  ? html`
+                      <span
+                        class="tooltip -rightTooltip -container hideTooltip"
+                        style="left: ${this._maxPercentage}%"
+                      >
+                        ${this.getToolTipValue(this._maxValue)}
+                      </span>
+                    `
+                  : nothing}
+                <input
+                  type="range"
+                  class="thumb thumbRight"
+                  min=${this.min}
+                  max=${this.max}
+                  step=${this.step}
+                  .value=${this._maxValue}
+                  @input=${this.handleMaxValue}
+                  @mousedown=${this.handleRangeMouseDown}
+                  @mouseenter=${this.onThumbMouseEnter}
+                  @mouseleave=${this.onThumbMouseLeave}
+                />
               `
             : nothing}
         </div>
@@ -267,7 +346,7 @@ export class StudsSlider extends LitElement {
           ${this.renderMarks()} ${this.renderRange()}
         </div>
       </div>
-      ${this.renderInput("max")}
+      ${this.renderLabel("right")} ${this.renderInput("max")}
     </div> `;
   }
 }
