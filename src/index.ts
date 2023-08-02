@@ -18,6 +18,7 @@ import { StudsToast } from "./components/overlays/toast";
 import { StudsToaster } from "./components/overlays/toaster";
 import { StudsStepper } from "./components/display/stepper";
 import { StudsSwitch } from "./components/inputs/switch";
+import { StudsSlider } from "./components/inputs/slider";
 import { StudsAccordian } from "./components/display/accordian";
 import { StudsAccordianItem } from "./components/display/accordian-item";
 
@@ -40,6 +41,7 @@ export {
   StudsToaster,
   StudsStepper,
   StudsSwitch,
+  StudsSlider,
   StudsAccordian,
   StudsAccordianItem,
 };
@@ -63,5 +65,8 @@ declare global {
     "studs-toaster": StudsToaster;
     "studs-stepper": StudsStepper;
     "studs-switch": StudsSwitch;
+    "studs-accordian": StudsAccordian;
+    "studs-accordian-item": StudsAccordianItem;
+    "studs-slider": StudsSlider;
   }
 }
