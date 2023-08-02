@@ -5,7 +5,6 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import style from "styles/inputs.scss?inline";
 
 export interface InputProps {
-  classes?: string;
   variant?: "standard" | "outlined" | "filled";
   inputSize?: "small" | "medium" | "large";
   label?: string;
@@ -13,7 +12,6 @@ export interface InputProps {
   helperText?: string[];
   adornment?: string;
   adornmentPosition?: "start" | "end";
-  interaction?: boolean;
   fullWidth?: boolean;
   type?: "text" | "password" | "number" | "email" | "search" | "file";
 }
@@ -22,7 +20,6 @@ export interface InputProps {
 export class StudsInput extends LitElement {
   static styles = unsafeCSS(style);
 
-  @property({ type: String }) classes?: InputProps["classes"];
   @property({ type: String }) variant: InputProps["variant"] = "standard";
   @property({ type: String }) inputSize: InputProps["inputSize"] = "small";
   @property({ type: String }) label?: InputProps["label"];
@@ -30,7 +27,6 @@ export class StudsInput extends LitElement {
   @property({ type: Array, attribute: "helper-text" }) helperText: InputProps["helperText"] = [];
   @property({ type: String }) adornment?: InputProps["adornment"];
   @property({ type: String, attribute: "adornment-position" }) adornmentPosition: InputProps["adornmentPosition"] = "end";
-  @property({ type: Boolean }) interaction: InputProps["interaction"] = true;
   @property({ type: Boolean, attribute: "full-width" }) fullWidth: InputProps["fullWidth"] = false;
   @property({ type: String }) value: string = "";
   @property({ type: Boolean }) disabled: boolean = false;
@@ -58,7 +54,7 @@ export class StudsInput extends LitElement {
     };
 
     return html`
-      <div class=${`inputComponent ${this.classes}`}>
+      <div class=${`inputComponent`}>
         ${this.label ? html`<label ?required=${this.required}>${this.label}</label>` : ""}
         <div class="inputWrapper">
           ${this.adornment && this.adornmentPosition === "start" ? html`<div class="adornmentStart">${this.adornment}</div>` : ""}

@@ -884,15 +884,12 @@ export class PresentationalPage extends LitElement {
           <div class="componentGrid">
             <presentational-component>
               <studs-input 
-                classes="my-class" 
+                type="text"
                 variant="outlined" 
                 inputSize="large" 
                 label="My Label" 
                 adornment="lbs" 
-                adornment-position="start" 
-                interaction 
-                fullWidth 
-                showClearButton>
+                adornment-position="start">
               </studs-input>
             </presentational-component>
             <presentational-component>
@@ -901,18 +898,12 @@ export class PresentationalPage extends LitElement {
               name="fname"
               type="text"
               value="John"
-              placeholder="Your name"
               label="Full name"
               variant="outlined"
-              required
               input-size="normal"
               adornment="lbs"
               adornment-position="end"
-              error
-              helper-text="['First error','Second error']"
               @value-changed='function($event){console.log("input value-changed event", $event.target.value);}'
-              on-change='function($event){console.log("input onChange event", $event.target.value);}'
-              on-blur='function($event){console.log("input onBlur event");}'
             ></studs-input>
             </presentational-component>
           </div>
