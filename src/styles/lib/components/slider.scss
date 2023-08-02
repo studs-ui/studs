@@ -72,21 +72,6 @@
     background-color: var(--interactive-bkg);
   }
 
- // @QUESTION: are these being used? --Jp
-  .sliderLeftvalue,
-  .sliderRightvalue {
-    color: #373737;
-    font-size: 12px;
-    margin-top: -20px;
-  }
-
-  .sliderLeftvalue {
-    left: -6px;
-  }
-
-  .sliderRightvalue {
-    right: -4px;
-  }
 // @QUESTION end block
 
   .sliderMarkValue {

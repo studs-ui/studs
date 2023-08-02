@@ -119,12 +119,6 @@ export class StudsSlider extends LitElement {
     }, 2000);
     this._dragging = true;
 
-    if (this.enableTooltip) {
-      // if(component.refs.toolTipRight && component.refs.toolTipRight.current) {
-      //   (component.refs.toolTipRight.current as Element)?.classList?.remove("hideTooltip");
-      // }
-    }
-
     this.requestUpdate();
   }
 
@@ -132,12 +126,6 @@ export class StudsSlider extends LitElement {
     this.removeEventListener("mouseup", this.handleMouseUp);
     this._targetHandle = null;
     this._dragging = false;
-    if (this.enableTooltip) {
-      // (component.refs.toolTipLeft.current as Element)?.classList?.add("hideTooltip");
-      // if(component.refs.toolTipRight && component.refs.toolTipRight.current) {
-      //   (component.refs.toolTipRight.current as Element)?.classList?.add("hideTooltip");
-      // }
-    }
     this.requestUpdate();
   }
 
@@ -271,12 +259,14 @@ export class StudsSlider extends LitElement {
     if (this.marks) {
       return map(this.marks, (mark, key) => {
         const leftMark = `${
+          // @ts-ignore
           ((mark.value - this.marks[0]?.value) /
+            // @ts-ignore
             (Math.abs(this.marks[0]?.value) +
+              // @ts-ignore
               Math.abs(this.marks[this.marks.length - 1]?.value))) *
           100
         }%`;
-        // console.log('leftMark ', leftMark)
         return html`
           <span style="left: ${leftMark}" class="sliderMarkValue"></span>
           <span style="left: ${leftMark}" class="sliderMarkLabel"
