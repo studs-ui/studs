@@ -1,0 +1,56 @@
+@use "../utilities" as *;
+
+.accordian {
+    &.-container {
+        display: flex;
+        flex-direction: column;
+        border: 1px solid var(--border-color);
+        border-radius: 0.2em;
+        > header {
+            display: flex;
+            justify-content: space-between;
+            padding: 1.2em 1em;
+        }
+    }
+    &.-actions {
+        margin-left: auto;
+        justify-self: flex-end;
+        display: flex;
+        gap: 1em;
+    }
+    &.-panel {
+        overflow: hidden;
+        header {
+            display: flex;
+            flex-direction: row;
+            padding: 1.2em 1em;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.25em;
+            border: none;
+            background: #F4F4F4;
+        }
+        main {
+            overflow: hidden;
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows .5s;
+            
+            > div.content {
+                overflow: hidden;
+                margin: 0;
+              }
+            
+        }
+        &.-open {
+            header {
+                studs-button {
+                    transform: rotate(180deg);
+                }
+            }
+            main {
+                grid-template-rows: 1fr;
+            }
+        }
+    }
+}
