@@ -7,27 +7,46 @@ const meta = {
   title: "Studs/Inputs/Input",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-input
-    classes=${ifDefined(args.classes)}
+    type=${ifDefined(args.type)}
+    name=${ifDefined(args.name)}
+    value=${ifDefined(args.value)}
+    placeholder=${ifDefined(args.placeholder)}
+    label=${ifDefined(args.label)}
     variant=${ifDefined(args.variant)}
     inputSize=${ifDefined(args.inputSize)}
-    label=${args.label}
+    ?disabled=${args.disabled}
+    ?required=${args.required}
     ?error=${args.error}
     helperText=${ifDefined(args.helperText)}
     adornment=${ifDefined(args.adornment)}
-    adornmentPosition=${ifDefined(args.adornmentPosition)}
-    ?fullWidth=${args.fullWidth}
-    type=${args.type}
+    adornment-position=${ifDefined(args.adornmentPosition)}
   ></studs-input>`,
   argTypes: {
-    variant: { control: { type: "select", options: ["standard", "outlined", "filled"] } },
-    inputSize: { control: { type: "select", options: ["small", "medium", "large"] } },
+    type: {
+      control: { type: "select"}, 
+      options: ["text", "password", "number", "email", "search", "file"],
+    },
+    name: { control: "text" },
+    placeholder: { control: "text" },
     label: { control: "text" },
-    error: { control: "boolean" },
+    variant: { 
+      control: { type: "select" }, 
+      options: ["standard", "outlined", "filled"],
+      defaultValue: "outlined",
+    },
+    inputSize: {
+      control: { type: "select"},
+      options: ["small", "medium", "large"],
+    },
+    disabled: { control: "boolean" },
+    required: { control: "boolean" },
+    error: { control: "boolean"},
     helperText: { control: "array" },
     adornment: { control: "text" },
-    adornmentPosition: { control: { type: "select", options: ["start", "end"] } },
-    fullWidth: { control: "boolean" },
-    type: { control: { type: "select", options: ["text", "password", "number", "email", "search", "file"] } },
+    adornmentPosition: { 
+      control: { type: "select"},
+      options: ["start", "end"],
+    },
   },
 } satisfies Meta<InputProps>;
 
@@ -36,7 +55,9 @@ type Story = StoryObj<InputProps>;
 
 export const Default: Story = {
   args: {
-    label: "Standard Input",
+    type: "text",
+    label: "Default Input",
+    variant: "outlined",
   },
 };
 
@@ -58,5 +79,29 @@ export const Filled: Story = {
   args: {
     label: "Filled Input",
     variant: "filled",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+  },
+};
+
+export const AdornmentStart: Story = {
+  args: {
+    type: "text",
+    label: "Adornment Start",
+    adornment: "$",
+    adornmentPosition: "start",
+  },
+};
+
+export const AdornmentEnd: Story = {
+  args: {
+    type: "text",
+    label: "Adornment End",
+    adornment: "$",
+    adornmentPosition: "end",
   },
 };

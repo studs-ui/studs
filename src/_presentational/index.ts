@@ -887,7 +887,8 @@ export class PresentationalPage extends LitElement {
                 type="text"
                 variant="outlined" 
                 inputSize="large" 
-                label="My Label" 
+                label="My Label"
+                placeholder="Enter your name"
                 adornment="lbs" 
                 adornment-position="start">
               </studs-input>
