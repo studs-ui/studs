@@ -1,29 +1,26 @@
-// refer to base/_fontFaces.scss for which fonts and names to use
+$font-family: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+$font-extended: "HelveticaNeueExtended", "Helvetica", "Arial", sans-serif;
+$font-condensed: "HelveticaNeueCondensed", "Helvetica", "Arial", sans-serif;
 
-$font-body: 'Helvetica Neue LT W05_55 Roman', 'Helvetica', 'Arial', sans-serif;
-$font-italic: 'Helvetica Neue LT W05_56 Italic', 'Helvetica', 'Arial',
-  sans-serif;
-$font-banner: 'Helvetica Neue LT W05_53 Ext', 'Helvetica', 'Arial', sans-serif;
-$font-heading: 'Helvetica Neue LT W05_83 Hv Ex', 'Helvetica', 'Arial',
-  sans-serif;
 $font-material-sharp: 'Material Symbols Sharp';
 $font-material-outline: 'Material Symbols Outlined';
 $font-material-rounded: 'Material Symbols Rounded';
 
-@mixin fonts {
-  --font-normal: #{$font-body};
-  --font-italic: #{$font-italic};
-  --font-medium: #{$font-body};
-  --font-medium-italic: #{$font-italic};
-  --font-bold: #{$font-banner};
-  --font-bold-italic: #{$font-banner};
-  --font-extrabold: #{$font-heading};
-  --font-extrabold-italic: #{$font-heading};
+$font-light: 300;
+$font-normal: 400;
+$font-semibold: 500;
+$font-bold: 600;
+$font-black: 700;
 
-  --fontSize-small: 0.8rem;
-  --fontSize-medium: 1rem;
-  --fontSize-large: 2rem;
-  --fontSize-xl: 4rem;
+$font-small: 0.8rem;
+$font-default: 1rem;
+$font-large: 2rem;
+$font-xl: 4rem;
+
+
+@mixin fonts {
+  --font-family: #{$font-family};
+  --font-size: #{$font-default};
 }
 
 @mixin materialIcons {

@@ -14,22 +14,26 @@
     color: var(--disabled);
     cursor: not-allowed;
   }
+
   &.-small {
-    font-size: var(--fontSize-small)
+    --font-size: #{$font-small};
   }
+
   &.-medium {
-    font-size: var(--fontSize-medium)
+    --font-size: #{$font-default};
   }
+
   &.-large {
-    font-size: var(--fontSize-large)
+    --font-size: #{$font-large};
   }
+
   &.-error {
-    color: #ff601b;
+    color: var(--error-color);
   }
   &.-success {
-    color: #799e7e;
+    color: var(--success-color);
   }
   &.-warning {
-    color: #d38225;
+    color: var(--warning-color);
   }
 }

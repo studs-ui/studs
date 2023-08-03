@@ -1,23 +1,23 @@
 @use "../utilities" as *;
 
 @mixin icon {
-  font-size: inherit;
+  --font-size: inherit;
   fill: inherit;
   &.-font {
     &.-small {
-      font-size: var(--fontSize-small);
+      --font-size: #{$font-small};
     }
 
     &.-medium {
-      font-size: var(--fontSize-medium);
+      --font-size: #{$font-default};
     }
 
     &.-large {
-      font-size: var(--fontSize-large);
+      --font-size: #{$font-large};
     }
 
     &.-extraLarge {
-      font-size: var(--fontSize-xl);
+      --font-size: #{$font-xl};
     }
   }
 

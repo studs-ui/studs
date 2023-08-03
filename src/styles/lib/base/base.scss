@@ -1,4 +1,4 @@
-@use '../vendor/normalize-min.css';
+// @use '../vendor/normalize-min.css';
 @use '../themes';
 @use '../utilities/fonts';
 @use '../utilities/colors';
@@ -12,7 +12,6 @@
 }
 
 html {
-  --font-size: 16px; //@NOTE: for future functionality
   font-size: var(--font-size);
 
   @include fonts.fonts;
@@ -25,7 +24,7 @@ body {
   padding: env(safe-area-inset-top) env(safe-area-inset-right)
     env(safe-area-inset-bottom) env(safe-area-inset-left); //ios safe zone for notch
 
-  font-family: fonts.$font-body;
+  font-family: fonts.$font-family;
 }
 
 
