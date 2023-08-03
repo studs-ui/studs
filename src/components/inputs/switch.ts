@@ -19,7 +19,7 @@ export class StudsSwitch extends LitElement {
   @property({ type: String }) label: SwitchProps["label"] = "";
   @property({ type: String, attribute: "label-position" }) labelPosition: SwitchProps["labelPosition"] = "end";
   @property({ type: String }) name: SwitchProps["name"] = "";
-  @property({ type: String }) size: SwitchProps["size"] = "small";
+  @property({ type: String }) size: SwitchProps["size"] = "medium";
 
   render() {
     return html`
