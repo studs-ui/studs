@@ -137,8 +137,9 @@ export class PresentationalPage extends LitElement {
               <studs-chip size="large">Large</studs-chip>
             </presentational-component>
             <presentational-component>
-              <studs-chip  deletable @delete=${(e) => {
-                e.target.parentNode.removeChild(e.target);
+              <studs-chip  deletable @delete=${(e: Event) => {
+                const element = e.target as HTMLElement;
+                element?.parentNode?.removeChild(element);
               }} clickable>Interactable</studs-chip>
             </presentational-component>
             <presentational-component>

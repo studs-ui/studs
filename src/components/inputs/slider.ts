@@ -6,13 +6,7 @@ import {
   nothing,
   unsafeCSS,
 } from "lit";
-import {
-  customElement,
-  property,
-  query,
-  queryAsync,
-  state,
-} from "lit/decorators.js";
+import { customElement, property, queryAsync, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import { styleMap } from "lit/directives/style-map.js";
@@ -241,7 +235,7 @@ export class StudsSlider extends LitElement {
 
   private renderMarks() {
     if (this.marks) {
-      return map(this.marks, (mark, key) => {
+      return map(this.marks, (mark) => {
         const leftMark = `${
           // @ts-ignore
           ((mark.value - this.marks[0]?.value) /
@@ -261,8 +255,8 @@ export class StudsSlider extends LitElement {
     }
   }
 
-  @state() private _thumbLeft: HTMLInputElement;
-  @state() private _thumbRight: HTMLInputElement;
+  @state() private _thumbLeft?: HTMLInputElement;
+  @state() private _thumbRight?: HTMLInputElement;
 
   @queryAsync(".thumbLeft") private thumbLeft!: Promise<HTMLInputElement>;
   @queryAsync(".thumbRight") private thumbRight!: Promise<HTMLInputElement>;

@@ -8,7 +8,7 @@ const meta = {
   tags: ["autodocs"],
   render: (args: any) => html`<studs-carousel
     .slides=${ifDefined(args.slides)}
-    perSlide=${ifDefined(args.perSlide)}
+    perPage=${ifDefined(args.perPage)}
   ></studs-carousel>`,
   argTypes: {},
 } satisfies Meta<CarouselProps>;
@@ -73,6 +73,6 @@ export const Carousel: Story = {
         alt: "image 9",
       },
     ],
-    perSlide: 3,
+    perPage: 3,
   },
 };
