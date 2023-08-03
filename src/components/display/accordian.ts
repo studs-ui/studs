@@ -72,8 +72,9 @@ export class StudsAccordian extends LitElement {
     this.requestUpdate();
   }
 
-  onSearch(e) {
-    const query = e.target.value;
+  onSearch(e: InputEvent) {
+    const target = e.target as HTMLInputElement;
+    const query = target.value;
     // Search Inner text of all accordian items
     this._items.forEach((item) => {
       const innerText = item.innerText.toLowerCase();

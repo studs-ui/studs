@@ -95,27 +95,7 @@
   .tooltip {
     position: absolute;
     top: -95%;
-    background-color: var(--tooltip-bkg);
-    border-radius: 2px;
-    padding: 0.25rem 0.75rem;
-    color: var(--tooltip-text);
-    text-align: center;
     transform: translate(-15px, -50%);
-
-    &::before {
-      position: absolute;
-      content: '';
-      width: 8px;
-      height: 8px;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%) rotate(45deg);
-      background-color: inherit;
-    }
-  }
-
-  .hideTooltip {
-    display: none;
   }
 
   /* Removing the default appearance */

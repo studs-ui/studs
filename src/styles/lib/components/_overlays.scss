@@ -68,7 +68,7 @@
         }
 
         &.-top {
-            bottom: calc(100% + 0.75em);
+            bottom: calc(100% + 1.25em);
             left: 50%;
             transform: translateX(-50%);
             &:before {
@@ -80,7 +80,7 @@
             }
         }
         &.-bottom {
-            top: calc(100% + 0.75em);
+            top: calc(100% + 1.25em);
             left: 50%;
             transform: translateX(-50%);
             &:before {
@@ -92,7 +92,7 @@
             }
         }
         &.-left {
-            right: calc(100% + 0.75em);
+            right: calc(100% + 1.25em);
             top: 50%;
             transform: translateY(-50%);
             &:before {
@@ -104,7 +104,7 @@
             }
         }
         &.-right {
-            left: calc(100% + 0.75em);
+            left: calc(100% + 1.25em);
             top: 50%;
             transform: translateY(-50%);
             &:before {
