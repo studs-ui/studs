@@ -19,8 +19,10 @@ $font-xl: 4rem;
 
 
 @mixin fonts {
-  --font-family: #{$font-family};
-  --font-size: #{$font-default};
+  :root {
+    --font-family: #{$font-family};
+    --font-size: #{$font-default};
+  }
 }
 
 @mixin materialIcons {

@@ -6,6 +6,8 @@
 @use '../utilities/mixins';
 @use '../components' as component;
 
+@include fonts.fonts;
+
 ::selection {
   background-color: var(--cta, colors.colorVal('orange', 40));
   color: colors.$white;
@@ -13,18 +15,16 @@
 
 html {
   font-size: var(--font-size);
-
-  @include fonts.fonts;
-
-  // @include mixins.scrollbars(var(--cta), var(--background), 12);
 }
 
 body {
   padding: 0;
-  padding: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left); //ios safe zone for notch
+  padding:  env(safe-area-inset-top)
+            env(safe-area-inset-right)
+            env(safe-area-inset-bottom)
+            env(safe-area-inset-left); //ios safe zone for notch
 
-  font-family: fonts.$font-family;
+  font-family: var(--font-family);
 }
 
 
