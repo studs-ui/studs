@@ -1,2 +1,7 @@
-@use "./lib/base";
-@use "./lib/themes";
+@layer reset, fonts, base;
+
+@import url('lib/vendor/normalize-min.css') layer(reset);
+@import url('lib/base/base.scss') layer(base);
+
+// @use "./lib/base";
+// @use "./lib/themes";

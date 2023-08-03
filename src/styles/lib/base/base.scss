@@ -28,9 +28,10 @@ body {
   font-family: fonts.$font-body;
 }
 
-@include component.headings;
 
 
+
+// @include component.headings;
 
 /*
   @TODO: remove these component inclusions once
