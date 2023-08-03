@@ -10,11 +10,7 @@ export class PresentationalPage extends LitElement {
   render() {
     return html`
     <studs-toaster></studs-toaster>
-<<<<<<< HEAD
-    <presentational-tabs tabs='["todalo", "Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers"]'>
-=======
     <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs"]'>
->>>>>>> dev
       <div slot="Buttons">
         <div class="group">
           <h2>Usage</h2>
