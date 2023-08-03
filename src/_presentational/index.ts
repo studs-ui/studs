@@ -10,7 +10,11 @@ export class PresentationalPage extends LitElement {
   render() {
     return html`
     <studs-toaster></studs-toaster>
+<<<<<<< HEAD
     <presentational-tabs tabs='["todalo", "Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers"]'>
+=======
+    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs"]'>
+>>>>>>> dev
       <div slot="Buttons">
         <div class="group">
           <h2>Usage</h2>
@@ -2925,6 +2929,41 @@ export class PresentationalPage extends LitElement {
       },
     ]}>
               </studs-stepper>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Inputs">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-input 
+                type="text"
+                variant="outlined" 
+                inputSize="large" 
+                label="My Label"
+                placeholder="Enter your name"
+                adornment="lbs" 
+                adornment-position="start">
+              </studs-input>
+            </presentational-component>
+            <presentational-component>
+            <studs-input
+              autocomplete="off"
+              name="fname"
+              type="text"
+              value="John"
+              label="Full name"
+              variant="outlined"
+              input-size="normal"
+              adornment="lbs"
+              adornment-position="end"
+              @value-changed='function($event){console.log("input value-changed event", $event.target.value);}'
+            ></studs-input>
             </presentational-component>
           </div>
         </div>

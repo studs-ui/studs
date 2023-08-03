@@ -1,17 +1,18 @@
 import type { StoryObj } from "@storybook/web-components";
 import { html } from "lit";
+import { ifDefined } from "lit/directives/if-defined.js";
 import { size } from "../utils/_argTypes";
 
 const meta = {
   title: "Studs/Inputs/Switch",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-switch
-    checked=${args.checked}
-    disabled=${args.disabled}
-    label=${args.label}
-    label-position=${args.labelPosition}
-    name=${args.name}
-    size=${args.size}
+    ?checked=${args.checked}
+    ?disabled=${args.disabled}
+    label=${ifDefined(args.label)}
+    label-position=${ifDefined(args.labelPosition)}
+    name=${ifDefined(args.name)}
+    size=${ifDefined(args.size)}
   ></studs-switch>`,
   argTypes: {
     ...size,
