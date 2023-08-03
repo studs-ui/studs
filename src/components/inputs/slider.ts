@@ -6,7 +6,13 @@ import {
   nothing,
   unsafeCSS,
 } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import {
+  customElement,
+  property,
+  query,
+  queryAsync,
+  state,
+} from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import { styleMap } from "lit/directives/style-map.js";
@@ -136,28 +142,6 @@ export class StudsSlider extends LitElement {
     this.requestUpdate();
   }
 
-  private onThumbMouseEnter(event: MouseEvent) {
-    if (this.enableTooltip) {
-      const target = event.target as HTMLElement;
-      const tooltip = target.previousElementSibling;
-      // Check if Tooltip is actually Tooltip
-      if (tooltip?.classList.contains("tooltip")) {
-        tooltip.classList.remove("hideTooltip");
-      }
-    }
-  }
-
-  private onThumbMouseLeave(event: MouseEvent) {
-    if (this.enableTooltip) {
-      const target = event.target as HTMLElement;
-      const tooltip = target.previousElementSibling;
-      // Check if Tooltip is actually Tooltip
-      if (tooltip?.classList.contains("tooltip")) {
-        tooltip.classList.add("hideTooltip");
-      }
-    }
-  }
-
   private getToolTipValue(value: number) {
     if (this.calculateTooltipLabel) {
       return this.calculateTooltipLabel(value);
@@ -277,21 +261,50 @@ export class StudsSlider extends LitElement {
     }
   }
 
+  @state() private _thumbLeft: HTMLInputElement;
+  @state() private _thumbRight: HTMLInputElement;
+
+  @queryAsync(".thumbLeft") private thumbLeft!: Promise<HTMLInputElement>;
+  @queryAsync(".thumbRight") private thumbRight!: Promise<HTMLInputElement>;
+
+  private renderTooltip(position: "left" | "right") {
+    if (position === "left") {
+      this.thumbLeft.then((res) => {
+        this._thumbLeft = res;
+      });
+      if (this._thumbLeft)
+        return html`<studs-tooltip
+          standalone
+          .element=${this._thumbLeft}
+          style="left: ${this._minPercentage}%"
+          direction="top"
+          class="tooltip"
+        >
+          ${this.getToolTipValue(this._minValue)}
+        </studs-tooltip>`;
+    }
+    if (position === "right") {
+      this.thumbRight.then((res) => {
+        this._thumbRight = res;
+      });
+      if (this._thumbRight)
+        return html`<studs-tooltip
+          standalone
+          .element=${this._thumbRight}
+          style="left: ${this._maxPercentage}%"
+          direction="top"
+          class="tooltip"
+          >${this.getToolTipValue(this._maxValue)}</studs-tooltip
+        >`;
+    }
+  }
+
   render() {
     return html`<div class="slider">
       ${this.renderInput("min")} ${this.renderLabel("left")}
       <div class="sliderWrapper">
         <div>
-          ${this.enableTooltip
-            ? html`
-                <span
-                  class="tooltip -leftTooltip -container hideTooltip"
-                  style="left: ${this._minPercentage}%"
-                >
-                  ${this.getToolTipValue(this._minValue)}
-                </span>
-              `
-            : nothing}
+          ${this.enableTooltip ? this.renderTooltip("left") : nothing}
           <input
             type="range"
             class="thumb thumbLeft"
@@ -301,22 +314,11 @@ export class StudsSlider extends LitElement {
             .value=${this._minValue}
             @input=${this.handleMinValue}
             @mousedown=${this.handleRangeMouseDown}
-            @mouseenter=${this.onThumbMouseEnter}
-            @mouseleave=${this.onThumbMouseLeave}
           />
 
           ${this.rangeValue?.length > 1
             ? html`
-                ${this.enableTooltip
-                  ? html`
-                      <span
-                        class="tooltip -rightTooltip -container hideTooltip"
-                        style="left: ${this._maxPercentage}%"
-                      >
-                        ${this.getToolTipValue(this._maxValue)}
-                      </span>
-                    `
-                  : nothing}
+                ${this.enableTooltip ? this.renderTooltip("right") : nothing}
                 <input
                   type="range"
                   class="thumb thumbRight"
@@ -326,8 +328,6 @@ export class StudsSlider extends LitElement {
                   .value=${this._maxValue}
                   @input=${this.handleMaxValue}
                   @mousedown=${this.handleRangeMouseDown}
-                  @mouseenter=${this.onThumbMouseEnter}
-                  @mouseleave=${this.onThumbMouseLeave}
                 />
               `
             : nothing}

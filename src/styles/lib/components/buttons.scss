@@ -284,6 +284,11 @@
   }
 }
 
+:host {
+  display: inline-block;
+  position: relative;
+}
+
 .button {
   @include button;
 }

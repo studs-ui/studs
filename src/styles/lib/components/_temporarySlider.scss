@@ -94,36 +94,15 @@
   }
 
   .tooltip {
-    @include tooltip();
-    white-space: nowrap;
+    display: initial;
     position: absolute;
     top: -95%;
-    background-color: var(--tooltip-bkg);
-    border-radius: 2px;
-    color: var(--tooltip-text);
-    text-align: center;
     &.-leftTooltip {
       transform: translate(-2em, -50%);
     }
     &.-rightTooltip {
       transform: translate(-3.8em, -50%);
     }
-
-
-    &::before {
-      position: absolute;
-      content: '';
-      width: 8px;
-      height: 8px;
-      bottom: 0;
-      left: 50%;
-      transform: translate(-50%, 50%) rotate(45deg);
-      background-color: inherit;
-    }
-  }
-
-  .hideTooltip {
-    display: none;
   }
 
   /* Removing the default appearance */
