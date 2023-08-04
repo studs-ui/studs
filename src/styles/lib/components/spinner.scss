@@ -9,17 +9,24 @@
     border-radius: 50%;
     animation: spin 1.2s linear infinite;
     &.-spinner {
-      &:where(.-small) {
-        @include spinnerSmall;
+      --size: 40px;
+      width: var(--size);
+      height: var(--size);
+
+      &.-small {
+        --size: 30px;
       }
-      &:where(.-medium) {
-        @include spinnerMedium;
+
+      &.-medium {
+        --size: 40px;
       }
-      &:where(.-large) {
-        @include spinnerLarge;
+
+      &.-large {
+        --size: 50px;
       }
-      &:where(.-extraLarge) {
-        @include spinnerExtraLarge;
+
+      &.-extraLarge {
+        --size: 80px;
       }
     }
     &:where(.secondary) {
