@@ -3,6 +3,7 @@ import { AsyncDirective } from "lit/async-directive.js";
 import { PartInfo, directive } from "lit/directive.js";
 import { FormController } from "../controllers/formController";
 import { FormGroupController } from "../controllers/formGroup";
+import { valueAccessors } from "../accessors";
 
 export class ControlDirective extends AsyncDirective {
   _formController!: FormController;
@@ -18,7 +19,7 @@ export class ControlDirective extends AsyncDirective {
 
   render(group: FormGroupController<any>, name: string) {
     if (!this._formController) {
-      let valueAccessor: ValueAccessor = null;
+      let valueAccessor: any = null;
 
       for (const [selector, accessor] of Object.entries(valueAccessors)) {
         if (this.host.matches(selector)) {
@@ -31,6 +32,7 @@ export class ControlDirective extends AsyncDirective {
         valueAccessor ?? valueAccessors["input"];
 
       this._formController = group.controls[name];
+      console.log(group);
 
       // Set the initial control value
       modelToView(this.host, this._formController.getValue());

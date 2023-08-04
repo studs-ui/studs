@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
@@ -49,6 +49,8 @@ export class StudsInput extends WithForm(LitElement) {
         true,
     };
 
+    console.log(this.control);
+
     return html`
       <div class=${`inputComponent`}>
         ${this.label
@@ -65,6 +67,7 @@ export class StudsInput extends WithForm(LitElement) {
             ?disabled=${this.disabled}
             @input=${this.handleInput}
             class=${classMap(classes)}
+            ${this.control}
           />
           ${this.adornment && this.adornmentPosition === "end"
             ? html`<div class="adornmentEnd">${this.adornment}</div>`

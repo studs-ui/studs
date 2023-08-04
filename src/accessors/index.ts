@@ -3,7 +3,7 @@ type ValueAccessor = {
   viewToModel(element: HTMLElement, cb: (value: unknown) => void): VoidFunction;
 } | null;
 
-const valueAccessors: Record<string, ValueAccessor> = {
+export const valueAccessors: Record<string, ValueAccessor> = {
   "input[type=number]": {
     modelToView(element: HTMLElement, value: string) {
       (element as HTMLInputElement).value = value;

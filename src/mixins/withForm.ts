@@ -1,5 +1,7 @@
-import { LitElement } from "lit";
+import { consume } from "@lit-labs/context";
+import { LitElement, nothing } from "lit";
 import { property } from "lit/decorators.js";
+import { formContext } from "../components/inputs/form";
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -10,7 +12,9 @@ export declare class WithFormInterface {
   placeholder?: string;
   required?: boolean;
   error: boolean;
-  register?: Function;
+  formController?: any;
+  getName: () => string;
+  control: () => Function;
   dispatch: Function;
 }
 
@@ -23,10 +27,22 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     @property({ type: Boolean }) error: WithFormInterface["error"] = false;
     @property({ type: Boolean }) disabled: WithFormInterface["disabled"] =
       false;
-    @property({ type: Function }) register: WithFormInterface["register"];
+    // @ts-ignore
+    @consume({ context: formContext }) public formController?;
+
+    get getName() {
+      return this.name || this.label || "";
+    }
+
+    get control() {
+      if (this.formController) {
+        return this.formController.registerControl(this.getName);
+      } else {
+        return nothing;
+      }
+    }
 
     protected dispatch(detail: object) {
-      console.log(detail);
       if (detail) {
         this.dispatchEvent(
           new CustomEvent("value-changed", {
