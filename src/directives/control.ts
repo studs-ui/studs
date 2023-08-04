@@ -6,8 +6,8 @@ import { FormGroupController } from "../controllers/formGroup";
 import { valueAccessors } from "../accessors";
 
 export class ControlDirective extends AsyncDirective {
-  _formController!: FormController;
-  _disposables: Array<VoidFunction> = [];
+  private _formController!: FormController;
+  private _disposables: Array<VoidFunction> = [];
 
   constructor(private part: PartInfo) {
     super(part);
@@ -32,9 +32,9 @@ export class ControlDirective extends AsyncDirective {
         valueAccessor ?? valueAccessors["input"];
 
       this._formController = group.controls[name];
-      console.log(group);
 
       // Set the initial control value
+      console.log(modelToView(this.host, this._formController.getValue()));
       modelToView(this.host, this._formController.getValue());
       this._applyValidators(group);
 

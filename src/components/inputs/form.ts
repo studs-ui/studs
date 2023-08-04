@@ -9,6 +9,10 @@ export const formContext = createContext<any>("form");
 export class StudsForm extends LitElement {
   @state() private _elems: HTMLElement[] = [];
   onSubmit(e: Event) {
+    this.dispatchEvent(
+      new CustomEvent("submit", { bubbles: true, composed: true })
+    );
+    console.log("submitting");
     console.log(this.form.value);
   }
 
@@ -20,8 +24,20 @@ export class StudsForm extends LitElement {
 
   render() {
     return html`
-      <form>
-        <slot></slot>
+      <form @change=${this.onSubmit}>
+        <slot
+          @slotchange=${() => {
+            const button = this._elements.find(
+              (e) =>
+                e.tagName === "STUDS-BUTTON" &&
+                e.getAttribute("type") === "submit"
+            );
+            if (!button?.getAttribute("@click")) {
+              //   console.log(button);
+              //   button?.setAttribute("onclick", this.onSubmit);
+            }
+          }}
+        ></slot>
       </form>
     `;
   }

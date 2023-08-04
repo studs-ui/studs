@@ -49,8 +49,6 @@ export class StudsInput extends WithForm(LitElement) {
         true,
     };
 
-    console.log(this.control);
-
     return html`
       <div class=${`inputComponent`}>
         ${this.label

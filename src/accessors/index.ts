@@ -1,4 +1,4 @@
-type ValueAccessor = {
+export type ValueAccessor = {
   modelToView(element: HTMLElement, value: unknown): void;
   viewToModel(element: HTMLElement, cb: (value: unknown) => void): VoidFunction;
 } | null;
@@ -9,7 +9,7 @@ export const valueAccessors: Record<string, ValueAccessor> = {
       (element as HTMLInputElement).value = value;
     },
     viewToModel(element: HTMLElement, cb: (value: number) => void) {
-      const listener = (e) => cb(e.target.valueAsNumber);
+      const listener = (e: any) => cb(e.target.valueAsNumber);
       element.addEventListener("input", listener);
 
       return () => element.removeEventListener("input", listener);
@@ -20,7 +20,7 @@ export const valueAccessors: Record<string, ValueAccessor> = {
       (element as HTMLInputElement).checked = value;
     },
     viewToModel(element: HTMLElement, cb: (value: number) => void) {
-      const listener = (e) => cb(e.target.checked);
+      const listener = (e: any) => cb(e.target.checked);
       element.addEventListener("change", listener);
 
       return () => element.removeEventListener("change", listener);
@@ -31,7 +31,7 @@ export const valueAccessors: Record<string, ValueAccessor> = {
       (element as HTMLInputElement).value = value;
     },
     viewToModel(element: HTMLElement, cb: (value: string) => void) {
-      const listener = (e) => cb(e.target.value);
+      const listener = (e: any) => cb(e.target.value);
       element.addEventListener("input", listener);
 
       return () => element.removeEventListener("input", listener);
