@@ -5,11 +5,11 @@
 
 @mixin radioButton {
 
-  input[type=radio] {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
+  // input[type=radio] {
+  //   opacity: 0;
+  //   width: 0;
+  //   height: 0;
+  // }
 
     label {
     --radioColor: var(--checkbox-color);
@@ -51,4 +51,8 @@
   input[type=radio]:focus-visible +  label::before {--radioColor: var(--link-focus)}
   input[type=radio]:checked + label::before {content: '\e837' }
 
+}
+
+.radioButton {
+  @include radioButton;
 }
