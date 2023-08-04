@@ -10,7 +10,7 @@ const meta = {
     html`<studs-slider
       .rangeValue=${ifDefined(args.rangeValue)}
       .marks=${ifDefined(args.marks)}
-      leftLabel=${ifDefined(args.leftLabel)}
+      label=${ifDefined(args.label)}
       rightLabel=${ifDefined(args.rightLabel)}
       ?enableInput=${args.enableInput}
       ?enableTooltip=${args.enableTooltip}
@@ -36,7 +36,7 @@ export const Default: Story = {
     min: 0,
     max: 100,
     step: 1,
-    leftLabel: "Peanut Butter",
+    label: "Peanut Butter",
     rightLabel: "Jelly",
     enableTooltip: true,
     enableLabel: true,

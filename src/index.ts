@@ -22,6 +22,7 @@ import { StudsSlider } from "./components/inputs/slider";
 import { StudsAccordian } from "./components/display/accordian";
 import { StudsAccordianItem } from "./components/display/accordian-item";
 import { StudsInput } from "./components/inputs/input";
+import { StudsForm } from "./components/inputs/form";
 
 // Export Components
 export {
@@ -46,6 +47,7 @@ export {
   StudsAccordian,
   StudsAccordianItem,
   StudsInput,
+  StudsForm,
 };
 
 declare global {
@@ -71,5 +73,6 @@ declare global {
     "studs-accordian-item": StudsAccordianItem;
     "studs-slider": StudsSlider;
     "studs-input": StudsInput;
+    "studs-form": StudsForm;
   }
 }

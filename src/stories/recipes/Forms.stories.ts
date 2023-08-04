@@ -21,13 +21,12 @@ export const Default: Story = {
       console.log(values);
     };
     return html`
-      <div>Forms</div>
-      <form @submit=${onSubmit}>
+      <studs-form>
         <studs-input label="Input" placeholder="Placeholder"></studs-input>
         <studs-input label="Input" placeholder="Placeholder"></studs-input>
         <studs-input label="Input" placeholder="Placeholder"></studs-input>
         <studs-button type="submit" @click=${onSubmit}>Submit</studs-button>
-      </form>
+      </studs-form>
     `;
   },
 };

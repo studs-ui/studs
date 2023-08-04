@@ -1,10 +1,13 @@
 import { ReactiveController, ReactiveControllerHost } from "lit";
 import { FormController } from "./formController";
+import { controlDirective } from "../directives/control";
 
+//@ts-ignore
 export class FormGroupController<T extends Record<string, FormController>>
   implements ReactiveController
 {
   constructor(private host: ReactiveControllerHost, public controls: T) {
+    //@ts-ignore
     this.host.addController(this);
   }
 
@@ -23,7 +26,7 @@ export class FormGroupController<T extends Record<string, FormController>>
   }
 
   registerControl(name: string) {
-    return contrlDirective(this, name);
+    return controlDirective(this, name);
   }
 
   requestUpdate() {

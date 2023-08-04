@@ -18,7 +18,7 @@ export class ControlDirective extends AsyncDirective {
 
   render(group: FormGroupController<any>, name: string) {
     if (!this._formController) {
-      let valueAccessor = null;
+      let valueAccessor: ValueAccessor = null;
 
       for (const [selector, accessor] of Object.entries(valueAccessors)) {
         if (this.host.matches(selector)) {
@@ -65,4 +65,4 @@ export class ControlDirective extends AsyncDirective {
   }
 }
 
-export const contrlDirective = directive(ControlDirective);
+export const controlDirective = directive(ControlDirective);
