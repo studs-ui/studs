@@ -14,22 +14,26 @@
     color: var(--disabled);
     cursor: not-allowed;
   }
+
   &.-small {
-    @include fontSmall;
+    --font-size: #{$font-small};
   }
+
   &.-medium {
-    @include fontMedium;
+    --font-size: #{$font-default};
   }
+
   &.-large {
-    @include fontLarge;
+    --font-size: #{$font-large};
   }
+
   &.-error {
-    color: #ff601b;
+    color: var(--error-color);
   }
   &.-success {
-    color: #799e7e;
+    color: var(--success-color);
   }
   &.-warning {
-    color: #d38225;
+    color: var(--warning-color);
   }
 }

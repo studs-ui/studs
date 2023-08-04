@@ -47,6 +47,7 @@
 // are in utilities/_fonts.scss now
 //    --Jp
 
+// @TODO: image mixins are same as font sizes. Maybe replace with font size vars?
 
 @mixin imgSmall {
   height: 0.8rem;

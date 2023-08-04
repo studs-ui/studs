@@ -19,18 +19,21 @@
     gap: .5rem;
     position: relative;
     color: var(--text-color);
-    font-size: 1rem;
+
     &.-small {
-      @include fontSmall;
+      --font-size: #{$font-small};
     }
+
     &.-medium {
-      @include fontMedium;
+      --font-size: #{$font-default};
     }
+
     &.-large {
-      @include fontLarge;
+      --font-size: #{$font-large};
     }
+
     &.-extraLarge {
-      @include fontExtraLarge;
+      --font-size: #{$font-xl};
     }
 
     &.-disabled {

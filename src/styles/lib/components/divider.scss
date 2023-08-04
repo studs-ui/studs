@@ -29,37 +29,43 @@
   .content-horizontal {
     padding: 0 0.5em;
   }
+
   .vertical-line {
-    border-left: 1px solid #d3d7da;
-    height: 100%;
-    width: 1px;
-    &:where(.-small) {
-      @include dividerVerticalSmall;
-    }
-    &:where(.-medium) {
-      @include dividerVerticalMedium;
-    }
-    &:where(.-large) {
-      @include dividerVerticalLarge;
-    }
-    &:where(.-extraLarge) {
-      @include dividerVerticalExtraLarge;
-    }
-  }
+   border-left: 1px solid #d3d7da;
+   height: 100%;
+   width: 1px;
+
+   &:where(.-small) {
+     border-left: 1px solid #d3d7da;
+   }
+
+   &:where(.-medium) {
+     border-left: 3px solid #d3d7da;
+   }
+
+   &:where(.-large) {
+     border-left: 5px solid #d3d7da;
+   }
+
+   &:where(.-extraLarge) {
+     border-left: 7px solid #d3d7da;
+   }
+ }
+
   .horizontal-line {
     border-bottom: 1px solid #d3d7da;
     width: 100%;
     &:where(.-small) {
-      @include dividerHorizontalSmall;
+     border-bottom: 1px solid #d3d7da;
     }
     &:where(.-medium) {
-      @include dividerHorizontalMedium;
+      border-bottom: 3px solid #d3d7da;
     }
     &:where(.-large) {
-      @include dividerHorizontalLarge;
+      border-bottom: 5px solid #d3d7da;
     }
     &:where(.-extraLarge) {
-      @include dividerHorizontalExtraLarge;
+      border-bottom: 7px solid #d3d7da;
     }
   }
 }

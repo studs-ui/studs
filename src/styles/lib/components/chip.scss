@@ -21,25 +21,29 @@
   cursor: default;
 
   &.-small {
-    @include fontSmall;
+    --font-size: #{$font-small};
+
     ::slotted(img) {
       max-height: 1.2em;
     }
   }
   &.-medium {
-    @include fontMedium;
+    --font-size: #{$font-default};
+
     ::slotted(img) {
       max-height: 1.2em;
     }
   }
   &.-large {
-    @include fontLarge;
+    --font-size: #{$font-large};
+
     ::slotted(img) {
       max-height: 1.2em;
     }
   }
   &.-extraLarge {
-    @include fontExtraLarge;
+    --font-size: #{$font-xl};
+
     ::slotted(img) {
       max-height: 1.2em;
     }

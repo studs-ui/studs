@@ -7,6 +7,10 @@
 @mixin button {
   --button-background: var(--button-default);
   --button-border: var(--button-default);
+
+  font-family: var(--font-family);
+  font-size: var(--font-size);
+
   white-space: nowrap;
   appearance: none;
   padding: 0.75em 1em;
@@ -91,19 +95,19 @@
   }
 
   &.-small {
-    @include fontSmall;
+    --font-size: #{$font-small};
   }
 
   &.-medium {
-    @include fontMedium;
+    --font-size: #{$font-default};
   }
 
   &.-large {
-    @include fontLarge;
+    --font-size: #{$font-large};
   }
 
   &.-extraLarge {
-    @include fontExtraLarge;
+    --font-size: #{$font-xl};
   }
 
   &.-cta {
@@ -119,7 +123,7 @@
     }
 
     .text {
-      font-family: var(--font-bold);
+      font-weight: $font-semibold;
     }
 
     .text,
@@ -178,7 +182,7 @@
     }
 
     .text {
-      font-weight: var(--font-bold);
+      font-weight: $font-semibold;
     }
   }
 
@@ -186,7 +190,7 @@
     --button-background: #{$transparent};
     --button-color: var(--text-color);
     --button-border: var(--button-default);
-    font-weight: var(--font-medium);
+    // font-weight: var(--font-medium);
 
     padding: 0.35em;
 

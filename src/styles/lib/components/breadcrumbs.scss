@@ -38,7 +38,6 @@
       --seperator: '';
       --hover: var(--breadcrumb-current);
       --link-color: var(--breadcrumb-current);
-      font-family: var(--font-bold);
       user-select: none;
       pointer-events: none;
       cursor: default;
@@ -57,7 +56,6 @@
 
       &:hover,
       &:active {
-        font-family: var(--font-bold);
         color: var(--hover);
       }
     }
