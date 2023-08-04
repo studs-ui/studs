@@ -10,7 +10,7 @@ export class PresentationalPage extends LitElement {
   render() {
     return html`
     <studs-toaster></studs-toaster>
-    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs"]'>
+    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs", "Radios"]'>
       <div slot="Buttons">
         <div class="group">
           <h2>Usage</h2>
@@ -2973,6 +2973,33 @@ export class PresentationalPage extends LitElement {
               adornment-position="end"
               @value-changed='function($event){console.log("input value-changed event", $event.target.value);}'
             ></studs-input>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Radios">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-radio name="option" value="option"  @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+            </presentational-component>
+            <presentational-component>
+              <studs-radio name="option1" value="option1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 1</studs-radio>
+            </presentational-component>
+            <presentational-component>
+              <studs-radio name="option2" value="option2" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 2</studs-radio>
+            </presentational-component>
+            <presentational-component>
+              <studs-radio name="option3" value="option3" disabled>Option 3</studs-radio>
+            </presentational-component>
+            <presentational-component>
+              <studs-radio name="group" value="group1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 1</studs-radio>
+              <studs-radio name="group" value="group2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 2</studs-radio>
+              <studs-radio name="group" value="group3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 3</studs-radio>
             </presentational-component>
           </div>
         </div>
