@@ -2732,28 +2732,40 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-tooltip direction="left" arrowPosition="end">
-                <studs-button buttontype="primary">Left</studs-button>
-                <div slot="tooltip">This is a left tooltip</div>
-              </studs-tooltip>
+              <studs-button buttontype="primary">
+              Left
+                <studs-tooltip
+                  direction='left'
+                  >This is a left tooltip</studs-tooltip
+                >
+            </studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-tooltip direction="right" arrowPosition="end">
-                <studs-button buttontype="primary">Right</studs-button>
-                <div slot="tooltip">This is a right tooltip</div>
-              </studs-tooltip>
+            <studs-button buttontype="primary">
+              Right
+                <studs-tooltip
+                  direction='right'
+                  >This is a right tooltip</studs-tooltip
+                >
+            </studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-tooltip direction="top" arrowPosition="end">
-                <studs-button buttontype="primary">Top</studs-button>
-                <div slot="tooltip">This is a top tooltip</div>
-              </studs-tooltip>
+            <studs-button buttontype="primary">
+              Top
+                <studs-tooltip
+                  direction='top'
+                  >This is a top tooltip</studs-tooltip
+                >
+            </studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-tooltip direction="bottom" arrowPosition="end">
-                <studs-button buttontype="primary">Bottom</studs-button>
-                <div slot="tooltip">This is a bottom tooltip</div>
-              </studs-tooltip>
+            <studs-button buttontype="primary">
+              Bottom
+                <studs-tooltip
+                  direction='bottom'
+                  >This is a bottom tooltip</studs-tooltip
+                >
+            </studs-button>
             </presentational-component>
           </div>
         </div>
