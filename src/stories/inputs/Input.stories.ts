@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { InputProps } from "../components/inputs/input";
+import { InputProps } from "../../components/inputs/input";
 
 const meta = {
   title: "Studs/Inputs/Input",
@@ -23,28 +23,28 @@ const meta = {
   ></studs-input>`,
   argTypes: {
     type: {
-      control: { type: "select"}, 
+      control: { type: "select" },
       options: ["text", "password", "number", "email", "search", "file"],
     },
     name: { control: "text" },
     placeholder: { control: "text" },
     label: { control: "text" },
-    variant: { 
-      control: { type: "select" }, 
+    variant: {
+      control: { type: "select" },
       options: ["standard", "outlined", "filled"],
       defaultValue: "outlined",
     },
     inputSize: {
-      control: { type: "select"},
+      control: { type: "select" },
       options: ["small", "medium", "large"],
     },
     disabled: { control: "boolean" },
     required: { control: "boolean" },
-    error: { control: "boolean"},
+    error: { control: "boolean" },
     helperText: { control: "array" },
     adornment: { control: "text" },
-    adornmentPosition: { 
-      control: { type: "select"},
+    adornmentPosition: {
+      control: { type: "select" },
       options: ["start", "end"],
     },
   },

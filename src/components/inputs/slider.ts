@@ -19,6 +19,7 @@ interface MarkProps {
 }
 
 export interface SliderProps {
+  name?: string;
   min: number;
   max: number;
   step: number;
@@ -35,6 +36,7 @@ export interface SliderProps {
 
 @customElement("studs-slider")
 export class StudsSlider extends LitElement {
+  @property({ type: String }) name?: SliderProps["name"];
   @property({ type: Number }) min: SliderProps["min"] = 0;
   @property({ type: Number }) max: SliderProps["max"] = 100;
   @property({ type: Number }) step: SliderProps["step"] = 1;
@@ -101,6 +103,16 @@ export class StudsSlider extends LitElement {
     this._dragging = true;
 
     this.requestUpdate();
+
+    this.dispatchEvent(
+      new CustomEvent("value-changed", {
+        detail: {
+          name: this.name,
+          min: this._minValue,
+          max: this._maxValue,
+        },
+      })
+    );
   }
 
   private handleMaxValue(event: ChangeEvent<HTMLInputElement>) {
@@ -120,6 +132,16 @@ export class StudsSlider extends LitElement {
     this._dragging = true;
 
     this.requestUpdate();
+
+    this.dispatchEvent(
+      new CustomEvent("value-changed", {
+        detail: {
+          name: this.name,
+          min: this._minValue,
+          max: this._maxValue,
+        },
+      })
+    );
   }
 
   protected handleMouseUp() {

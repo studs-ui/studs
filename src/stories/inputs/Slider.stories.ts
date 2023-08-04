@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { SliderProps } from "../components/inputs/slider";
+import { SliderProps } from "../../components/inputs/slider";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta = {
@@ -20,6 +20,9 @@ const meta = {
       .min=${args.min}
       .max=${args.max}
       .step=${args.step}
+      @value-changed=${(event: CustomEvent) => {
+        console.log(event);
+      }}
     ></studs-slider>`,
   argTypes: {},
 } satisfies Meta<SliderProps>;
