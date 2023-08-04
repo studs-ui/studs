@@ -8,7 +8,7 @@
   }
   .input {
     appearance: none;
-    border: 1px solid $gray-med-light;
+    border: 1px solid var(--border-color);
     border-radius: 0.25rem;
     font-size: 1rem;
     line-height: 1;
@@ -20,16 +20,16 @@
     display: block;
   }
   .outlined {
-    border: 1px solid $gray-med-light;
+    border: 1px solid var(--border-color);
   }
   .filled {
-    border: 1px solid $background-light;
-    background-color: $background-light;
+    border: 1px solid var(--background);
+    background-color: var(--background);
   }
   .standard {
     border: 0;
     outline: none;
-    border-bottom: 1px solid $gray-med-light;
+    border-bottom: 1px solid var(--border-color);
   }
   .small {
     padding: 0.25rem;

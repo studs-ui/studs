@@ -11,7 +11,15 @@ $screen-sm: 905px;
 $screen-med: 1240px;
 $screen-lrg: 1696px;
 
+// measurements
+$padding: 1rem;
+$max-width: $screen-lrg;      // maximum page content width.
+$breakpoint-menu: $screen-sm; // menu-specific breakpoint, independent
+                              // of standard breakpoints
+
 /*
+// for reference
+//
 // [ Mobile first ]
 // default styles for mobile
 // @media (min-width: $screen-xs)  {} // styles > 600px
@@ -26,12 +34,3 @@ $screen-lrg: 1696px;
 // @media (max-width: $screen-sm - 1)  {} // styles < 904px
 // @media (max-width: $screen-xs - 1)  {} // styles < 599px
 */
-
-// measurements
-$padding: 1rem;
-$max-width: $screen-lrg; // maximum page content width.
-$breakpoint-menu: 500px; // menu-specific breakpoint, independant
-                         // of standard breakpoints
-                         // @TODO: change this to real menu breakpoint
-
-

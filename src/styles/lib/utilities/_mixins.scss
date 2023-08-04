@@ -27,8 +27,7 @@
 }
 
 //  Use an SVG or transparent PNG, and change the color with masking.
-//  only the image URL and color are required
-
+//  only the image URL and color are required.
 @mixin icon-mask($image, $color, $position: left top, $size: contain) {
   mask-image: $image;
   mask-type: luminance;
@@ -41,32 +40,6 @@
 
 @mixin noSelect {
   user-select: none;
-}
-
-// @NOTE: mixins for font size, and a new material icons mixin,
-// are in utilities/_fonts.scss now
-//    --Jp
-
-// @TODO: image mixins are same as font sizes. Maybe replace with font size vars?
-
-@mixin imgSmall {
-  height: 0.8rem;
-  width: 0.8rem;
-}
-
-@mixin imgMedium {
-  height: 1rem;
-  width: 1rem;
-}
-
-@mixin imgLarge {
-  height: 2rem;
-  width: 2rem;
-}
-
-@mixin imgExtraLarge {
-  height: 4rem;
-  width: 4rem;
 }
 
 @mixin boxShadow {
