@@ -38,15 +38,9 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
         | HTMLTextAreaElement
         | any;
 
-      // console.log(target.tagName === "STUDS-INPUT");
       this.formController.controls[this.getName].setValue(
         target.value || target.checked
       );
-
-      // console.log("values", {
-      //   controller: this.formController.controls[this.getName].getValue(),
-      //   element: target.value || target.checked,
-      // });
     }
 
     connectedCallback(): void {
@@ -70,7 +64,7 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     get control() {
       if (this.formController) {
         this.formController.addControl({
-          [this.getName]: new FormController(""),
+          [this.getName]: new FormController(this, ""),
         });
         return this.formController.registerControl(this.getName);
       } else {
