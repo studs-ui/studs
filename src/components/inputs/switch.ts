@@ -2,6 +2,7 @@ import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import style from "styles/switch.scss?inline";
 import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 export interface SwitchProps extends WithFormInterface {
   checked: boolean;
@@ -26,9 +27,11 @@ export class StudsSwitch extends WithForm(LitElement) {
         <label class="switch-label ${this.size}">
           <input
             type="checkbox"
+            name=${ifDefined(this.name)}
             ?checked=${this.checked}
             ?disabled=${this.disabled}
             @change=${this.onChange}
+            ${this.control}
           />
           <span class="slider"></span>
         </label>

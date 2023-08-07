@@ -1,4 +1,4 @@
-import { LitElement, html, nothing, unsafeCSS } from "lit";
+import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
@@ -59,6 +59,7 @@ export class StudsInput extends WithForm(LitElement) {
             ? html`<div class="adornmentStart">${this.adornment}</div>`
             : ""}
           <input
+            name=${ifDefined(this.name)}
             type="${ifDefined(this.type)}"
             value=${ifDefined(this.value)}
             placeholder=${ifDefined(this.placeholder)}

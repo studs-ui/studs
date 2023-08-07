@@ -13,6 +13,7 @@ import { styleMap } from "lit/directives/style-map.js";
 import { ChangeEvent } from "react";
 import style from "styles/_temporarySlider.scss?inline";
 import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 interface MarkProps {
   value: number;
@@ -311,6 +312,7 @@ export class StudsSlider extends WithForm(LitElement) {
         <div>
           ${this.enableTooltip ? this.renderTooltip("left") : nothing}
           <input
+            name=${ifDefined(this.name)}
             type="range"
             class="thumb thumbLeft"
             min=${this.min}
@@ -319,6 +321,7 @@ export class StudsSlider extends WithForm(LitElement) {
             .value=${this._minValue}
             @input=${this.handleMinValue}
             @mousedown=${this.handleRangeMouseDown}
+            ${this.control}
           />
 
           ${this.rangeValue?.length > 1
