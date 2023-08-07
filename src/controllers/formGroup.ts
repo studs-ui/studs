@@ -21,6 +21,12 @@ export class FormGroupController<T extends Record<string, FormController>>
     0;
   }
 
+  reset() {
+    for (const control of Object.values(this.controls)) {
+      control.reset();
+    }
+  }
+
   get value() {
     const value: Record<string, any> = {};
 

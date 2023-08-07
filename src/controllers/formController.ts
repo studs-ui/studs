@@ -15,6 +15,12 @@ export class FormController<T = any> {
     return this.value;
   }
 
+  reset({ emitModelChange = true } = {}) {
+    const value: T = null as any;
+    this.value = value;
+    emitModelChange && this._modelChanged.forEach((cb) => cb(this.value));
+  }
+
   applyValidators() {
     if (!this.validators?.length) return;
 

@@ -1,6 +1,6 @@
 import { consume } from "@lit-labs/context";
 import { LitElement, PropertyValueMap, nothing } from "lit";
-import { property } from "lit/decorators.js";
+import { property, query } from "lit/decorators.js";
 import { formContext } from "../components/inputs/form";
 import { FormController } from "../controllers/formController";
 
@@ -38,9 +38,15 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
         | HTMLTextAreaElement
         | any;
 
+      // console.log(target.tagName === "STUDS-INPUT");
       this.formController.controls[this.getName].setValue(
         target.value || target.checked
       );
+
+      // console.log("values", {
+      //   controller: this.formController.controls[this.getName].getValue(),
+      //   element: target.value || target.checked,
+      // });
     }
 
     connectedCallback(): void {

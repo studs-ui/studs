@@ -12,13 +12,7 @@ type Story = StoryObj<{}>;
 export const Default: Story = {
   render: () => {
     const onSubmit = (e: SubmitEvent) => {
-      const target = e.target as HTMLButtonElement;
-      const form = target.closest("form");
-      const values = new FormData(form as HTMLFormElement);
-      e.preventDefault();
-      // get values
-      //   const values = new FormData(e.target as HTMLFormElement);
-      console.log(values);
+      console.log(e.detail);
     };
     return html`
       <studs-form @submit=${onSubmit}>
@@ -37,6 +31,7 @@ export const Default: Story = {
           label="Input"
           placeholder="Placeholder"
         ></studs-input>
+        <studs-button type="reset">Reset</studs-button>
         <studs-button type="submit">Submit</studs-button>
       </studs-form>
     `;
