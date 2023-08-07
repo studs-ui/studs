@@ -2,45 +2,15 @@
 @use "sass:string";
 @use "sass:color";
 
-
-
-// @NOTE: Because Sass can't use variables/functions/mixins
-// that appear later in the script, we need to use #hex values
-// on colors here instead of the using the colorVal function
-// to get them from the pallete. These variables are shortcuts
-// to some common values, so we shouldn't have to update them very often.
-//        --Jp
-
 //named colors
-$sst-orange: #ff5308 ;
+$sst-orange: #ff5308 ;  // this is not in our color palette.
+                          // It is unique, and only used for
+                          // specific cases. --Jp
 
 //grays
 $white: #fff;
 $black: #000;
 $transparent: rgba(255, 255, 255, 0);
-
-$gray-light: #cacaca;
-$gray-med-light: #aeaeae;
-$gray-med: #757575;
-$gray-med-dark: #565656;
-$gray-dark: #343434;
-
-//Primary Colors
-$cta: #df4907;
-$background-light: #EBEBEB;
-$background-med: #D7D8D8;
-$background-med-dark: #444444;
-$background-dark: #393939;
-
-
-//text colors
-$text: #444444;
-$text-gray: #aeaeae;
-$text-light: #cacaca;
-$text-dark: #343434;
-$link: $cta;
-$link-hover: $black;
-
 
 
 /* named colors */
@@ -161,7 +131,9 @@ $sstColors: (
   @return string.unquote(map.get($temp, $idx));
 }
 
-/* to get (R,G,B) value returned from hex. can be used directly in RGBA values */
+/* to get (R,G,B) value returned from hex. can be used directly in RGBA values
+  #df4907 -> 223, 73, 7
+*/
 @function toRGB($color) {
   @return color.red($color) + ", " + color.green($color) + ", " + color.blue($color);
 }

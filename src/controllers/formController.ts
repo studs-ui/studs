@@ -36,7 +36,6 @@ export class FormController<T = any> {
 
     const value: T = null as any;
     this.value = value;
-    // this.host.value = value;
     emitModelChange && this._modelChanged.forEach((cb) => cb(this.value));
   }
 
