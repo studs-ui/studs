@@ -6,6 +6,7 @@ export type ValueAccessor = {
 export const valueAccessors: Record<string, ValueAccessor> = {
   "input[type=number]": {
     modelToView(element: HTMLElement, value: string) {
+      console.log({ element, value });
       (element as HTMLInputElement).value = value;
     },
     viewToModel(element: HTMLElement, cb: (value: number) => void) {

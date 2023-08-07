@@ -6,9 +6,19 @@ import { controlDirective } from "../directives/control";
 export class FormGroupController<T extends Record<string, FormController>>
   implements ReactiveController
 {
-  constructor(private host: ReactiveControllerHost, public controls: T) {
+  constructor(private host: ReactiveControllerHost, public _controls: T) {
     //@ts-ignore
     this.host.addController(this);
+  }
+
+  controls = this._controls;
+
+  addControl(control: any) {
+    this.controls = {
+      ...this.controls,
+      ...control,
+    };
+    0;
   }
 
   get value() {

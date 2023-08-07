@@ -31,10 +31,10 @@ export class ControlDirective extends AsyncDirective {
       const { viewToModel, modelToView } =
         valueAccessor ?? valueAccessors["input"];
 
+      //@ts-ignore
       this._formController = group.controls[name];
 
       // Set the initial control value
-      console.log(modelToView(this.host, this._formController.getValue()));
       modelToView(this.host, this._formController.getValue());
       this._applyValidators(group);
 
