@@ -12,20 +12,21 @@ import { map } from "lit/directives/map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { ChangeEvent } from "react";
 import style from "styles/_temporarySlider.scss?inline";
+import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import { ifDefined } from "lit/directives/if-defined.js";
 
 interface MarkProps {
   value: number;
   label?: string;
 }
 
-export interface SliderProps {
+export interface SliderProps extends WithFormInterface {
   min: number;
   max: number;
   step: number;
   defaultValue: number;
   rangeValue: number[];
   marks?: MarkProps[];
-  leftLabel?: string;
   rightLabel?: string;
   enableInput: boolean;
   enableLabel: boolean;
@@ -34,14 +35,13 @@ export interface SliderProps {
 }
 
 @customElement("studs-slider")
-export class StudsSlider extends LitElement {
+export class StudsSlider extends WithForm(LitElement) {
   @property({ type: Number }) min: SliderProps["min"] = 0;
   @property({ type: Number }) max: SliderProps["max"] = 100;
   @property({ type: Number }) step: SliderProps["step"] = 1;
   @property({ type: Number }) defaultValue: SliderProps["defaultValue"] = 0;
   @property({ type: Array }) rangeValue: SliderProps["rangeValue"] = [];
   @property({ type: Array }) marks: SliderProps["marks"];
-  @property({ type: String }) leftLabel: SliderProps["leftLabel"] = "";
   @property({ type: String }) rightLabel: SliderProps["rightLabel"] = "";
   @property({ type: Boolean }) enableInput: SliderProps["enableInput"] = false;
   @property({ type: Boolean }) enableLabel: SliderProps["enableLabel"] = false;
@@ -101,6 +101,12 @@ export class StudsSlider extends LitElement {
     this._dragging = true;
 
     this.requestUpdate();
+
+    this.dispatch({
+      name: this.name,
+      min: this._minValue,
+      max: this._maxValue,
+    });
   }
 
   private handleMaxValue(event: ChangeEvent<HTMLInputElement>) {
@@ -120,6 +126,12 @@ export class StudsSlider extends LitElement {
     this._dragging = true;
 
     this.requestUpdate();
+
+    this.dispatch({
+      name: this.name,
+      min: this._minValue,
+      max: this._maxValue,
+    });
   }
 
   protected handleMouseUp() {
@@ -151,7 +163,7 @@ export class StudsSlider extends LitElement {
     if (this.enableLabel) {
       if (position === "left") {
         return html`<div className="leftTxt">
-          ${this.leftLabel ? this.leftLabel?.substring(0, 15) : nothing}
+          ${this.label ? this.label?.substring(0, 15) : nothing}
         </div>`;
       }
       if (position === "right") {
@@ -300,6 +312,7 @@ export class StudsSlider extends LitElement {
         <div>
           ${this.enableTooltip ? this.renderTooltip("left") : nothing}
           <input
+            name=${ifDefined(this.name)}
             type="range"
             class="thumb thumbLeft"
             min=${this.min}
@@ -308,6 +321,7 @@ export class StudsSlider extends LitElement {
             .value=${this._minValue}
             @input=${this.handleMinValue}
             @mousedown=${this.handleRangeMouseDown}
+            ${this.control}
           />
 
           ${this.rangeValue?.length > 1

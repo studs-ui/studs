@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { SliderProps } from "../components/inputs/slider";
+import { SliderProps } from "../../components/inputs/slider";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta = {
@@ -10,7 +10,7 @@ const meta = {
     html`<studs-slider
       .rangeValue=${ifDefined(args.rangeValue)}
       .marks=${ifDefined(args.marks)}
-      leftLabel=${ifDefined(args.leftLabel)}
+      label=${ifDefined(args.label)}
       rightLabel=${ifDefined(args.rightLabel)}
       ?enableInput=${args.enableInput}
       ?enableTooltip=${args.enableTooltip}
@@ -20,6 +20,9 @@ const meta = {
       .min=${args.min}
       .max=${args.max}
       .step=${args.step}
+      @value-changed=${(event: CustomEvent) => {
+        console.log(event);
+      }}
     ></studs-slider>`,
   argTypes: {},
 } satisfies Meta<SliderProps>;
@@ -33,7 +36,7 @@ export const Default: Story = {
     min: 0,
     max: 100,
     step: 1,
-    leftLabel: "Peanut Butter",
+    label: "Peanut Butter",
     rightLabel: "Jelly",
     enableTooltip: true,
     enableLabel: true,

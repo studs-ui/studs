@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { contentDirection, icon, size, variants } from "../utils/_argTypes";
+import { contentDirection, icon, size, variants } from "../../utils/_argTypes";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { ChipProps } from "../components/display/chip";
+import { ChipProps } from "../../components/display/chip";
 
 const meta = {
   title: "Studs/Display/Chip",

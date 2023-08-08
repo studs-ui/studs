@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { CardProps } from "../components/display/card";
+import { CardProps } from "../../components/display/card";
 
 const meta = {
   title: "Studs/Surfaces/Card",
