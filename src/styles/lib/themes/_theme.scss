@@ -5,23 +5,20 @@
 /* all css colors defined here for both light and dark themes */
 
 @mixin light {
-  --cta: #{colorVal("orange", 50)};
-  --text-color:   #{colorVal("gray", 80)};;
+  /* base colors */
+  --cta:          #{colorVal("orange", 50)};
+  --ctaRgb:       #{toRGB(#df4907)};          // for toRGB() to work, colors must be #hex
+  --primary:      #{colorVal("orange", 50)};
+  --primaryRgb:   #{toRGB(#df4907)};
+  --secondary:    #{colorVal("gray", 60)};
+  --secondaryRgb: #{toRGB(#686868)};
+  --tertiary:     #{colorVal("mauve", 50)};
+  --tertiaryRgb:  #{toRGB(#847087)};
+
+  --text-color:   #{colorVal("gray", 80)};
   --text-dark:    #{colorVal("gray", 100)};
   --text-light:   #{colorVal("gray", 20)};
-
-  --info-color:    #{colorVal("gray", 80)};
-  --info-bkg:      #{colorVal("gray", 0)};
-  --info-rgb:      #{toRGB(#444444)};
-  --success-color: #{colorVal("sage", 40)};
-  --success-bkg:   #{colorVal("sage", 0)};
-  --success-rgb:   #{toRGB(#799e7e)};
-  --warning-color: #{colorVal("pumpkin", 30)};
-  --warning-bkg:   #{colorVal("pumpkin", 0)};
-  --warning-rgb:   #{toRGB(#e89f4d)};
-  --error-color:   #{colorVal("terracotta", 70)};
-  --error-bkg:     #{colorVal("terracotta", 0)};
-  --error-rgb:     #{toRGB(#8f3b2f)};
+  --heading-color:#{$black};
 
   --link-color:   #{colorVal("gray", 100)};
   --link-active:  #{colorVal("orange", 70)};
@@ -30,16 +27,43 @@
   --link-focus:   #{colorVal("gray", 30)};
   --link-disabled:#{colorVal("orange", 20)};
 
+  --disabled:     #{colorVal("gray", 30)};
+
+  --background:          #{colorVal("gray", 10)};
+  --background-featured: #{colorVal("gray", 90)};
+  --background-content : #{$white};
+
+  --border-color: #{colorVal("gray", 20)};
+
+  --shadow-color-rgb: #{toRGB($black)};
+  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 0.2);
+  --box-shadow: 0 0.25rem 0.5rem var(--shadow);
+
+ /* feedback colors */
+  --info-color:    #{colorVal("gray", 80)};
+  --info-bkg:      #{colorVal("gray", 0)};
+  --info-rgb:      #{toRGB(#444444)};
+
+  --success-color: #{colorVal("sage", 40)};
+  --success-bkg:   #{colorVal("sage", 0)};
+  --success-rgb:   #{toRGB(#799e7e)};
+
+  --warning-color: #{colorVal("pumpkin", 30)};
+  --warning-bkg:   #{colorVal("pumpkin", 0)};
+  --warning-rgb:   #{toRGB(#e89f4d)};
+
+  --error-color:   #{colorVal("terracotta", 70)};
+  --error-bkg:     #{colorVal("terracotta", 0)};
+  --error-rgb:     #{toRGB(#8f3b2f)};
+
+
+
+  /* @TODO: prune and edit these as needed  --Jp */
+  --nav-border:   #{colorVal("gray", 30)};
+
   --breadcrumb-color: #{colorVal("gray", 40)};
   --breadcrumb-current: #{colorVal("orange", 60)};
   --breadcrumb-hover: #{colorVal("gray", 90)};
-
-  --disabled:     #{colorVal("gray", 30)};
-
-  --heading-color: #{$black};
-  --background: #{colorVal("gray", 10)};
-  --background-featured: #{colorVal("gray", 90)};
-  --content-background :#{$white};
 
   --interactive:              #{colorVal("orange", 40)};
   --interactive-bkg:          #{colorVal("orange", 30)};
@@ -74,8 +98,6 @@
   --anchor-visited : #{colorVal("mauve" ,80)};
   --anchor-color-primary : #{colorVal("steel" ,30)};
 
-  --border-color: #{colorVal("gray", 20)};
-  --nav-border:   #{colorVal("gray", 30)};
 
   --logo-text:       var(--background);
   --logo-bkg-top:    var(--text-color);
@@ -84,9 +106,6 @@
   --card-background: #{$white};
   --card-border:     #{$transparent};
 
-  --shadow-color-rgb: #{toRGB($black)};
-  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 0.2);
-  --box-shadow: 0 0.25rem 0.5rem var(--shadow);
 
   --dropdown-background-outline: #{colorVal("gray", 20)};
   --dropdown-background: #{$white};
@@ -108,41 +127,58 @@
 }
 
 @mixin dark {
-  --cta: #{colorVal("orange", 50)};
+  /* base colors */
+  --cta:          #{colorVal("orange", 60)};
+  --ctaRgb:       #{toRGB(#bb3d06)};
+  --primary:      #{colorVal("orange", 60)};
+  --ctaRgb:       #{toRGB(#bb3d06)};
+  --secondary:    #{colorVal("gray", 70)};
+  --ctaRgb:       #{toRGB(#565656)};
+  --tertiary:     #{colorVal("mauve", 70)};
+  --ctaRgb:       #{toRGB(#634f67)};
+
   --text-color:  #{colorVal("gray", 20)};
   --text-dark:   #{colorVal("gray", 0)};
   --text-light:  #{colorVal("gray", 80)};
 
-   --info-color:    #{colorVal("gray", 0)};
-   --info-bkg:      #{colorVal("gray", 60)};
-   --info-rgb:      #{toRGB(#686868)};
-   --success-color: #{colorVal("sage", 90)};
-   --success-bkg:   #{colorVal("sage", 20)};
-   --success-rgb:      #{toRGB(#b8d0bb)};
-   --warning-color: #{colorVal("pumpkin", 0)};
-   --warning-bkg:   #{colorVal("pumpkin", 40)};
-   --warning-rgb:      #{toRGB(#D38225)};
-   --error-color:   #{colorVal("terracotta", 0)};
-   --error-bkg:     #{colorVal("terracotta", 80)};
-   --error-rgb:      #{toRGB(#7c271a)};
-
- --link-color:   #{colorVal("gray", 0)};
+  --link-color:   #{colorVal("gray", 0)};
   --link-active:  #{colorVal("orange", 30)};
   --link-hover:   #{colorVal("orange", 30)};
   --link-visited: #{colorVal("gray", 30)};
   --link-focus:   #{colorVal("gray", 70)};
   --link-disabled:#{colorVal("orange", 20)};
 
+  --disabled:    #{colorVal("gray", 50)};
+  --background: #{colorVal("gray", 90)};
+  --background-featured: #{colorVal("gray", 20)};
+  --background-content :#{colorVal("gray", 80)};
+
+  /* feedback colors */
+  --info-color:    #{colorVal("gray", 0)};
+  --info-bkg:      #{colorVal("gray", 60)};
+  --info-rgb:      #{toRGB(#686868)};
+  --heading-color: #{$white};
+
+  --success-color: #{colorVal("sage", 90)};
+  --success-bkg:   #{colorVal("sage", 20)};
+  --success-rgb:      #{toRGB(#b8d0bb)};
+
+  --warning-color: #{colorVal("pumpkin", 0)};
+  --warning-bkg:   #{colorVal("pumpkin", 40)};
+  --warning-rgb:      #{toRGB(#D38225)};
+
+  --error-color:   #{colorVal("terracotta", 0)};
+  --error-bkg:     #{colorVal("terracotta", 80)};
+  --error-rgb:      #{toRGB(#7c271a)};
+
+
+
   --breadcrumb-color: #{colorVal("gray", 50)};
   --breadcrumb-current: #{colorVal("orange", 30)};
   --breadcrumb-hover: #{colorVal("gray", 20)};
 
-  --disabled:    #{colorVal("gray", 50)};
+  --border-color: #{colorVar("gray", 90)};
 
-  --heading-color: #{$white};
-  --background: #{colorVal("gray", 90)};
-  --background-featured: #{colorVal("gray", 20)};
-  --content-background :#{colorVal("gray", 80)};
 
   --interactive: #{colorVal("orange", 30)};
   --interactive-bkg: #{colorVal("orange", 10)};
@@ -178,7 +214,6 @@
   --anchor-visited : #{colorVal("mauve" ,80)};
   --anchor-color-primary : #{colorVal("steel" ,30)};
 
-  --border-color: #{colorVar("gray", 90)};
   --nav-border: #{colorVal("gray", 30)};
 
   --logo-text: var(--background);
@@ -233,20 +268,21 @@
 }
 
 :root {
-  color-scheme: light;
-  @include light;
-  @include reducedMotion;
-
-  // color-scheme: light dark; // both are supported
+  // color-scheme: light;
   // @include light;
 
-  // // @media (prefers-color-scheme: dark) {
-  // //   @include dark;
-  // // }
+  @include reducedMotion;
 
-  // @media (prefers-color-scheme: light) {
-  //   @include light;
-  // }
+  color-scheme: light dark; // both are supported
+  @include light;
+
+  @media (prefers-color-scheme: dark) {
+    @include dark;
+  }
+
+  @media (prefers-color-scheme: light) {
+    @include light;
+  }
 }
 
 .theme-dark {

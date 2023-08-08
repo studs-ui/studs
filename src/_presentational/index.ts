@@ -10,7 +10,7 @@ export class PresentationalPage extends LitElement {
   render() {
     return html`
     <studs-toaster></studs-toaster>
-    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs", "Radios"]'>
+    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs", "Radios", "Checkboxes"]'>
       <div slot="Buttons">
         <div class="group">
           <h2>Usage</h2>
@@ -3000,6 +3000,33 @@ export class PresentationalPage extends LitElement {
               <studs-radio name="group" value="group1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 1</studs-radio>
               <studs-radio name="group" value="group2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 2</studs-radio>
               <studs-radio name="group" value="group3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 3</studs-radio>
+            </presentational-component>
+          </div>
+        </div>
+      </div>
+      <div slot="Checkboxes">
+        <div class="group">
+          <h2>Usage</h2>
+          <presentational-usage></presentational-usage>
+        </div>
+        <div class="group">
+          <div class="componentGrid">
+            <presentational-component>
+              <studs-checkbox name="option" value="option"  @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+            </presentational-component>
+            <presentational-component>
+              <studs-checkbox name="option1" value="option1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 1</studs-checkbox>
+            </presentational-component>
+            <presentational-component>
+              <studs-checkbox name="option2" value="option2" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 2</studs-checkbox>
+            </presentational-component>
+            <presentational-component>
+              <studs-checkbox name="option3" value="option3" disabled>Option 3</studs-checkbox>
+            </presentational-component>
+            <presentational-component>
+              <studs-checkbox name="group1" value="group1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 1</studs-checkbox>
+              <studs-checkbox name="group2" value="group2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 2</studs-checkbox>
+              <studs-checkbox name="group3" value="group3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 3</studs-checkbox>
             </presentational-component>
           </div>
         </div>
