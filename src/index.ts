@@ -24,6 +24,7 @@ import { StudsAccordianItem } from "./components/display/accordian-item";
 import { StudsInput } from "./components/inputs/input";
 import { StudsForm } from "./components/inputs/form";
 import { StudsRadio } from "./components/inputs/radio";
+import { StudsCheckbox } from "./components/inputs/checkbox";
 
 // Export Components
 export {
@@ -50,6 +51,7 @@ export {
   StudsInput,
   StudsForm,
   StudsRadio,
+  StudsCheckbox,
 };
 
 declare global {
@@ -77,5 +79,6 @@ declare global {
     "studs-input": StudsInput;
     "studs-form": StudsForm;
     "studs-radio": StudsRadio;
+    "studs-checkbox": StudsCheckbox;
   }
 }
