@@ -24,21 +24,6 @@ export class StudsImage extends LitElement {
 
   static styles = unsafeCSS(style);
 
-  getImageType(image: string) {
-    const imageType = image.split(".").pop();
-    if (imageType === "png") {
-      return "image/png";
-    } else if (imageType === "jpg" || imageType === "jpeg") {
-      return "image/jpeg";
-    } else if (imageType === "webp") {
-      return "image/webp";
-    } else if (imageType === "svg") {
-      return "image/svg+xml";
-    } else {
-      return "";
-    }
-  }
-
   get getPlaceholder() {
     if (this.placeholder && !this.src) {
       return html`
