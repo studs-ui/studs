@@ -9,6 +9,7 @@ const meta = {
   render: (args) =>
     html`<studs-image
       src=${ifDefined(args.src)}
+      .srcSet=${ifDefined(args.srcSet)}
       alt=${ifDefined(args.alt)}
     ></studs-image>`,
   argTypes: {},
@@ -17,11 +18,33 @@ export default meta;
 
 export const Default: StoryObj<StudsImageProps> = {
   args: {
-    src: "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg?keep=c&crop=yes&color=ffffff00&quality=80&w=900&h=675",
+    src: "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg",
     alt: "A picture of a box.",
   },
 };
 
 export const Placeholder: StoryObj<StudsImageProps> = {
   args: {},
+};
+
+export const srcSet: StoryObj<StudsImageProps> = {
+  args: {
+    srcSet: [
+      {
+        srcSet:
+          "https://ssttoolbox.widen.net/content/ck8bcx0mzm/png/homepage-agpd-feature.png?crop=false&position=c&color=ffffffff&w=900&h=675",
+        type: "image/png",
+        media: "(max-width: 767px)",
+      },
+      {
+        srcSet:
+          "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg?keep=c&crop=yes&color=ffffff00&quality=80&w=900&h=675",
+        type: "image/jpeg",
+        media: "(min-width: 768px)",
+        sizes: "50vw",
+        height: "675",
+        width: "900",
+      },
+    ],
+  },
 };

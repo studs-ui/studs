@@ -4,9 +4,19 @@ import { ifDefined } from "lit/directives/if-defined.js";
 import { map } from "lit/directives/map.js";
 import style from "styles/image.scss?inline";
 
+interface Image {
+  srcSet: string;
+  type?: string;
+  media?: string;
+  sizes?: string;
+  height?: string;
+  width?: string;
+}
+
 export interface StudsImageProps {
   placeholder: boolean;
-  src?: string | string[];
+  src?: string;
+  srcSet?: Image[];
   alt?: string;
 }
 
@@ -14,7 +24,8 @@ export interface StudsImageProps {
 export class StudsImage extends LitElement {
   @property({ type: Boolean }) placeholder: StudsImageProps["placeholder"] =
     true;
-  @property({ type: String || Array }) src: StudsImageProps["src"];
+  @property({ type: String }) src: StudsImageProps["src"];
+  @property({ type: Array }) srcSet: StudsImageProps["srcSet"];
   @property({ type: String }) alt: StudsImageProps["alt"];
   static styles = unsafeCSS(style);
 
@@ -68,20 +79,22 @@ export class StudsImage extends LitElement {
   }
 
   get renderImages() {
-    const type = typeof this.src;
+    if (this.srcSet) {
+      return html`${map(this.srcSet, (image: Image) => {
+          return html`<source
+            srcset=${image.srcSet}
+            type=${ifDefined(image.type)}
+            media=${ifDefined(image.media)}
+            sizes=${ifDefined(image.sizes)}
+            height=${ifDefined(image.height)}
+            width=${ifDefined(image.width)}
+          />`;
+        })}
+        <img src="${this.srcSet[0].srcSet}" alt=${ifDefined(this.alt)} />; `;
+    }
     if (this.src) {
-      if (type === "string") {
-        // @ts-ignore
-        const imageType = this.getImageType(this.src);
-        return html` <source srcset=${this.src} type=${imageType} />
-          <img src="${this.src}" alt=${ifDefined(this.alt)} />`;
-      } else if (type === "object") {
-        return html` ${map(this.src, (image) => {
-            const imageType = this.getImageType(image);
-            return html`<source srcset=${image} type=${imageType} />`;
-          })}
-          <img src="${this.src[0]}" alt=${ifDefined(this.alt)} />`;
-      }
+      return html` <source srcset=${this.src} />
+        <img src="${this.src}" alt=${ifDefined(this.alt)} />`;
     } else {
       return this.getPlaceholder;
     }
