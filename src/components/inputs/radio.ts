@@ -3,23 +3,20 @@ import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import style from "styles/radioButton.scss?inline";
+import { WithForm, WithFormInterface } from "../../mixins/withForm";
 
-export interface RadioProps {
-  name?: string;
+export interface RadioProps extends WithFormInterface {
   value?: string;
   checked?: boolean;
-  disabled?: boolean;
   children?: HTMLElement | TemplateResult | string;
 }
 
 @customElement("studs-radio")
-export class StudsRadio extends LitElement {
+export class StudsRadio extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
 
-  @property({ type: String }) name?: RadioProps["name"];
   @property({ type: String }) value: RadioProps["value"] = "";
   @property({ type: Boolean }) checked?: RadioProps["checked"];
-  @property({ type: Boolean }) disabled?: RadioProps["disabled"];
 
   // Add event listener when the component is connected to the DOM
   connectedCallback() {
@@ -59,7 +56,8 @@ export class StudsRadio extends LitElement {
     });
     this.checked = true;
     // Emit a custom event with the selected value
-    this.dispatchEvent(new CustomEvent("change", { detail: this.value }));
+    // this.dispatchEvent(new CustomEvent("change", { detail: this.value }));
+    this.dispatch(this.value);
   };
 
   render() {
@@ -71,9 +69,11 @@ export class StudsRadio extends LitElement {
       <label class="${classMap(classes)}">
         <input
           type="radio"
+          name=${ifDefined(this.name)}
           name="${ifDefined(this.name)}"
           value="${ifDefined(this.value)}"
           ?disabled="${this.disabled}"
+          ${this.control}
         />
         <slot></slot>
       </label>

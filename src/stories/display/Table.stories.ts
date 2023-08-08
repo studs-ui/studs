@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { TableProps } from "../components/display/table";
+import { TableProps } from "../../components/display/table";
 
 const meta = {
   title: "Studs/Display/Table",

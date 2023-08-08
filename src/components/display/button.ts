@@ -1,6 +1,7 @@
 import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import { ifDefined } from "lit/directives/if-defined.js";
 import styles from "styles/buttons.scss?inline";
 
 export interface ButtonProps {
@@ -19,6 +20,7 @@ export interface ButtonProps {
   btnClasses: string;
   icon?: string;
   children?: HTMLElement | TemplateResult | string;
+  type: "button" | "submit" | "reset";
 }
 
 @customElement("studs-button")
@@ -31,6 +33,7 @@ export class StudsButton extends LitElement {
   @property() contentDirection: ButtonProps["contentDirection"] = "horizontal";
   @property() btnClasses: ButtonProps["btnClasses"] = "";
   @property({ type: String }) icon?: ButtonProps["icon"];
+  @property({ type: String }) type: ButtonProps["type"] = "button";
 
   static styles = unsafeCSS(styles);
 
@@ -53,7 +56,11 @@ export class StudsButton extends LitElement {
       [this.btnClasses]: this.btnClasses,
     };
 
-    return html`<button class="${classMap(classes)}" ?disabled=${this.disabled}>
+    return html`<button
+      class="${classMap(classes)}"
+      ?disabled=${this.disabled}
+      type=${ifDefined(this.type)}
+    >
       ${this.renderIcon()} <slot></slot>
     </button>`;
   }

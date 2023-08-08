@@ -1,14 +1,13 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import style from "styles/dropdowns.scss?inline";
+import { WithForm, WithFormInterface } from "../../mixins/withForm";
 
-export interface DropdownProps {
-  disabled: boolean;
+export interface DropdownProps extends WithFormInterface {
   options: Option[];
   selected?: Option;
-  label?: string;
   placeholder?: string;
 }
 
@@ -18,7 +17,7 @@ interface Option {
 }
 
 @customElement("studs-dropdown")
-export class StudsDropdown extends LitElement {
+export class StudsDropdown extends WithForm(LitElement) {
   // Element Properties
   @property({ type: String }) icon?: string = "";
 
@@ -27,7 +26,6 @@ export class StudsDropdown extends LitElement {
   @property({ type: Object }) options: DropdownProps["options"] = [];
   @property({ type: Object }) selected?: DropdownProps["selected"];
   @property({ type: String }) label: DropdownProps["label"] = "Toggle Dropdown";
-  @property({ type: String }) placeholder?: DropdownProps["placeholder"];
 
   static styles = unsafeCSS(style);
 
@@ -61,17 +59,14 @@ export class StudsDropdown extends LitElement {
 
   renderDropdownOptions() {
     if (this.options)
-      return map(this.options, (option: any) => {
+      return map(this.options, (option: Option) => {
         const classes = {
           "-option": true,
           "-selected": option.value === this.selected?.value,
         };
         return html`<button
           class=${classMap(classes)}
-          @click=${() => {
-            this.selected = option;
-            this.toggle();
-          }}
+          @click=${() => this.onChange(option)}
         >
           ${option.label}
           ${this.selected?.value === option.value
@@ -104,7 +99,7 @@ export class StudsDropdown extends LitElement {
     };
 
     return html` <div class=${classMap(classes)}>
-      <p>${this.label}</p>
+      ${this.label ? html`<p>${this.label}</p>` : nothing}
       <div class="-content">
         <button
           class="-toggle"
@@ -133,5 +128,11 @@ export class StudsDropdown extends LitElement {
         </div>
       </div>
     </div>`;
+  }
+
+  onChange(option: Option) {
+    this.selected = option;
+    this.dispatch(option);
+    this.toggle();
   }
 }

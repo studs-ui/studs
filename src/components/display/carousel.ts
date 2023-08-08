@@ -84,7 +84,6 @@ export class StudsCarousel extends LitElement {
                 class=${classMap(classes)}
                 id=${item.id || `slide-${index}`}
                 @click=${() => this.setCurrentSlide(index)}
-                @change=${() => console.log("changing")}
                 style=${styleMap({
                   order: order,
                 })}
