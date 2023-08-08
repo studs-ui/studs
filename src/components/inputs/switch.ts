@@ -4,10 +4,7 @@ import style from "styles/switch.scss?inline";
 
 export interface SwitchProps {
   checked: boolean;
-  disabled: boolean;
-  label: string;
   labelPosition: "start" | "end" | "top" | "bottom";
-  name: string;
   size: "small" | "medium" | "large";
 }
 @customElement("studs-switch")
