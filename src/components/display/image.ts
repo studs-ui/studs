@@ -1,23 +1,15 @@
-import { LitElement, html, unsafeCSS } from "lit";
+import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { map } from "lit/directives/map.js";
 import style from "styles/image.scss?inline";
-
-interface Image {
-  srcSet: string;
-  type?: string;
-  media?: string;
-  sizes?: string;
-  height?: string;
-  width?: string;
-}
 
 export interface StudsImageProps {
   placeholder: boolean;
   src?: string;
-  srcSet?: Image[];
   alt?: string;
+  small?: string;
+  medium?: string;
+  large?: string;
 }
 
 @customElement("studs-image")
@@ -25,8 +17,11 @@ export class StudsImage extends LitElement {
   @property({ type: Boolean }) placeholder: StudsImageProps["placeholder"] =
     true;
   @property({ type: String }) src: StudsImageProps["src"];
-  @property({ type: Array }) srcSet: StudsImageProps["srcSet"];
+  @property({ type: String }) small: StudsImageProps["small"];
+  @property({ type: String }) medium: StudsImageProps["medium"];
+  @property({ type: String }) large: StudsImageProps["large"];
   @property({ type: String }) alt: StudsImageProps["alt"];
+
   static styles = unsafeCSS(style);
 
   getImageType(image: string) {
@@ -79,20 +74,42 @@ export class StudsImage extends LitElement {
   }
 
   get renderImages() {
-    if (this.srcSet) {
-      return html`${map(this.srcSet, (image: Image) => {
-          return html`<source
-            srcset=${image.srcSet}
-            type=${ifDefined(image.type)}
-            media=${ifDefined(image.media)}
-            sizes=${ifDefined(image.sizes)}
-            height=${ifDefined(image.height)}
-            width=${ifDefined(image.width)}
-          />`;
-        })}
-        <img src="${this.srcSet[0].srcSet}" alt=${ifDefined(this.alt)} />; `;
-    }
-    if (this.src) {
+    const isSrcSet = this.small || this.medium || this.large;
+    if (isSrcSet) {
+      return html`
+        ${this.small
+          ? html`
+              <source
+                srcset=${this.small}
+                media="(max-width: 600px)"
+                sizes="33vw"
+              />
+            `
+          : nothing}
+        ${this.medium
+          ? html`
+              <source
+                srcset=${this.medium}
+                media="(min-width: 600px) and (max-width: 905px)"
+                sizes="66vw"
+              />
+            `
+          : nothing}
+        ${this.large
+          ? html`
+              <source
+                srcset=${this.large}
+                media="(min-width: 905px)"
+                sizes="100vw"
+              />
+            `
+          : nothing}
+        <img
+          src="${this.medium || this.large || this.small}"
+          alt=${ifDefined(this.alt)}
+        />
+      `;
+    } else if (this.src) {
       return html` <source srcset=${this.src} />
         <img src="${this.src}" alt=${ifDefined(this.alt)} />`;
     } else {

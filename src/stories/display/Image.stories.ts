@@ -9,7 +9,9 @@ const meta = {
   render: (args) =>
     html`<studs-image
       src=${ifDefined(args.src)}
-      .srcSet=${ifDefined(args.srcSet)}
+      small=${ifDefined(args.small)}
+      medium=${ifDefined(args.medium)}
+      large=${ifDefined(args.large)}
       alt=${ifDefined(args.alt)}
     ></studs-image>`,
   argTypes: {},
@@ -29,22 +31,11 @@ export const Placeholder: StoryObj<StudsImageProps> = {
 
 export const srcSet: StoryObj<StudsImageProps> = {
   args: {
-    srcSet: [
-      {
-        srcSet:
-          "https://ssttoolbox.widen.net/content/ck8bcx0mzm/png/homepage-agpd-feature.png?crop=false&position=c&color=ffffffff&w=900&h=675",
-        type: "image/png",
-        media: "(max-width: 767px)",
-      },
-      {
-        srcSet:
-          "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg?keep=c&crop=yes&color=ffffff00&quality=80&w=900&h=675",
-        type: "image/jpeg",
-        media: "(min-width: 768px)",
-        sizes: "50vw",
-        height: "675",
-        width: "900",
-      },
-    ],
+    small:
+      "https://ssttoolbox.widen.net/content/ck8bcx0mzm/png/homepage-agpd-feature.png?crop=false&position=c&color=ffffffff&w=900&h=675",
+    medium:
+      "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg?keep=c&crop=yes&color=ffffff00&quality=80&w=900&h=675",
+    large:
+      "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg",
   },
 };
