@@ -3,13 +3,11 @@ import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import style from "styles/radioButton.scss?inline";
-import { WithForm } from "../../mixins/withForm";
+import { WithForm, WithFormInterface } from "../../mixins/withForm";
 
-export interface RadioProps {
-  name?: string;
+export interface RadioProps extends WithFormInterface {
   value?: string;
   checked?: boolean;
-  disabled?: boolean;
   children?: HTMLElement | TemplateResult | string;
 }
 
