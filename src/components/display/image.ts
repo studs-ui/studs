@@ -1,7 +1,8 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { map } from "lit/directives/map.js";
+import style from "styles/image.scss";
 
 export interface StudsImageProps {
   src: string | string[];
@@ -12,16 +13,7 @@ export interface StudsImageProps {
 export class StudsImage extends LitElement {
   @property({ type: String || Array }) src: StudsImageProps["src"] = "";
   @property({ type: String }) alt: StudsImageProps["alt"];
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-      }
-      img {
-        width: 100%;
-      }
-    `;
-  }
+  static style = unsafeCSS(style);
 
   getImageType(image: string) {
     const imageType = image.split(".").pop();
