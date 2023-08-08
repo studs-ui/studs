@@ -659,8 +659,6 @@ export class StudsGrid extends LitElement {
     this._lastVisible = 0;
     this._offset = 0;
 
-    console.log(this._lastVisible);
-
     this.tableBodyRef[virtualizerRef]
       ?.element(this._lastVisible)
       ?.scrollIntoView();

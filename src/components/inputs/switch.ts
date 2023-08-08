@@ -1,8 +1,10 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import style from "styles/switch.scss?inline";
+import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import { ifDefined } from "lit/directives/if-defined.js";
 
-export interface SwitchProps {
+export interface SwitchProps extends WithFormInterface {
   checked: boolean;
   disabled: boolean;
   label: string;
@@ -11,21 +13,26 @@ export interface SwitchProps {
   size: "small" | "medium" | "large";
 }
 @customElement("studs-switch")
-export class StudsSwitch extends LitElement {
+export class StudsSwitch extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
 
   @property({ type: Boolean }) checked: SwitchProps["checked"] = false;
-  @property({ type: Boolean }) disabled: SwitchProps["disabled"] = false;
-  @property({ type: String }) label: SwitchProps["label"] = "";
-  @property({ type: String, attribute: "label-position" }) labelPosition: SwitchProps["labelPosition"] = "end";
-  @property({ type: String }) name: SwitchProps["name"] = "";
+  @property({ type: String, attribute: "label-position" })
+  labelPosition: SwitchProps["labelPosition"] = "end";
   @property({ type: String }) size: SwitchProps["size"] = "medium";
 
   render() {
     return html`
       <div class="switch ${this.labelPosition}">
         <label class="switch-label ${this.size}">
-          <input type="checkbox" ?checked=${this.checked} ?disabled=${this.disabled} @change=${this.onChange} />
+          <input
+            type="checkbox"
+            name=${ifDefined(this.name)}
+            ?checked=${this.checked}
+            ?disabled=${this.disabled}
+            @change=${this.onChange}
+            ${this.control}
+          />
           <span class="slider"></span>
         </label>
         <span>${this.label}</span>
@@ -37,12 +44,6 @@ export class StudsSwitch extends LitElement {
     const target = e.target as HTMLInputElement;
     this.checked = target.checked;
 
-    this.dispatchEvent(
-      new CustomEvent("switch-change", {
-        detail: { checked: this.checked },
-        bubbles: true,
-        composed: true,
-      })
-    );
+    this.dispatch({ checked: this.checked });
   }
 }

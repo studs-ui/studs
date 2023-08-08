@@ -61,8 +61,6 @@ export class StudsTooltip extends LitElement {
       this.element?.removeEventListener("mouseenter", this._onParentHover);
       this.element?.removeEventListener("mouseleave", this._onParentHover);
     }
-
-    console.log(this.element);
   }
 
   disconnectedCallback(): void {

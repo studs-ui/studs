@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { GridProps } from "../components/display/grid";
+import { GridProps } from "../../components/display/grid";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta = {

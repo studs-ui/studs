@@ -19,7 +19,9 @@
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
     "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
   },
-  "dependencies": {},
+  "dependencies": {
+    "@lit-labs/context": "^0.3.3"
+  },
   "devDependencies": {
     "@lit-labs/virtualizer": "^2.0.4",
     "@splidejs/splide": "^4.1.4",

@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { StepperProps } from "../components/display/stepper";
+import { StepperProps } from "../../components/display/stepper";
 import { ifDefined } from "lit/directives/if-defined.js";
 
 const meta = {

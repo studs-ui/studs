@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { AccordionProps } from "../components/display/accordian";
+import { AccordionProps } from "../../components/display/accordian";
 
 const meta = {
   title: "Studs/Display/Accordian",
