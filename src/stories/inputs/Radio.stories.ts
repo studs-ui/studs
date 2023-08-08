@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { RadioProps } from "../components/inputs/radio";
+import { RadioProps } from "../../components/inputs/radio";
 
 const meta = {
   title: "Studs/Inputs/Radios",
@@ -64,8 +64,23 @@ export const CheckedDisabled: Story = {
 
 export const RadioGroup: Story = {
   render: () => html`
-    <studs-radio name="group" value="group1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 1</studs-radio>
-    <studs-radio name="group" value="group2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 2</studs-radio>
-    <studs-radio name="group" value="group3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 3</studs-radio>
+    <studs-radio
+      name="group"
+      value="group1"
+      @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
+      >Option 1</studs-radio
+    >
+    <studs-radio
+      name="group"
+      value="group2"
+      @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
+      >Option 2</studs-radio
+    >
+    <studs-radio
+      name="group"
+      value="group3"
+      @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
+      >Option 3</studs-radio
+    >
   `,
 };
