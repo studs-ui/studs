@@ -5,3 +5,19 @@
 img {
     width: 100%;
 }
+
+picture {
+    .placeholder {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+        min-height: 10rem;
+
+        svg {
+            width: 10rem;
+            height: 10rem;
+        }
+    }
+}
