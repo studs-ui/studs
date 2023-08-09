@@ -10,7 +10,6 @@ export interface CheckboxProps extends WithFormInterface {
   value?: string;
   checked?: boolean;
   children?: HTMLElement | TemplateResult | string;
-  label?: string;
 }
 
 @customElement("studs-checkbox")
@@ -19,7 +18,6 @@ export class StudsCheckbox extends WithForm(LitElement) {
 
   @property({ type: String }) value: CheckboxProps["value"] = "";
   @property({ type: Boolean }) checked?: CheckboxProps["checked"];
-  @property({ type: String }) label?: CheckboxProps["label"];
 
   connectedCallback() {
     super.connectedCallback();
