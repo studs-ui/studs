@@ -30,8 +30,8 @@ export class StudsImage extends LitElement {
         <div class="placeholder">
           <?xml version="1.0" encoding="UTF-8"?>
           <svg
-            width="24px"
-            height="24px"
+            width="100%"
+            height="100%"
             stroke-width="1.5"
             viewBox="0 0 24 24"
             fill="none"
@@ -63,31 +63,13 @@ export class StudsImage extends LitElement {
     if (isSrcSet) {
       return html`
         ${this.small
-          ? html`
-              <source
-                srcset=${this.small}
-                media="(max-width: 600px)"
-                sizes="33vw"
-              />
-            `
+          ? html` <source srcset=${this.small} media="(max-width: 600px)" /> `
           : nothing}
         ${this.medium
-          ? html`
-              <source
-                srcset=${this.medium}
-                media="(min-width: 600px) and (max-width: 905px)"
-                sizes="66vw"
-              />
-            `
+          ? html` <source srcset=${this.medium} media="(min-width: 600px)" /> `
           : nothing}
         ${this.large
-          ? html`
-              <source
-                srcset=${this.large}
-                media="(min-width: 905px)"
-                sizes="100vw"
-              />
-            `
+          ? html` <source srcset=${this.large} media="(min-width: 905px)" /> `
           : nothing}
         <img
           src="${this.medium || this.large || this.small}"
