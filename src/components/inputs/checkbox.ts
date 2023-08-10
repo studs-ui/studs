@@ -9,6 +9,7 @@ import style from "styles/checkbox.scss?inline";
 export interface CheckboxProps extends WithFormInterface {
   value?: string;
   checked?: boolean;
+  indeterminate?: boolean;
   children?: HTMLElement | TemplateResult | string;
 }
 
@@ -18,13 +19,33 @@ export class StudsCheckbox extends WithForm(LitElement) {
 
   @property({ type: String }) value: CheckboxProps["value"] = "";
   @property({ type: Boolean }) checked?: CheckboxProps["checked"];
+  @property({ type: Boolean }) indeterminate?: CheckboxProps["indeterminate"];
+
+  private inputId = generateUniqueId("checkbox");
+
+  private updateHandler = () => {
+    const inputElement = this.shadowRoot?.querySelector(`#${this.inputId}`);
+    if (inputElement) {
+      (inputElement as HTMLInputElement).indeterminate = this.indeterminate || false;
+    }
+  };
+
+  updated(changedProperties: Map<string | number | symbol, unknown>) {
+    super.updated(changedProperties);
+    const inputElement = this.shadowRoot?.querySelector(`#${this.inputId}`) as HTMLInputElement;
+    if (inputElement) {
+      inputElement.indeterminate = this.indeterminate || false;
+    }
+  }
 
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener("change", this.handleChange);
+    this.shadowRoot?.querySelector(`#${this.inputId}`)?.addEventListener('update', this.updateHandler);
   }
 
   disconnectedCallback() {
+    this.shadowRoot?.querySelector(`#${this.inputId}`)?.removeEventListener('update', this.updateHandler);
     this.removeEventListener("change", this.handleChange);
     super.disconnectedCallback();
   }
@@ -51,12 +72,10 @@ export class StudsCheckbox extends WithForm(LitElement) {
       checkbox: true,
     };
 
-    const inputId = generateUniqueId("checkbox");
-
     return html`
       <div class="${classMap(classes)}">
         <input
-          id="${inputId}"
+          id="${this.inputId}"
           type="checkbox"
           name="${ifDefined(this.name)}"
           value="${ifDefined(this.value)}"
@@ -65,7 +84,7 @@ export class StudsCheckbox extends WithForm(LitElement) {
           @change="${this.handleChange}"
           ${this.control}
         />
-        <label for="${inputId}">${this.label}</label>
+        <label for="${this.inputId}">${this.label}</label>
       </div>
     `;
   }

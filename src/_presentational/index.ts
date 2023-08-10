@@ -3018,10 +3018,16 @@ export class PresentationalPage extends LitElement {
               <studs-checkbox name="option1" value="option1" label="Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option2" value="option2" label="Option 2" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="option2" value="option2" label="Checked" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option3" value="option3" label="Option 3" disabled></studs-checkbox>
+              <studs-checkbox name="option3" value="option3" label="Disabled" disabled></studs-checkbox>
+            </presentational-component>
+            <presentational-component>
+              <studs-checkbox name="option1" value="option1" label="Indeterminate" indeterminate @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+            </presentational-component>
+            <presentational-component>
+              <studs-checkbox name="option2" value="option2" label="Indeterminate" .indeterminate="${true}" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
               <studs-checkbox name="group1" value="group1" label="Group Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
