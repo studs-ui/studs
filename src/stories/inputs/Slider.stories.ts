@@ -20,7 +20,7 @@ const meta = {
       .min=${args.min}
       .max=${args.max}
       .step=${args.step}
-      @value-changed=${(event: CustomEvent) => {
+      @change=${(event: CustomEvent) => {
         console.log(event);
       }}
     ></studs-slider>`,
