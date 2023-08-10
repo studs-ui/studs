@@ -2971,7 +2971,7 @@ export class PresentationalPage extends LitElement {
               input-size="normal"
               adornment="lbs"
               adornment-position="end"
-              @value-changed='function($event){console.log("input value-changed event", $event.target.value);}'
+              @change='function($event){console.log("input change event", $event.target.value);}'
             ></studs-input>
             </presentational-component>
           </div>
