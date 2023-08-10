@@ -65,7 +65,7 @@ export class StudsCheckbox extends WithForm(LitElement) {
           @change="${this.handleChange}"
           ${this.control}
         />
-        ${this.label ? html`<label for="${inputId}">${this.label}</label>` : ""}
+        <label for="${inputId}">${this.label}</label>
       </div>
     `;
   }

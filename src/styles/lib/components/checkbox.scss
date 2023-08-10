@@ -63,3 +63,7 @@
     content: '\e909'
   }
 }
+
+.checkbox {
+  @include checkbox;
+}
