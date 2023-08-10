@@ -9,9 +9,6 @@ const meta = {
   render: (args: any) => html`<studs-resizer
     style="height: 300px; display: block;"
     direction="${ifDefined(args.direction)}"
-    size="${ifDefined(args.size)}"
-    min="${ifDefined(args.min)}"
-    max="${ifDefined(args.max)}"
     >${args.children}</studs-resizer
   >`,
   argTypes: {
@@ -46,4 +43,18 @@ export const Vertical: Story = {
       <studs-resizer-pane>Goodbye</studs-resizer-pane>
     `,
   },
+};
+
+export const TwoPanel: Story = {
+  render: () => html`<div style="width: 400px; height: 400px; display: block">
+    <studs-resizer direction="horizontal">
+      <studs-resizer-pane size="150">Hello</studs-resizer-pane>
+      <studs-resizer-pane size="250">
+        <studs-resizer direction="vertical">
+          <studs-resizer-pane size="50">Hello</studs-resizer-pane>
+          <studs-resizer-pane>Goodbye</studs-resizer-pane>
+        </studs-resizer>
+      </studs-resizer-pane>
+    </studs-resizer>
+  </div>`,
 };

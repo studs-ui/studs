@@ -25,7 +25,8 @@ import { StudsInput } from "./components/inputs/input";
 import { StudsForm } from "./components/inputs/form";
 import { StudsRadio } from "./components/inputs/radio";
 import { StudsCheckbox } from "./components/inputs/checkbox";
-import { StudsResizer, StudsResizerPane } from "./components/display/resizer";
+import { StudsResizer } from "./components/display/resizer";
+import { StudsResizerPane } from "./components/display/resizer-pane";
 
 // Export Components
 export {

@@ -1,50 +1,13 @@
 .resizer {
     &.-wrapper {
-        height: 100%;
-        width: 100%;
         display: flex;
     }
     &.-vertical {
         flex-direction: column;
-    }
-    &.-horizontal {
-        flex-direction: row;
-    }
-}
-
-studs-resizer-pane {
-    display: contents;
-}
-
-.pane {
-    position: relative;
-    padding-inline-end: 5px;
-    &.-vertical {
         width: 100%;
     }
     &.-horizontal {
+        flex-direction: row;
         height: 100%;
-    }
-
-}
-
-.handle {
-    position: absolute;
-    border:1px solid var(--border-color);
-    background-color: red;
-    
-    .-vertical & {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 5px;
-        cursor: row-resize;
-    }
-    .-horizontal &{
-        right: 0;
-        bottom: 0;
-        width: 5px;
-        height: 100%;
-        cursor: col-resize;
     }
 }
