@@ -1,5 +1,7 @@
 @use "../utilities/" as *;
 
+$screen-wrapper: 1472px;
+
 @mixin animated-arrows {
   &::before,
   &::after {
@@ -49,7 +51,7 @@ header {
     --tr-m: 0.3s;
     --tr-l: 0.5s;
     --navHeight: 50px;
-    --screen-wrapper: 1472px;
+    --screen-wrapper: #{$screen-wrapper};
     width: auto;
     min-height: var(--navHeight);
     background: var(--background-content);
@@ -288,7 +290,7 @@ button.textButton {
         right: calc(50vw - (var(--screen-wrapper) / 2) + 2rem) !important;
     }
 
-    @media (max-width: var(--screen-wrapper)) {
+    @media (max-width: $screen-wrapper) {
         right: 1rem !important;
     }
 
@@ -298,7 +300,7 @@ button.textButton {
         ) !important;
         right: auto !important;
 
-        @media (max-width: var(--screen-wrapper)) {
+        @media (max-width: $screen-wrapper) {
         left: calc(var(--navHeight) + 1rem) !important;
         }
     }
@@ -683,11 +685,11 @@ button.textButton {
         margin-right: auto;
         margin-top: 0;
 
-        @media (min-width: var(--screen-wrapper) - 1) {
+        @media (min-width: $screen-wrapper - 1) {
         padding-left: calc(var(--navHeight) - 0.25rem);
         }
 
-        @media (max-width: var(--screen-wrapper)) and (min-width: $breakpoint-menu + 1) {
+        @media (max-width: $screen-wrapper) and (min-width: $breakpoint-menu + 1) {
         padding-left: 1rem;
         padding-right: 2rem;
         max-width: 100%;
@@ -836,3 +838,20 @@ button.textButton {
     }
     }
 } /* end topNav */
+
+.regionsWrapper {
+    display: grid;
+    @media (min-width: $screen-wrapper) {
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr;
+    }
+    grid-template-rows: auto auto auto;
+    row-gap: 2rem;
+  }
+  .regionsList {
+    list-style-type: none;
+    padding-inline-start: 0;
+    li {
+      margin-block-start: 0.25rem;
+    }
+  }
