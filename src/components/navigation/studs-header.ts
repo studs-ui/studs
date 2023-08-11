@@ -267,7 +267,7 @@ export class StudsHeader extends LitElement {
    * @returns Dealer Location Button with Data from Bloomreach
    */
   private get renderDealerLocator() {
-    if (this._doc) {
+    if (this._page) {
       const { dealerLocatorTitle, dealerLocatorUrl: dealerLocatorUrlRef } =
         this._doc.getData();
       return html`<a
@@ -285,7 +285,7 @@ export class StudsHeader extends LitElement {
    * @returns Region Selector Button + Modal
    */
   private get renderRegionSelector() {
-    if (this._doc) {
+    if (this._page) {
       const { regionText } = this._doc.getData();
       // Get Region Selector Data
       const { document: regionSelectorRef } = this._page
