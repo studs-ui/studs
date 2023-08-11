@@ -22,7 +22,7 @@ export interface StudsResizerPaneProps {
 export class StudsResizerPane extends LitElement {
   @property({ type: String }) direction: StudsResizerPaneProps["direction"];
   @property({ type: Number }) size?: StudsResizerPaneProps["size"];
-  @property({ type: Number }) min: StudsResizerPaneProps["min"] = 0;
+  @property({ type: Number }) min: StudsResizerPaneProps["min"] = 50;
   @property({ type: Number }) max: StudsResizerPaneProps["max"];
 
   static styles = unsafeCSS(style);
