@@ -20,7 +20,9 @@
     "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
   },
   "dependencies": {
-    "@lit-labs/context": "^0.3.3"
+    "@bloomreach/spa-sdk": "^22.0.0",
+    "@lit-labs/context": "^0.3.3",
+    "axios": "^1.4.0"
   },
   "devDependencies": {
     "@lit-labs/virtualizer": "^2.0.4",

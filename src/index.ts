@@ -25,6 +25,7 @@ import { StudsInput } from "./components/inputs/input";
 import { StudsForm } from "./components/inputs/form";
 import { StudsRadio } from "./components/inputs/radio";
 import { StudsCheckbox } from "./components/inputs/checkbox";
+import { StudsHeader } from "./components/navigation/studs-header";
 
 // Export Components
 export {
@@ -52,6 +53,7 @@ export {
   StudsForm,
   StudsRadio,
   StudsCheckbox,
+  StudsHeader,
 };
 
 declare global {
@@ -80,5 +82,6 @@ declare global {
     "studs-form": StudsForm;
     "studs-radio": StudsRadio;
     "studs-checkbox": StudsCheckbox;
+    "studs-header": StudsHeader;
   }
 }
