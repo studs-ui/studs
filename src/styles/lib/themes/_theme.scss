@@ -8,12 +8,27 @@
   /* base colors */
   --cta:          #{colorVal("orange", 50)};
   --ctaRgb:       #{toRGB(#df4907)};          // for toRGB() to work, colors must be #hex
+  --cta-hover:    #{colorVal("orange", 40)};
+  --cta-active:   #{colorVal("orange", 60)};
+  --cta-disabled: #{colorVal("orange", 10)};
+
   --primary:      #{colorVal("orange", 50)};
   --primaryRgb:   #{toRGB(#df4907)};
+  --primary-hover:    #{colorVal("orange", 40)};
+  --primary-active:   #{colorVal("orange", 60)};
+  --primary-disabled: #{colorVal("orange", 10)};
+
   --secondary:    #{colorVal("gray", 60)};
   --secondaryRgb: #{toRGB(#686868)};
+  --secondary-hover:    #{colorVal("gray", 40)};
+  --secondary-active:   #{colorVal("gray", 60)};
+  --secondary-disabled: #{colorVal("gray", 10)};
+
   --tertiary:     #{colorVal("mauve", 50)};
   --tertiaryRgb:  #{toRGB(#847087)};
+  --tertiary-hover:    #{colorVal("mauve", 40)};
+  --tertiary-active:   #{colorVal("mauve", 60)};
+  --tertiary-disabled: #{colorVal("mauve", 10)};
 
   --text-color:   #{colorVal("gray", 80)};
   --text-dark:    #{colorVal("gray", 100)};
@@ -27,6 +42,11 @@
   --link-focus:   #{colorVal("gray", 30)};
   --link-disabled:#{colorVal("orange", 20)};
 
+  --interactive:          var(--text-dark);
+  --interactive-selected: var(--primary);
+  --interactive-hover:    var(--primary-hover);
+  --interactive-disabled: var(--primary-disabled);
+
   --disabled:     #{colorVal("gray", 30)};
 
   --background:          #{colorVal("gray", 10)};
@@ -36,8 +56,13 @@
   --border-color: #{colorVal("gray", 20)};
 
   --shadow-color-rgb: #{toRGB($black)};
-  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 0.2);
-  --box-shadow: 0 0.25rem 0.5rem var(--shadow);
+  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 1);
+  --box-shadow:  0 0.25rem 0.5rem var(--shadow);
+
+  --tooltip-bkg:  #{colorVal("gray", 90)};
+  --tooltip-text: #{colorVal("gray", 0)};
+  --tooltip-shadow: 0 .125rem .5rem rgba(var(--shadow-color-rgb, #{$black}), .5);
+
 
  /* feedback colors */
   --info-color:    #{colorVal("gray", 80)};
@@ -65,13 +90,11 @@
   --breadcrumb-current: #{colorVal("orange", 60)};
   --breadcrumb-hover: #{colorVal("gray", 90)};
 
-  --interactive:              #{colorVal("orange", 40)};
-  --interactive-bkg:          #{colorVal("orange", 30)};
-  --interactive-bkg-disabled: #{colorVal("gray", 10)};
-  --interactive-bkg-secondary:#{colorVal("gray", 0)};
+  // --interactive:              #{colorVal("orange", 40)};
+  // --interactive-bkg:          #{colorVal("orange", 30)};
+  // --interactive-bkg-disabled: #{colorVal("gray", 10)};
+  // --interactive-bkg-secondary:#{colorVal("gray", 0)};
 
-  --tooltip-bkg:  #{colorVal("gray", 50)};
-  --tooltip-text: #{colorVal("gray", 0)};
 
   --button-color:   #{$white};
   --button-default: #{colorVal("orange", 50)};
@@ -84,8 +107,8 @@
   --badge-background: var(--button-default);
   --badge-color: var(--button-color);
 
-  --checkbox-color:    #{colorVal("orange", 60)};
-  --checkbox-disabled: #{colorVal("gray", 30)};
+  // --checkbox-color:    #{colorVal("orange", 60)};
+  // --checkbox-disabled: #{colorVal("gray", 30)};
 
   --chip-default :  #{colorVal("gray" ,10)};
   --chip-hover :    #{colorVal("gray", 0)};
@@ -268,21 +291,22 @@
 }
 
 :root {
-  // color-scheme: light;
-  // @include light;
+  color-scheme: light;
+  @include light;
 
   @include reducedMotion;
 
-  color-scheme: light dark; // both are supported
-  @include light;
+//   color-scheme: light dark; // both are supported
+//   @include light;
+//
+//   @media (prefers-color-scheme: dark) {
+//     @include dark;
+//   }
+//
+//   @media (prefers-color-scheme: light) {
+//     @include light;
+//   }
 
-  @media (prefers-color-scheme: dark) {
-    @include dark;
-  }
-
-  @media (prefers-color-scheme: light) {
-    @include light;
-  }
 }
 
 .theme-dark {
