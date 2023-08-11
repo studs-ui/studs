@@ -2,8 +2,9 @@ import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import style from "styles/radioButton.scss?inline";
 import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import { generateUniqueId } from "../../utils/shared";
+import style from "styles/radioButton.scss?inline";
 
 export interface RadioProps extends WithFormInterface {
   value?: string;
@@ -18,13 +19,13 @@ export class StudsRadio extends WithForm(LitElement) {
   @property({ type: String }) value: RadioProps["value"] = "";
   @property({ type: Boolean }) checked?: RadioProps["checked"];
 
-  // Add event listener when the component is connected to the DOM
+  private inputId = generateUniqueId("radio");
+
   connectedCallback() {
     super.connectedCallback();
     this.addEventListener("click", this.handleClick);
   }
 
-  // Remove event listener when the component is disconnected from the DOM
   disconnectedCallback() {
     this.removeEventListener("click", this.handleClick);
     super.disconnectedCallback();
@@ -46,17 +47,12 @@ export class StudsRadio extends WithForm(LitElement) {
     if (this.disabled) {
       return;
     }
-    const allRadios = document.querySelectorAll(
-      `studs-radio[name=${this.name}]`
-    );
-    allRadios.forEach((radio: any) => {
-      if (radio !== this) {
-        radio.checked = false;
-      }
-    });
-    this.checked = true;
-    // Emit a custom event with the selected value
-    // this.dispatchEvent(new CustomEvent("change", { detail: this.value }));
+    this.checked = !this.checked;
+    this.dispatch(this.value);
+  };
+
+  handleChange = (event: Event) => {
+    this.checked = (event.target as HTMLInputElement).checked;
     this.dispatch(this.value);
   };
 
@@ -65,18 +61,21 @@ export class StudsRadio extends WithForm(LitElement) {
       radioButton: true,
     };
 
+    // console.log(this.inputId, this.label);
+
     return html`
-      <label class="${classMap(classes)}">
+      <div class="${classMap(classes)}">
         <input
+          id="${this.inputId}"
           type="radio"
-          name=${ifDefined(this.name)}
           name="${ifDefined(this.name)}"
           value="${ifDefined(this.value)}"
           ?disabled="${this.disabled}"
+          @change="${this.handleChange}"
           ${this.control}
         />
-        <slot></slot>
-      </label>
+        <label for="${this.inputId}">${this.label}</label>
+      </div>
     `;
   }
 }
