@@ -53,7 +53,6 @@ export class StudsResizerPane extends LitElement {
       }
       if (!this.max) {
         this.max = this.parentElement?.getBoundingClientRect().height;
-        console.log(this.max);
       }
     }
   }
