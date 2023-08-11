@@ -29,8 +29,8 @@ export const Horizontal: Story = {
   args: {
     direction: "horizontal",
     children: html`
-      <studs-resizer-pane size="50">Hello</studs-resizer-pane>
-      <studs-resizer-pane>Goodbye</studs-resizer-pane>
+      <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+      <studs-resizer-pane>Panel Two</studs-resizer-pane>
     `,
   },
 };
@@ -39,8 +39,8 @@ export const Vertical: Story = {
   args: {
     direction: "vertical",
     children: html`
-      <studs-resizer-pane size="50">Hello</studs-resizer-pane>
-      <studs-resizer-pane>Goodbye</studs-resizer-pane>
+      <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+      <studs-resizer-pane>Panel Two</studs-resizer-pane>
     `,
   },
 };
@@ -48,11 +48,31 @@ export const Vertical: Story = {
 export const TwoPanel: Story = {
   render: () => html`<div style="width: 400px; height: 400px; display: block">
     <studs-resizer direction="horizontal">
-      <studs-resizer-pane size="150">Hello</studs-resizer-pane>
+      <studs-resizer-pane size="150">Panel One</studs-resizer-pane>
       <studs-resizer-pane size="250">
         <studs-resizer direction="vertical">
-          <studs-resizer-pane size="50">Hello</studs-resizer-pane>
-          <studs-resizer-pane>Goodbye</studs-resizer-pane>
+          <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+          <studs-resizer-pane>Panel Two</studs-resizer-pane>
+        </studs-resizer>
+      </studs-resizer-pane>
+    </studs-resizer>
+  </div>`,
+};
+
+export const ThreePanel: Story = {
+  render: () => html`<div style="width: 800px; height: 400px; display: block">
+    <studs-resizer direction="horizontal">
+      <studs-resizer-pane size="150">Panel One</studs-resizer-pane>
+      <studs-resizer-pane size="250">
+        <studs-resizer direction="vertical">
+          <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+          <studs-resizer-pane>Panel Two</studs-resizer-pane>
+        </studs-resizer>
+      </studs-resizer-pane>
+      <studs-resizer-pane size="250">
+        <studs-resizer direction="vertical">
+          <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+          <studs-resizer-pane>Panel Two</studs-resizer-pane>
         </studs-resizer>
       </studs-resizer-pane>
     </studs-resizer>
