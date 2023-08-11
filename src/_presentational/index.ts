@@ -2971,7 +2971,7 @@ export class PresentationalPage extends LitElement {
               input-size="normal"
               adornment="lbs"
               adornment-position="end"
-              @value-changed='function($event){console.log("input value-changed event", $event.target.value);}'
+              @change='function($event){console.log("input change event", $event.target.value);}'
             ></studs-input>
             </presentational-component>
           </div>
@@ -3015,18 +3015,18 @@ export class PresentationalPage extends LitElement {
               <studs-checkbox name="option" value="option"  @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option1" value="option1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 1</studs-checkbox>
+              <studs-checkbox name="option1" value="option1" label="Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option2" value="option2" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 2</studs-checkbox>
+              <studs-checkbox name="option2" value="option2" label="Option 2" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option3" value="option3" disabled>Option 3</studs-checkbox>
+              <studs-checkbox name="option3" value="option3" label="Option 3" disabled></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="group1" value="group1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 1</studs-checkbox>
-              <studs-checkbox name="group2" value="group2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 2</studs-checkbox>
-              <studs-checkbox name="group3" value="group3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 3</studs-checkbox>
+              <studs-checkbox name="group1" value="group1" label="Group Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="group2" value="group2" label="Group Option 2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="group3" value="group3" label="Group Option 3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
             </presentational-component>
           </div>
         </div>

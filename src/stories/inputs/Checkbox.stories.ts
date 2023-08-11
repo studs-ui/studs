@@ -9,13 +9,14 @@ const meta = {
   render: (args: any) => html`<studs-checkbox
     name=${ifDefined(args.name)}
     value=${ifDefined(args.value)}
+    label=${ifDefined(args.label)}
     ?checked=${args.checked}
     ?disabled=${args.disabled}
-    >${args.children}</studs-checkbox
-  >`,
+  ></studs-checkbox>`,
   argTypes: {
     name: { control: "text" },
     value: { control: "text" },
+    label: { control: "text" },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
   },
@@ -29,7 +30,7 @@ export const Default: Story = {
     name: "checkbox",
     value: "checkbox",
     checked: false,
-    children: "Checkbox",
+    label: "Checkbox",
   },
 };
 
@@ -38,7 +39,7 @@ export const Checked: Story = {
     name: "checkbox1",
     value: "checkbox1",
     checked: true,
-    children: "Checkbox",
+    label: "Checkbox",
   },
 };
 
@@ -48,7 +49,7 @@ export const Disabled: Story = {
     value: "checkbox2",
     checked: false,
     disabled: true,
-    children: "Checkbox",
+    label: "Checkbox",
   },
 };
 
@@ -58,7 +59,7 @@ export const CheckedDisabled: Story = {
     value: "checkbox3",
     checked: true,
     disabled: true,
-    children: "Checkbox",
+    label: "Checkbox",
   },
 };
 
@@ -67,20 +68,20 @@ export const CheckboxGroup: Story = {
     <studs-checkbox
       name="group1"
       value="group1"
+      label="Group Option 1"
       @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      >Group Option 1</studs-checkbox
-    >
+    ></studs-checkbox>
     <studs-checkbox
       name="group2"
       value="group2"
+      label="Group Option 2"
       @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      >Group Option 2</studs-checkbox
-    >
+    ></studs-checkbox>
     <studs-checkbox
       name="group3"
       value="group3"
+      label="Group Option 3"
       @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      >Group Option 3</studs-checkbox
-    >
+    ></studs-checkbox>
   `,
 };
