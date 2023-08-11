@@ -9,13 +9,15 @@ const meta = {
   render: (args: any) => html`<studs-radio
     name=${ifDefined(args.name)}
     value=${ifDefined(args.value)}
+    label=${ifDefined(args.label)}
     ?checked=${args.checked}
     ?disabled=${args.disabled}
-    >${args.children}</studs-radio
+    ></studs-radio
   >`,
   argTypes: {
     name: { control: "text" },
     value: { control: "text" },
+    label: { control: "text" },
     checked: { control: "boolean" },
     disabled: { control: "boolean" },
   },
@@ -29,7 +31,7 @@ export const Default: Story = {
     name: "radio",
     value: "radio",
     checked: false,
-    children: "Radio",
+    label: "Radio",
   },
 };
 
@@ -38,7 +40,7 @@ export const Checked: Story = {
     name: "radio1",
     value: "radio1",
     checked: true,
-    children: "Radio",
+    label: "Radio",
   },
 };
 
@@ -48,7 +50,7 @@ export const Disabled: Story = {
     value: "radio2",
     checked: false,
     disabled: true,
-    children: "Radio",
+    label: "Radio",
   },
 };
 
@@ -58,7 +60,7 @@ export const CheckedDisabled: Story = {
     value: "radio3",
     checked: true,
     disabled: true,
-    children: "Radio",
+    label: "Radio",
   },
 };
 
@@ -67,20 +69,23 @@ export const RadioGroup: Story = {
     <studs-radio
       name="group"
       value="group1"
+      label="Group Option 1"
       @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      >Option 1</studs-radio
+      ></studs-radio
     >
     <studs-radio
       name="group"
       value="group2"
+      label="Group Option 2"
       @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      >Option 2</studs-radio
+      ></studs-radio
     >
     <studs-radio
       name="group"
       value="group3"
+      label="Group Option 3"
       @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      >Option 3</studs-radio
+      ></studs-radio
     >
   `,
 };
