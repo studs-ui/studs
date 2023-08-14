@@ -11,6 +11,7 @@ const meta = {
     value=${ifDefined(args.value)}
     label=${ifDefined(args.label)}
     ?checked=${args.checked}
+    ?indeterminate=${args.indeterminate}
     ?disabled=${args.disabled}
   ></studs-checkbox>`,
   argTypes: {
@@ -18,6 +19,7 @@ const meta = {
     value: { control: "text" },
     label: { control: "text" },
     checked: { control: "boolean" },
+    indeterminate: { control: "boolean" },
     disabled: { control: "boolean" },
   },
 } satisfies Meta<CheckboxProps>;
@@ -59,6 +61,15 @@ export const CheckedDisabled: Story = {
     value: "checkbox3",
     checked: true,
     disabled: true,
+    label: "Checkbox",
+  },
+};
+
+export const Indeterminate: Story = {
+  args: {
+    name: "checkbox4",
+    value: "checkbox4",
+    indeterminate: true,
     label: "Checkbox",
   },
 };

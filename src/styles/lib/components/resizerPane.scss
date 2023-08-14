@@ -1,0 +1,48 @@
+:host {
+    display: contents;
+}
+
+.pane {
+    position: relative;
+    min-width: max-content;
+    &.-vertical {
+        width: 100%;
+        &:not(.-disabled) {
+            padding-block-end: 10px;
+        }
+    }
+    &.-horizontal {
+        height: 100%;
+        &:not(.-disabled) {
+            padding-inline-end: 10px;
+        }
+    }
+
+    &.-disabled {
+        flex: 1;
+    }
+
+}
+
+.handle {
+    position: absolute;
+    .-vertical & {
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 10px;
+        cursor: url('/assets/row-resize.svg'),  row-resize;
+        border-bottom: 1px solid var(--border-color);
+    }
+    .-horizontal &{
+        right: 0;
+        bottom: 0;
+        width: 10px;
+        height: 100%;
+        cursor: url('/assets/col-resize.svg'),  col-resize;
+        border-right: 1px solid var(--border-color);
+    }
+    .-disabled & {
+        display: none;
+    }
+}

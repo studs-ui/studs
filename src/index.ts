@@ -24,8 +24,11 @@ import { StudsAccordianItem } from "./components/display/accordian-item";
 import { StudsInput } from "./components/inputs/input";
 import { StudsForm } from "./components/inputs/form";
 import { StudsRadio } from "./components/inputs/radio";
+import { StudsRadioGroup } from "./components/inputs/radio-group";
 import { StudsCheckbox } from "./components/inputs/checkbox";
 import { StudsHeader } from "./components/navigation/studs-header";
+import { StudsResizer } from "./components/display/resizer";
+import { StudsResizerPane } from "./components/display/resizer-pane";
 
 // Export Components
 export {
@@ -52,8 +55,11 @@ export {
   StudsInput,
   StudsForm,
   StudsRadio,
+  StudsRadioGroup,
   StudsCheckbox,
   StudsHeader,
+  StudsResizer,
+  StudsResizerPane,
 };
 
 declare global {
@@ -81,7 +87,10 @@ declare global {
     "studs-input": StudsInput;
     "studs-form": StudsForm;
     "studs-radio": StudsRadio;
+    "studs-radio-group": StudsRadioGroup;
     "studs-checkbox": StudsCheckbox;
     "studs-header": StudsHeader;
+    "studs-resizer": StudsResizer;
+    "studs-resizer-pane": StudsResizerPane;
   }
 }
