@@ -9,7 +9,6 @@ import style from "styles/radioButton.scss?inline";
 export interface RadioProps extends WithFormInterface {
   value?: string;
   checked?: boolean;
-  children?: HTMLElement | TemplateResult | string;
 }
 
 @customElement("studs-radio")
@@ -17,7 +16,8 @@ export class StudsRadio extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
 
   @property({ type: String }) value: RadioProps["value"] = "";
-  @property({ type: Boolean }) checked?: RadioProps["checked"];
+  @property({ type: Boolean, reflect: true }) checked: RadioProps["checked"] = false;
+  @property({ type: String }) name?: RadioProps["name"];
 
   private inputId = generateUniqueId("radio");
 
@@ -30,8 +30,6 @@ export class StudsRadio extends WithForm(LitElement) {
     const classes = {
       radioButton: true,
     };
-
-    // console.log(this.inputId, this.label);
 
     return html`
       <div class="${classMap(classes)}">
