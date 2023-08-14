@@ -2988,18 +2988,18 @@ export class PresentationalPage extends LitElement {
               <studs-radio name="option" value="option"  @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
             </presentational-component>
             <presentational-component>
-              <studs-radio name="option1" value="option1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 1</studs-radio>
+              <studs-radio name="option1" value="option1" label="option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
             </presentational-component>
             <presentational-component>
-              <studs-radio name="option2" value="option2" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Option 2</studs-radio>
+              <studs-radio name="option2" value="option2" label="checked" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
             </presentational-component>
             <presentational-component>
-              <studs-radio name="option3" value="option3" disabled>Option 3</studs-radio>
+              <studs-radio name="option3" value="option3" label="Disabled" disabled></studs-radio>
             </presentational-component>
             <presentational-component>
-              <studs-radio name="group" value="group1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 1</studs-radio>
-              <studs-radio name="group" value="group2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 2</studs-radio>
-              <studs-radio name="group" value="group3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}">Group Option 3</studs-radio>
+              <studs-radio name="group" value="group1" label="Group Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+              <studs-radio name="group" value="group2" label="Group Option 2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+              <studs-radio name="group" value="group3" label="Group Option 3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
             </presentational-component>
           </div>
         </div>
