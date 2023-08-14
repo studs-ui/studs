@@ -2966,12 +2966,48 @@ export class PresentationalPage extends LitElement {
               name="fname"
               type="text"
               value="John"
-              label="Full name"
+              label="Adornment End"
               variant="outlined"
               input-size="normal"
               adornment="lbs"
               adornment-position="end"
-              @change='function($event){console.log("input change event", $event.target.value);}'
+              @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"
+            ></studs-input>
+            </presentational-component>
+            <presentational-component>
+            <studs-input
+              type="email"
+              name="email"
+              label="Email"
+              variant="outlined"
+              @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"
+            ></studs-input>
+            </presentational-component>
+            <presentational-component>
+            <studs-input
+              type="search"
+              name="search"
+              label="Search"
+              variant="outlined"
+              @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"
+            ></studs-input>
+            </presentational-component>
+            <presentational-component>
+            <studs-input
+              type="number"
+              name="number"
+              label="Number"
+              variant="outlined"
+              @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"
+            ></studs-input>
+            </presentational-component>
+            <presentational-component>
+            <studs-input
+              type="password"
+              name="password"
+              label="Password"
+              variant="outlined"
+              @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"
             ></studs-input>
             </presentational-component>
           </div>

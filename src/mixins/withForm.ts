@@ -73,7 +73,7 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     }
 
     protected dispatch(detail: object) {
-      if (detail) {
+      if (detail !== undefined) {
         this.dispatchEvent(
           new CustomEvent("change", {
             detail,
