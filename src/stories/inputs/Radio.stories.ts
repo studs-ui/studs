@@ -66,26 +66,10 @@ export const CheckedDisabled: Story = {
 
 export const RadioGroup: Story = {
   render: () => html`
-    <studs-radio
-      name="group"
-      value="group1"
-      label="Group Option 1"
-      @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      ></studs-radio
-    >
-    <studs-radio
-      name="group"
-      value="group2"
-      label="Group Option 2"
-      @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      ></studs-radio
-    >
-    <studs-radio
-      name="group"
-      value="group3"
-      label="Group Option 3"
-      @change="${(e: CustomEvent) => console.log("Selected value:", e.detail)}"
-      ></studs-radio
-    >
+    <studs-radio-group name="group">
+      <studs-radio name="group" value="groupValue1" label="Group 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+      <studs-radio name="group" value="groupValue2" label="Group 2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+      <studs-radio name="group" value="groupValue3" label="Group 3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+    </studs-radio-group>
   `,
 };
