@@ -1,6 +1,6 @@
 import { consume } from "@lit-labs/context";
-import { LitElement, PropertyValueMap, nothing } from "lit";
-import { property, query, state } from "lit/decorators.js";
+import { LitElement, nothing } from "lit";
+import { property, state } from "lit/decorators.js";
 import { formContext } from "../components/inputs/form";
 import { FormController } from "../controllers/formController";
 
