@@ -1,22 +1,14 @@
 @use "../utilities" as *;
+@use "../themes" as *;
 
-// @NOTE: eventually we will use SVGs instead of the webfont for symbols.
-//    --Jp
-
-// $checkbox-unchecked: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M18 19H6c-.55 0-1-.45-1-1V6c0-.55.45-1 1-1h12c.55 0 1 .45 1 1v12c0 .55-.45 1-1 1zm1-16H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>';
-// $checkbox-checked: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM17.99 9l-1.41-1.42l-6.59 6.59l-2.58-2.57l-1.42 1.41l4 3.99z"/></svg>';
-// $checkbox-indeterminate: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14zM7 11h10v2H7z"/></svg>';
-
-@mixin checkbox {
-  input[type=checkbox] {
+.checkbox {
+  [type=checkbox] {
     opacity: 0;
     width: 0;
     height: 0;
   }
 
   label {
-    --checkColor: var(--checkbox-color);
-
     display: flex;
     flex-direction: row;
     gap: .5rem;
@@ -37,33 +29,57 @@
     }
 
     &.-disabled {
-      --checkColor: var(--checkbox-disabled);
+      --text-color: var(--disabled);
+      --color: var(--disabled);
     }
-
 
     &::before {
-      transform: translateY(-.05em);
-      font-family: $font-material-outline;
-      color: var(--checkColor);
-      content: '\e835'; //checkbox
+      --unchecked: url("/public/assets/icons/material-icons-master/svg/check_box_outline_blank/baseline.svg");
+      --checked: url("/public/assets/icons/material-icons-master/svg/check_box/baseline.svg");
+      --indeterminate: url("/public/assets/icons/material-icons-master/svg/indeterminate_check_box/baseline.svg");
 
+      --symbol: var(--unchecked);
+      --color: var(--text-dark);
+      transform: translateY(-.05em);
       cursor: pointer;
+
+      content:'';
+      width: 1em;
+      aspect-ratio: 1 / 1;
+      position: absolute;
+      left: -1.25em;
+
+      @include icon-mask(var(--symbol), var(--color));
     }
   }
 
-  input[type=checkbox]:focus-visible +  label::before {
-    --checkColor: var(--link-focus)
+  [type=checkbox]:focus-visible +  label::after {
+    content:'';
+    position: absolute;
+    left: -1.25em;
+    width: 1em;
+    height: 1em;
+    transform: scale(1.05) translateY(-.05em) translateX(-.05em);
+
+    border: 1px solid var(--primary);
+    border-radius: .15em;
   }
 
-  input[type=checkbox]:checked +  label::before {
-    content: '\e834'
+  [type=checkbox]:checked +  label::before {
+    --symbol: var(--checked);
+    --color: var(--primary);
   }
 
-  input[type=checkbox]:indeterminate + label::before {
-    content: '\e909'
+  [type=checkbox]:indeterminate + label::before {
+    --symbol: var(--indeterminate);
+    --color: var(--primary);
   }
-}
 
-.checkbox {
-  @include checkbox;
+  [type=checkbox]:disabled + label {
+    &,
+    &::before {
+      --text-color: var(--disabled);
+      --color: var(--disabled);
+  }
+  }
 }
