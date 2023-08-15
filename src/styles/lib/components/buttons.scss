@@ -41,7 +41,7 @@
     }
   }
 
-  &:not(.-cta) {
+  &:not(.-cta, .-icon) {
     width: 100%;
     @media (min-width: $screen-xs) {
       width: auto;

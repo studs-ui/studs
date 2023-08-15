@@ -13,7 +13,6 @@ import {
   getUrlFromLinkCompound,
 } from "../../utils/_analytics";
 import { isMobileDevice, isTablet } from "../../utils/shared";
-import { cache } from "lit/directives/cache.js";
 
 export interface StudsHeaderProps {
   gtag?: string;
@@ -21,7 +20,10 @@ export interface StudsHeaderProps {
 
 interface Menu {
   name: string;
-  link: string;
+  link: {
+    href: string;
+    target?: string;
+  };
   depth: number;
   selected: boolean;
   children: Menu[];
@@ -39,11 +41,13 @@ export class StudsHeader extends LitElement {
    * Declare Internal States
    */
   private _menuBreakpoint: number = 905;
-  private _resizeTimer: NodeJS.Timer | undefined;
-  private _scrollTimer: NodeJS.Timer | undefined;
+  private _resizeTimer: NodeJS.Timeout | undefined;
+  private _scrollTimer: NodeJS.Timeout | undefined;
+
   @state() private _open: boolean = false;
   @state() private _activeMenu?: string;
-  @state() private _big: boolean = false;
+  @state() private _big: boolean = true;
+
   @state() private _page?: any;
   @state() private _doc?: any;
 
@@ -236,13 +240,18 @@ export class StudsHeader extends LitElement {
    */
   private get renderSearchInput() {
     return html`
-      <studs-form
+      <form
         name="search_form"
         method="get"
         action="/search/"
         @submit=${this.onSearchSubmit}
       >
-        <input type="text" name="q" id="search" />
+        <studs-input
+          name="q"
+          id="search"
+          type="search"
+          inputsize="small"
+        ></studs-input>
         <label for="search">
           <svg
             width="100%"
@@ -259,7 +268,7 @@ export class StudsHeader extends LitElement {
             />
           </svg>
         </label>
-      </studs-form>
+      </form>
     `;
   }
   /**
@@ -298,21 +307,27 @@ export class StudsHeader extends LitElement {
       if (items)
         return html`
           <studs-modal>
-            <a href="#" class="location regionSelector" slot="toggle">
-              <svg
+            <studs-button
+              class="location regionSelector"
+              slot="toggle"
+              buttontype="link"
+              size="small"
+              icon='<svg
                 class="directionIcon"
-                fill="none"
+                width="0.75rem"
+                fill="var(--text-color)"
                 viewBox="0 0 12 16"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
                   d="m5.9999 7.9992c0.4125 0 0.76575-0.14701 1.0598-0.44101 0.2935-0.2935 0.44025-0.6465 0.44025-1.059 0-0.4125-0.14675-0.76575-0.44025-1.0598-0.294-0.29349-0.64725-0.44024-1.0598-0.44024s-0.7655 0.14675-1.059 0.44024c-0.294 0.29401-0.441 0.64726-0.441 1.0598 0 0.41249 0.147 0.76549 0.441 1.059 0.2935 0.294 0.6465 0.44101 1.059 0.44101zm0 5.5124c1.525-1.4 2.6562-2.672 3.3938-3.816 0.73746-1.1435 1.1063-2.159 1.1063-3.0465 0-1.3625-0.4345-2.4782-1.3035-3.3472-0.8685-0.8685-1.934-1.3028-3.1965-1.3028s-2.3282 0.43425-3.1972 1.3028c-0.8685 0.869-1.3028 1.9847-1.3028 3.3472 0 0.8875 0.36875 1.903 1.1062 3.0465 0.7375 1.144 1.8688 2.416 3.3938 3.816zm0 1.9875c-2.0125-1.7125-3.5155-3.3032-4.509-4.7722-0.994-1.4685-1.491-2.8278-1.491-4.0778 0-1.875 0.60325-3.3687 1.8097-4.4812 1.206-1.1125 2.6028-1.6688 4.1902-1.6688s2.9842 0.55625 4.1902 1.6688c1.2065 1.1125 1.8098 2.6062 1.8098 4.4812 0 1.25-0.4968 2.6093-1.4903 4.0778-0.99396 1.469-2.4972 3.0597-4.5097 4.7722z"
                 />
-              </svg>
-              <span>${regionText}</span>
-            </a>
+              </svg>'
+            >
+              <span>${regionText || "Region Selector"}</span>
+            </studs-button>
+            ${title ? html`<h4>${title}</h4>` : nothing}
             <div class="regionsWrapper">
-              ${title ? html`<h4>${title}</h4>` : nothing}
               ${map(items, (region) => {
                 const { title, items } = region;
                 return html`
@@ -358,8 +373,6 @@ export class StudsHeader extends LitElement {
         class=${classMap({
           navCategory: true,
           "-title": true,
-          "toggle-link": hasChildren,
-          "direct-link": !hasChildren,
           active: this._activeMenu === item.name,
         })}
         @click=${() => this.onNavItemClick(item)}
@@ -369,60 +382,62 @@ export class StudsHeader extends LitElement {
           @click=${hasChildren
             ? () => analyticsNavigationAction(item.name, "header")
             : nothing}
+          class=${classMap({
+            "toggle-link": hasChildren,
+            "direct-link": !hasChildren,
+          })}
           >${item.name}
-          ${hasChildren
-            ? html`
-                <div class="navCategory -wrapper">
-                  <div class="navCategory -header">
-                    ${item.name}
-                    <ul class="navCategory -sections">
-                      ${map(item.children, (child) => {
-                        const analyticsChildName = `${analyticsParentName} ${child.name} |`;
-                        const childHasChildren = child.children.length > 0;
-                        return html`
-                          <li class="navSection -wrapper">
-                            <a
-                              class="navSection -header"
-                              href=${child.link ? child.link.href : nothing}
-                              @click=${() =>
-                                analyticsNavigationAction(
-                                  `${analyticsParentName} ${child.name}`,
-                                  "header"
-                                )}
-                              >${child.name}
-                              ${childHasChildren
-                                ? html`
-                                    <ul class="navSection -links">
-                                      ${map(child.children, (link) => {
-                                        return html`
-                                          <li class="pageLink">
-                                            <a
-                                              href=${link.link
-                                                ? link.link.href
-                                                : nothing}
-                                              @click=${() =>
-                                                analyticsNavigationAction(
-                                                  `${analyticsChildName} ${link.name}`,
-                                                  "header"
-                                                )}
-                                              >${link.name}></a
-                                            >
-                                          </li>
-                                        `;
-                                      })}
-                                    </ul>
-                                  `
-                                : nothing}
-                            </a>
-                          </li>
-                        `;
-                      })}
-                    </ul>
-                  </div>
-                </div>
-              `
-            : nothing}
         </a>
+        ${hasChildren
+          ? html`
+              <div class="navCategory -wrapper">
+                <div class="navCategory -header">${item.name}</div>
+                <ul class="navCategory -sections">
+                  ${map(item.children, (child) => {
+                    const analyticsChildName = `${analyticsParentName} ${child.name} |`;
+                    const childHasChildren = child.children.length > 0;
+                    return html`
+                      <li class="navSection -wrapper">
+                        <a
+                          class="navSection -header"
+                          href=${child.link ? child.link.href : nothing}
+                          @click=${() =>
+                            analyticsNavigationAction(
+                              `${analyticsParentName} ${child.name}`,
+                              "header"
+                            )}
+                          >${child.name}
+                        </a>
+                        ${childHasChildren
+                          ? html`
+                              <ul class="navSection -links">
+                                ${map(child.children, (link) => {
+                                  return html`
+                                    <li class="pageLink">
+                                      <a
+                                        href=${link.link
+                                          ? link.link.href
+                                          : nothing}
+                                        @click=${() =>
+                                          analyticsNavigationAction(
+                                            `${analyticsChildName} ${link.name}`,
+                                            "header"
+                                          )}
+                                        >${link.name}</a
+                                      >
+                                    </li>
+                                  `;
+                                })}
+                              </ul>
+                            `
+                          : nothing}
+                      </li>
+                    `;
+                  })}
+                </ul>
+              </div>
+            `
+          : nothing}
       </li>
     `;
   }
@@ -470,20 +485,30 @@ export class StudsHeader extends LitElement {
             ${this.renderSearchInput} ${this.renderDealerLocator}
             ${this.renderRegionSelector}
           </div>
-          <button
+          <studs-button
             id="returnToMenu"
-            class=${classMap({ textButton: true, active: this._open })}
+            class=${classMap({
+              textButton: true,
+              active: this._activeMenu || false,
+            })}
+            buttontype="link"
             @click=${this.onReturnClick}
           >
             <span>Main Menu</span>
-          </button>
-          <button
+          </studs-button>
+          <studs-button
             id="mobileToggle"
-            class="textButton"
             @click=${this.onMobileNavToggle}
+            class=${classMap({
+              textButton: true,
+              active: this._open,
+            })}
+            size="large"
+            buttontype="link"
           >
+            <div class="menuIcon"></div>
             <span>Menu</span>
-          </button>
+          </studs-button>
 
           ${this.renderMenuItems}
         </nav>
@@ -498,7 +523,7 @@ export class StudsHeader extends LitElement {
    * Return to Main Menu
    */
   private onReturnClick() {
-    this._open = false;
+    // this._open = false;
     this._activeMenu = undefined;
     this.requestUpdate();
   }
@@ -541,6 +566,7 @@ export class StudsHeader extends LitElement {
   private onWindowResize = () => {
     const resizeEvents = () => {
       this._open = false;
+      this._activeMenu = undefined;
       this._big = true;
       this.header.style.removeProperty("--tr-s");
       this.header.style.removeProperty("--tr-m");
@@ -562,12 +588,11 @@ export class StudsHeader extends LitElement {
    */
   public onSearchSubmit(e: CustomEvent) {
     e.preventDefault();
-    const formData = new FormData(e.detail.form);
-    // Should we use form to send the form out?
+    const formData = new FormData(e.target as HTMLFormElement);
     const searchQuery = formData.get("q");
     const fallbackQuery = formData.get("search");
     analyticsSearch(searchQuery || fallbackQuery, "onsite");
 
-    e.detail.form.submit();
+    (e.target as HTMLFormElement).submit();
   }
 }

@@ -29,6 +29,34 @@ export class StudsInput extends WithForm(LitElement) {
   @property({ type: String, attribute: "adornment-position" })
   adornmentPosition?: InputProps["adornmentPosition"] = "end";
 
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (this.type === "search") {
+      this.addEventListener("keydown", this.handleSubmit);
+    }
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.type === "search") {
+      this.removeEventListener("keydown", this.handleSubmit);
+    }
+  }
+
+  handleSubmit(e: KeyboardEvent) {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const form = this.getForm(this);
+      if (form)
+        form.dispatchEvent(
+          new Event("submit", {
+            bubbles: true,
+            composed: true,
+          })
+        );
+    }
+  }
+
   handleInput(e: Event) {
     this.value = (e.target as HTMLInputElement).value;
     this.dispatch(this.value);

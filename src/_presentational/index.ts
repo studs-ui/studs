@@ -1,9 +1,15 @@
-import { LitElement, css, html } from "lit";
+import { LitElement, css, html, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import pjson from "../../package.json";
-import { createStandardToast, createErrorToast, createWarningToast, createSuccessToast } from '../functions/toaster';
+import {
+  createStandardToast,
+  createErrorToast,
+  createWarningToast,
+  createSuccessToast,
+} from "../functions/toaster";
+import style from "./styles.scss?inline";
 
 @customElement("presentational-page")
 export class PresentationalPage extends LitElement {
@@ -2985,29 +2991,47 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-radio name="option" value="option"  @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+              <studs-radio name="option" value="option"  @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-radio>
             </presentational-component>
             <presentational-component>
-              <studs-radio name="option1" value="option1" label="option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+              <studs-radio name="option1" value="option1" label="option 1" @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-radio>
             </presentational-component>
             <presentational-component>
-              <studs-radio name="option2" value="option2" label="checked" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+              <studs-radio name="option2" value="option2" label="checked" checked @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-radio>
             </presentational-component>
             <presentational-component>
               <studs-radio name="option3" value="option3" label="Disabled" disabled></studs-radio>
             </presentational-component>
             <presentational-component>
               <studs-radio-group name="group">
-                <studs-radio name="group" value="groupValue1" label="Group 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
-                <studs-radio name="group" value="groupValue2" label="Group 2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
-                <studs-radio name="group" value="groupValue3" label="Group 3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+                <studs-radio name="group" value="groupValue1" label="Group 1" @change="${(
+                  e: CustomEvent
+                ) => console.log("Selected value:", e.detail)}"></studs-radio>
+                <studs-radio name="group" value="groupValue2" label="Group 2" @change="${(
+                  e: CustomEvent
+                ) => console.log("Selected value:", e.detail)}"></studs-radio>
+                <studs-radio name="group" value="groupValue3" label="Group 3" @change="${(
+                  e: CustomEvent
+                ) => console.log("Selected value:", e.detail)}"></studs-radio>
               </studs-radio-group>
             </presentational-component>
             <presentational-component>
               <studs-radio-group name="payment">
-                <studs-radio name="payment" value="credit" label="Credit Card" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
-                <studs-radio name="payment" value="debit" label="Debit Card" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
-                <studs-radio name="payment" value="cash" label="Cash Payment" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-radio>
+                <studs-radio name="payment" value="credit" label="Credit Card" @change="${(
+                  e: CustomEvent
+                ) => console.log("Selected value:", e.detail)}"></studs-radio>
+                <studs-radio name="payment" value="debit" label="Debit Card" @change="${(
+                  e: CustomEvent
+                ) => console.log("Selected value:", e.detail)}"></studs-radio>
+                <studs-radio name="payment" value="cash" label="Cash Payment" @change="${(
+                  e: CustomEvent
+                ) => console.log("Selected value:", e.detail)}"></studs-radio>
               </studs-radio-group>
             </presentational-component>
           </div>
@@ -3021,27 +3045,43 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-checkbox name="option" value="option"  @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="option" value="option"  @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option1" value="option1" label="Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="option1" value="option1" label="Option 1" @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option2" value="option2" label="Checked" checked @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="option2" value="option2" label="Checked" checked @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
               <studs-checkbox name="option3" value="option3" label="Disabled" disabled></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option1" value="option1" label="Indeterminate" indeterminate @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="option1" value="option1" label="Indeterminate" indeterminate @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="option2" value="option2" label="Indeterminate" .indeterminate="${true}" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="option2" value="option2" label="Indeterminate" .indeterminate="${true}" @change="${(
+      e: CustomEvent
+    ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
             </presentational-component>
             <presentational-component>
-              <studs-checkbox name="group1" value="group1" label="Group Option 1" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
-              <studs-checkbox name="group2" value="group2" label="Group Option 2" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
-              <studs-checkbox name="group3" value="group3" label="Group Option 3" @change="${(e: CustomEvent) => console.log('Selected value:', e.detail)}"></studs-checkbox>
+              <studs-checkbox name="group1" value="group1" label="Group Option 1" @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
+              <studs-checkbox name="group2" value="group2" label="Group Option 2" @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
+              <studs-checkbox name="group3" value="group3" label="Group Option 3" @change="${(
+                e: CustomEvent
+              ) => console.log("Selected value:", e.detail)}"></studs-checkbox>
             </presentational-component>
           </div>
         </div>
@@ -3059,66 +3099,7 @@ export class PresentationalPage extends LitElement {
 export class PresentationalTabs extends LitElement {
   @property({ type: Array }) tabs: string[] = [];
   @state() protected _activeTab: string = this.tabs[0];
-  static styles = css`
-    :host section {
-      display: flex;
-      flex-direction: column;
-      @media (min-width: 767px) {
-        flex-direction: row;
-      }
-      width: 100%;
-      height: 100%;
-      gap: 1rem;
-    }
-    .tabs {
-      &.-header {
-        padding: 1.5rem 1.25rem;
-        width: 100%;
-        text-align: center;
-        color: var(--heading-color);
-        font-weight: 600;
-        > code {
-          padding: 0.25rem;
-          border-radius: 0.15rem;
-          background-color: var(--info-bkg);
-          color: var(--info-color);
-        }
-      }
-      &.-list {
-        display: flex;
-        min-height: 5rem;
-        border-right: 1px solid var(--nav-border);
-        @media (max-width: 767px) {
-          width: 100%;
-        }
-        @media (min-width: 767px) {
-          min-width: 20rem;
-          flex-direction: column;
-          align-items: center;
-        }
-      }
-      &.-panel {
-        overflow-y: scroll;
-        padding: 1.5rem;
-        flex-grow: 1;
-      }
-    }
-    .tab {
-      outline: 0;
-      border: 0;
-      border-bottom: 1px solid var(--nav-border);
-      padding: 0.75rem 1.25rem;
-      cursor: pointer;
-      width: 100%;
-      font-size: 1em;
-      font-family: inherit;
-      &.-active,
-      &:hover {
-        background-color: var(--button-hover);
-        color: var(--button-color);
-      }
-    }
-  `;
+  static styles = unsafeCSS(style);
 
   setInitialTab() {
     const params = new URLSearchParams(window.location.search);
