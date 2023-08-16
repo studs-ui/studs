@@ -25,3 +25,4 @@ storybook-static
 *.sw?
 package-lock.json
 yarn.lock
+.prettierrc

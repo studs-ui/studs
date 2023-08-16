@@ -14,17 +14,18 @@ const meta = {
     label=${ifDefined(args.label)}
     variant=${ifDefined(args.variant)}
     inputSize=${ifDefined(args.inputSize)}
+    messageType=${ifDefined(args.messageType)}
     ?disabled=${args.disabled}
     ?required=${args.required}
     ?error=${args.error}
-    helperText=${ifDefined(args.helperText)}
+    .helperText=${args.helperText}
     adornment=${ifDefined(args.adornment)}
     adornment-position=${ifDefined(args.adornmentPosition)}
   ></studs-input>`,
   argTypes: {
     type: {
       control: { type: "select" },
-      options: ["text", "password", "number", "email", "search", "file"],
+      options: ["text", "password", "number", "tel", "email", "search", "file"],
     },
     name: { control: "text" },
     placeholder: { control: "text" },
@@ -37,6 +38,10 @@ const meta = {
     inputSize: {
       control: { type: "select" },
       options: ["small", "medium", "large"],
+    },
+    messageType: {
+      control: { type: "select" },
+      options: ["error", "success", "warning"],
     },
     disabled: { control: "boolean" },
     required: { control: "boolean" },
@@ -58,6 +63,7 @@ export const Default: Story = {
     type: "text",
     label: "Default Input",
     variant: "outlined",
+    helperText: ["First error", "Second error"],
   },
 };
 
@@ -103,5 +109,15 @@ export const AdornmentEnd: Story = {
     label: "Adornment End",
     adornment: "$",
     adornmentPosition: "end",
+  },
+};
+
+export const ErrorMessage: Story = {
+  args: {
+    type: "text",
+    label: "Label",
+    messageType: "error",
+    error: true,
+    helperText: ["First error", "Second error"],
   },
 };

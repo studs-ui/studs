@@ -6,10 +6,11 @@ import style from "styles/inputs.scss?inline";
 import { WithForm, WithFormInterface } from "../../mixins/withForm";
 
 export interface InputProps extends WithFormInterface {
-  type?: "text" | "password" | "number" | "email" | "search" | "file";
+  type?: "text" | "password" | "number" | "tel" | "email" | "search" | "file";
   value?: string;
   variant?: "standard" | "outlined" | "filled";
   inputSize?: "small" | "medium" | "large";
+  messageType?: "error" | "success" | "warning";
   helperText?: string[];
   adornment?: string;
   adornmentPosition?: "start" | "end";
@@ -23,8 +24,8 @@ export class StudsInput extends WithForm(LitElement) {
   @property({ type: String }) value: InputProps["value"] = "";
   @property({ type: String }) variant?: InputProps["variant"];
   @property({ type: String }) inputSize?: InputProps["inputSize"];
-  @property({ type: Array, attribute: "helper-text" })
-  helperText?: InputProps["helperText"] = [];
+  @property({ type: String }) messageType?: InputProps["messageType"];
+  @property({ type: Array, attribute: "helper-text" }) helperText?: InputProps["helperText"] = [];
   @property({ type: String }) adornment?: InputProps["adornment"];
   @property({ type: String, attribute: "adornment-position" })
   adornmentPosition?: InputProps["adornmentPosition"] = "end";
@@ -72,7 +73,7 @@ export class StudsInput extends WithForm(LitElement) {
       input: true,
       [`${this.variant}`]: !!this.variant,
       [`${this.inputSize}`]: !!this.inputSize,
-      error: !!this.error,
+      [`${this.messageType}`]: !!this.messageType,
       [this.adornment && this.adornmentPosition ? this.adornmentPosition : ""]:
         true,
     };
@@ -87,8 +88,8 @@ export class StudsInput extends WithForm(LitElement) {
             ? html`<div class="adornmentStart">${this.adornment}</div>`
             : ""}
           <input
-            name=${ifDefined(this.name)}
             type="${ifDefined(this.type)}"
+            name=${ifDefined(this.name)}
             value=${ifDefined(this.value)}
             placeholder=${ifDefined(this.placeholder)}
             ?disabled=${this.disabled}
