@@ -1,17 +1,17 @@
-import { LitElement, TemplateResult, html, nothing, unsafeCSS } from "lit";
-import { customElement, query, state } from "lit/decorators.js";
+import { LitElement, html, nothing, unsafeCSS } from "lit";
+import { customElement, state } from "lit/decorators.js";
+import { classMap } from "lit/directives/class-map.js";
+import { map } from "lit/directives/map.js";
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import style from "styles/footer.scss?inline";
+import { WithBloomreach } from "../../mixins/withBloomreach";
 import {
   analyticsEmailSumbission,
   analyticsFormErrors,
   analyticsForms,
   analyticsSocialMediaFollow,
 } from "../../utils/_analytics";
-import { WithBloomreach } from "../../mixins/withBloomreach";
-import { map } from "lit/directives/map.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
 import { isMobile } from "../../utils/shared";
-import { classMap } from "lit/directives/class-map.js";
 
 export interface StudsFooterProps {}
 
@@ -25,20 +25,6 @@ export class StudsFooter
   @state() _selected?: string;
   @state() _formStarted = false;
   @state() _mediaQueryList?: MediaQueryList;
-
-  //   @query("#footerMainNav") _footerMainNav?: HTMLElement;
-
-  //   connectedCallback(): void {
-  //     super.connectedCallback();
-
-  //     const mediaQueryList = window.matchMedia("screen and (max-width: 905px)");
-
-  //     this._mediaQueryList = mediaQueryList;
-  //     this._mediaQueryList.addEventListener("change", this.onMediaQueryChange);
-  //     if (mediaQueryList.matches) {
-  //       this.onMediaQueryChange(mediaQueryList);
-  //     }
-  //   }
 
   get menuItems() {
     if (this._page) {
@@ -335,23 +321,6 @@ export class StudsFooter
       </footer>
     `;
   }
-
-  //   onMediaQueryChange(event: MediaQueryListEvent) {
-  //     const enableClick = (e) => {
-  //       const pElem = e.srcElement.parentElement;
-  //       if (event.matches) pElem.classList.toggle("-active");
-  //     };
-
-  //     const parent = this.shadowRoot.querySelector("#footerMainNav");
-  //     parent?.querySelectorAll(".footerNavSection .-header").forEach((el) => {
-  //       if (event.matches) {
-  //         el.addEventListener("click", enableClick);
-  //       } else {
-  //         el?.parentElement?.classList.remove("-active");
-  //         el.removeEventListener("click", enableClick);
-  //       }
-  //     });
-  //   }
 
   onAccordianClick(name: string) {
     if (isMobile()) {

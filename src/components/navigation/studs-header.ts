@@ -269,10 +269,11 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     if (this._page) {
       const { regionText } = this._doc.getData();
       // Get Region Selector Data
+      // @ts-ignore
       const { document: regionSelectorRef } = this._page
-        .getComponent("header")
-        .getComponent("regionSelector")
-        .getModels();
+        ?.getComponent("header")
+        ?.getComponent("regionSelector")
+        ?.getModels();
       const regionSelectorDocument =
         regionSelectorRef && this._page.getContent(regionSelectorRef);
       const { title, items } = regionSelectorDocument?.getData() ?? {};
@@ -298,7 +299,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
             >
               <span>${regionText || "Region Selector"}</span>
             </studs-button>
-            ${title ? html`<h4>${title}</h4>` : nothing}
+            ${title ? html`<h4 slot="header">${title}</h4>` : nothing}
             <div class="regionsWrapper">
               ${map(items, (region) => {
                 const { title, items } = region;

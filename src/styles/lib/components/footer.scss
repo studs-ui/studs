@@ -328,7 +328,7 @@ footer {
         }
 
         &.-error {
-          border: 2px solid var(--error-color-inverted);
+          border: 2px solid var(--error-color);
         }
         &:valid {
           border: 2px solid var(--success-color);
@@ -360,7 +360,7 @@ footer {
       }
       .inputError {
         display: block;
-        color: var(--error-color-inverted);
+        color: var(--error-color);
         width: 100%;
         margin: 0;
         font-size: 0.8em;

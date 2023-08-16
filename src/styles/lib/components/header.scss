@@ -862,7 +862,8 @@ button.textButton {
 
   h5 {
     font-size: 1.25em;
-    margin-bottom: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-block-start: 0;
   }
 }
 
@@ -871,5 +872,19 @@ button.textButton {
   padding-inline-start: 0;
   li {
     margin-block-start: 0.25rem;
+  }
+  a {
+    border-bottom: 1px solid var(--text-underline, #df4907);
+    font-weight: 600;
+    color: var(--text-color);
+    cursor: pointer;
+    outline: none;
+    text-decoration: none;
+    transition: border-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    &:hover {
+      border-color: currentcolor;
+      color: var(--link-hover, #df4907);
+      text-decoration: none;
+    }
   }
 }
