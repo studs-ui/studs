@@ -3,7 +3,8 @@ export const generateUniqueId = (prefix: string): string => {
 };
 
 export const isMobile = (): boolean => {
-  return window.innerWidth < 600;
+  if (typeof window !== undefined) return window.innerWidth < 600;
+  return false;
 };
 export const isMobileDevice = () => {
   const userAgent = navigator.userAgent || navigator.vendor || window.opera;
@@ -19,8 +20,10 @@ export const isMobileDevice = () => {
   return false;
 };
 export const isTablet = (): boolean => {
-  return window.innerWidth < 900;
+  if (typeof window !== undefined) return window.innerWidth < 900;
+  return false;
 };
 export const isDesktop = (): boolean => {
-  return window.innerWidth > 900;
+  if (typeof window !== undefined) return window.innerWidth > 900;
+  return false;
 };

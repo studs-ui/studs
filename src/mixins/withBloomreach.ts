@@ -1,14 +1,25 @@
-import { LitElement } from "lit";
-import { property, state } from "lit/decorators.js";
 import { Page, initialize } from "@bloomreach/spa-sdk";
 import axios from "axios";
+import { LitElement } from "lit";
+import { state } from "lit/decorators.js";
+
+export interface Menu {
+  name: string;
+  link: {
+    href: string;
+    target?: string;
+  };
+  depth: number;
+  selected: boolean;
+  children: Menu[];
+}
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 export declare class WithBloomreachInterface {
   _page?: Page;
   _isPreview: boolean;
-  init: () => Promise<void>;
+  generateMenuCollection: (collection: any[]) => Menu[] | [];
 }
 
 export const WithBloomreach = <T extends Constructor<LitElement>>(
@@ -33,9 +44,29 @@ export const WithBloomreach = <T extends Constructor<LitElement>>(
       this._isPreview = this._page.isPreview();
     }
 
-    connectedCallback() {
-      super.connectedCallback();
+    constructor(...args: any[]) {
+      super(...args);
       this.init();
+    }
+
+    /**
+     *
+     * @param collection Array of Bloomreach Menu
+     * @returns
+     */
+    protected generateMenuCollection(collection: any[]): Menu[] | [] {
+      if (collection)
+        return collection.map((item) => {
+          return {
+            name: item.getName(),
+            link: item.getLink(),
+            depth: item.getDepth(),
+            selected: item.isSelected(),
+            children: this.generateMenuCollection(item.getChildren()),
+          };
+        });
+
+      return [];
     }
   }
   return WithBloomreachClass as unknown as Constructor<WithBloomreachInterface> &

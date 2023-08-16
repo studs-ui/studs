@@ -1,19 +1,16 @@
-import { initialize } from "@bloomreach/spa-sdk";
-import axios from "axios";
 import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { map } from "lit/directives/map.js";
 import style from "styles/header.scss?inline";
+import { WithBloomreach } from "../../mixins/withBloomreach";
 import {
   analyticsNavigationAction,
   analyticsSearch,
-  generateMenuCollection,
   getUrlFromLinkCompound,
 } from "../../utils/_analytics";
 import { isMobileDevice, isTablet } from "../../utils/shared";
-import { WithBloomreach } from "../../mixins/withBloomreach";
 
 export interface StudsHeaderProps {
   gtag?: string;
@@ -72,25 +69,6 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     }
   }
 
-  /**
-   *
-   * @param collection Array of Bloomreach Menu
-   * @returns
-   */
-  private generateMenuCollection(collection: any[]): Menu[] | [] {
-    if (collection)
-      return collection.map((item) => {
-        return {
-          name: item.getName(),
-          link: item.getLink(),
-          depth: item.getDepth(),
-          selected: item.isSelected(),
-          children: generateMenuCollection(item.getChildren()),
-        };
-      });
-
-    return [];
-  }
   /**
    * Render GTAG
    * @returns Google Tag Script with GTAG
@@ -440,11 +418,13 @@ export class StudsHeader extends WithBloomreach(LitElement) {
    */
   private get renderMenuItems() {
     if (this._page) {
+      // @ts-ignore
       const { menu: menuRef } = this._page
-        .getComponent("header", "menu")
-        .getModels();
+        ?.getComponent("header", "menu")
+        ?.getModels();
       // Receive Content from Menu
       const menu = this._page.getContent(menuRef);
+      // @ts-ignore
       const _menuItems = menu.getItems();
       const menuItems = this.generateMenuCollection(_menuItems);
       return html`<ul
