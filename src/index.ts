@@ -28,6 +28,7 @@ import { StudsRadioGroup } from "./components/inputs/radio-group";
 import { StudsCheckbox } from "./components/inputs/checkbox";
 import { StudsResizer } from "./components/display/resizer";
 import { StudsResizerPane } from "./components/display/resizer-pane";
+import { StudsTextarea } from "./components/inputs/textarea";
 
 // Export Components
 export {
@@ -58,6 +59,7 @@ export {
   StudsCheckbox,
   StudsResizer,
   StudsResizerPane,
+  StudsTextarea,
 };
 
 declare global {
@@ -89,5 +91,6 @@ declare global {
     "studs-checkbox": StudsCheckbox;
     "studs-resizer": StudsResizer;
     "studs-resizer-pane": StudsResizerPane;
+    "studs-textarea": StudsTextarea;
   }
 }

@@ -18,6 +18,9 @@
     margin-bottom: 0.25rem;
     display: block;
   }
+  .required-asterisk {
+    color: var(--error-color);
+  }
   .outlined {
     border: 1px solid var(--border-color);
   }
@@ -38,4 +41,8 @@
     margin: 5px;
     color: #df4907;
   }
+}
+
+.textareaComponent {
+  @include textareaComponent;
 }
