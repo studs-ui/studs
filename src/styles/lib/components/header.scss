@@ -1,7 +1,5 @@
 @use "../utilities/" as *;
 
-$screen-wrapper: 1472px;
-
 :host {
   --tr-s: 0.1s;
   --tr-m: 0.3s;
@@ -11,6 +9,7 @@ $screen-wrapper: 1472px;
   --wh: calc(var(--navHeight) / 2);
   --tl: calc(var(--navHeight) / 4);
   --placeholder-color: var(--text-medium);
+  padding-top: calc(var(--navHeight) + 1.5rem);
 }
 
 @mixin animated-arrows {

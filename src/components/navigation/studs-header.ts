@@ -13,6 +13,7 @@ import {
   getUrlFromLinkCompound,
 } from "../../utils/_analytics";
 import { isMobileDevice, isTablet } from "../../utils/shared";
+import { WithBloomreach } from "../../mixins/withBloomreach";
 
 export interface StudsHeaderProps {
   gtag?: string;
@@ -30,7 +31,7 @@ interface Menu {
 }
 
 @customElement("studs-header")
-export class StudsHeader extends LitElement {
+export class StudsHeader extends WithBloomreach(LitElement) {
   @property({ type: String }) gtag?: StudsHeaderProps["gtag"];
 
   static styles = unsafeCSS(style);
@@ -48,24 +49,8 @@ export class StudsHeader extends LitElement {
   @state() private _activeMenu?: string;
   @state() private _big: boolean = true;
 
-  @state() private _page?: any;
-  @state() private _doc?: any;
-
-  private async init() {
-    this._page = await initialize({
-      path: `https://www.strongtie.com`,
-      endpoint:
-        "https://strongtie.bloomreach.io/delivery/site/v1/channels/sst-site/pages",
-      httpClient: axios,
-    });
-
-    const { document: docRef } = this._page.getComponent("header").getModels();
-    this._doc = this._page.getContent(docRef);
-  }
-
   connectedCallback(): void {
     super.connectedCallback();
-    this.init();
 
     document.addEventListener("scroll", this.onWindowScroll);
     window.addEventListener("resize", this.onWindowResize);
@@ -76,6 +61,15 @@ export class StudsHeader extends LitElement {
 
     document.removeEventListener("scroll", this.onWindowScroll);
     window.removeEventListener("resize", this.onWindowResize);
+  }
+
+  private get _doc() {
+    if (this._page) {
+      const { document: docRef }: any = this._page
+        ?.getComponent("header")
+        ?.getModels();
+      return this._page.getContent(docRef);
+    }
   }
 
   /**

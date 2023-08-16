@@ -29,6 +29,7 @@ import { StudsCheckbox } from "./components/inputs/checkbox";
 import { StudsHeader } from "./components/navigation/studs-header";
 import { StudsResizer } from "./components/display/resizer";
 import { StudsResizerPane } from "./components/display/resizer-pane";
+import { StudsFooter } from "./components/navigation/studs-footer";
 
 // Export Components
 export {
@@ -60,6 +61,7 @@ export {
   StudsHeader,
   StudsResizer,
   StudsResizerPane,
+  StudsFooter,
 };
 
 declare global {
@@ -92,5 +94,6 @@ declare global {
     "studs-header": StudsHeader;
     "studs-resizer": StudsResizer;
     "studs-resizer-pane": StudsResizerPane;
+    "studs-footer": StudsFooter;
   }
 }
