@@ -18,10 +18,13 @@
     margin-bottom: 0.25rem;
     display: block;
   }
-  .outlined {
+  .-required {
+    color: var(--error-color);
+  }
+  .-outlined {
     border: 1px solid var(--border-color);
   }
-  .filled {
+  .-filled {
     border: 1px solid var(--background);
     background-color: var(--background);
   }
@@ -38,4 +41,8 @@
     margin: 5px;
     color: #df4907;
   }
+}
+
+.textareaComponent {
+  @include textareaComponent;
 }
