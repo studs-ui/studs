@@ -17,15 +17,19 @@
     color: var(--text-color);
 
     &.-small {
-      font-size: 1rem;
+      --font-size: #{$font-small};
     }
 
     &.-medium {
-      font-size: 1.5rem;
+      --font-size: #{$font-default};
     }
 
     &.-large {
-      font-size: 2rem;
+      --font-size: #{$font-large};
+    }
+
+    &.-extraLarge {
+      --font-size: #{$font-xl};
     }
 
     &.-disabled {
@@ -80,6 +84,6 @@
     &::before {
       --text-color: var(--disabled);
       --color: var(--disabled);
-  }
+    }
   }
 }
