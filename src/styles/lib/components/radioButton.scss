@@ -54,18 +54,27 @@
       @include icon-mask(var(--symbol), var(--color));
 
     }
+
+    &:hover::before {
+      background-color: var(--primary);
+    }
   }
 
-  [type=radio]:focus-visible +  label::after {
-    content:'';
-    position: absolute;
-    left: -1.25em;
-    width: 1em;
-    height: 1em;
-    transform: scale(1.05) translateY(-.05em) translateX(-.05em);
+  [type=radio]:focus-visible,
+  [type=radio]:focus,
+  [type=radio]:hover:not(:disabled) {
 
-    border: 1px solid var(--primary);
-    border-radius: 50%;
+    + label::after {
+      content: '';
+      position: absolute;
+      left: -1.25em;
+      width: 1em;
+      height: 1em;
+      transform: scale(1.05) translateY(-.05em) translateX(-.05em);
+
+      border: 1px solid var(--primary);
+      border-radius: 50%;
+    }
   }
 
   [type=radio]:checked +  label::before {
