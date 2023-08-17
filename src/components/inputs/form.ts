@@ -13,7 +13,7 @@ export class StudsForm extends LitElement {
     this.dispatchEvent(
       new CustomEvent("submit", {
         bubbles: true,
-        detail: this.form.value,
+        detail: { value: this.form.value, form: this.formElement },
         composed: true,
       })
     );

@@ -1,8 +1,8 @@
-import { consume } from "@lit-labs/context";
-import { LitElement, PropertyValueMap, nothing } from "lit";
-import { property, query } from "lit/decorators.js";
-import { formContext } from "../components/inputs/form";
-import { FormController } from "../controllers/formController";
+import { consume } from '@lit-labs/context';
+import { LitElement, nothing } from 'lit';
+import { property, state } from 'lit/decorators.js';
+import { formContext } from '../components/inputs/form';
+import { FormController } from '../controllers/formController';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -21,12 +21,12 @@ export declare class WithFormInterface {
 
 export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
   class WithFormClass extends superClass {
-    @property({ type: String }) name?: WithFormInterface["name"];
-    @property({ type: String }) label?: WithFormInterface["label"] = "";
-    @property({ type: String }) placeholder?: WithFormInterface["placeholder"];
-    @property({ type: Boolean }) required?: WithFormInterface["required"];
-    @property({ type: Boolean }) error: WithFormInterface["error"] = false;
-    @property({ type: Boolean }) disabled: WithFormInterface["disabled"] =
+    @property({ type: String }) name?: WithFormInterface['name'];
+    @property({ type: String }) label?: WithFormInterface['label'] = '';
+    @property({ type: String }) placeholder?: WithFormInterface['placeholder'];
+    @property({ type: Boolean }) required?: WithFormInterface['required'];
+    @property({ type: Boolean }) error: WithFormInterface['error'] = false;
+    @property({ type: Boolean }) disabled: WithFormInterface['disabled'] =
       false;
     // @ts-ignore
     @consume({ context: formContext }) public formController?;
@@ -46,25 +46,25 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     connectedCallback(): void {
       super.connectedCallback();
       if (this.formController) {
-        this.addEventListener("input", this.onInputFormChange);
+        this.addEventListener('input', this.onInputFormChange);
       }
     }
 
     disconnectedCallback(): void {
       super.disconnectedCallback();
       if (this.formController) {
-        this.removeEventListener("input", this.onInputFormChange);
+        this.removeEventListener('input', this.onInputFormChange);
       }
     }
 
     get getName() {
-      return this.name || this.label || "";
+      return this.name || this.label || '';
     }
 
     get control() {
       if (this.formController) {
         this.formController.addControl({
-          [this.getName]: new FormController(this, ""),
+          [this.getName]: new FormController(this, ''),
         });
         return this.formController.registerControl(this.getName);
       } else {
@@ -75,14 +75,14 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     protected dispatch(detail: object) {
       if (detail !== undefined) {
         this.dispatchEvent(
-          new CustomEvent("change", {
+          new CustomEvent('change', {
             detail,
             bubbles: true,
             composed: true,
           })
         );
       } else {
-        throw new Error("No detail provided to onChange Event");
+        throw new Error('No detail provided to onChange Event');
       }
     }
   }
