@@ -1,19 +1,14 @@
 @use "../utilities" as *;
+@use "../themes" as *;
 
-// @TODO: convert icon to inlined SVG  --Jp
-
-
-@mixin radioButton {
-
-  input[type=radio] {
+.radioButton {
+  [type=radio] {
     opacity: 0;
     width: 0;
     height: 0;
   }
 
   label {
-    --radioColor: var(--checkbox-color);
-
     display: flex;
     align-items: center;
     gap: .5rem;
@@ -37,22 +32,62 @@
     }
 
     &.-disabled {
-        --buttonColor : var(--checkbox-disabled);
+      --text-color: var(--disabled);
+      --color: var(--disabled);
     }
 
     &::before {
+      --unchecked: url("/public/assets/icons/material-icons-master/svg/radio_button_unchecked/baseline.svg");
+      --checked: url("/public/assets/icons/material-icons-master/svg/radio_button_checked/baseline.svg");
+      --symbol: var(--unchecked);
+      --color: var(--text-dark);
+
       transform: translateY(-.05em);
-      font-family: $font-material-outline;
-      color: var(--radioColor);
-      content: '\e836'; //radio button
+      cursor: pointer;
+
+      content:'';
+      width: 1em;
+      aspect-ratio: 1 / 1;
+      position: absolute;
+      left: -1.25em;
+
+      @include icon-mask(var(--symbol), var(--color));
+
+    }
+
+    &:hover::before {
+      background-color: var(--primary);
     }
   }
 
-  input[type=radio]:focus-visible +  label::before {--radioColor: var(--link-focus)}
-  input[type=radio]:checked + label::before {content: '\e837' }
+  [type=radio]:focus-visible,
+  [type=radio]:focus,
+  [type=radio]:hover:not(:disabled) {
 
-}
+    + label::after {
+      content: '';
+      position: absolute;
+      left: -1.25em;
+      width: 1em;
+      height: 1em;
+      transform: scale(1.05) translateY(-.05em) translateX(-.05em);
 
-.radioButton {
-  @include radioButton;
+      border: 1px solid var(--primary);
+      border-radius: 50%;
+    }
+  }
+
+  [type=radio]:checked +  label::before {
+    --symbol: var(--checked);
+    --color: var(--primary);
+  }
+
+  [type=radio]:disabled + label {
+    &,
+    &::before {
+      --text-color: var(--disabled);
+      --color: var(--disabled);
+    }
+  }
+
 }
