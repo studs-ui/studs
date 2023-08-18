@@ -1,12 +1,11 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-import 'wc';
-import {
-  createErrorToast,
-  createStandardToast,
-  createSuccessToast,
-  createWarningToast,
-} from 'wc/functions/toaster';
+// import {
+//   createErrorToast,
+//   createStandardToast,
+//   createSuccessToast,
+//   createWarningToast,
+// } from 'wc/functions/toaster';
 
 @customElement('presentational-page')
 export class PresentationalPage extends LitElement {
@@ -2801,16 +2800,16 @@ export class PresentationalPage extends LitElement {
               <studs-toast open static heading="Long Item" type="error" message="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"><studs-button buttontype="primary" size="small">Click me</studs-button></studs-toast>
             </presentational-component>
             <presentational-component>
-              <studs-button @click=${createStandardToast}>Create Standard Toast</studs-button>
+              <!-- <studs-button @click=${createStandardToast}>Create Standard Toast</studs-button> -->
             </presentational-component>
             <presentational-component>
-              <studs-button @click=${createErrorToast}>Create Error Toast</studs-button>
+              <!-- <studs-button @click=${createErrorToast}>Create Error Toast</studs-button> -->
             </presentational-component>
             <presentational-component>
-              <studs-button @click=${createWarningToast}>Create Warning Toast</studs-button>
+              <!-- <studs-button @click=${createWarningToast}>Create Warning Toast</studs-button> -->
             </presentational-component>
             <presentational-component>
-              <studs-button @click=${createSuccessToast}>Create Success Toast</studs-button>
+              <!-- <studs-button @click=${createSuccessToast}>Create Success Toast</studs-button> -->
             </presentational-component>
           </div>
         </div>

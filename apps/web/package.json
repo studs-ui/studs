@@ -2,12 +2,7 @@
   "name": "web",
   "private": false,
   "type": "module",
-  "main": "dist/studs-lit.js",
-  "module": "dist/studs-lit.js",
-  "style": "dist/studs-lit.css",
-  "files": [
-    "dist"
-  ],
+  "main": "src/index.ts",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

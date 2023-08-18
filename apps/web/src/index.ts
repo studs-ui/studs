@@ -1,4 +1,5 @@
 // Import Components
+import 'wc';
 import { PresentationalCodeblock } from './components/codeblock';
 import { PresentationalComponent } from './components/component';
 import { PresentationalPage } from './components/page';
