@@ -3,7 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import pjson from '../../package.json';
-import style from './styles.scss?inline';
+import style from 'styles/styles.scss?inline';
 
 @customElement('presentational-tabs')
 export class PresentationalTabs extends LitElement {
@@ -37,9 +37,7 @@ export class PresentationalTabs extends LitElement {
 
     return html`<section>
       <div class="tabs -list">
-        <div class="tabs -header">
-          ${pjson.name} <code>${pjson.version}</code>
-        </div>
+        <div class="tabs -header">${pjson.name} <code>1.0.0</code></div>
 
         ${map(this.tabs, (tab) => {
           const tabClasses = {
