@@ -1,0 +1,43 @@
+{
+  "name": "wc",
+  "private": false,
+  "version": "0.0.7",
+  "type": "module",
+  "main": "dist/studs-lit.js",
+  "module": "dist/studs-lit.js",
+  "style": "dist/studs-lit.css",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "tsc",
+    "preview": "vite preview",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@bloomreach/spa-sdk": "^22.0.0",
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@lit-labs/virtualizer": "^2.0.4",
+    "@lit-labs/context": "^0.3.3",
+    "@storybook/addon-essentials": "^7.1.1",
+    "@storybook/addon-links": "^7.1.1",
+    "@storybook/addon-mdx-gfm": "^7.1.1",
+    "@storybook/blocks": "^7.1.1",
+    "@storybook/react-vite": "^7.1.1",
+    "@storybook/web-components": "^7.1.1",
+    "@storybook/web-components-vite": "^7.1.1",
+    "lit": "^2.7.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.64.1",
+    "storybook": "^7.1.1",
+    "storybook-addon-performance": "^0.17.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.7"
+  }
+}

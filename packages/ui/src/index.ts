@@ -1,7 +1,6 @@
 // Import Styles
 import './styles/index';
 // Import Components
-import { StudsSplideCarousel } from './components/demos/splide-carousel';
 import { StudsButton } from './components/display/button';
 import { StudsButtonGroup } from './components/display/buttonGroup';
 import { StudsCarousel } from './components/display/carousel';
@@ -34,7 +33,6 @@ import { StudsTextarea } from './components/inputs/textarea';
 
 // Export Components
 export {
-  StudsSplideCarousel,
   StudsButton,
   StudsButtonGroup,
   StudsCarousel,
@@ -74,7 +72,6 @@ declare global {
     'studs-icon': StudsIcon;
     'studs-button-group': StudsButtonGroup;
     'studs-carousel': StudsCarousel;
-    'studs-splide-carousel': StudsSplideCarousel;
     'studs-table': StudsTable;
     'studs-grid': StudsGrid;
     'studs-modal': StudsModal;
