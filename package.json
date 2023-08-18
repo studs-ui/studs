@@ -6,6 +6,7 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "storybook": "turbo run storybook",
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
     "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
   },
