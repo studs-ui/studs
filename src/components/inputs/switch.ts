@@ -3,6 +3,8 @@ import { customElement, property } from "lit/decorators.js";
 import style from "styles/switch.scss?inline";
 import { WithForm, WithFormInterface } from "../../mixins/withForm";
 import { ifDefined } from "lit/directives/if-defined.js";
+import { generateUniqueId } from "../../utils/shared";
+
 
 export interface SwitchProps extends WithFormInterface {
   checked: boolean;
@@ -21,21 +23,28 @@ export class StudsSwitch extends WithForm(LitElement) {
   labelPosition: SwitchProps["labelPosition"] = "end";
   @property({ type: String }) size: SwitchProps["size"] = "medium";
 
+  private inputId = generateUniqueId("checkbox");
+
   render() {
     return html`
-      <div class="switch ${this.labelPosition}">
-        <label class="switch-label ${this.size}">
-          <input
-            type="checkbox"
-            name=${ifDefined(this.name)}
-            ?checked=${this.checked}
-            ?disabled=${this.disabled}
-            @change=${this.onChange}
-            ${this.control}
-          />
-          <span class="slider"></span>
+      <div class="switch -${this.labelPosition} -${this.size}">
+        <input
+          type="checkbox"
+          id="${this.inputId}"
+          name=${ifDefined(this.name)}
+          ?checked=${this.checked}
+          ?disabled=${this.disabled}
+          @change=${this.onChange}
+          ${this.control}
+        />
+
+        <label for="${this.inputId}" class="">
+          <div class='wrapper'>
+            <span class="slider"></span>
+            <span class="value">Value</span>
+          </div>
+          ${this.label}
         </label>
-        <span>${this.label}</span>
       </div>
     `;
   }
