@@ -20,7 +20,7 @@ importers:
 
   apps/web:
     dependencies:
-      wc:
+      '@studs/ui':
         specifier: workspace:*
         version: link:../../packages/ui
     devDependencies:

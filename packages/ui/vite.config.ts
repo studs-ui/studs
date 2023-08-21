@@ -1,21 +1,31 @@
 // vite.config.js
-import { defineConfig } from "vite";
+import { resolve } from 'path';
+import { defineConfig } from 'vite';
 
 export default defineConfig({
   build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: "studs-lit.js",
-        assetFileNames: "studs-lit.css",
-        chunkFileNames: "chunk.js",
-        manualChunks: undefined,
-      },
+    lib: {
+      // Could also be a dictionary or array of multiple entry points.
+      entry: resolve(__dirname, 'src/index.ts'),
+      name: 'StudsUI',
+      fileName: 'index',
+      // Change this to the formats you want to support.
+      // Don't forgot to update your package.json as well.
+      formats: ['es', 'cjs'],
     },
+    // rollupOptions: {
+    //   output: {
+    //     entryFileNames: "studs-lit.js",
+    //     assetFileNames: "studs-lit.css",
+    //     chunkFileNames: "chunk.js",
+    //     manualChunks: undefined,
+    //   },
+    // },
   },
   resolve: {
     alias: {
-      "@": "/src",
-      styles: "/src/styles/lib/components",
+      '@': '/src',
+      styles: '/src/styles/lib/components',
     },
   },
 });

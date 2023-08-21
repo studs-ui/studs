@@ -3200,7 +3200,7 @@ export class PresentationalPage extends LitElement {
 }
 
 declare global {
-  interface HTMLElementTagNameMap {
-    'presentational-page': PresentationalPage;
-  }
+    interface HTMLElementTagNameMap {
+      'presentational-page': PresentationalPage;
+    }
 }

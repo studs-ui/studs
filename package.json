@@ -3,9 +3,10 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "turbo run clean && rm -rf node_modules",
     "storybook": "turbo run storybook",
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
     "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"

@@ -1,6 +1,5 @@
 import { LitElement, html } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import 'wc';
 
 @customElement('presentational-usage')
 export class PresentationalUsage extends LitElement {

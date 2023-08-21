@@ -1,5 +1,5 @@
 // Import Components
-import 'wc';
+import '@studs/ui';
 import { PresentationalCodeblock } from './components/codeblock';
 import { PresentationalComponent } from './components/component';
 import { PresentationalPage } from './components/page';

@@ -1,13 +1,26 @@
 {
-  "name": "wc",
-  "private": false,
+  "name": "@studs/ui",
   "version": "0.0.7",
   "type": "module",
-  "main": "src/index.ts",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    ".": {
+      "development": "./src/index.js",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "test"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "tsc",
+    "test": "vitest",
     "preview": "vite preview",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
