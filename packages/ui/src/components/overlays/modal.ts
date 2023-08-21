@@ -4,15 +4,15 @@ import {
   TemplateResult,
   html,
   unsafeCSS,
-} from "lit";
+} from 'lit';
 import {
   customElement,
   property,
   queryAssignedElements,
   state,
-} from "lit/decorators.js";
+} from 'lit/decorators.js';
 import style from '../../styles/lib/components/modals.scss?inline';
-import { classMap } from "lit/directives/class-map.js";
+import { classMap } from 'lit/directives/class-map.js';
 
 export interface ModalProps {
   open: boolean;
@@ -20,23 +20,23 @@ export interface ModalProps {
   children?: TemplateResult | HTMLElement | string;
 }
 
-@customElement("studs-modal")
+@customElement('studs-modal')
 export class StudsModal extends LitElement {
-  @property({ type: String }) id: string = "modal";
-  @property({ type: Boolean }) open: ModalProps["open"] = false;
+  @property({ type: String }) id: string = 'modal';
+  @property({ type: Boolean }) open: ModalProps['open'] = false;
   @property({ type: Boolean })
-  closeOnOverlayClick: ModalProps["closeOnOverlayClick"] = true;
+  closeOnOverlayClick: ModalProps['closeOnOverlayClick'] = true;
 
   @state() private _hidden: boolean = !this.open;
 
-  @queryAssignedElements({ slot: "toggle" }) toggle!: HTMLElement[];
+  @queryAssignedElements({ slot: 'toggle' }) toggle!: HTMLElement[];
 
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     const toggle = this.toggle[0];
 
-    toggle.addEventListener("click", () => {
+    toggle.addEventListener('click', () => {
       this._hidden = !this._hidden;
       this.open = !this.open;
     });
@@ -47,8 +47,8 @@ export class StudsModal extends LitElement {
   render() {
     const classes = {
       modal: true,
-      "-show": this.open,
-      "-hide": !this.open,
+      '-show': this.open,
+      '-hide': !this.open,
     };
 
     return html`
@@ -98,7 +98,7 @@ export class StudsModal extends LitElement {
   }
 
   onOverlayClose(event: any) {
-    if (event.target?.classList?.contains("-overlay")) {
+    if (event.target?.classList?.contains('-overlay')) {
       this.onClose();
     }
   }

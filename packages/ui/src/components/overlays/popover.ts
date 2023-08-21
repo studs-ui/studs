@@ -1,19 +1,19 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 import style from '../../styles/lib/components/popover.scss?inline';
-import { classMap } from "lit/directives/class-map.js";
+import { classMap } from 'lit/directives/class-map.js';
 
 export interface PopoverProps {
-  direction: "top" | "bottom" | "left" | "right";
-  arrowPosition: "start" | "center" | "end";
+  direction: 'top' | 'bottom' | 'left' | 'right';
+  arrowPosition: 'start' | 'center' | 'end';
   children?: TemplateResult | HTMLElement | string;
 }
 
-@customElement("studs-popover")
+@customElement('studs-popover')
 export class StudsPopover extends LitElement {
-  @property({ type: String }) direction: PopoverProps["direction"] = "bottom";
-  @property({ type: String }) arrowPosition: PopoverProps["arrowPosition"] =
-    "center";
+  @property({ type: String }) direction: PopoverProps['direction'] = 'bottom';
+  @property({ type: String }) arrowPosition: PopoverProps['arrowPosition'] =
+    'center';
   //   Do these open onclick, or stay open on hover if persistant?
   @state() private _open: boolean = false;
   @state() private _hidden: boolean = !this._open;
@@ -23,8 +23,8 @@ export class StudsPopover extends LitElement {
   render() {
     const containerClasses = {
       popover: true,
-      "-container": true,
-      "-show": this._open,
+      '-container': true,
+      '-show': this._open,
       [`-${this.direction}`]: true,
       [`-${this.arrowPosition}Arrow`]: true,
     };

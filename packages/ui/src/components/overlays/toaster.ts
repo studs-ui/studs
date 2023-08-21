@@ -1,13 +1,13 @@
-import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
-import { map } from "lit/directives/map.js";
+import { LitElement, html, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { map } from 'lit/directives/map.js';
 import style from '../../styles/lib/components/toaster.scss?inline';
-import { ToastProps } from "./toast";
-import { classMap } from "lit/directives/class-map.js";
+import { ToastProps } from './toast';
+import { classMap } from 'lit/directives/class-map.js';
 
-@customElement("studs-toaster")
+@customElement('studs-toaster')
 export class StudsToaster extends LitElement {
-  @property({ type: String }) position: ToastProps["position"] = "bottom-right";
+  @property({ type: String }) position: ToastProps['position'] = 'bottom-right';
 
   @state() toasts: Array<any> = [];
 
@@ -28,7 +28,7 @@ export class StudsToaster extends LitElement {
         return html`<studs-toast
           static
           open
-          type=${toast?.type || "info"}
+          type=${toast?.type || 'info'}
           duration=${toast?.duration || 3000}
           ?closeable=${toast?.closeable || true}
           heading=${toast?.heading}

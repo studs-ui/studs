@@ -1,11 +1,11 @@
-import { LitElement, PropertyValueMap, html, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
+import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import style from '../../styles/lib/components/toasts.scss?inline';
 
 export interface ToastProps {
-  type: "info" | "success" | "warning" | "error";
-  position: "top-left" | "top-right" | "bottom-left" | "bottom-right";
+  type: 'info' | 'success' | 'warning' | 'error';
+  position: 'top-left' | 'top-right' | 'bottom-left' | 'bottom-right';
   duration?: number;
   onActionClick?: () => void;
   closeable: boolean;
@@ -21,22 +21,22 @@ export interface ToastElementProps extends ToastProps {
   reverse: boolean;
 }
 
-@customElement("studs-toast")
+@customElement('studs-toast')
 export class StudsToast extends LitElement {
-  @property({ type: Boolean }) static: ToastElementProps["static"] = false;
-  @property({ type: Boolean }) open: ToastElementProps["open"] = false;
-  @property({ type: String }) type: ToastElementProps["type"] = "info";
-  @property({ type: String }) position: ToastElementProps["position"] =
-    "bottom-right";
-  @property({ type: String }) duration?: ToastElementProps["duration"];
+  @property({ type: Boolean }) static: ToastElementProps['static'] = false;
+  @property({ type: Boolean }) open: ToastElementProps['open'] = false;
+  @property({ type: String }) type: ToastElementProps['type'] = 'info';
+  @property({ type: String }) position: ToastElementProps['position'] =
+    'bottom-right';
+  @property({ type: String }) duration?: ToastElementProps['duration'];
   @property({ type: Function })
-  onActionClick?: ToastElementProps["onActionClick"];
-  @property({ type: Boolean }) closeable: ToastElementProps["closeable"] =
+  onActionClick?: ToastElementProps['onActionClick'];
+  @property({ type: Boolean }) closeable: ToastElementProps['closeable'] =
     false;
   //   @property({ type: String }) title: ToastProps["title"];
-  @property({ type: String }) heading: ToastElementProps["heading"];
-  @property({ type: String }) message: ToastElementProps["message"];
-  @property({ type: String }) action: ToastElementProps["action"];
+  @property({ type: String }) heading: ToastElementProps['heading'];
+  @property({ type: String }) message: ToastElementProps['message'];
+  @property({ type: String }) action: ToastElementProps['action'];
 
   get timeout() {
     if (this.duration) {
@@ -53,7 +53,7 @@ export class StudsToast extends LitElement {
   renderStatusIcon() {
     if (this.type) {
       switch (this.type) {
-        case "info":
+        case 'info':
           return html` <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -72,7 +72,7 @@ export class StudsToast extends LitElement {
               fill="#0043CE"
             />
           </svg>`;
-        case "success":
+        case 'success':
           return html`<svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -91,7 +91,7 @@ export class StudsToast extends LitElement {
               fill="#24A148"
             />
           </svg>`;
-        case "warning":
+        case 'warning':
           return html`<svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -110,7 +110,7 @@ export class StudsToast extends LitElement {
               fill="#F1C21B"
             />
           </svg>`;
-        case "error":
+        case 'error':
           return html`<svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -162,18 +162,18 @@ export class StudsToast extends LitElement {
   render() {
     const classes = {
       toast: true,
-      "-static": this.static,
-      "-open": this.open,
+      '-static': this.static,
+      '-open': this.open,
       [`-${this.type}`]: true,
       [`-${this.position}`]: this.static ? false : true,
-      "-row": (this.message && this.message?.length < 20) || false,
+      '-row': (this.message && this.message?.length < 20) || false,
     };
 
     return html`<div class=${classMap(classes)} aria-hidden=${!this.open}>
       ${this.renderStatusIcon()}
       <div>
-        ${this.heading ? html`<strong>${this.heading}</strong>` : ""}
-        ${this.message ? html`<p>${this.message}</p>` : ""}
+        ${this.heading ? html`<strong>${this.heading}</strong>` : ''}
+        ${this.message ? html`<p>${this.message}</p>` : ''}
       </div>
       <slot></slot>
       ${this.action
@@ -182,7 +182,7 @@ export class StudsToast extends LitElement {
               >${this.action}</studs-button
             >
           </div>`
-        : ""}
+        : ''}
       ${this.closeable
         ? html`<studs-button
             buttontype="icon"
@@ -192,7 +192,7 @@ export class StudsToast extends LitElement {
         </svg>`}
             @click=${this.onClose}
           ></studs-button>`
-        : ""}
+        : ''}
     </div>`;
   }
 

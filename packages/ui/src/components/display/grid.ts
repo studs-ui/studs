@@ -1,15 +1,15 @@
-import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { map } from "lit/directives/map.js";
+import { LitElement, html, unsafeCSS } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { map } from 'lit/directives/map.js';
 import tableStyle from '../../styles/lib/components/table.scss?inline';
 import paginationStyle from '../../styles/lib/demo/pagination.scss?inline';
 import {
   VirtualizerHostElement,
   virtualize,
   virtualizerRef,
-} from "@lit-labs/virtualizer/virtualize.js";
-import { repeat } from "lit/directives/repeat.js";
+} from '@lit-labs/virtualizer/virtualize.js';
+import { repeat } from 'lit/directives/repeat.js';
 
 export interface GridProps {
   wrapperProps?: object;
@@ -38,38 +38,38 @@ interface FilteredColumns {
   value: string;
 }
 
-@customElement("studs-grid")
+@customElement('studs-grid')
 export class StudsGrid extends LitElement {
   // Table Properties
-  @property({ type: Object }) wrapperProps: GridProps["wrapperProps"] = {};
-  @property({ type: String }) tableCaption?: GridProps["tableCaption"];
-  @property({ type: Number }) pageSize: GridProps["pageSize"] = 10;
+  @property({ type: Object }) wrapperProps: GridProps['wrapperProps'] = {};
+  @property({ type: String }) tableCaption?: GridProps['tableCaption'];
+  @property({ type: Number }) pageSize: GridProps['pageSize'] = 10;
   @property({ type: Array })
-  itemsPerPageSelector?: GridProps["itemsPerPageSelector"] = [10, 25, 50, 100];
-  @property({ type: Boolean }) showBorders: GridProps["showBorders"] = true;
-  @property({ type: Boolean }) enableFiltering: GridProps["enableFiltering"] =
+  itemsPerPageSelector?: GridProps['itemsPerPageSelector'] = [10, 25, 50, 100];
+  @property({ type: Boolean }) showBorders: GridProps['showBorders'] = true;
+  @property({ type: Boolean }) enableFiltering: GridProps['enableFiltering'] =
     true;
   @property({ type: Boolean })
-  enableColumnResizing: GridProps["enableColumnResizing"] = true;
+  enableColumnResizing: GridProps['enableColumnResizing'] = true;
   @property({ type: Boolean })
-  enableColumnReordering: GridProps["enableColumnReordering"] = true;
+  enableColumnReordering: GridProps['enableColumnReordering'] = true;
   // @property({ type: Boolean }) enableColumnHiding: boolean = true;
   @property({ type: Boolean })
-  enableInfiniteScroll: GridProps["enableInfiniteScroll"] = true;
-  @property({ type: Boolean }) enablePagination: GridProps["enablePagination"] =
+  enableInfiniteScroll: GridProps['enableInfiniteScroll'] = true;
+  @property({ type: Boolean }) enablePagination: GridProps['enablePagination'] =
     true;
   @property({ type: Boolean })
-  enableGlobalSearch: GridProps["enableGlobalSearch"] = true;
+  enableGlobalSearch: GridProps['enableGlobalSearch'] = true;
   @property({ type: Boolean })
-  enableStickyHeader: GridProps["enableStickyHeader"] = true;
-  @property({ type: Boolean }) enableSorting: GridProps["enableSorting"] = true;
+  enableStickyHeader: GridProps['enableStickyHeader'] = true;
+  @property({ type: Boolean }) enableSorting: GridProps['enableSorting'] = true;
 
-  @property({ type: Array }) columns: GridProps["columns"] = [];
-  @property({ type: Array }) dataSource: GridProps["dataSource"] = [];
-  @property({ type: Array }) sortedColumns: GridProps["sortedColumns"] = [];
-  @property({ type: Boolean }) sortAscending: GridProps["sortAscending"] = true;
+  @property({ type: Array }) columns: GridProps['columns'] = [];
+  @property({ type: Array }) dataSource: GridProps['dataSource'] = [];
+  @property({ type: Array }) sortedColumns: GridProps['sortedColumns'] = [];
+  @property({ type: Boolean }) sortAscending: GridProps['sortAscending'] = true;
 
-  @state() protected _searchTerm: string = "";
+  @state() protected _searchTerm: string = '';
   @state() protected _currentPage: number = 1;
   @state() protected _psuedoCurrentPage: number = this._currentPage;
   @state() protected _filteredColumns: Array<FilteredColumns> = [];
@@ -109,20 +109,20 @@ export class StudsGrid extends LitElement {
         const filteredResults = this._filteredColumns.every((column) => {
           const value = row[column.key];
           switch (column.type) {
-            case "contains":
+            case 'contains':
               return String(value)
                 .toLowerCase()
                 .includes(column.value.toLowerCase());
-            case "greater than":
+            case 'greater than':
               return parseInt(value) > parseInt(column.value);
-            case "less than":
+            case 'less than':
               return parseInt(value) < parseInt(column.value);
-            case "equals":
+            case 'equals':
               if (parseInt(column.value)) {
                 return parseInt(value) === parseInt(column.value);
               }
               return value === column.value;
-            case "not equals":
+            case 'not equals':
               if (parseInt(column.value)) {
                 return parseInt(value) !== parseInt(column.value);
               }
@@ -193,8 +193,8 @@ export class StudsGrid extends LitElement {
   protected renderColumnFilterField(key: string) {
     if (this.enableFiltering) {
       const column = this._filteredColumns.find((column) => column.key === key);
-      const inputValue = column ? column?.value : "";
-      const selectValue = column ? column?.type : "contains";
+      const inputValue = column ? column?.value : '';
+      const selectValue = column ? column?.type : 'contains';
       // TODO : Implement filtering for equals, not equals, greater than, less than, contains
       // const type = "contains";
 
@@ -240,13 +240,13 @@ export class StudsGrid extends LitElement {
             this._draggableColumn === index}
             @dragstart=${(event: DragEvent) => {
               event.stopPropagation();
-              event?.dataTransfer?.setData("type", "column");
+              event?.dataTransfer?.setData('type', 'column');
               // @ts-ignore
-              event?.dataTransfer?.setData("data", index);
+              event?.dataTransfer?.setData('data', index);
             }}
             @drop=${(event: DragEvent) => {
               event.preventDefault();
-              const fromIndex = event?.dataTransfer?.getData("data");
+              const fromIndex = event?.dataTransfer?.getData('data');
               const toIndex = index;
               // @ts-ignore
               if (fromIndex !== toIndex) {
@@ -295,13 +295,13 @@ export class StudsGrid extends LitElement {
               ${this.sortedColumns.includes(column.key) &&
               this.sortOrders[column.key] !== null
                 ? html`<span
-                    >${this.sortOrders[column.key] ? "↑" : "↓"}
+                    >${this.sortOrders[column.key] ? '↑' : '↓'}
                     ${this.sortedColumns?.length > 1
                       ? this.sortedColumns.findIndex((i) => i === column.key) +
                         1
-                      : ""}</span
+                      : ''}</span
                   >`
-                : ""}
+                : ''}
             </p>
             ${this.renderColumnFilterField(column.key)}
             ${this.enableColumnResizing
@@ -311,7 +311,7 @@ export class StudsGrid extends LitElement {
                 >
                   ↔
                 </div>`
-              : ""}
+              : ''}
           </th>
         `;
       });
@@ -333,13 +333,13 @@ export class StudsGrid extends LitElement {
             data-index=${index}
             draggable=${this.enableColumnReordering}
             @dragstart=${(event: DragEvent) => {
-              event?.dataTransfer?.setData("type", "row");
+              event?.dataTransfer?.setData('type', 'row');
               // @ts-ignore
-              event?.dataTransfer?.setData("data", index);
+              event?.dataTransfer?.setData('data', index);
             }}
             @drop=${(event: DragEvent) => {
               event.preventDefault();
-              const fromIndex = event?.dataTransfer?.getData("data");
+              const fromIndex = event?.dataTransfer?.getData('data');
               const toIndex = index;
               // @ts-ignore
               if (fromIndex !== toIndex) {
@@ -407,8 +407,8 @@ export class StudsGrid extends LitElement {
           (page) => html`
             <li
               class="page-item ${this._psuedoCurrentPage === page
-                ? "active"
-                : ""}"
+                ? 'active'
+                : ''}"
             >
               <a
                 class="page-link"
@@ -428,8 +428,8 @@ export class StudsGrid extends LitElement {
           (page) => html`
             <li
               class="page-item ${this._psuedoCurrentPage === page
-                ? "active"
-                : ""}"
+                ? 'active'
+                : ''}"
             >
               <a
                 class="page-link"
@@ -454,8 +454,8 @@ export class StudsGrid extends LitElement {
           <ul class="pagination">
             <li
               class="page-item ${this._psuedoCurrentPage === 1
-                ? "disabled"
-                : ""}"
+                ? 'disabled'
+                : ''}"
             >
               <a
                 class="page-link"
@@ -470,8 +470,8 @@ export class StudsGrid extends LitElement {
             ${this.renderPaginationPages()}
             <li
               class="page-item ${this._psuedoCurrentPage === this.totalPages
-                ? "disabled"
-                : ""}"
+                ? 'disabled'
+                : ''}"
             >
               <a
                 class="page-link"
@@ -491,14 +491,14 @@ export class StudsGrid extends LitElement {
   render() {
     const classes = {
       grid: true,
-      "-virtualized": this.isVirtualizedEnabled,
+      '-virtualized': this.isVirtualizedEnabled,
     };
     const contentClasses = {
       content: true,
-      "-withBorder": this.showBorders,
+      '-withBorder': this.showBorders,
     };
     const theadClasses = {
-      "-sticky": this.enableStickyHeader,
+      '-sticky': this.enableStickyHeader,
     };
 
     return html`
@@ -583,23 +583,23 @@ export class StudsGrid extends LitElement {
     e.stopPropagation();
     this._pressed = e.target;
     this._startX = e.clientX;
-    this._startWidth = e.target.closest("th").offsetWidth;
+    this._startWidth = e.target.closest('th').offsetWidth;
 
-    this.addEventListener("mousemove", this.onMouseMove);
-    this.addEventListener("mouseup", this.onMouseMoveUp);
+    this.addEventListener('mousemove', this.onMouseMove);
+    this.addEventListener('mouseup', this.onMouseMoveUp);
   }
 
   private onMouseMoveUp() {
     this._pressed = undefined;
     this._startWidth = 0;
     this._startX = 0;
-    this.removeEventListener("mousemove", this.onMouseMove);
-    this.removeEventListener("mouseup", this.onMouseMoveUp);
+    this.removeEventListener('mousemove', this.onMouseMove);
+    this.removeEventListener('mouseup', this.onMouseMoveUp);
   }
 
   private onMouseMove(e: any) {
     if (this._pressed) {
-      const th = this._pressed.closest("th");
+      const th = this._pressed.closest('th');
       const delta = e.clientX - this._startX;
       const width = Math.max(this._startWidth + delta, 50);
 
@@ -611,8 +611,8 @@ export class StudsGrid extends LitElement {
   /**
    * 2. Virtualized / Infinite Scroll
    */
-  @query("tbody") tableBodyRef!: VirtualizerHostElement;
-  @query("table") tableRef!: HTMLTableElement;
+  @query('tbody') tableBodyRef!: VirtualizerHostElement;
+  @query('table') tableRef!: HTMLTableElement;
   private _prevScrollDirection: number = 0;
 
   private onTableScroll(e: any) {
@@ -637,9 +637,9 @@ export class StudsGrid extends LitElement {
     const { scrollTop: scrollPosition } = e.target;
     if (scrollPosition % 15 === 0) {
       const scrollDirection =
-        scrollPosition > this._prevScrollDirection ? "down" : "up";
+        scrollPosition > this._prevScrollDirection ? 'down' : 'up';
       const end = this._offset;
-      if (scrollDirection === "down") {
+      if (scrollDirection === 'down') {
         const endOffset =
           end + 50 >= this.data?.length ? this.data?.length : end + 50;
         this._offset = endOffset;
@@ -714,7 +714,7 @@ export class StudsGrid extends LitElement {
    */
 
   private onFilterType(e: InputEvent | any) {
-    const name = e?.target.parentElement?.querySelector("input")?.name;
+    const name = e?.target.parentElement?.querySelector('input')?.name;
     const value = e?.target.value;
     const column = this._filteredColumns.find((column) => column.key === name);
     if (column) {
@@ -728,7 +728,7 @@ export class StudsGrid extends LitElement {
     } else {
       const newData = [
         ...this._filteredColumns,
-        { key: name, type: value, value: "" },
+        { key: name, type: value, value: '' },
       ];
       this._filteredColumns = newData;
     }
@@ -737,7 +737,7 @@ export class StudsGrid extends LitElement {
   private onFilterInput(e: InputEvent | any) {
     const name = e?.target.name;
     const value = e?.target.value;
-    const select = e?.target.parentElement?.querySelector("select")?.value;
+    const select = e?.target.parentElement?.querySelector('select')?.value;
     const column = this._filteredColumns.find((column) => column.key === name);
     if (column) {
       const newData = this._filteredColumns.map((el) => {
@@ -750,7 +750,7 @@ export class StudsGrid extends LitElement {
     } else {
       const newData = [
         ...this._filteredColumns,
-        { key: name, type: "contains", value },
+        { key: name, type: 'contains', value },
       ];
       this._filteredColumns = newData;
     }

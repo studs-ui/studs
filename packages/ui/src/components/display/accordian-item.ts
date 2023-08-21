@@ -1,22 +1,22 @@
-import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
+import { LitElement, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import style from '../../styles/lib/components/accordian.scss?inline';
 
 export interface AccordionItemProps {
   open: boolean;
 }
-@customElement("studs-accordian-item")
+@customElement('studs-accordian-item')
 export class StudsAccordianItem extends LitElement {
-  @property({ type: Boolean, reflect: true }) open: AccordionItemProps["open"] =
+  @property({ type: Boolean, reflect: true }) open: AccordionItemProps['open'] =
     false;
 
   static styles = unsafeCSS(style);
   render() {
     const classes = {
       accordian: true,
-      "-panel": true,
-      "-open": this.open,
+      '-panel': true,
+      '-open': this.open,
     };
     return html`<div class=${classMap(classes)} aria-hidden=${!this.open}>
       <header class="accordian -header">

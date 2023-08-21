@@ -1,4 +1,4 @@
-import { isDocument } from "@bloomreach/spa-sdk";
+import { isDocument } from '@bloomreach/spa-sdk';
 
 export function generateMenuCollection(collection) {
   if (collection)
@@ -15,17 +15,17 @@ export function generateMenuCollection(collection) {
   return [];
 }
 
-export const GTM_ID = "GTM-5RB58N";
+export const GTM_ID = 'GTM-5RB58N';
 
 // Implement Analytics
 const analyticsCheck = () => {
-  return typeof window !== "undefined" && GTM_ID !== undefined && GTM_ID !== "";
+  return typeof window !== 'undefined' && GTM_ID !== undefined && GTM_ID !== '';
 };
 
 export const analyticsForms = (name, action) => {
   if (analyticsCheck()) {
     window.dataLayer?.push({
-      event: "form_action",
+      event: 'form_action',
       form_name: name,
       form_action: action,
     });
@@ -40,7 +40,7 @@ export const analyticsForms = (name, action) => {
 export const analyticsFormErrors = (name, error) => {
   if (analyticsCheck()) {
     window.dataLayer?.push({
-      event: "form_error",
+      event: 'form_error',
       form_name: name,
       form_error: error,
     });
@@ -54,7 +54,7 @@ export const analyticsFormErrors = (name, error) => {
 export const analyticsEmailSumbission = (method) => {
   if (analyticsCheck()) {
     window.dataLayer?.push({
-      event: "email_signup",
+      event: 'email_signup',
       email_submission_method: method,
     });
   }
@@ -68,7 +68,7 @@ export const analyticsEmailSumbission = (method) => {
 export const analyticsSearch = (searchTerm, searchType) => {
   if (analyticsCheck()) {
     window.dataLayer?.push({
-      event: "onsite_search",
+      event: 'onsite_search',
       search_term: searchTerm,
       search_type: searchType,
     });
@@ -82,7 +82,7 @@ export const analyticsSearch = (searchTerm, searchType) => {
 export const analyticsNavigationAction = (linkValue, linkLocation) => {
   if (analyticsCheck()) {
     window.dataLayer?.push({
-      event: "navigation click",
+      event: 'navigation click',
       link_value: linkValue,
       link_location: linkLocation,
     });
@@ -97,10 +97,10 @@ export const analyticsNavigationAction = (linkValue, linkLocation) => {
 export const analyticsSocialMediaFollow = (socialNetwork, exitURL) => {
   if (analyticsCheck()) {
     window.dataLayer?.push({
-      event: "social media follow",
+      event: 'social media follow',
       social_network: socialNetwork,
       exit_link_url: exitURL,
-      property_referral: "true",
+      property_referral: 'true',
     });
   }
 };

@@ -4,51 +4,51 @@ import {
   TemplateResult,
   html,
   unsafeCSS,
-} from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { styleMap } from "lit/directives/style-map.js";
+} from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
 import style from '../../styles/lib/components/resizerPane.scss?inline';
 
 export interface StudsResizerPaneProps {
-  direction?: "horizontal" | "vertical" | string;
+  direction?: 'horizontal' | 'vertical' | string;
   size?: number;
   min?: number;
   max?: number;
   children?: TemplateResult | HTMLElement | string;
 }
 
-@customElement("studs-resizer-pane")
+@customElement('studs-resizer-pane')
 export class StudsResizerPane extends LitElement {
-  @property({ type: String }) direction: StudsResizerPaneProps["direction"];
-  @property({ type: Number }) size?: StudsResizerPaneProps["size"];
-  @property({ type: Number }) min: StudsResizerPaneProps["min"] = 50;
-  @property({ type: Number }) max: StudsResizerPaneProps["max"];
+  @property({ type: String }) direction: StudsResizerPaneProps['direction'];
+  @property({ type: Number }) size?: StudsResizerPaneProps['size'];
+  @property({ type: Number }) min: StudsResizerPaneProps['min'] = 50;
+  @property({ type: Number }) max: StudsResizerPaneProps['max'];
 
   static styles = unsafeCSS(style);
 
-  @query(".pane") pane!: HTMLElement;
+  @query('.pane') pane!: HTMLElement;
 
   connectedCallback(): void {
     super.connectedCallback();
     if (!this.direction)
       this.direction =
-        this.parentElement?.getAttribute("direction") || "horizontal";
+        this.parentElement?.getAttribute('direction') || 'horizontal';
   }
 
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     super.firstUpdated(_changedProperties);
-    if (this.direction === "horizontal") {
-      if (!this.size && !this.classList.contains("-last")) {
+    if (this.direction === 'horizontal') {
+      if (!this.size && !this.classList.contains('-last')) {
         this.size = this.pane.getBoundingClientRect().width;
       }
       if (!this.max) {
         this.max = this.parentElement?.getBoundingClientRect().width;
       }
-    } else if (this.direction === "vertical") {
-      if (!this.size && !this.classList.contains("-last")) {
+    } else if (this.direction === 'vertical') {
+      if (!this.size && !this.classList.contains('-last')) {
         this.size = this.pane.getBoundingClientRect().height;
       }
       if (!this.max) {
@@ -61,10 +61,10 @@ export class StudsResizerPane extends LitElement {
     const paneClasses = {
       pane: true,
       [`-${this.direction}`]: true,
-      "-disabled": this.classList.contains("-last"),
+      '-disabled': this.classList.contains('-last'),
     };
     const stylemap = {
-      [this.direction === "horizontal" ? "width" : "height"]: this.size + "px",
+      [this.direction === 'horizontal' ? 'width' : 'height']: this.size + 'px',
     };
     return html`
       <div
@@ -90,10 +90,10 @@ export class StudsResizerPane extends LitElement {
 
   private onMouseMoveDown(e: MouseEvent) {
     this._pressed = true;
-    if (this.direction === "horizontal") {
+    if (this.direction === 'horizontal') {
       this._position = e.clientX;
       this._initialSize =
-        (e.target as HTMLElement)?.closest(".pane")?.getBoundingClientRect()
+        (e.target as HTMLElement)?.closest('.pane')?.getBoundingClientRect()
           .width ||
         this.size ||
         0;
@@ -101,7 +101,7 @@ export class StudsResizerPane extends LitElement {
     } else {
       this._position = e.clientY;
       this._initialSize =
-        (e.target as HTMLElement)?.closest(".pane")?.getBoundingClientRect()
+        (e.target as HTMLElement)?.closest('.pane')?.getBoundingClientRect()
           .height ||
         this.size ||
         0;
@@ -111,9 +111,9 @@ export class StudsResizerPane extends LitElement {
   private _delta: number = 0;
   private onMouseMove(e: MouseEvent) {
     if (this._pressed) {
-      if (this.direction === "horizontal") {
+      if (this.direction === 'horizontal') {
         this._delta = e.clientX - this._position;
-      } else if (this.direction === "vertical") {
+      } else if (this.direction === 'vertical') {
         this._delta = e.clientY - this._position;
       }
 
@@ -127,7 +127,7 @@ export class StudsResizerPane extends LitElement {
       this.size = newSize;
       this.requestUpdate();
       this.dispatchEvent(
-        new CustomEvent("resize", {
+        new CustomEvent('resize', {
           detail: {
             size: this.size,
           },

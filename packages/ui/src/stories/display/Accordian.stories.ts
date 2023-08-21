@@ -1,10 +1,10 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 import { AccordionProps } from '../../components/display/accordian';
 
 const meta = {
-  title: "Studs/Display/Accordian",
-  tags: ["autodocs"],
+  title: 'Studs/Display/Accordian',
+  tags: ['autodocs'],
   render: (args) => html`<studs-accordian
     ?enableHeader=${args.enableHeader}
     ?enableSearch=${args.enableSearch}

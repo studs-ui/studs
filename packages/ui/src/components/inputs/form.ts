@@ -1,17 +1,17 @@
-import { createContext, provide } from "@lit-labs/context";
-import { LitElement, html } from "lit";
-import { customElement, query, queryAssignedElements } from "lit/decorators.js";
+import { createContext, provide } from '@lit-labs/context';
+import { LitElement, html } from 'lit';
+import { customElement, query, queryAssignedElements } from 'lit/decorators.js';
 import { FormGroupController } from '../../controllers/formGroup';
 import { onSubmit } from '../../directives/submit';
 
-export const formContext = createContext<any>("form");
+export const formContext = createContext<any>('form');
 
-@customElement("studs-form")
+@customElement('studs-form')
 export class StudsForm extends LitElement {
-  @query("form") formElement!: HTMLFormElement;
+  @query('form') formElement!: HTMLFormElement;
   onSubmit = () => {
     this.dispatchEvent(
-      new CustomEvent("submit", {
+      new CustomEvent('submit', {
         bubbles: true,
         detail: { value: this.form.value, form: this.formElement },
         composed: true,
@@ -42,21 +42,21 @@ export class StudsForm extends LitElement {
     const reset = this.resetButtons[0];
 
     if (submit) {
-      submit.addEventListener("click", this.onButtonSubmit);
+      submit.addEventListener('click', this.onButtonSubmit);
     }
     if (reset) {
-      reset.addEventListener("click", this.onButtonReset);
+      reset.addEventListener('click', this.onButtonReset);
     }
   }
 
   onButtonSubmit = (e) => {
     e.preventDefault();
-    this.formElement.dispatchEvent(new Event("submit", { bubbles: true }));
+    this.formElement.dispatchEvent(new Event('submit', { bubbles: true }));
   };
   onButtonReset = (e) => {
     e.preventDefault();
     this.form.reset();
     this.formElement.reset();
-    this.formElement.dispatchEvent(new Event("reset", { bubbles: true }));
+    this.formElement.dispatchEvent(new Event('reset', { bubbles: true }));
   };
 }

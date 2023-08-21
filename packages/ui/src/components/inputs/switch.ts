@@ -1,25 +1,25 @@
-import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
+import { LitElement, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
 import style from '../../styles/lib/components/switch.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
-import { ifDefined } from "lit/directives/if-defined.js";
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 export interface SwitchProps extends WithFormInterface {
   checked: boolean;
   disabled: boolean;
   label: string;
-  labelPosition: "start" | "end" | "top" | "bottom";
+  labelPosition: 'start' | 'end' | 'top' | 'bottom';
   name: string;
-  size: "small" | "medium" | "large";
+  size: 'small' | 'medium' | 'large';
 }
-@customElement("studs-switch")
+@customElement('studs-switch')
 export class StudsSwitch extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
 
-  @property({ type: Boolean }) checked: SwitchProps["checked"] = false;
-  @property({ type: String, attribute: "label-position" })
-  labelPosition: SwitchProps["labelPosition"] = "end";
-  @property({ type: String }) size: SwitchProps["size"] = "medium";
+  @property({ type: Boolean }) checked: SwitchProps['checked'] = false;
+  @property({ type: String, attribute: 'label-position' })
+  labelPosition: SwitchProps['labelPosition'] = 'end';
+  @property({ type: String }) size: SwitchProps['size'] = 'medium';
 
   render() {
     return html`

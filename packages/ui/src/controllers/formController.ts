@@ -20,18 +20,18 @@ export class FormController<T = any> {
   }
 
   reset({ emitModelChange = true } = {}) {
-    const select = this.host?.shadowRoot?.querySelector("select");
+    const select = this.host?.shadowRoot?.querySelector('select');
     const checkbox = this.host?.shadowRoot?.querySelector(
-      "input[type=checkbox]"
+      'input[type=checkbox]'
     );
-    const input = this.host?.shadowRoot?.querySelector("input");
+    const input = this.host?.shadowRoot?.querySelector('input');
 
     if (select) {
       (select as HTMLSelectElement).selectedIndex = 0;
     } else if (checkbox) {
       (checkbox as HTMLInputElement).checked = false;
     } else if (input) {
-      (input as HTMLInputElement).value = "";
+      (input as HTMLInputElement).value = '';
     }
 
     const value: T = null as any;

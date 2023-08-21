@@ -1,7 +1,7 @@
-import { Page, initialize } from "@bloomreach/spa-sdk";
-import axios from "axios";
-import { LitElement } from "lit";
-import { state } from "lit/decorators.js";
+import { Page, initialize } from '@bloomreach/spa-sdk';
+import axios from 'axios';
+import { LitElement } from 'lit';
+import { state } from 'lit/decorators.js';
 
 export interface Menu {
   name: string;
@@ -32,13 +32,13 @@ export const WithBloomreach = <T extends Constructor<LitElement>>(
     private async init() {
       const url = new URL(window.location.href);
       const isStrongtie =
-        url.host === "www.strongtie.com" ||
-        url.host === "strongtie.bloomreach.io" ||
-        url.host === "www2.strongtie.com";
+        url.host === 'www.strongtie.com' ||
+        url.host === 'strongtie.bloomreach.io' ||
+        url.host === 'www2.strongtie.com';
       this._page = await initialize({
         path: isStrongtie ? url.toString() : `https://www.strongtie.com`,
         endpoint:
-          "https://strongtie.bloomreach.io/delivery/site/v1/channels/sst-site/pages",
+          'https://strongtie.bloomreach.io/delivery/site/v1/channels/sst-site/pages',
         httpClient: axios,
       });
       this._isPreview = this._page.isPreview();

@@ -1,6 +1,6 @@
-import { ReactiveController, ReactiveControllerHost } from "lit";
-import { FormController } from "./formController";
-import { controlDirective } from "../directives/control";
+import { ReactiveController, ReactiveControllerHost } from 'lit';
+import { FormController } from './formController';
+import { controlDirective } from '../directives/control';
 
 //@ts-ignore
 export class FormGroupController<T extends Record<string, FormController>>

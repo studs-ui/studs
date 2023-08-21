@@ -1,14 +1,14 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
+import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import style from '../../styles/lib/components/chip.scss?inline';
 
 export interface ChipProps {
   icon?: string;
-  iconPosition?: "start" | "end";
-  size: "small" | "medium" | "large";
-  variant: "primary" | "secondary";
-  contentDirection: "horizontal" | "vertical";
+  iconPosition?: 'start' | 'end';
+  size: 'small' | 'medium' | 'large';
+  variant: 'primary' | 'secondary';
+  contentDirection: 'horizontal' | 'vertical';
   disabled: boolean;
   selected: boolean;
   clickable: boolean;
@@ -16,19 +16,19 @@ export interface ChipProps {
   children?: TemplateResult | HTMLElement | string;
 }
 
-@customElement("studs-chip")
+@customElement('studs-chip')
 export class StudsChip extends LitElement {
   // Define Properties
-  @property({ type: String }) icon?: ChipProps["icon"];
-  @property({ type: String }) iconPosition?: ChipProps["iconPosition"];
-  @property({ type: String }) size: ChipProps["size"] = "medium";
-  @property({ type: String }) variant: ChipProps["variant"] = "primary";
-  @property({ type: String }) contentDirection: ChipProps["contentDirection"] =
-    "horizontal";
-  @property({ type: Boolean }) disabled: ChipProps["disabled"] = false;
-  @property({ type: Boolean }) selected: ChipProps["selected"] = false;
-  @property({ type: Boolean }) clickable: ChipProps["clickable"] = false;
-  @property({ type: Boolean }) deletable: ChipProps["deletable"] = false;
+  @property({ type: String }) icon?: ChipProps['icon'];
+  @property({ type: String }) iconPosition?: ChipProps['iconPosition'];
+  @property({ type: String }) size: ChipProps['size'] = 'medium';
+  @property({ type: String }) variant: ChipProps['variant'] = 'primary';
+  @property({ type: String }) contentDirection: ChipProps['contentDirection'] =
+    'horizontal';
+  @property({ type: Boolean }) disabled: ChipProps['disabled'] = false;
+  @property({ type: Boolean }) selected: ChipProps['selected'] = false;
+  @property({ type: Boolean }) clickable: ChipProps['clickable'] = false;
+  @property({ type: Boolean }) deletable: ChipProps['deletable'] = false;
   // @property({ type: Function }) onDelete?: ChipProps["onDelete"];
 
   static styles = unsafeCSS(style);
@@ -45,7 +45,7 @@ export class StudsChip extends LitElement {
   }
 
   onDelete() {
-    const event = new CustomEvent("delete", {
+    const event = new CustomEvent('delete', {
       bubbles: true,
       composed: true,
     });
@@ -66,11 +66,11 @@ export class StudsChip extends LitElement {
       [`-${this.size}`]: this.size,
       [`-${this.contentDirection}`]: this.contentDirection,
       [`-${this.variant}`]: this.variant,
-      "-reverse": this.iconPosition === "end",
-      "-disabled": this.disabled,
-      "-selected": this.selected,
-      "-clickable": this.clickable,
-      "-deletable": this.deletable,
+      '-reverse': this.iconPosition === 'end',
+      '-disabled': this.disabled,
+      '-selected': this.selected,
+      '-clickable': this.clickable,
+      '-deletable': this.deletable,
     };
 
     return html`

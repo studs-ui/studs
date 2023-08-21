@@ -1,7 +1,7 @@
-import { ToastProps } from "../components/overlays/toast";
+import { ToastProps } from '../components/overlays/toast';
 
 export function createToast(data: ToastProps) {
-  const toaster = document.querySelector("studs-toaster");
+  const toaster = document.querySelector('studs-toaster');
   if (toaster) {
     toaster.createToast(data);
   }
@@ -13,7 +13,7 @@ export function createStandardToast() {
     heading: 'Toast',
     message: 'New Toast',
     position: 'top-right', // or 'top-left', 'bottom-left', 'bottom-right'
-    closeable: true
+    closeable: true,
   });
 }
 
@@ -23,7 +23,7 @@ export function createErrorToast() {
     heading: 'Error',
     message: 'You Clicked this Toast',
     position: 'top-right',
-    closeable: true
+    closeable: true,
   });
 }
 
@@ -33,7 +33,7 @@ export function createWarningToast() {
     heading: 'Warning',
     message: 'Dont tell JP Kandy won',
     position: 'top-right',
-    closeable: true
+    closeable: true,
   });
 }
 
@@ -45,6 +45,6 @@ export function createSuccessToast() {
     position: 'top-right',
     closeable: true,
     action: 'celebrate',
-    onActionClick: () => alert('Celebration time!')
+    onActionClick: () => alert('Celebration time!'),
   });
 }

@@ -1,12 +1,12 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
-import { ifDefined } from "lit/directives/if-defined.js";
+import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { TooltipProps } from '../../components/overlays/tooltip';
 import { arrowPosition, direction } from '../../utils/_argTypes';
 
 const meta = {
-  title: "Studs/Overlays/Tooltip",
-  tags: ["autodocs"],
+  title: 'Studs/Overlays/Tooltip',
+  tags: ['autodocs'],
   render: (args) => html`<studs-button buttontype="primary">
     Button
     <studs-tooltip
@@ -30,8 +30,8 @@ type Story = StoryObj<TooltipProps>;
 
 export const Default: Story = {
   args: {
-    direction: "bottom",
-    arrowPosition: "center",
+    direction: 'bottom',
+    arrowPosition: 'center',
     disabled: false,
     open: false,
     children: `
@@ -42,8 +42,8 @@ export const Default: Story = {
 
 export const Disabled: Story = {
   args: {
-    direction: "bottom",
-    arrowPosition: "center",
+    direction: 'bottom',
+    arrowPosition: 'center',
     children: `
       Hello!
     `,
@@ -60,5 +60,3 @@ export const Standalone: Story = {
       >
     </div>`,
 };
-
-

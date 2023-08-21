@@ -1,9 +1,9 @@
-import { AttributePart, noChange } from "lit";
-import { AsyncDirective } from "lit/async-directive.js";
-import { PartInfo, directive } from "lit/directive.js";
-import { FormController } from "../controllers/formController";
-import { FormGroupController } from "../controllers/formGroup";
-import { valueAccessors } from "../accessors";
+import { AttributePart, noChange } from 'lit';
+import { AsyncDirective } from 'lit/async-directive.js';
+import { PartInfo, directive } from 'lit/directive.js';
+import { FormController } from '../controllers/formController';
+import { FormGroupController } from '../controllers/formGroup';
+import { valueAccessors } from '../accessors';
 
 export class ControlDirective extends AsyncDirective {
   private _formController!: FormController;
@@ -29,7 +29,7 @@ export class ControlDirective extends AsyncDirective {
       }
 
       const { viewToModel, modelToView } =
-        valueAccessor ?? valueAccessors["input"];
+        valueAccessor ?? valueAccessors['input'];
 
       //@ts-ignore
       this._formController = group.controls[name];
@@ -56,7 +56,7 @@ export class ControlDirective extends AsyncDirective {
 
   _applyValidators(group: FormGroupController<any>) {
     this._formController.applyValidators();
-    this.host.classList.toggle("invalid", this._formController.invalid);
+    this.host.classList.toggle('invalid', this._formController.invalid);
 
     // Update the controller to run detect changes on the host element
     group.requestUpdate();

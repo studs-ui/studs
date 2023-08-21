@@ -1,7 +1,7 @@
-import { LitElement, html, nothing, unsafeCSS } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { map } from "lit/directives/map.js";
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { map } from 'lit/directives/map.js';
 import style from '../../styles/lib/components/dropdowns.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 
@@ -16,16 +16,16 @@ interface Option {
   value: string;
 }
 
-@customElement("studs-dropdown")
+@customElement('studs-dropdown')
 export class StudsDropdown extends WithForm(LitElement) {
   // Element Properties
-  @property({ type: String }) icon?: string = "";
+  @property({ type: String }) icon?: string = '';
 
   // Dropdown Properties
-  @property({ type: Boolean }) disabled: DropdownProps["disabled"] = false;
-  @property({ type: Object }) options: DropdownProps["options"] = [];
-  @property({ type: Object }) selected?: DropdownProps["selected"];
-  @property({ type: String }) label: DropdownProps["label"] = "Toggle Dropdown";
+  @property({ type: Boolean }) disabled: DropdownProps['disabled'] = false;
+  @property({ type: Object }) options: DropdownProps['options'] = [];
+  @property({ type: Object }) selected?: DropdownProps['selected'];
+  @property({ type: String }) label: DropdownProps['label'] = 'Toggle Dropdown';
 
   static styles = unsafeCSS(style);
 
@@ -61,8 +61,8 @@ export class StudsDropdown extends WithForm(LitElement) {
     if (this.options)
       return map(this.options, (option: Option) => {
         const classes = {
-          "-option": true,
-          "-selected": option.value === this.selected?.value,
+          '-option': true,
+          '-selected': option.value === this.selected?.value,
         };
         return html`<button
           class=${classMap(classes)}
@@ -93,9 +93,9 @@ export class StudsDropdown extends WithForm(LitElement) {
   render() {
     const classes = {
       dropdown: true,
-      "-container": true,
-      "-disabled": this.disabled,
-      "-open": this._open,
+      '-container': true,
+      '-disabled': this.disabled,
+      '-open': this._open,
     };
 
     return html` <div class=${classMap(classes)}>

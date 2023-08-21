@@ -1,8 +1,8 @@
-import { LitElement, html, nothing, unsafeCSS } from "lit";
-import { customElement, property, query, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { ifDefined } from "lit/directives/if-defined.js";
-import { map } from "lit/directives/map.js";
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { map } from 'lit/directives/map.js';
 import style from '../../styles/lib/components/header.scss?inline';
 import { WithBloomreach } from '../../mixins/withBloomreach';
 import {
@@ -27,13 +27,13 @@ interface Menu {
   children: Menu[];
 }
 
-@customElement("studs-header")
+@customElement('studs-header')
 export class StudsHeader extends WithBloomreach(LitElement) {
-  @property({ type: String }) gtag?: StudsHeaderProps["gtag"];
+  @property({ type: String }) gtag?: StudsHeaderProps['gtag'];
 
   static styles = unsafeCSS(style);
 
-  @query("header") header!: HTMLElement;
+  @query('header') header!: HTMLElement;
 
   /**
    * Declare Internal States
@@ -49,21 +49,21 @@ export class StudsHeader extends WithBloomreach(LitElement) {
   connectedCallback(): void {
     super.connectedCallback();
 
-    document.addEventListener("scroll", this.onWindowScroll);
-    window.addEventListener("resize", this.onWindowResize);
+    document.addEventListener('scroll', this.onWindowScroll);
+    window.addEventListener('resize', this.onWindowResize);
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
 
-    document.removeEventListener("scroll", this.onWindowScroll);
-    window.removeEventListener("resize", this.onWindowResize);
+    document.removeEventListener('scroll', this.onWindowScroll);
+    window.removeEventListener('resize', this.onWindowResize);
   }
 
   private get _doc() {
     if (this._page) {
       const { document: docRef }: any = this._page
-        ?.getComponent("header")
+        ?.getComponent('header')
         ?.getModels();
       return this._page.getContent(docRef);
     }
@@ -78,14 +78,14 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       return html`<script id="gtag-base">
         (function (w, d, s, l, i) {
           w[l] = w[l] || [];
-          w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+          w[l].push({ 'gtm.start': new Date().getTime(), event: 'gtm.js' });
           var f = d.getElementsByTagName(s)[0],
             j = d.createElement(s),
-            dl = l != "dataLayer" ? "&l=" + l : "";
+            dl = l != 'dataLayer' ? '&l=' + l : '';
           j.async = true;
-          j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+          j.src = 'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
           f.parentNode.insertBefore(j, f);
-        })(window, document, "script", "dataLayer", this.gtag);
+        })(window, document, 'script', 'dataLayer', this.gtag);
       </script>`;
     }
   }
@@ -97,7 +97,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     return html`
       <div
         class="logo"
-        @click=${() => analyticsNavigationAction("Logo", "header")}
+        @click=${() => analyticsNavigationAction('Logo', 'header')}
       >
         <a href="http://strongtie.com">
           <svg
@@ -254,7 +254,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       return html`<a
         href=${getUrlFromLinkCompound(dealerLocatorUrlRef, this._page).link}
         @click=${() => {
-          analyticsNavigationAction(dealerLocatorTitle, "header");
+          analyticsNavigationAction(dealerLocatorTitle, 'header');
         }}
         class="locator"
         >${dealerLocatorTitle}</a
@@ -271,8 +271,8 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       // Get Region Selector Data
       // @ts-ignore
       const { document: regionSelectorRef } = this._page
-        ?.getComponent("header")
-        ?.getComponent("regionSelector")
+        ?.getComponent('header')
+        ?.getComponent('regionSelector')
         ?.getModels();
       const regionSelectorDocument =
         regionSelectorRef && this._page.getContent(regionSelectorRef);
@@ -297,7 +297,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                 />
               </svg>'
             >
-              <span>${regionText || "Region Selector"}</span>
+              <span>${regionText || 'Region Selector'}</span>
             </studs-button>
             ${title ? html`<h4 slot="header">${title}</h4>` : nothing}
             <div class="regionsWrapper">
@@ -316,7 +316,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                                 this._page
                               ).link}"
                               target="${ifDefined(
-                                item.ctaNewWindow ? "_blank" : ""
+                                item.ctaNewWindow ? '_blank' : ''
                               )}"
                               >${item.ctaText}</a
                             >
@@ -345,19 +345,19 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       <li
         class=${classMap({
           navCategory: true,
-          "-title": true,
+          '-title': true,
           active: this._activeMenu === item.name,
         })}
         @click=${() => this.onNavItemClick(item)}
       >
         <a
-          href=${hasChildren ? "#" : item.link.href}
+          href=${hasChildren ? '#' : item.link.href}
           @click=${hasChildren
-            ? () => analyticsNavigationAction(item.name, "header")
+            ? () => analyticsNavigationAction(item.name, 'header')
             : nothing}
           class=${classMap({
-            "toggle-link": hasChildren,
-            "direct-link": !hasChildren,
+            'toggle-link': hasChildren,
+            'direct-link': !hasChildren,
           })}
           >${item.name}
         </a>
@@ -377,7 +377,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                           @click=${() =>
                             analyticsNavigationAction(
                               `${analyticsParentName} ${child.name}`,
-                              "header"
+                              'header'
                             )}
                           >${child.name}
                         </a>
@@ -394,7 +394,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                                         @click=${() =>
                                           analyticsNavigationAction(
                                             `${analyticsChildName} ${link.name}`,
-                                            "header"
+                                            'header'
                                           )}
                                         >${link.name}</a
                                       >
@@ -421,7 +421,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     if (this._page) {
       // @ts-ignore
       const { menu: menuRef } = this._page
-        ?.getComponent("header", "menu")
+        ?.getComponent('header', 'menu')
         ?.getModels();
       // Receive Content from Menu
       const menu = this._page.getContent(menuRef);
@@ -451,7 +451,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       <header
         id="siteHeader"
         class=${classMap({
-          "-big": this._big,
+          '-big': this._big,
         })}
       >
         <nav id="mainNav">
@@ -511,10 +511,10 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     this.requestUpdate();
     if (this._open && isTablet()) {
       // on Open, prevent scroll on body
-      document.body.style.overflow = "hidden";
+      document.body.style.overflow = 'hidden';
     } else {
       // on Close, restore scroll on body
-      document.body.style.overflow = "auto";
+      document.body.style.overflow = 'auto';
     }
   }
 
@@ -543,16 +543,16 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       this._open = false;
       this._activeMenu = undefined;
       this._big = true;
-      this.header.style.removeProperty("--tr-s");
-      this.header.style.removeProperty("--tr-m");
-      this.header.style.removeProperty("--tr-l");
+      this.header.style.removeProperty('--tr-s');
+      this.header.style.removeProperty('--tr-m');
+      this.header.style.removeProperty('--tr-l');
     };
 
     if (!isMobileDevice()) {
       clearTimeout(this._resizeTimer);
-      this.header.style.setProperty("--tr-s", "0");
-      this.header.style.setProperty("--tr-m", "0");
-      this.header.style.setProperty("--tr-l", "0");
+      this.header.style.setProperty('--tr-s', '0');
+      this.header.style.setProperty('--tr-m', '0');
+      this.header.style.setProperty('--tr-l', '0');
       this._resizeTimer = setTimeout(resizeEvents, 50);
     }
   };
@@ -564,9 +564,9 @@ export class StudsHeader extends WithBloomreach(LitElement) {
   public onSearchSubmit(e: CustomEvent) {
     e.preventDefault();
     const formData = new FormData(e.target as HTMLFormElement);
-    const searchQuery = formData.get("q");
-    const fallbackQuery = formData.get("search");
-    analyticsSearch(searchQuery || fallbackQuery, "onsite");
+    const searchQuery = formData.get('q');
+    const fallbackQuery = formData.get('search');
+    analyticsSearch(searchQuery || fallbackQuery, 'onsite');
 
     (e.target as HTMLFormElement).submit();
   }

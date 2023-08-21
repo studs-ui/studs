@@ -99,4 +99,9 @@ declare global {
 }
 
 // Export Functions
-export {createSuccessToast, createErrorToast, createWarningToast, createStandardToast} from './functions/toaster';
+export {
+  createSuccessToast,
+  createErrorToast,
+  createWarningToast,
+  createStandardToast,
+} from './functions/toaster';

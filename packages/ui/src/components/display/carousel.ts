@@ -1,8 +1,8 @@
-import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { styleMap } from "lit/directives/style-map.js";
-import { map } from "lit/directives/map.js";
+import { LitElement, html, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { map } from 'lit/directives/map.js';
 import style from '../../styles/lib/components/carousel.scss?inline';
 
 export interface CarouselProps {
@@ -13,20 +13,20 @@ export interface CarouselProps {
   slides: any[];
 }
 
-@customElement("studs-carousel")
+@customElement('studs-carousel')
 export class StudsCarousel extends LitElement {
   //   Button Properties
-  @property({ type: String }) nextIcon: CarouselProps["nextIcon"] =
+  @property({ type: String }) nextIcon: CarouselProps['nextIcon'] =
     '<svg stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
-  @property({ type: String }) prevIcon: CarouselProps["prevIcon"] =
+  @property({ type: String }) prevIcon: CarouselProps['prevIcon'] =
     '<svg stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
   // Carousel Properties
-  @property({ type: Number }) perPage: CarouselProps["perPage"] = 3;
-  @property({ type: Number }) initialSlide: CarouselProps["initialSlide"] = 0;
-  @property({ type: Array }) slides: CarouselProps["slides"] = [];
+  @property({ type: Number }) perPage: CarouselProps['perPage'] = 3;
+  @property({ type: Number }) initialSlide: CarouselProps['initialSlide'] = 0;
+  @property({ type: Array }) slides: CarouselProps['slides'] = [];
 
   @state() private _currentSlide: number = this.initialSlide;
-  @state() protected _direction: string = "";
+  @state() protected _direction: string = '';
   @state() protected _shouldMove: boolean = false;
 
   static styles = unsafeCSS(style);
@@ -36,8 +36,8 @@ export class StudsCarousel extends LitElement {
    */
   private setCurrentSlide(index: number) {
     this._shouldMove = true;
-    if (index < this._currentSlide) this._direction = "prev";
-    if (index > this._currentSlide) this._direction = "next";
+    if (index < this._currentSlide) this._direction = 'prev';
+    if (index > this._currentSlide) this._direction = 'next';
     if (index !== this._currentSlide) this._currentSlide = index;
     if (index === this.slides.length) this._currentSlide = 0;
   }
@@ -69,8 +69,8 @@ export class StudsCarousel extends LitElement {
             const currentItem = index === this._currentSlide;
             const classes = {
               slide: true,
-              "-active": currentItem,
-              "-side": !currentItem,
+              '-active': currentItem,
+              '-side': !currentItem,
             };
 
             const order = this.calculateOrder(
@@ -90,7 +90,7 @@ export class StudsCarousel extends LitElement {
               >
                 <img
                   src=${item.image}
-                  alt=${item.alt || "image"}
+                  alt=${item.alt || 'image'}
                   class="image"
                 />
               </div>

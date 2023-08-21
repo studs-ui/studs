@@ -1,10 +1,10 @@
-import { noChange } from "lit";
+import { noChange } from 'lit';
 import {
   AsyncDirective,
   AttributePart,
   PartInfo,
   directive,
-} from "lit/async-directive.js";
+} from 'lit/async-directive.js';
 
 class SubmitDirective extends AsyncDirective {
   _cb!: (e: Event) => void;
@@ -24,14 +24,14 @@ class SubmitDirective extends AsyncDirective {
         onSubmit(e);
       };
 
-      this.host.addEventListener("submit", this._cb);
+      this.host.addEventListener('submit', this._cb);
     }
 
     return noChange;
   }
 
   disconnected() {
-    this.host.removeEventListener("submit", this._cb);
+    this.host.removeEventListener('submit', this._cb);
   }
 }
 

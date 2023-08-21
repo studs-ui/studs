@@ -1,9 +1,9 @@
-import type { StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import type { StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 
 const meta = {
-  title: "Studs/Display/ButtonGroup",
-  tags: ["autodocs"],
+  title: 'Studs/Display/ButtonGroup',
+  tags: ['autodocs'],
   argTypes: {},
 };
 

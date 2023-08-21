@@ -1,28 +1,28 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from "lit";
+import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import {
   customElement,
   property,
   queryAssignedElements,
-} from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
+} from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
 import style from '../../styles/lib/components/resizer.scss?inline';
 
 export interface StudsResizerProps {
-  direction: "horizontal" | "vertical";
+  direction: 'horizontal' | 'vertical';
   children?: TemplateResult | HTMLElement | string;
 }
 
-@customElement("studs-resizer")
+@customElement('studs-resizer')
 export class StudsResizer extends LitElement {
-  @property({ type: String }) direction: StudsResizerProps["direction"] =
-    "horizontal";
+  @property({ type: String }) direction: StudsResizerProps['direction'] =
+    'horizontal';
 
   static styles = unsafeCSS(style);
 
   render() {
     const classes = {
       resizer: true,
-      "-wrapper": true,
+      '-wrapper': true,
       [`-${this.direction}`]: true,
     };
 
@@ -38,7 +38,7 @@ export class StudsResizer extends LitElement {
   registerResizerPanes() {
     this.panes.forEach((pane, index) => {
       if (index === this.panes.length - 1) {
-        pane.classList.add("-last");
+        pane.classList.add('-last');
       }
     });
   }

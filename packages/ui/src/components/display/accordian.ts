@@ -1,5 +1,5 @@
-import { LitElement, html, nothing, unsafeCSS } from "lit";
-import { customElement, property, state } from "lit/decorators.js";
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 import style from '../../styles/lib/components/accordian.scss?inline';
 
 export interface AccordionProps {
@@ -7,11 +7,11 @@ export interface AccordionProps {
   enableSearch: boolean;
 }
 
-@customElement("studs-accordian")
+@customElement('studs-accordian')
 export class StudsAccordian extends LitElement {
-  @property({ type: Boolean }) enableHeader: AccordionProps["enableHeader"] =
+  @property({ type: Boolean }) enableHeader: AccordionProps['enableHeader'] =
     true;
-  @property({ type: Boolean }) enableSearch: AccordionProps["enableSearch"] =
+  @property({ type: Boolean }) enableSearch: AccordionProps['enableSearch'] =
     true;
 
   @state() _items: HTMLElement[] = [];
@@ -67,7 +67,7 @@ export class StudsAccordian extends LitElement {
     const childNodes = e.target.assignedNodes({ flatten: true });
     // Only Retrieve the child nodes that are of type StudsAccordianItem
     this._items = childNodes.filter(
-      (node: any) => node.nodeName === "STUDS-ACCORDIAN-ITEM"
+      (node: any) => node.nodeName === 'STUDS-ACCORDIAN-ITEM'
     );
     this.requestUpdate();
   }
@@ -79,21 +79,21 @@ export class StudsAccordian extends LitElement {
     this._items.forEach((item) => {
       const innerText = item.innerText.toLowerCase();
       if (innerText.includes(query.toLowerCase())) {
-        item.style.display = "block";
+        item.style.display = 'block';
       } else {
-        item.style.display = "none";
+        item.style.display = 'none';
       }
     });
   }
 
   onExpandAll() {
     this._items.forEach((item) => {
-      item.setAttribute("open", "true");
+      item.setAttribute('open', 'true');
     });
   }
   onCollapseAll() {
     this._items.forEach((item) => {
-      item.removeAttribute("open");
+      item.removeAttribute('open');
     });
   }
 }

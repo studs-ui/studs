@@ -1,11 +1,11 @@
-import type { StoryObj } from "@storybook/web-components";
-import { html } from "lit";
-import { ifDefined } from "lit/directives/if-defined.js";
+import type { StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { size } from '../../utils/_argTypes';
 
 const meta = {
-  title: "Studs/Inputs/Switch",
-  tags: ["autodocs"],
+  title: 'Studs/Inputs/Switch',
+  tags: ['autodocs'],
   render: (args: any) => html`<studs-switch
     ?checked=${args.checked}
     ?disabled=${args.disabled}
@@ -17,8 +17,8 @@ const meta = {
   argTypes: {
     ...size,
     labelPosition: {
-      control: { type: "select" },
-      options: ["start", "end", "top", "bottom"],
+      control: { type: 'select' },
+      options: ['start', 'end', 'top', 'bottom'],
     },
   },
 };
@@ -30,9 +30,9 @@ export const Switch: Story = {
   args: {
     checked: true,
     disabled: false,
-    label: "Toggle Switch",
-    labelPosition: "end",
-    name: "switch",
-    size: "small",
+    label: 'Toggle Switch',
+    labelPosition: 'end',
+    name: 'switch',
+    size: 'small',
   },
 };

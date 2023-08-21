@@ -1,7 +1,7 @@
-import { LitElement, html, unsafeCSS } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { map } from "lit/directives/map.js";
+import { LitElement, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { map } from 'lit/directives/map.js';
 import style from '../../styles/lib/components/stepper.scss?inline';
 
 interface Step {
@@ -13,15 +13,15 @@ interface Step {
 export interface StepperProps {
   steps: Array<Step>;
   step: number;
-  direction: "horizontal" | "vertical";
+  direction: 'horizontal' | 'vertical';
 }
 
-@customElement("studs-stepper")
+@customElement('studs-stepper')
 export class StudsStepper extends LitElement {
-  @property({ type: Array }) steps: StepperProps["steps"] = [];
-  @property({ type: Number }) step: StepperProps["step"] = 0;
-  @property({ type: String }) direction: StepperProps["direction"] =
-    "horizontal";
+  @property({ type: Array }) steps: StepperProps['steps'] = [];
+  @property({ type: Number }) step: StepperProps['step'] = 0;
+  @property({ type: String }) direction: StepperProps['direction'] =
+    'horizontal';
 
   static styles = unsafeCSS(style);
 
@@ -55,9 +55,9 @@ export class StudsStepper extends LitElement {
         ${map(this.steps, (step, index) => {
           const classes = {
             step: true,
-            "-wrapper": true,
-            "-active": index === this.step,
-            "-complete": index < this.step,
+            '-wrapper': true,
+            '-active': index === this.step,
+            '-complete': index < this.step,
           };
 
           return html`<div class=${classMap(classes)}>
@@ -66,7 +66,7 @@ export class StudsStepper extends LitElement {
               <div class="step -label"><p>${step.label}</p></div>
               ${step.description
                 ? html`<div class="step -description">${step.description}</div>`
-                : ""}
+                : ''}
             </div>
           </div>`;
         })}

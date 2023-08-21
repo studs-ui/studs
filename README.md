@@ -1,23 +1,30 @@
 # Studs LIT
+
 Simpon Strong Tie Studs Libary using Google's LIT
 
 ## Setup
+
 Run `yarn` to install contents
 
 ### Vite
+
 Run `yarn dev`
 
 ### Storybook
+
 Run `yarn storybook`
 
 ## Assets
+
 Put all publicly accesable assets with `public`
 Now you can reference them from root `./image.jpg`
 
 ## Components
+
 STUDS Components are single-filed with `/src/studs`
 
 #### Component Template Structure
+
 ```
 import { createComponent } from "@lit-labs/react";
 import { LitElement, html } from "lit";
@@ -37,14 +44,18 @@ export class StudsChip extends LitElement {
 ```
 
 #### Define Properties
-Properties are reactive *attributes* that can be updated from the component level. 
+
+Properties are reactive _attributes_ that can be updated from the component level.
+
 ```
 @property() name: string = "defaultValue"
 ```
 
 #### Define States
+
 States are properties that are internal to the component and not able to be accessed outside of the component.
 Adding an underscore ensures better readability of what is a state or property.
+
 ```
 @state() private _name: string = false
 ```
@@ -52,12 +63,17 @@ Adding an underscore ensures better readability of what is a state or property.
 See [Reactive Properties](https://lit.dev/docs/components/properties/) for more.
 
 #### Access Properties/State
+
 In order to access a state or property simply append a `this` to the beginning.
+
 ```
 ${this.icon}
 ```
+
 #### Using Interpolation
-Everything outside of an html`` block can be used normally, ei. `this.icon`; If you are using dynamic content within an html block you must *escape* it using interpolation.
+
+Everything outside of an html``block can be used normally, ei.`this.icon`; If you are using dynamic content within an html block you must _escape_ it using interpolation.
+
 ```
 html`<div>${this.children}</div>`
 
@@ -68,9 +84,12 @@ render() {
     return html`<div>${children}</div>`
 }
 ```
+
 #### Effectively using Class
+
 Lit exposes a decorator called `classMap` which allows for easy boolean based implemtation.
 Now we can define classes as an object and then use classMap to add it to our elements
+
 ```
 render() {
     const classes = {
@@ -85,6 +104,7 @@ render() {
 ```
 
 ### Generating a React Component
+
 Lit has a native function to generate React Components from `@lit-labs/react` called `createComponent`
 
 - Open `src/react.ts`
@@ -106,6 +126,7 @@ const ReactButton = createComponent({
 ```
 
 ### Adding Component to the List of Global Components
+
 - Open `src/index.ts`
 - Import & Export your component
 

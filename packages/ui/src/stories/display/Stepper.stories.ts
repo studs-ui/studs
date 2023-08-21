@@ -1,11 +1,11 @@
-import type { Meta, StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import type { Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 import { StepperProps } from '../../components/display/stepper';
-import { ifDefined } from "lit/directives/if-defined.js";
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta = {
-  title: "Studs/Display/Stepper",
-  tags: ["autodocs"],
+  title: 'Studs/Display/Stepper',
+  tags: ['autodocs'],
   render: (args) => html`<studs-stepper
     step=${ifDefined(args.step)}
     .steps=${args.steps}
@@ -23,16 +23,16 @@ export const Default: Story = {
     step: 0,
     steps: [
       {
-        label: "Step 1",
-        description: "This is step 1",
+        label: 'Step 1',
+        description: 'This is step 1',
       },
       {
-        label: "Step 2",
-        description: "This is step 2",
+        label: 'Step 2',
+        description: 'This is step 2',
       },
       {
-        label: "Step 3",
-        description: "This is step 3",
+        label: 'Step 3',
+        description: 'This is step 3',
       },
     ],
   },
@@ -43,19 +43,19 @@ export const Vertical: Story = {
     step: 0,
     steps: [
       {
-        label: "Step 1",
-        description: "This is step 1",
+        label: 'Step 1',
+        description: 'This is step 1',
       },
       {
-        label: "Step 2",
-        description: "This is step 2",
+        label: 'Step 2',
+        description: 'This is step 2',
       },
       {
-        label: "Step 3",
-        description: "This is step 3",
+        label: 'Step 3',
+        description: 'This is step 3',
       },
     ],
-    direction: "vertical",
+    direction: 'vertical',
   },
 };
 
@@ -64,16 +64,16 @@ export const Step2: Story = {
     step: 1,
     steps: [
       {
-        label: "Step 1",
-        description: "This is step 1",
+        label: 'Step 1',
+        description: 'This is step 1',
       },
       {
-        label: "Step 2",
-        description: "This is step 2",
+        label: 'Step 2',
+        description: 'This is step 2',
       },
       {
-        label: "Step 3",
-        description: "This is step 3",
+        label: 'Step 3',
+        description: 'This is step 3',
       },
     ],
   },

@@ -1,8 +1,8 @@
-import { LitElement, html, nothing, unsafeCSS } from "lit";
-import { customElement, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { map } from "lit/directives/map.js";
-import { unsafeHTML } from "lit/directives/unsafe-html.js";
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
+import { customElement, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { map } from 'lit/directives/map.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import style from '../../styles/lib/components/footer.scss?inline';
 import { WithBloomreach } from '../../mixins/withBloomreach';
 import {
@@ -15,7 +15,7 @@ import { isMobile } from '../../utils/shared';
 
 export interface StudsFooterProps {}
 
-@customElement("studs-footer")
+@customElement('studs-footer')
 export class StudsFooter
   extends WithBloomreach(LitElement)
   implements StudsFooterProps
@@ -31,7 +31,7 @@ export class StudsFooter
       // Get Main Menu
       // @ts-ignore
       const { menu: menuRef } = this._page
-        ?.getComponent("footer", "menu")
+        ?.getComponent('footer', 'menu')
         ?.getModels();
       // Receive Content from Menu
       const menu = this._page?.getContent(menuRef);
@@ -48,7 +48,7 @@ export class StudsFooter
     if (this._page) {
       // Get Legal Menu
       const { menu: legalMenuRef } = this._page
-        ?.getComponent("footer", "bottomMenu")
+        ?.getComponent('footer', 'bottomMenu')
         ?.getModels();
       const legalMenu = this._page?.getContent(legalMenuRef);
       const _legalMenuItems = legalMenu?.getItems();
@@ -62,7 +62,7 @@ export class StudsFooter
   get newsletterFormData() {
     if (this._page) {
       const { document: formRef } = this._page
-        ?.getComponent("footer", "newsletterForm")
+        ?.getComponent('footer', 'newsletterForm')
         ?.getModels();
       const footerForm = this._page?.getContent(formRef);
 
@@ -90,9 +90,9 @@ export class StudsFooter
   }
 
   private generateErrorMessage(message: string, htmlFor: string) {
-    const p = document.createElement("p");
-    p.classList.add("inputError");
-    p.setAttribute("for", htmlFor);
+    const p = document.createElement('p');
+    p.classList.add('inputError');
+    p.setAttribute('for', htmlFor);
     p.innerText = message;
 
     return p;
@@ -106,7 +106,7 @@ export class StudsFooter
             <div
               class=${classMap({
                 footerNavSection: true,
-                "-active":
+                '-active':
                   (isMobile() && this._selected === item.name) || false,
               })}
             >
@@ -331,12 +331,12 @@ export class StudsFooter
 
   onSocialClick(e: MouseEvent) {
     const { href } = e.target as HTMLAnchorElement;
-    analyticsSocialMediaFollow(href.split(".")[1], href);
+    analyticsSocialMediaFollow(href.split('.')[1], href);
   }
 
   onFormStarted() {
     if (!this._formStarted) {
-      analyticsForms("newsletter", "start");
+      analyticsForms('newsletter', 'start');
       this._formStarted = true;
     }
   }
@@ -346,71 +346,71 @@ export class StudsFooter
     // Retrieve Data from Form Submission
     const data = new FormData(form);
 
-    const email = data.get("email");
-    const checkbox = data.get("Data Privacy");
+    const email = data.get('email');
+    const checkbox = data.get('Data Privacy');
 
     // Remove Errors from Elements on Submit
-    const errors = form.querySelectorAll(".inputError");
-    const inputs = form.querySelectorAll(".-error");
+    const errors = form.querySelectorAll('.inputError');
+    const inputs = form.querySelectorAll('.-error');
     if (errors) {
       errors.forEach((errorElem) => {
         errorElem.remove();
       });
       inputs.forEach((errorElem) => {
-        errorElem.classList.remove("-error");
+        errorElem.classList.remove('-error');
       });
     }
 
     // Throw Errors if Invalid and append Error States
     if (!checkbox) {
-      analyticsFormErrors("newsletter", "required checkbox");
-      const parent = form.querySelector(".-checkbox");
-      parent?.querySelector("input")?.classList.add("-error");
+      analyticsFormErrors('newsletter', 'required checkbox');
+      const parent = form.querySelector('.-checkbox');
+      parent?.querySelector('input')?.classList.add('-error');
       const error = this.generateErrorMessage(
-        "Consent required",
-        "Data Privacy"
+        'Consent required',
+        'Data Privacy'
       );
       parent?.after(error);
       e.preventDefault();
     }
     if (!email) {
-      analyticsFormErrors("newsletter", "required email");
-      const parent = form.querySelector(".-input");
-      parent?.querySelector("input")?.classList.add("-error");
-      const error = this.generateErrorMessage("Enter your email", "email");
+      analyticsFormErrors('newsletter', 'required email');
+      const parent = form.querySelector('.-input');
+      parent?.querySelector('input')?.classList.add('-error');
+      const error = this.generateErrorMessage('Enter your email', 'email');
       parent?.after(error);
       e.preventDefault();
       // @ts-ignore
     } else if (!email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)) {
-      analyticsFormErrors("newsletter", "invalid email");
-      const parent = form.querySelector(".-input");
-      parent?.querySelector("input")?.classList.add("-error");
-      const error = this.generateErrorMessage("Enter a valid email", "email");
+      analyticsFormErrors('newsletter', 'invalid email');
+      const parent = form.querySelector('.-input');
+      parent?.querySelector('input')?.classList.add('-error');
+      const error = this.generateErrorMessage('Enter a valid email', 'email');
       parent?.after(error);
       e.preventDefault();
     }
 
     if (email && checkbox) {
-      analyticsForms("newsletter", "submit");
-      analyticsEmailSumbission("newsletter");
+      analyticsForms('newsletter', 'submit');
+      analyticsEmailSumbission('newsletter');
       // form.submit();
-      form.classList.add("-formSuccess");
-      const successMessage = document.createElement("p");
-      successMessage.classList.add("responseMessage");
-      successMessage.classList.add("-success");
+      form.classList.add('-formSuccess');
+      const successMessage = document.createElement('p');
+      successMessage.classList.add('responseMessage');
+      successMessage.classList.add('-success');
       successMessage.innerText =
-        "You are subscribed! A welcome email is headed your way.";
+        'You are subscribed! A welcome email is headed your way.';
       form.append(successMessage);
-      form.classList.add("-formSuccess");
+      form.classList.add('-formSuccess');
 
       function removeMessage() {
-        form.classList.remove("-formSuccess");
+        form.classList.remove('-formSuccess');
         successMessage.remove();
 
-        form.removeEventListener("click", removeMessage);
+        form.removeEventListener('click', removeMessage);
       }
 
-      form.addEventListener("click", removeMessage);
+      form.addEventListener('click', removeMessage);
     }
   }
 }

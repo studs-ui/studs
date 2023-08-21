@@ -5,15 +5,15 @@ import {
   html,
   nothing,
   unsafeCSS,
-} from "lit";
-import { customElement, property, queryAsync, state } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { map } from "lit/directives/map.js";
-import { styleMap } from "lit/directives/style-map.js";
-import { ChangeEvent } from "react";
+} from 'lit';
+import { customElement, property, queryAsync, state } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { map } from 'lit/directives/map.js';
+import { styleMap } from 'lit/directives/style-map.js';
+import { ChangeEvent } from 'react';
 import style from '../../styles/lib/components/_temporarySlider.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
-import { ifDefined } from "lit/directives/if-defined.js";
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 interface MarkProps {
   value: number;
@@ -34,24 +34,24 @@ export interface SliderProps extends WithFormInterface {
   calculateTooltipLabel: (value: number) => string;
 }
 
-@customElement("studs-slider")
+@customElement('studs-slider')
 export class StudsSlider extends WithForm(LitElement) {
-  @property({ type: Number }) min: SliderProps["min"] = 0;
-  @property({ type: Number }) max: SliderProps["max"] = 100;
-  @property({ type: Number }) step: SliderProps["step"] = 1;
-  @property({ type: Number }) defaultValue: SliderProps["defaultValue"] = 0;
-  @property({ type: Array }) rangeValue: SliderProps["rangeValue"] = [];
-  @property({ type: Array }) marks: SliderProps["marks"];
-  @property({ type: String }) rightLabel: SliderProps["rightLabel"] = "";
-  @property({ type: Boolean }) enableInput: SliderProps["enableInput"] = false;
-  @property({ type: Boolean }) enableLabel: SliderProps["enableLabel"] = false;
-  @property({ type: Boolean }) enableTooltip: SliderProps["enableTooltip"] =
+  @property({ type: Number }) min: SliderProps['min'] = 0;
+  @property({ type: Number }) max: SliderProps['max'] = 100;
+  @property({ type: Number }) step: SliderProps['step'] = 1;
+  @property({ type: Number }) defaultValue: SliderProps['defaultValue'] = 0;
+  @property({ type: Array }) rangeValue: SliderProps['rangeValue'] = [];
+  @property({ type: Array }) marks: SliderProps['marks'];
+  @property({ type: String }) rightLabel: SliderProps['rightLabel'] = '';
+  @property({ type: Boolean }) enableInput: SliderProps['enableInput'] = false;
+  @property({ type: Boolean }) enableLabel: SliderProps['enableLabel'] = false;
+  @property({ type: Boolean }) enableTooltip: SliderProps['enableTooltip'] =
     false;
   @property({ type: Function })
-  calculateTooltipLabel: SliderProps["calculateTooltipLabel"] = (
+  calculateTooltipLabel: SliderProps['calculateTooltipLabel'] = (
     value: number
   ) => {
-    return value + "°";
+    return value + '°';
   };
 
   getPercent = (value: number) => {
@@ -79,16 +79,16 @@ export class StudsSlider extends WithForm(LitElement) {
     let value = Number(event.target.value);
     if (this.rangeValue?.length > 1) {
       value =
-        event.target.value === ""
-          ? ""
+        event.target.value === ''
+          ? ''
           : (Math.min(
               Number(event.target.value),
               this._maxValue - this.step
             ) as any);
     } else {
       value =
-        event.target.value === ""
-          ? ""
+        event.target.value === ''
+          ? ''
           : (Math.min(Number(event.target.value)) as any);
     }
     this._minValue = value;
@@ -111,8 +111,8 @@ export class StudsSlider extends WithForm(LitElement) {
 
   private handleMaxValue(event: ChangeEvent<HTMLInputElement>) {
     const value =
-      event.target.value === ""
-        ? ""
+      event.target.value === ''
+        ? ''
         : (Math.max(
             Number(event.target.value),
             this._minValue + this.step
@@ -135,7 +135,7 @@ export class StudsSlider extends WithForm(LitElement) {
   }
 
   protected handleMouseUp() {
-    this.removeEventListener("mouseup", this.handleMouseUp);
+    this.removeEventListener('mouseup', this.handleMouseUp);
     this._targetHandle = null;
     this._dragging = false;
     this.requestUpdate();
@@ -143,7 +143,7 @@ export class StudsSlider extends WithForm(LitElement) {
 
   private handleRangeMouseDown(event: MouseEvent) {
     this._targetHandle = event.target as HTMLInputElement;
-    this.addEventListener("mouseup", this.handleMouseUp);
+    this.addEventListener('mouseup', this.handleMouseUp);
 
     this.requestUpdate();
   }
@@ -159,14 +159,14 @@ export class StudsSlider extends WithForm(LitElement) {
    * Render Components
    */
 
-  private renderLabel(position: "left" | "right") {
+  private renderLabel(position: 'left' | 'right') {
     if (this.enableLabel) {
-      if (position === "left") {
+      if (position === 'left') {
         return html`<div className="leftTxt">
           ${this.label ? this.label?.substring(0, 15) : nothing}
         </div>`;
       }
-      if (position === "right") {
+      if (position === 'right') {
         return html`<div className="rightTxt">
           ${this.rightLabel ? this.rightLabel?.substring(0, 15) : nothing}
         </div>`;
@@ -175,10 +175,10 @@ export class StudsSlider extends WithForm(LitElement) {
     return nothing;
   }
 
-  private renderInput(type: "min" | "max") {
+  private renderInput(type: 'min' | 'max') {
     if (this.enableInput) {
       if (this.rangeValue?.length > 1) {
-        if (type === "min")
+        if (type === 'min')
           return html` <div class="inputNumber">
             <input
               class="inputNumber"
@@ -190,7 +190,7 @@ export class StudsSlider extends WithForm(LitElement) {
               @input=${this.handleMinValue}
             />
           </div>`;
-        if (type === "max")
+        if (type === 'max')
           return html` <div class="inputNumber">
             <input
               class="inputNumber"
@@ -203,7 +203,7 @@ export class StudsSlider extends WithForm(LitElement) {
             />
           </div>`;
       }
-      if (type === "max")
+      if (type === 'max')
         return html` <div class="inputNumber">
           <input
             class="inputNumber"
@@ -224,7 +224,7 @@ export class StudsSlider extends WithForm(LitElement) {
       width: `${this._maxPercentage - this._minPercentage}%`,
     };
     const isMarkStyles = {
-      width: "0%",
+      width: '0%',
     };
     const defaultStyles = {
       width: `${this._minPercentage}%`,
@@ -270,11 +270,11 @@ export class StudsSlider extends WithForm(LitElement) {
   @state() private _thumbLeft?: HTMLInputElement;
   @state() private _thumbRight?: HTMLInputElement;
 
-  @queryAsync(".thumbLeft") private thumbLeft!: Promise<HTMLInputElement>;
-  @queryAsync(".thumbRight") private thumbRight!: Promise<HTMLInputElement>;
+  @queryAsync('.thumbLeft') private thumbLeft!: Promise<HTMLInputElement>;
+  @queryAsync('.thumbRight') private thumbRight!: Promise<HTMLInputElement>;
 
-  private renderTooltip(position: "left" | "right") {
-    if (position === "left") {
+  private renderTooltip(position: 'left' | 'right') {
+    if (position === 'left') {
       this.thumbLeft.then((res) => {
         this._thumbLeft = res;
       });
@@ -289,7 +289,7 @@ export class StudsSlider extends WithForm(LitElement) {
           ${this.getToolTipValue(this._minValue)}
         </studs-tooltip>`;
     }
-    if (position === "right") {
+    if (position === 'right') {
       this.thumbRight.then((res) => {
         this._thumbRight = res;
       });
@@ -307,10 +307,10 @@ export class StudsSlider extends WithForm(LitElement) {
 
   render() {
     return html`<div class="slider">
-      ${this.renderInput("min")} ${this.renderLabel("left")}
+      ${this.renderInput('min')} ${this.renderLabel('left')}
       <div class="sliderWrapper">
         <div>
-          ${this.enableTooltip ? this.renderTooltip("left") : nothing}
+          ${this.enableTooltip ? this.renderTooltip('left') : nothing}
           <input
             name=${ifDefined(this.name)}
             type="range"
@@ -326,7 +326,7 @@ export class StudsSlider extends WithForm(LitElement) {
 
           ${this.rangeValue?.length > 1
             ? html`
-                ${this.enableTooltip ? this.renderTooltip("right") : nothing}
+                ${this.enableTooltip ? this.renderTooltip('right') : nothing}
                 <input
                   type="range"
                   class="thumb thumbRight"
@@ -344,7 +344,7 @@ export class StudsSlider extends WithForm(LitElement) {
           ${this.renderMarks()} ${this.renderRange()}
         </div>
       </div>
-      ${this.renderLabel("right")} ${this.renderInput("max")}
+      ${this.renderLabel('right')} ${this.renderInput('max')}
     </div> `;
   }
 }

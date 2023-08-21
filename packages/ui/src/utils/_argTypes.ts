@@ -1,30 +1,30 @@
 export const size = {
   size: {
-    control: { type: "select", defaultValue: "medium" },
-    options: ["small", "medium", "large"],
-    defaultValue: { summary: "medium" },
+    control: { type: 'select', defaultValue: 'medium' },
+    options: ['small', 'medium', 'large'],
+    defaultValue: { summary: 'medium' },
   },
 };
 export const contentDirection = {
   contentDirection: {
-    control: { type: "select" },
-    options: ["horizontal", "vertical"],
+    control: { type: 'select' },
+    options: ['horizontal', 'vertical'],
   },
 };
 export const icon = {
   icon: {
     control: {
-      type: "text",
+      type: 'text',
     },
     description: `Define display icon (class) of the button component using html svg or font icon`,
   },
   iconPosition: {
-    control: { type: "select" },
-    options: ["start", "end"],
+    control: { type: 'select' },
+    options: ['start', 'end'],
   },
 };
 export const variants = ({
-  name = "variant",
+  name = 'variant',
   options = [],
 }: {
   name?: string;
@@ -32,20 +32,20 @@ export const variants = ({
 }) => {
   return {
     [name]: {
-      control: { type: "select" },
-      options: ["primary", "secondary", ...options],
+      control: { type: 'select' },
+      options: ['primary', 'secondary', ...options],
     },
   };
 };
 export const direction = {
   direction: {
-    control: { type: "select" },
-    options: ["top", "bottom", "left", "right"],
+    control: { type: 'select' },
+    options: ['top', 'bottom', 'left', 'right'],
   },
 };
 export const arrowPosition = {
   arrowPosition: {
-    control: { type: "select" },
-    options: ["start", "center", "end"],
+    control: { type: 'select' },
+    options: ['start', 'center', 'end'],
   },
 };

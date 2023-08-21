@@ -1,8 +1,8 @@
-import { StoryObj } from "@storybook/web-components";
-import { html } from "lit";
+import { StoryObj } from '@storybook/web-components';
+import { html } from 'lit';
 
 const meta = {
-  title: "Studs/Recipes/Forms",
+  title: 'Studs/Recipes/Forms',
   argTypes: {},
 };
 
