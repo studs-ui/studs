@@ -17,12 +17,10 @@
     "test"
   ],
   "scripts": {
-    "dev": "vite",
+    "dev": "storybook dev -p 6006",
     "build": "vite build",
     "lint": "tsc",
     "test": "vitest",
-    "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "dependencies": {
