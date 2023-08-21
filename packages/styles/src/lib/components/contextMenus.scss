@@ -1,0 +1,32 @@
+@use '../utilities' as *;
+
+@mixin contextMenu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: white;
+  @include boxShadow;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  &:focus {
+    outline: none;
+  }
+  .contextMenuList {
+    list-style: none;
+    padding: 0px 10px;
+    .contextMenuItem {
+      margin: 0px;
+      margin-bottom: 1em;
+      .text {
+        margin-left: 10px;
+      }
+    }
+    .contextMenuItem:first-of-type {
+      margin-top: 0px;
+    }
+    .contextMenuItem:last-of-type {
+      margin-bottom: 0px;
+    }
+  }
+}

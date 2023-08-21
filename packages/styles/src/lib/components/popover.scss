@@ -1,0 +1,28 @@
+@use '../utilities' as *;
+@use 'overlays' as *;
+
+.popover {
+    @include tooltip();
+    &.-container {
+        visibility: hidden;
+        display: none;
+        @include fadeIn();
+        &.-show {
+            visibility: visible;
+            display: flex;
+            align-items: center;
+            gap: .25em;
+        }
+        &.-right {
+            flex-direction: row-reverse;
+        }
+    }
+    &.-close {
+        background: transparent;
+        border: 0;
+        &::before {
+          content: "\2715";
+        }
+      }
+}
+

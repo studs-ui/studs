@@ -25,7 +25,8 @@
   },
   "dependencies": {
     "@bloomreach/spa-sdk": "^22.0.0",
-    "axios": "^1.4.0"
+    "axios": "^1.4.0",
+    "@studs/styles": "workspace:*"
   },
   "devDependencies": {
     "@lit-labs/virtualizer": "^2.0.4",

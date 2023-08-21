@@ -1,5 +1,5 @@
 import type { Preview } from "@storybook/web-components";
-import "../src/styles";
+import '@studs/styles';
 import "../src";
 
 const preview: Preview = {

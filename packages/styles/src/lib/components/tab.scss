@@ -1,0 +1,46 @@
+@use '../utilities' as *;
+
+@mixin tab {
+  display: flex;
+  overflow: auto;
+  width: 100%;
+  &.-spaceBetween {
+    justify-content: space-between;
+  }
+  .tabItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0.5;
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+      border-bottom: 2px solid grey;
+    }
+    &.-contained {
+      background-color: lightgrey;
+    }
+    &.-selected {
+      opacity: 1;
+      border-bottom: 2px solid $sst-orange;
+    }
+    &.-disabled {
+      cursor: not-allowed;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      &.-reverse {
+        flex-direction: row-reverse;
+      }
+      &.-col {
+        flex-direction: column;
+        &.-reverse {
+          flex-direction: column-reverse;
+        }
+      }
+    }
+  }
+}
