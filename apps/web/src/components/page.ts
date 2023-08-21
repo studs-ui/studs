@@ -1,11 +1,11 @@
 import { LitElement, html } from 'lit';
 import { customElement } from 'lit/decorators.js';
-// import {
-//   createErrorToast,
-//   createStandardToast,
-//   createSuccessToast,
-//   createWarningToast,
-// } from 'wc/functions/toaster';
+import {
+  createErrorToast,
+  createStandardToast,
+  createSuccessToast,
+  createWarningToast,
+} from '@studs/ui';
 
 @customElement('presentational-page')
 export class PresentationalPage extends LitElement {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { InputProps } from "../../components/inputs/input";
+import { InputProps } from '../../components/inputs/input';
 
 const meta = {
   title: "Studs/Inputs/Input",

@@ -1,7 +1,7 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import style from "styles/switch.scss?inline";
-import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import style from '../../styles/lib/components/switch.scss?inline';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { ifDefined } from "lit/directives/if-defined.js";
 
 export interface SwitchProps extends WithFormInterface {

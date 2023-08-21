@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { RadioProps } from "../../components/inputs/radio";
+import { RadioProps } from '../../components/inputs/radio';
 
 const meta = {
   title: "Studs/Inputs/Radios",

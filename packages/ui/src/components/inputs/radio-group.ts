@@ -1,6 +1,6 @@
 import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
-import style from "styles/radioButton.scss?inline";
+import style from '../../styles/lib/components/radioButton.scss?inline';
 
 @customElement("studs-radio-group")
 export class StudsRadioGroup extends LitElement {

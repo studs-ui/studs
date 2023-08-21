@@ -6,7 +6,7 @@ import {
   state,
 } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import styles from "styles/buttonGroup.scss?inline";
+import styles from '../../styles/lib/components/buttonGroup.scss?inline';
 
 @customElement("studs-button-group")
 export class StudsButtonGroup extends LitElement {

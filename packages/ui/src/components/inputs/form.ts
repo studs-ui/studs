@@ -1,8 +1,8 @@
 import { createContext, provide } from "@lit-labs/context";
 import { LitElement, html } from "lit";
 import { customElement, query, queryAssignedElements } from "lit/decorators.js";
-import { FormGroupController } from "../../controllers/formGroup";
-import { onSubmit } from "../../directives/submit";
+import { FormGroupController } from '../../controllers/formGroup';
+import { onSubmit } from '../../directives/submit';
 
 export const formContext = createContext<any>("form");
 

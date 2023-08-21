@@ -1,6 +1,6 @@
 import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
-import style from "styles/accordian.scss?inline";
+import style from '../../styles/lib/components/accordian.scss?inline';
 
 export interface AccordionProps {
   enableHeader: boolean;

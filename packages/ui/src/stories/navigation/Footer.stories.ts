@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { StudsFooterProps } from "../../components/navigation/studs-footer";
+import { StudsFooterProps } from '../../components/navigation/studs-footer';
 
 const meta = {
   title: "Studs/Navigation/Footer",

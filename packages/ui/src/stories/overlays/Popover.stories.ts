@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { PopoverProps } from "../../components/overlays/popover";
-import { ifDefined } from "lit/directives/if-defined.js";
-import { arrowPosition, direction } from "../../utils/_argTypes";
+import { PopoverProps } from '../../components/overlays/popover';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { arrowPosition, direction } from '../../utils/_argTypes';
 
 const meta = {
   title: "Studs/Overlays/Popover",

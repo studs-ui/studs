@@ -3,14 +3,14 @@ import { customElement, property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { map } from "lit/directives/map.js";
-import style from "styles/header.scss?inline";
-import { WithBloomreach } from "../../mixins/withBloomreach";
+import style from '../../styles/lib/components/header.scss?inline';
+import { WithBloomreach } from '../../mixins/withBloomreach';
 import {
   analyticsNavigationAction,
   analyticsSearch,
   getUrlFromLinkCompound,
-} from "../../utils/_analytics";
-import { isMobileDevice, isTablet } from "../../utils/shared";
+} from '../../utils/_analytics';
+import { isMobileDevice, isTablet } from '../../utils/shared';
 
 export interface StudsHeaderProps {
   gtag?: string;

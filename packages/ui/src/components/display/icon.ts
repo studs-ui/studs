@@ -2,7 +2,7 @@ import { LitElement, html, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import style from "styles/icons.scss?inline";
+import style from '../../styles/lib/components/icons.scss?inline';
 
 export interface IconProps {
   icon: string;

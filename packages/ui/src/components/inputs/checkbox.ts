@@ -1,10 +1,10 @@
-import { LitElement, TemplateResult, html, unsafeCSS, css } from "lit";
-import { customElement, property } from "lit/decorators.js";
-import { classMap } from "lit/directives/class-map.js";
-import { ifDefined } from "lit/directives/if-defined.js";
-import { WithForm, WithFormInterface } from "../../mixins/withForm";
-import { generateUniqueId } from "../../utils/shared";
-import style from "styles/checkbox.scss?inline";
+import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import style from '../../styles/lib/components/checkbox.scss?inline';
+import { generateUniqueId } from '../../utils/shared';
 
 export interface CheckboxProps extends WithFormInterface {
   value?: string;
@@ -13,26 +13,29 @@ export interface CheckboxProps extends WithFormInterface {
   children?: HTMLElement | TemplateResult | string;
 }
 
-@customElement("studs-checkbox")
+@customElement('studs-checkbox')
 export class StudsCheckbox extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
 
-  @property({ type: String }) value: CheckboxProps["value"] = "";
-  @property({ type: Boolean }) checked?: CheckboxProps["checked"];
-  @property({ type: Boolean }) indeterminate?: CheckboxProps["indeterminate"];
+  @property({ type: String }) value: CheckboxProps['value'] = '';
+  @property({ type: Boolean }) checked?: CheckboxProps['checked'];
+  @property({ type: Boolean }) indeterminate?: CheckboxProps['indeterminate'];
 
-  private inputId = generateUniqueId("checkbox");
+  private inputId = generateUniqueId('checkbox');
 
   private updateHandler = () => {
     const inputElement = this.shadowRoot?.querySelector(`#${this.inputId}`);
     if (inputElement) {
-      (inputElement as HTMLInputElement).indeterminate = this.indeterminate || false;
+      (inputElement as HTMLInputElement).indeterminate =
+        this.indeterminate || false;
     }
   };
 
   updated(changedProperties: Map<string | number | symbol, unknown>) {
     super.updated(changedProperties);
-    const inputElement = this.shadowRoot?.querySelector(`#${this.inputId}`) as HTMLInputElement;
+    const inputElement = this.shadowRoot?.querySelector(
+      `#${this.inputId}`
+    ) as HTMLInputElement;
     if (inputElement) {
       inputElement.indeterminate = this.indeterminate || false;
     }
@@ -40,13 +43,17 @@ export class StudsCheckbox extends WithForm(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener("change", this.handleChange);
-    this.shadowRoot?.querySelector(`#${this.inputId}`)?.addEventListener('update', this.updateHandler);
+    this.addEventListener('change', this.handleChange);
+    this.shadowRoot
+      ?.querySelector(`#${this.inputId}`)
+      ?.addEventListener('update', this.updateHandler);
   }
 
   disconnectedCallback() {
-    this.shadowRoot?.querySelector(`#${this.inputId}`)?.removeEventListener('update', this.updateHandler);
-    this.removeEventListener("change", this.handleChange);
+    this.shadowRoot
+      ?.querySelector(`#${this.inputId}`)
+      ?.removeEventListener('update', this.updateHandler);
+    this.removeEventListener('change', this.handleChange);
     super.disconnectedCallback();
   }
 

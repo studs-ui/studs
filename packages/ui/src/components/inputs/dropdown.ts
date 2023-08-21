@@ -2,8 +2,8 @@ import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
-import style from "styles/dropdowns.scss?inline";
-import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import style from '../../styles/lib/components/dropdowns.scss?inline';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
 
 export interface DropdownProps extends WithFormInterface {
   options: Option[];

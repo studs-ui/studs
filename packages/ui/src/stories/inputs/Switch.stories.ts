@@ -1,7 +1,7 @@
 import type { StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { size } from "../../utils/_argTypes";
+import { size } from '../../utils/_argTypes';
 
 const meta = {
   title: "Studs/Inputs/Switch",

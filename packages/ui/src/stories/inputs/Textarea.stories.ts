@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { contentDirection, icon, size, variants } from "../../utils/_argTypes";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { TextareaProps } from "../../components/inputs/textarea";
+import { TextareaProps } from '../../components/inputs/textarea';
+import { size } from '../../utils/_argTypes';
 
 const meta = {
   title: "Studs/Inputs/Textarea",

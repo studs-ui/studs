@@ -11,8 +11,8 @@ import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import { styleMap } from "lit/directives/style-map.js";
 import { ChangeEvent } from "react";
-import style from "styles/_temporarySlider.scss?inline";
-import { WithForm, WithFormInterface } from "../../mixins/withForm";
+import style from '../../styles/lib/components/_temporarySlider.scss?inline';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { ifDefined } from "lit/directives/if-defined.js";
 
 interface MarkProps {

@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { CheckboxProps } from "../../components/inputs/checkbox";
+import { CheckboxProps } from '../../components/inputs/checkbox';
 
 const meta = {
   title: "Studs/Inputs/Checkbox",

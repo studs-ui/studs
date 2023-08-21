@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { contentDirection, icon, size, variants } from "../../utils/_argTypes";
+import { contentDirection, icon, size, variants } from '../../utils/_argTypes';
 import { ifDefined } from "lit/directives/if-defined.js";
-import { ButtonProps } from "../../components/display/button";
+import { ButtonProps } from '../../components/display/button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {

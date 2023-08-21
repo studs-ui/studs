@@ -8,7 +8,7 @@ import {
 import { customElement, property, query, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
-import style from "styles/resizerPane.scss?inline";
+import style from '../../styles/lib/components/resizerPane.scss?inline';
 
 export interface StudsResizerPaneProps {
   direction?: "horizontal" | "vertical" | string;

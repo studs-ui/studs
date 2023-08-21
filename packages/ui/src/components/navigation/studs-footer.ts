@@ -3,15 +3,15 @@ import { customElement, state } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
 import { map } from "lit/directives/map.js";
 import { unsafeHTML } from "lit/directives/unsafe-html.js";
-import style from "styles/footer.scss?inline";
-import { WithBloomreach } from "../../mixins/withBloomreach";
+import style from '../../styles/lib/components/footer.scss?inline';
+import { WithBloomreach } from '../../mixins/withBloomreach';
 import {
   analyticsEmailSumbission,
   analyticsFormErrors,
   analyticsForms,
   analyticsSocialMediaFollow,
-} from "../../utils/_analytics";
-import { isMobile } from "../../utils/shared";
+} from '../../utils/_analytics';
+import { isMobile } from '../../utils/shared';
 
 export interface StudsFooterProps {}
 

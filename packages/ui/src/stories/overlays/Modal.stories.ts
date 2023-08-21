@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { ModalProps } from "../../components/overlays/modal";
+import { ModalProps } from '../../components/overlays/modal';
 
 const meta = {
   title: "Studs/Overlays/Modal",

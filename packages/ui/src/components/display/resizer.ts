@@ -5,7 +5,7 @@ import {
   queryAssignedElements,
 } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
-import style from "styles/resizer.scss?inline";
+import style from '../../styles/lib/components/resizer.scss?inline';
 
 export interface StudsResizerProps {
   direction: "horizontal" | "vertical";
