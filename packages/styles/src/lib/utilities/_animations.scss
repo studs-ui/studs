@@ -1,5 +1,5 @@
-@use "@studs/styles/src/lib/themes" as *;
-@use "@studs/styles/src/lib/utilities/variables" as *;
+@use "../themes" as *;
+@use "../utilities/variables" as *;
 
 @mixin fadeIn($duration: var(--transition-m)) {
     animation: fadeIn $duration cubic-bezier(0, 0, 0.2, 1);

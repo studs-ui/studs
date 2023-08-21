@@ -1,0 +1,511 @@
+@use "../utilities" as *;
+
+@mixin button-border($border: 0 0 0 0.25em var(--button-border)) {
+  box-shadow: 0 0 0 0.1em $white, $border;
+}
+
+@mixin button {
+  --button-background: var(--button-default);
+  --button-border: var(--button-default);
+
+  cursor: pointer;
+  appearance: none;
+  padding: 0.75em 1em;
+  text-align: center;
+  line-height: 1;
+  color: var(--button-color);
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 700;
+  border: 2px solid var(--button-border);
+  border-radius: 3px;
+  background-color: var(--button-background);
+  box-shadow: 0 0 0 $transparent, 0 0 0 $transparent;
+
+  transition: all var(--transition-s);
+
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    --button-border: var(--button-hover);
+    --button-background: var(--button-hover);
+    // box-shadow: 0 0.1em 0.25em rgba(var(--button-shadow-color), 0.5),
+    // 	0 0.35em 0.5em rgba(var(--button-shadow-color), 0.25);
+  }
+
+  &:not(.-link) {
+    &:focus-visible {
+      @include button-border;
+      --button-border: var(--button-focused);
+      --button-background: var(--button-focused);
+      outline: none;
+    }
+
+    &:hover {
+      transform: var(--interactive-feedback);
+    }
+  }
+
+  &:active {
+    --button-border: var(--button-active);
+    --button-background: var(--button-active);
+    box-shadow: none;
+  }
+
+  &:disabled,
+  &.-disabled {
+    pointer-events: none;
+    opacity: 0.5;
+
+    &:hover,
+    &:focus-visible,
+    &:active {
+      --button-background: var(--button-default);
+      --button-border: var(--button-default);
+      box-shadow: none;
+      transform: none;
+    }
+  }
+}
+
+:host {
+  --tr-s: 0.1s;
+  --tr-m: 0.3s;
+  --screen-wrapper: #{$screen-wrapper};
+  --footer-background: #{colorVal("gray", 100)};
+  --footer-text-color: #{colorVal("gray", 0)};
+  --width: calc((100vw - var(--screen-wrapper)) / 2);
+  --eleWidth: calc(var(--width) + 2px);
+}
+
+footer {
+  font-size: 16px;
+  background: var(--footer-background);
+  color: var(--footer-text-color);
+  position: relative;
+  margin: 0 auto;
+  width: 100%;
+  line-height: 1.65;
+  font-family: var(--font-family);
+
+  .footerContent {
+    width: calc(100% - $padding);
+    max-width: var(--screen-wrapper);
+    margin: 0 auto;
+    padding: 3rem 0;
+    min-height: 200px;
+
+    @media screen and (min-width: $screen-sm) {
+      display: grid;
+      grid-template-columns: 4fr 2fr;
+      gap: 1em;
+
+      grid-template-areas:
+        "nav form"
+        "legal legal";
+    }
+  }
+
+  body > & {
+    // workaround for the bootstrap virus.
+    margin: 0 -1rem;
+    padding: 0 1rem;
+    width: calc(100% + 2rem);
+
+    &::before,
+    &::after {
+      content: "";
+      height: 100%;
+      width: var(--eleWidth);
+      background: var(--footer-background);
+      position: absolute;
+      top: 0;
+    }
+    &::before {
+      left: calc(var(--eleWidth) * -1);
+    }
+    &::after {
+      right: calc(var(--eleWidth) * -1);
+    }
+
+    .footerContent {
+      width: 100%;
+
+      // hard coded 2rems because we can't mix px and rem, apparently. --JP
+      // @media(max-width: $screen-wrapper + 32px) {
+      // 	width: calc(100% - $padding);
+      // }
+    }
+  }
+
+  #footerMainNav {
+    grid-area: nav;
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25ch, 1fr));
+    gap: 1rem;
+
+    @media (max-width: #{$screen-sm - 1}) {
+      display: flex;
+      flex-direction: column;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+    }
+
+    .footerNavSection {
+      font-family: var(--font-family);
+
+      @media (max-width: #{$screen-sm - 1}) {
+        &:not(.-active) {
+          ul {
+            max-height: 0px;
+            overflow: hidden;
+          }
+        }
+        &.-active {
+          ul {
+            max-height: 1000px;
+            padding-bottom: 1.5rem;
+          }
+          .-header {
+            &::after {
+              transform: rotate(90deg);
+            }
+          }
+        }
+        &.-header {
+          font-weight: 700;
+          font-size: 1.1rem;
+
+          padding-top: 0.75rem;
+          padding-bottom: 0.75rem;
+
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          border-top: 1px solid colorVal("gray", 0);
+          &::after {
+            content: "";
+            width: 1.5em;
+            height: 1.5em;
+            background-size: cover;
+            background-image: url("data:image/svg+xml,%3Csvg width='26' height='26' viewBox='0 0 26 26' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cmask id='mask0_11029_76538' style='mask-type:alpha' maskUnits='userSpaceOnUse' x='0' y='0' width='26' height='27'%3E%3Crect y='0.000152588' width='26' height='26' fill='%23D9D9D9'/%3E%3C/mask%3E%3Cg mask='url(%23mask0_11029_76538)'%3E%3Cpath d='M10.4006 19.5002L9.02002 18.1196L14.1381 13.0002L9.02002 7.88075L10.4006 6.50015L16.9006 13.0002L10.4006 19.5002Z' fill='%23DF4907'/%3E%3C/g%3E%3C/svg%3E%0A");
+            aspect-ratio: 1 / 1;
+            transition: all var(--tr-s);
+          }
+        }
+      }
+    }
+  }
+
+  .newsletterForm {
+    grid-area: form;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 280px;
+    container-name: footer-form;
+    container-type: inline-size;
+    .newsletterSection {
+      &.-header {
+        margin-block-end: 0.75rem;
+        font-weight: 700;
+      }
+    }
+
+    @media screen and (max-width: $screen-sm) {
+      margin-block-start: 3rem;
+      margin-block-end: 1.5rem;
+      gap: 3rem;
+    }
+    form {
+      font-family: var(--font-family);
+
+      position: relative;
+      display: grid;
+      grid-template-columns: 4fr 1fr;
+      grid-template-rows: repeat(4, auto);
+      grid-template-areas:
+        "input submit"
+        "error1 error1"
+        "consent consent"
+        "error13 error13";
+      @media (max-width: $screen-xs) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "input"
+          "error1"
+          "consent"
+          "error13"
+          "submit";
+      }
+      @container footer-form (width < 400px) {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "input"
+          "error1"
+          "consent"
+          "error13"
+          "submit";
+      }
+      gap: 0.5rem;
+      @media screen and (min-width: $screen-sm) {
+        gap: 0.75rem;
+      }
+      & > div {
+        position: relative;
+        &.-input {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          gap: 0.5rem;
+          grid-area: input;
+          .inputError {
+            grid-area: error1;
+          }
+        }
+        &.-checkbox {
+          display: flex;
+          align-items: start;
+          gap: 0.5rem 1rem;
+          flex-wrap: wrap;
+          grid-area: consent;
+          z-index: 0;
+
+          label {
+            font-weight: 500;
+            flex: 1 1;
+            margin-left: initial;
+            &::before {
+              display: none;
+            }
+          }
+          .inputError {
+            grid-area: error13;
+          }
+        }
+      }
+      input[type="email"] {
+        --placeholder-color: var(--text-light);
+        font-family: var(--font-family);
+        font-weight: 500;
+        color: var(--text-light);
+        flex-grow: 1;
+        padding: 0.75em;
+        border: 1px solid var(--nav-border);
+        border-radius: 0.15em;
+        background-color: transparent;
+
+        &:-ms-input-placeholder {
+          /* Internet Explorer 10-11 */
+          color: var(--placeholder-color);
+          transition: color var(--tr-m);
+        }
+
+        &::-ms-input-placeholder {
+          /* Microsoft Edge */
+          color: var(--placeholder-color);
+          transition: color var(--tr-m);
+        }
+
+        &::placeholder {
+          /* Chrome, Firefox, Opera, Safari 10.1+ */
+          color: var(--placeholder-color);
+          opacity: 1; /* Firefox */
+          transition: color var(--tr-m);
+        }
+
+        &:focus,
+        &:focus-visible {
+          --placeholder-color: transparent;
+          outline: 0;
+          border-color: var(--cta);
+        }
+
+        &.-error {
+          border: 2px solid var(--error-color);
+        }
+        &:valid {
+          border: 2px solid var(--success-color);
+        }
+      }
+      input[type="checkbox"] {
+        font-family: var(--font-family);
+
+        accent-color: var(--cta);
+        margin-block-start: 0.25em;
+        //   Fix for Hybris custom Checkbox
+        position: initial;
+        opacity: 1;
+        width: initial;
+        height: initial;
+        font-size: initial;
+        line-height: initial;
+      }
+      button[type="submit"] {
+        @include button();
+        padding-left: 2.5em;
+        padding-right: 2.5em;
+
+        @media screen and (max-width: $screen-sm) {
+          order: 3;
+        }
+
+        grid-area: submit;
+      }
+      .inputError {
+        display: block;
+        color: var(--error-color);
+        width: 100%;
+        margin: 0;
+        font-size: 0.8em;
+        &[for="email"] {
+          grid-area: error1;
+        }
+        &[for="Data Privacy"] {
+          grid-area: error13;
+        }
+        // grid-column: 1 / -1;
+      }
+      &.-formSuccess {
+        &::before {
+          animation: formFadeOut 1s forwards;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          content: " ";
+          z-index: 1;
+          background-color: var(--text-dark);
+        }
+        .-success {
+          animation: successfadeIn 1s forwards;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          z-index: 2;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: var(--success-color);
+        }
+      }
+    }
+  }
+
+  #footerLegalNav {
+    font-weight: 600;
+    font-family: var(--font-family);
+    grid-area: legal;
+    margin-top: 3rem;
+    border-top: 1px solid colorVal("gray", 0);
+    padding-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1.5rem;
+
+    @media (min-width: $screen-sm) {
+      flex-direction: row;
+      gap: 0;
+    }
+
+    ul {
+      display: flex;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    p {
+      margin: 0;
+      font-weight: 600;
+    }
+  }
+
+  ul,
+  li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+  }
+
+  a,
+  a:visited {
+    font-family: var(--font-family);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-color: $transparent;
+    text-underline-offset: 0.25em;
+    cursor: pointer;
+    border-bottom: none;
+    padding: initial;
+    color: var(--footer-text-color);
+    transition: text-decoration-color var(--trns-s);
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--footer-text-color);
+      text-decoration-color: var(--cta);
+    }
+  }
+
+  .footerNavSection {
+    &.-header {
+      font-size: 1.25em;
+      font-weight: 700;
+      cursor: pointer;
+      @media (min-width: $screen-sm) {
+        font-size: 1.1em;
+        margin-bottom: 1rem;
+        cursor: initial;
+      }
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all var(--tr-m) ease-out;
+    }
+    li {
+      a {
+        font-family: var(--font-family);
+        font-weight: 600;
+      }
+    }
+  }
+
+  .footerSocials {
+    display: flex;
+    margin-top: 1.5rem;
+    gap: 2rem;
+    @media (max-width: $screen-sm) {
+      justify-content: space-between;
+    }
+  }
+}
+
+@keyframes formFadeOut {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes successfadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

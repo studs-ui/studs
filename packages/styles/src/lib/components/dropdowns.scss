@@ -1,0 +1,109 @@
+@use '../utilities' as *;
+
+@mixin dropdown {
+  --dropdown-border-color: #{colorVal("gray", 50)};
+  --dropdown-label-color: #{colorVal("gray", 50)};
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1em;
+
+  > p {
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    color: var(--dropdown-label-color)
+  }
+  
+  .-toggle {
+    position: relative;
+    min-width: 250px;
+    @include noSelect;
+    padding: 0;
+    margin: 5px;
+    padding: 0.25rem 0.5rem;
+    cursor: pointer;
+
+    display: flex;
+    align-items: center;
+    color: inherit;
+    font-weight: 600;
+    pointer-events: all;
+    background-color: var(--dropdown-background);
+    border: 1px var(--dropdown-border-color) solid;
+    border-radius: 0.125rem;
+
+    &[disabled] {
+      pointer-events: none;
+      opacity: 0.3;
+    }
+
+    > svg {
+      margin-left: auto;
+    }
+  }
+
+  &.-open {
+    .-toggle {
+      > svg {
+        transform: rotate(-180deg);
+      }
+    }
+  }
+
+  .-menuWrapper {
+    position: relative;
+    margin: 5px
+  }
+
+  .-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background-color: var(--dropdown-background);
+    border: 1px var(--dropdown-border-color) solid;
+    border-radius: 0.125rem;
+    padding: 0.25rem 0.25rem;
+
+    display: flex;
+    flex-direction: column;
+  }
+
+  .-option {
+    display: flex;
+    text-align: left;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    font-weight: 500;
+    pointer-events: all;
+    background-color: var(--dropdown-background);
+    border: none;
+    border-radius: 0.125rem;
+
+    &:hover {
+      color: #{colorVal("orange", 60)};
+      background-color: #{colorVal("walnut", 0)};
+      font-weight: 600;
+    }
+
+    &.-selected {
+      font-weight: 600;
+      > svg {
+        margin-left: auto;
+      }
+    }
+  }
+
+
+  
+}
+
+.dropdown {
+  @include dropdown;
+}
+

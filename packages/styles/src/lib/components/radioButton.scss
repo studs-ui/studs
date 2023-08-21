@@ -1,0 +1,93 @@
+@use "../utilities" as *;
+@use "../themes" as *;
+
+.radioButton {
+  [type=radio] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    position: relative;
+    color: var(--text-color);
+
+    &.-small {
+      --font-size: #{$font-small};
+    }
+
+    &.-medium {
+      --font-size: #{$font-default};
+    }
+
+    &.-large {
+      --font-size: #{$font-large};
+    }
+
+    &.-extraLarge {
+      --font-size: #{$font-xl};
+    }
+
+    &.-disabled {
+      --text-color: var(--disabled);
+      --color: var(--disabled);
+    }
+
+    &::before {
+      --unchecked: url("/public/assets/icons/material-icons-master/svg/radio_button_unchecked/baseline.svg");
+      --checked: url("/public/assets/icons/material-icons-master/svg/radio_button_checked/baseline.svg");
+      --symbol: var(--unchecked);
+      --color: var(--text-dark);
+
+      transform: translateY(-.05em);
+      cursor: pointer;
+
+      content:'';
+      width: 1em;
+      aspect-ratio: 1 / 1;
+      position: absolute;
+      left: -1.25em;
+
+      @include icon-mask(var(--symbol), var(--color));
+
+    }
+
+    &:hover::before {
+      background-color: var(--primary);
+    }
+  }
+
+  [type=radio]:focus-visible,
+  [type=radio]:focus,
+  [type=radio]:hover:not(:disabled) {
+
+    + label::after {
+      content: '';
+      position: absolute;
+      left: -1.25em;
+      width: 1em;
+      height: 1em;
+      transform: scale(1.05) translateY(-.05em) translateX(-.05em);
+
+      border: 1px solid var(--primary);
+      border-radius: 50%;
+    }
+  }
+
+  [type=radio]:checked +  label::before {
+    --symbol: var(--checked);
+    --color: var(--primary);
+  }
+
+  [type=radio]:disabled + label {
+    &,
+    &::before {
+      --text-color: var(--disabled);
+      --color: var(--disabled);
+    }
+  }
+
+}

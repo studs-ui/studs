@@ -37,11 +37,26 @@ importers:
         specifier: ^4.4.7
         version: 4.4.7(sass@1.64.1)
 
+  packages/styles:
+    devDependencies:
+      sass:
+        specifier: ^1.64.1
+        version: 1.64.1
+      typescript:
+        specifier: ^5.0.2
+        version: 5.1.6
+      vite:
+        specifier: ^4.4.5
+        version: 4.4.7(sass@1.64.1)
+
   packages/ui:
     dependencies:
       '@bloomreach/spa-sdk':
         specifier: ^22.0.0
         version: 22.0.0
+      '@studs/styles':
+        specifier: workspace:*
+        version: link:../styles
       axios:
         specifier: ^1.4.0
         version: 1.4.0

@@ -1,0 +1,39 @@
+@use '../utilities' as *;
+
+@mixin label {
+  margin-bottom: 0.25rem;
+  display: inline-block;
+
+  &.-required:after {
+    content: '*';
+    font-weight: bold;
+    color: #df4907;
+    margin-left: 0.1rem;
+  }
+  &.-disabled {
+    color: var(--disabled);
+    cursor: not-allowed;
+  }
+
+  &.-small {
+    --font-size: #{$font-small};
+  }
+
+  &.-medium {
+    --font-size: #{$font-default};
+  }
+
+  &.-large {
+    --font-size: #{$font-large};
+  }
+
+  &.-error {
+    color: var(--error-color);
+  }
+  &.-success {
+    color: var(--success-color);
+  }
+  &.-warning {
+    color: var(--warning-color);
+  }
+}

@@ -1,0 +1,71 @@
+@use '../utilities' as *;
+
+@mixin fileUpload {
+  &-dragging,
+  // &:hover {
+  //   background-color: lighten(#6583fe, 28%);
+  // }
+  
+  &-icon {
+    max-width: 75px;
+    display: block;
+    margin: 0 auto 1.5rem;
+  }
+  
+  &-input {
+    display: none;
+  }
+  .error {
+    font-size: 0.75rem;
+    font-style: italic;
+    padding-top: 8px;
+    color: red;
+  }
+  .message {
+    display: flex;
+  }
+  .fileProgress {
+    position: relative;
+    margin-top: 8px;
+    background-color: lightpink;
+    border: 1px solid lightpink;
+    border-radius: 4px;
+    padding: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 450px;
+    span {
+      padding-top: 8px;
+    }
+    .progressBar {
+      padding: 8px 0 8px 0;
+    }
+    i{
+      position: absolute;
+      right: 0;
+      padding-bottom: 8px;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    
+  }
+  .dropzoneInput {
+    display: none;
+  }
+  .dragText {
+
+  }
+  .dropzone {
+    border: 0.2rem dashed #6583fe;
+    cursor: pointer;
+    padding: 2rem;
+    border-radius: 0.25rem;
+    background-color: #fff;
+    text-align: center;
+    font-size: 1.5rem;
+    transition: 0.25s background-color ease-in-out;
+    min-width: 400px;
+    min-height: 150px;
+  }
+}

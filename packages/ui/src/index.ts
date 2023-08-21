@@ -1,5 +1,5 @@
 // Import Styles
-import './styles/index';
+import '@studs/styles';
 // Import Components
 import { StudsButton } from './components/display/button';
 import { StudsButtonGroup } from './components/display/buttonGroup';

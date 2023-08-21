@@ -1,0 +1,35 @@
+//animations and transitions
+$transition-s: .1s;
+$transition-m: .25s;
+$transition-l: .4s;
+$transition-x: .6s;
+
+// screen sizes
+$screen-xs: 600px;
+$screen-sm: 905px;
+$screen-med: 1240px;
+$screen-lrg: 1696px;
+
+// measurements
+$padding: 1rem;
+$max-width: $screen-lrg; // maximum page content width.
+$breakpoint-menu: $screen-sm; // menu-specific breakpoint, independent
+$screen-wrapper: 1472px; // of standard breakpoints
+
+/*
+// for reference
+//
+// [ Mobile first ]
+// default styles for mobile
+// @media (min-width: $screen-xs)  {} // styles > 600px
+// @media (min-width: $screen-sm)  {} // styles > 905px
+// @media (min-width: $screen-med) {} // styles > 1240px
+// @media (min-width: $screen-lrg) {} // styles > 1695px
+//
+// [ Desktop first ]
+// default sytles for desktop
+// @media (max-width: $screen-lrg - 1) {} // styles < 1696px
+// @media (max-width: $screen-med - 1) {} // styles < 1239px
+// @media (max-width: $screen-sm - 1)  {} // styles < 904px
+// @media (max-width: $screen-xs - 1)  {} // styles < 599px
+*/
