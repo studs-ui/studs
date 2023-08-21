@@ -13,14 +13,6 @@ export default defineConfig({
       // Don't forgot to update your package.json as well.
       formats: ['es', 'cjs'],
     },
-    // rollupOptions: {
-    //   output: {
-    //     entryFileNames: "studs-lit.js",
-    //     assetFileNames: "studs-lit.css",
-    //     chunkFileNames: "chunk.js",
-    //     manualChunks: undefined,
-    //   },
-    // },
   },
   resolve: {
     alias: {
