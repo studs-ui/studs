@@ -3,7 +3,7 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import tableStyle from '@studs/styles/components/table.scss?inline';
-import paginationStyle from '../../styles/lib/demo/pagination.scss?inline';
+import paginationStyle from '@studs/styles/components/pagination.scss?inline';
 import {
   VirtualizerHostElement,
   virtualize,
