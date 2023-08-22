@@ -6,11 +6,11 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {
-    "./lib/components": "./lib/components/",
+    "./components/*.scss": "./lib/components/*.scss",
     ".": {
       "development": "./index.js",
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.js"
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
     }
   },
   "files": [
@@ -21,8 +21,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "tsc",
-    "preview": "vite preview"
+    "lint": "tsc"
   },
   "devDependencies": {
     "typescript": "^5.0.2",

@@ -10,8 +10,8 @@ import style from '../styles/styles.scss?inline';
 
 @customElement('presentational-tabs')
 export class PresentationalTabs extends LitElement {
-  @property({ type: Array }) tabs: string[] = [];
-  @state() protected _activeTab: string = this.tabs[0];
+  @state() protected _activeTab: string;
+
   static styles = unsafeCSS(style);
 
   @queryAssignedElements({ slot: 'tablist' }) tablist!: HTMLElement[];
@@ -88,11 +88,10 @@ export class PresentationalTabs extends LitElement {
           const el = active as HTMLElement;
           el.classList.add('-active');
         }
-      } else if (this.tabs) {
+      } else {
         const child = children[0] as HTMLElement;
         const name = child.getAttribute('name') || child.innerText;
         this._activeTab = name;
-        console.log(name);
         child.classList.add('-active');
       }
     }

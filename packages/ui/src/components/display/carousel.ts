@@ -3,7 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { map } from 'lit/directives/map.js';
-import style from '../../styles/lib/components/carousel.scss?inline';
+import style from '@studs/styles/components/carousel.scss?inline';
 
 export interface CarouselProps {
   nextIcon: string;

@@ -3,7 +3,7 @@ import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { map } from 'lit/directives/map.js';
-import style from '../../styles/lib/components/header.scss?inline';
+import style from '@studs/styles/components/header.scss?inline';
 import { WithBloomreach } from '../../mixins/withBloomreach';
 import {
   analyticsNavigationAction,

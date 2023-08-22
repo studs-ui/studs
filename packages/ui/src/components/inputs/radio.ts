@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
-import style from '../../styles/lib/components/radioButton.scss?inline';
+import style from '@studs/styles/components/radioButton.scss?inline';
 import { generateUniqueId } from '../../utils/shared';
 
 export interface RadioProps extends WithFormInterface {

@@ -1,6 +1,6 @@
 import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
-import style from '../../styles/lib/components/popover.scss?inline';
+import style from '@studs/styles/components/popover.scss?inline';
 import { classMap } from 'lit/directives/class-map.js';
 
 export interface PopoverProps {

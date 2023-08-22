@@ -1,6 +1,6 @@
 import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import style from '../../styles/lib/components/table.scss?inline';
+import style from '@studs/styles/components/table.scss?inline';
 
 // https://github.com/lit/lit-element/issues/642
 

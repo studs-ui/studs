@@ -1,7 +1,7 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import style from '../../styles/lib/components/accordian.scss?inline';
+import style from '@studs/styles/components/accordian.scss?inline';
 
 export interface AccordionItemProps {
   open: boolean;

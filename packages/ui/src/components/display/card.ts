@@ -1,7 +1,7 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import style from '../../styles/lib/components/card.scss?inline';
+import style from '@studs/styles/components/card.scss?inline';
 
 export interface CardProps {
   title: string;

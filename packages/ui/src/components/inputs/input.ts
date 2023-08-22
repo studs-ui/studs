@@ -2,7 +2,7 @@ import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import style from '../../styles/lib/components/inputs.scss?inline';
+import style from '@studs/styles/components/inputs.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 
 export interface InputProps extends WithFormInterface {

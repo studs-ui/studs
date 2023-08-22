@@ -1,7 +1,7 @@
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { map } from 'lit/directives/map.js';
-import style from '../../styles/lib/components/toaster.scss?inline';
+import style from '@studs/styles/components/toaster.scss?inline';
 import { ToastProps } from './toast';
 import { classMap } from 'lit/directives/class-map.js';
 

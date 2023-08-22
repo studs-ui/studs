@@ -2,7 +2,7 @@ import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import styles from '../../styles/lib/components/buttons.scss?inline';
+import styles from '@studs/styles/components/buttons.scss?inline';
 
 export interface ButtonProps {
   buttonType:

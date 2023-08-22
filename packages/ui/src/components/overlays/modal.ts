@@ -11,7 +11,7 @@ import {
   queryAssignedElements,
   state,
 } from 'lit/decorators.js';
-import style from '../../styles/lib/components/modals.scss?inline';
+import style from '@studs/styles/components/modals.scss?inline';
 import { classMap } from 'lit/directives/class-map.js';
 
 export interface ModalProps {

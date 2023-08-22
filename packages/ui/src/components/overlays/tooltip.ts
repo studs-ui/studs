@@ -1,7 +1,7 @@
 import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import style from '../../styles/lib/components/tooltips.scss?inline';
+import style from '@studs/styles/components/tooltips.scss?inline';
 
 export interface TooltipProps {
   open: boolean;
