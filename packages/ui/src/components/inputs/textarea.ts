@@ -69,10 +69,8 @@ export class StudsTextarea extends WithForm(LitElement) {
           ?disabled="${this.disabled}"
           @input="${this.handleInput}"
           class=${classMap(classes)}
-          ${this.control}
-        >
-        ${ifDefined(this.value)}</textarea
-        >
+          .value=${this.value}
+        ></textarea>
         ${this.characterCounter
           ? html`<div class="counter">
               ${this.value?.length ?? 0}/${this.maxLength}

@@ -31,7 +31,6 @@ export class StudsSwitch extends WithForm(LitElement) {
             ?checked=${this.checked}
             ?disabled=${this.disabled}
             @change=${this.onChange}
-            ${this.control}
           />
           <span class="slider"></span>
         </label>

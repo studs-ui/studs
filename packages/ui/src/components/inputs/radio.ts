@@ -42,7 +42,6 @@ export class StudsRadio extends WithForm(LitElement) {
           ?checked="${this.checked}"
           ?disabled="${this.disabled}"
           @change="${this.handleChange}"
-          ${this.control}
         />
         <label for="${this.inputId}">${this.label}</label>
       </div>

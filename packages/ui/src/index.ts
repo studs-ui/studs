@@ -21,7 +21,6 @@ import { StudsSlider } from './components/inputs/slider';
 import { StudsAccordian } from './components/display/accordian';
 import { StudsAccordianItem } from './components/display/accordian-item';
 import { StudsInput } from './components/inputs/input';
-import { StudsForm } from './components/inputs/form';
 import { StudsRadio } from './components/inputs/radio';
 import { StudsRadioGroup } from './components/inputs/radio-group';
 import { StudsCheckbox } from './components/inputs/checkbox';
@@ -53,7 +52,6 @@ export {
   StudsAccordian,
   StudsAccordianItem,
   StudsInput,
-  StudsForm,
   StudsRadio,
   StudsRadioGroup,
   StudsCheckbox,

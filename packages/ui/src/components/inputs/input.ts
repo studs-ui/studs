@@ -48,14 +48,14 @@ export class StudsInput extends WithForm(LitElement) {
   handleSubmit(e: KeyboardEvent) {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const form = this.getForm(this);
-      if (form)
-        form.dispatchEvent(
-          new Event('submit', {
-            bubbles: true,
-            composed: true,
-          })
-        );
+      // const form = this.getForm(this);
+      // if (form)
+      //   form.dispatchEvent(
+      //     new Event('submit', {
+      //       bubbles: true,
+      //       composed: true,
+      //     })
+      //   );
     }
   }
 
@@ -96,7 +96,6 @@ export class StudsInput extends WithForm(LitElement) {
             ?disabled=${this.disabled}
             @input=${this.handleInput}
             class=${classMap(classes)}
-            ${this.control}
           />
           ${this.adornment && this.adornmentPosition === 'end'
             ? html`<div class="adornmentEnd">${this.adornment}</div>`

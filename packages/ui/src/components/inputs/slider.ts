@@ -312,7 +312,7 @@ export class StudsSlider extends WithForm(LitElement) {
         <div>
           ${this.enableTooltip ? this.renderTooltip('left') : nothing}
           <input
-            name=${ifDefined(this.name)}
+            name=${this.name ? `${this.name}-min` : nothing}
             type="range"
             class="thumb thumbLeft"
             min=${this.min}
@@ -321,13 +321,13 @@ export class StudsSlider extends WithForm(LitElement) {
             .value=${this._minValue}
             @input=${this.handleMinValue}
             @mousedown=${this.handleRangeMouseDown}
-            ${this.control}
           />
 
           ${this.rangeValue?.length > 1
             ? html`
                 ${this.enableTooltip ? this.renderTooltip('right') : nothing}
                 <input
+                  name=${this.name ? `${this.name}-max` : nothing}
                   type="range"
                   class="thumb thumbRight"
                   min=${this.min}
@@ -347,4 +347,8 @@ export class StudsSlider extends WithForm(LitElement) {
       ${this.renderLabel('right')} ${this.renderInput('max')}
     </div> `;
   }
+
+  // protected createRenderRoot(): Element | ShadowRoot {
+  //   return this;
+  // }
 }
