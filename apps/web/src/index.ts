@@ -1,4 +1,5 @@
 // Import Components
+import '@studs/styles';
 import '@studs/ui';
 import { PresentationalCodeblock } from './components/codeblock';
 import { PresentationalComponent } from './components/component';

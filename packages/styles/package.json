@@ -6,8 +6,9 @@
   "main": "dist/index.cjs",
   "module": "dist/index.js",
   "exports": {
+    "./lib/components": "./lib/components/",
     ".": {
-      "development": "./src/index.js",
+      "development": "./index.js",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     }
@@ -19,7 +20,8 @@
   ],
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "vite build",
+    "lint": "tsc",
     "preview": "vite preview"
   },
   "devDependencies": {

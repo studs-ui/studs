@@ -10,7 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@studs/ui": "workspace:*"
+    "@studs/ui": "workspace:*",
+    "@studs/styles": "workspace:*"
   },
   "devDependencies": {
     "lit": "^2.7.6",
