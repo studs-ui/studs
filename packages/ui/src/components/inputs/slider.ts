@@ -1,3 +1,4 @@
+import style from '@studs/styles/components/slider.scss?inline';
 import {
   LitElement,
   PropertyValueMap,
@@ -10,10 +11,7 @@ import { customElement, property, queryAsync, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import { ChangeEvent } from 'react';
-import style from '@studs/styles/components/_temporarySlider.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 interface MarkProps {
   value: number;

@@ -1,7 +1,8 @@
 @use "../utilities" as *;
+@use 'overlays' as *;
 
 @mixin thumbSlider {
-    background-color: var(--interactive);
+    background-color: var(--interactive-selected);
     border: none;
     border-radius: 50%;
     box-shadow: 1px 1px 2px var(--shadow);
@@ -63,13 +64,13 @@
   }
 
   .sliderTrack {
-    background-color: var(--interactive-bkg-disabled);
+    background-color: var(--interactive-disabled);
     width: calc(100% - 1rem);
     margin-left: .5rem;
   }
 
   .sliderRange {
-    background-color: var(--interactive-bkg);
+    background-color: var(--interactive-hover);
   }
 
   .sliderMarkValue {
@@ -93,9 +94,15 @@
   }
 
   .tooltip {
+    display: initial;
     position: absolute;
     top: -95%;
-    transform: translate(-15px, -50%);
+    &.-leftTooltip {
+      transform: translate(-2em, -50%);
+    }
+    &.-rightTooltip {
+      transform: translate(-3.8em, -50%);
+    }
   }
 
   /* Removing the default appearance */
@@ -128,4 +135,8 @@
   .thumb::-webkit-slider-thumb {
     @include thumbSlider;
   }
+}
+
+.slider {
+    @include slider;
 }
