@@ -45,4 +45,8 @@ export class StudsRadioGroup extends LitElement {
   render() {
     return html` <slot></slot> `;
   }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 }

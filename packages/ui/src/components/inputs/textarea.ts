@@ -71,7 +71,7 @@ export class StudsTextarea extends WithForm(LitElement) {
           class=${classMap(classes)}
           ${this.control}
         >
-${ifDefined(this.value)}</textarea
+        ${ifDefined(this.value)}</textarea
         >
         ${this.characterCounter
           ? html`<div class="counter">
@@ -86,5 +86,9 @@ ${ifDefined(this.value)}</textarea
           : ''}
       </div>
     `;
+  }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
   }
 }

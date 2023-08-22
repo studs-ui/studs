@@ -95,4 +95,8 @@ export class StudsCheckbox extends WithForm(LitElement) {
       </div>
     `;
   }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 }

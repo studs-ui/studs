@@ -48,4 +48,8 @@ export class StudsRadio extends WithForm(LitElement) {
       </div>
     `;
   }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 }

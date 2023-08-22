@@ -46,4 +46,8 @@ export class StudsSwitch extends WithForm(LitElement) {
 
     this.dispatch({ checked: this.checked });
   }
+
+  protected createRenderRoot(): Element | ShadowRoot {
+    return this;
+  }
 }
