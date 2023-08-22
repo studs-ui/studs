@@ -20,6 +20,9 @@ importers:
 
   apps/web:
     dependencies:
+      '@studs/styles':
+        specifier: workspace:*
+        version: link:../../packages/styles
       '@studs/ui':
         specifier: workspace:*
         version: link:../../packages/ui
