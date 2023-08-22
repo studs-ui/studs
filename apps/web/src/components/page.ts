@@ -12,8 +12,9 @@ export class PresentationalPage extends LitElement {
   render() {
     return html`
     <studs-toaster></studs-toaster>
-    <presentational-tabs tabs='["Buttons", "Button Groups", "Dropdowns", "Chips", "Carousels", "Tables", "Grids", "Modals", "Popovers", "Cards", "Tooltips", "Toasts", "Switches", "Steppers", "Inputs", "Radios", "Checkboxes", "Textarea"]'>
-      <div slot="Buttons">
+    <presentational-tabs>
+        <button slot="tablist">Buttons</button>
+        <div slot="Buttons">
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage>
@@ -73,7 +74,8 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
-      <div slot="Button Groups">
+        <button slot="tablist">Button Groups</button>
+        <div slot="Button Groups">
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage><studs-button-group>
@@ -95,7 +97,8 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
-      <div slot="Dropdowns">
+        <button slot="tablist">Dropdowns</button>
+        <div slot="Dropdowns">
         <div class="group">
           <h2>Usage</h2>
             <presentational-usage><studs-dropdown label="Dropdown" options='[{"label": "test","value":"test"}, {"label":"test2","value":"test2"}]'></studs-dropdown></presentational-usage>
@@ -121,7 +124,8 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
-      <div slot="Chips">
+        <button slot="tablist">Chips</button>
+        <div slot="Chips">
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage><studs-chip>Chip</studs-chip></presentational-usage>
@@ -151,7 +155,8 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
-      <div slot="Carousels">
+        <button slot="tablist">Carousels</button>
+        <div slot="Carousels">
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage><studs-carousel perPage="3" slides='[{"id":0,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","alt":"image 1"},{"id":1,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 2"},{"id":2,"image":"https://www.shutterstock.com/image-photo/black-large-heavy-thick-metal-600w-1081705028.jpg","group":"image","alt":"image 3"},{"id":3,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 4"},{"id":4,"image":"https://jes.edu.vn/wp-content/uploads/2017/10/h%C3%ACnh-%E1%BA%A3nh.jpg","group":"image","alt":"image 5"},{"id":5,"image":"https://www.shutterstock.com/image-vector/short-custom-urls-url-shortener-600w-2233924609.jpg","group":"image","alt":"image 6"},{"id":6,"image":"https://www.shutterstock.com/image-photo/welded-metal-chain-various-rigging-600w-2238426561.jpg","group":"image","alt":"image 7"},{"id":7,"image":"https://www.shutterstock.com/image-photo/linked-blocks-bank-currencies-money-600w-1962882805.jpg","group":"image","alt":"image 8"},{"id":8,"image":"https://www.shutterstock.com/image-illustration/background-silver-metal-chain-common-600w-2157514199.jpg","group":"image","alt":"image 9"}]'></studs-carousel></presentational-usage>
@@ -170,7 +175,8 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
-      <div slot="Tables">
+        <button slot="tablist">Tables</button>
+        <div slot="Tables">
         <div class="group">
           <h2>Usage</h2>
             <presentational-usage><studs-table fixedheader fixedoffset="-1.5rem">
@@ -513,7 +519,8 @@ export class PresentationalPage extends LitElement {
         </div>
         
       </div>
-      <div slot="Grids">
+        <button slot="tablist">Grids</button>
+        <div slot="Grids">
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage> <studs-grid
@@ -2593,7 +2600,8 @@ export class PresentationalPage extends LitElement {
             </presentational-component>
           </div>
         </div>
-      </div>
+      </div> 
+        <button slot="tablist">Modals</button>
       <div slot="Modals">
         <div class="group">
           <h2>Usage</h2>
@@ -2649,6 +2657,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Popovers</button>
       <div slot="Popovers">
         <div class="group">
           <h2>Usage</h2>
@@ -2688,6 +2697,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Cards</button>
       <div slot="Cards">
         <div class="group">
           <h2>Usage</h2>
@@ -2721,6 +2731,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Tooltips</button>
       <div slot="Tooltips">
         <div class="group">
           <h2>Usage</h2>
@@ -2772,6 +2783,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div> 
+      <button slot="tablist">Toasts</button>
       <div slot="Toasts">
         <div class="group">
           <h2>Usage</h2>
@@ -2814,6 +2826,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Switches</button>
       <div slot="Switches">
         <div class="group">
           <h2>Usage</h2>
@@ -2863,6 +2876,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Steppers</button>
       <div slot="Steppers">
         <div class="group">
           <h2>Usage</h2>
@@ -2944,6 +2958,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Inputs</button>
       <div slot="Inputs">
         <div class="group">
           <h2>Usage</h2>
@@ -3020,6 +3035,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Radios</button>
       <div slot="Radios">
         <div class="group">
           <h2>Usage</h2>
@@ -3074,6 +3090,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Checkboxes</button>
       <div slot="Checkboxes">
         <div class="group">
           <h2>Usage</h2>
@@ -3123,6 +3140,7 @@ export class PresentationalPage extends LitElement {
           </div>
         </div>
       </div>
+      <button slot="tablist">Textarea</button>
       <div slot="Textarea">
         <div class="group">
           <h2>Usage</h2>
