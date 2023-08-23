@@ -1,9 +1,9 @@
 @use "../utilities" as *;
 
-@mixin icon {
+.icon {
   --font-size: inherit;
   fill: inherit;
-  &.-font {
+  &.-font{
     &.-small {
       --font-size: #{$font-small};
     }
@@ -21,7 +21,7 @@
     }
   }
 
-  &.-file {
+  &.-file, svg {
     --size: 1rem;
     height: var(--size);
     width: var(--size);
@@ -44,8 +44,4 @@
       --size: 4rem;
     }
   }
-}
-
-.icon {
-  @include icon;
 }

@@ -29,7 +29,7 @@ import { StudsResizer } from './components/display/resizer';
 import { StudsResizerPane } from './components/display/resizer-pane';
 import { StudsFooter } from './components/navigation/studs-footer';
 import { StudsTextarea } from './components/inputs/textarea';
-
+import { StudsBadge } from './components/display/badge';
 // Export Components
 export {
   StudsButton,
@@ -60,6 +60,7 @@ export {
   StudsResizerPane,
   StudsFooter,
   StudsTextarea,
+  StudsBadge,
 };
 
 declare global {
@@ -84,7 +85,6 @@ declare global {
     'studs-accordian-item': StudsAccordianItem;
     'studs-slider': StudsSlider;
     'studs-input': StudsInput;
-    'studs-form': StudsForm;
     'studs-radio': StudsRadio;
     'studs-radio-group': StudsRadioGroup;
     'studs-checkbox': StudsCheckbox;
@@ -93,6 +93,7 @@ declare global {
     'studs-resizer-pane': StudsResizerPane;
     'studs-footer': StudsFooter;
     'studs-textarea': StudsTextarea;
+    'studs-badge': StudsBadge;
   }
 }
 
