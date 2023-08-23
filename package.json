@@ -2,6 +2,7 @@
   "name": "studs",
   "private": true,
   "scripts": {
+    "build-lib": "turbo run build",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
