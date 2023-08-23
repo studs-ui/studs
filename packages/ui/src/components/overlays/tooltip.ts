@@ -2,6 +2,12 @@ import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import style from '@studs/styles/components/tooltips.scss?inline';
+import {
+  getComputedStyle,
+  getDocumentElement,
+  getParentNode,
+  getWindow,
+} from '../../utils/shared';
 
 export interface TooltipProps {
   open: boolean;
@@ -24,8 +30,9 @@ export class StudsTooltip extends LitElement {
   @property({ type: Boolean }) standalone: boolean = false;
   @property({ type: String }) query: TooltipProps['query'];
 
-  @property({ type: HTMLElement }) element: HTMLElement = this
-    .parentElement as HTMLElement;
+  @property({ type: HTMLElement }) element: Element = getParentNode(
+    this
+  ) as Element;
   @state() private _hovered: boolean = !this.open;
 
   static styles = unsafeCSS(style);
@@ -35,24 +42,39 @@ export class StudsTooltip extends LitElement {
     this.requestUpdate();
   };
 
+  initParent() {
+    const isParent =
+      this.element?.tagName === (getParentNode(this) as Element)?.tagName;
+
+    if (isParent) {
+      const parentStyles = getComputedStyle(this.element);
+      const parentPosition = parentStyles.getPropertyValue('position');
+      if (parentPosition === 'static' || parentPosition === '') {
+        (this.element as HTMLElement).style.setProperty('position', 'relative');
+      }
+    } else {
+      const parentStyles = getComputedStyle(getParentNode(this) as Element);
+      const parentPosition = parentStyles.getPropertyValue('position');
+      if (parentPosition === 'static' || parentPosition === '') {
+        (getParentNode(this) as HTMLElement).style.setProperty(
+          'position',
+          'relative'
+        );
+      }
+    }
+  }
+
   connectedCallback(): void {
     super.connectedCallback();
 
-    const isParent =
-      this.parentElement?.tagName === this.element?.parentElement?.tagName;
-
     if (this.query) {
-      this.element = document.querySelector(this.query) as HTMLElement;
+      this.element = getDocumentElement(this).querySelector(
+        this.query
+      ) as HTMLElement;
+
       this.requestUpdate();
-    } else if (isParent) {
-      const parentStyles = window.getComputedStyle(
-        this.element?.parentElement!
-      );
-      const parentPosition = parentStyles.getPropertyValue('position');
-      if (parentPosition === 'static' || parentPosition === '') {
-        this.element?.parentElement?.style.setProperty('position', 'relative');
-      }
     }
+    this.initParent();
 
     if (!this.disabled) {
       this.element?.addEventListener('mouseenter', this._onParentHover);

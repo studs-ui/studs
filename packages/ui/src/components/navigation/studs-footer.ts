@@ -1,17 +1,11 @@
+import style from '@studs/styles/components/footer.scss?inline';
 import { LitElement, html, nothing, unsafeCSS } from 'lit';
 import { customElement, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import style from '@studs/styles/components/footer.scss?inline';
+import { ResponsiveController } from '../../controllers/responsiveController';
 import { WithBloomreach } from '../../mixins/withBloomreach';
-import {
-  analyticsEmailSumbission,
-  analyticsFormErrors,
-  analyticsForms,
-  analyticsSocialMediaFollow,
-} from '../../utils/_analytics';
-import { isMobile } from '../../utils/shared';
 
 export interface StudsFooterProps {}
 
@@ -24,7 +18,7 @@ export class StudsFooter
 
   @state() _selected?: string;
   @state() _formStarted = false;
-  @state() _mediaQueryList?: MediaQueryList;
+  protected mediaQuery = new ResponsiveController(this);
 
   get menuItems() {
     if (this._page) {
@@ -107,7 +101,8 @@ export class StudsFooter
               class=${classMap({
                 footerNavSection: true,
                 '-active':
-                  (isMobile() && this._selected === item.name) || false,
+                  (this.mediaQuery.isMobile && this._selected === item.name) ||
+                  false,
               })}
             >
               <div
@@ -323,7 +318,7 @@ export class StudsFooter
   }
 
   onAccordianClick(name: string) {
-    if (isMobile()) {
+    if (this.mediaQuery.isMobile) {
       if (this._selected === name) this._selected = undefined;
       else this._selected = name;
     }
@@ -331,12 +326,12 @@ export class StudsFooter
 
   onSocialClick(e: MouseEvent) {
     const { href } = e.target as HTMLAnchorElement;
-    analyticsSocialMediaFollow(href.split('.')[1], href);
+    this.analyticsSocialMediaFollow(href.split('.')[1], href);
   }
 
   onFormStarted() {
     if (!this._formStarted) {
-      analyticsForms('newsletter', 'start');
+      this.analyticsForms('newsletter', 'start');
       this._formStarted = true;
     }
   }
@@ -363,7 +358,7 @@ export class StudsFooter
 
     // Throw Errors if Invalid and append Error States
     if (!checkbox) {
-      analyticsFormErrors('newsletter', 'required checkbox');
+      this.analyticsFormErrors('newsletter', 'required checkbox');
       const parent = form.querySelector('.-checkbox');
       parent?.querySelector('input')?.classList.add('-error');
       const error = this.generateErrorMessage(
@@ -374,7 +369,7 @@ export class StudsFooter
       e.preventDefault();
     }
     if (!email) {
-      analyticsFormErrors('newsletter', 'required email');
+      this.analyticsFormErrors('newsletter', 'required email');
       const parent = form.querySelector('.-input');
       parent?.querySelector('input')?.classList.add('-error');
       const error = this.generateErrorMessage('Enter your email', 'email');
@@ -382,7 +377,7 @@ export class StudsFooter
       e.preventDefault();
       // @ts-ignore
     } else if (!email.match(/[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/)) {
-      analyticsFormErrors('newsletter', 'invalid email');
+      this.analyticsFormErrors('newsletter', 'invalid email');
       const parent = form.querySelector('.-input');
       parent?.querySelector('input')?.classList.add('-error');
       const error = this.generateErrorMessage('Enter a valid email', 'email');
@@ -391,8 +386,8 @@ export class StudsFooter
     }
 
     if (email && checkbox) {
-      analyticsForms('newsletter', 'submit');
-      analyticsEmailSumbission('newsletter');
+      this.analyticsForms('newsletter', 'submit');
+      this.analyticsEmailSumbission('newsletter');
       // form.submit();
       form.classList.add('-formSuccess');
       const successMessage = document.createElement('p');

@@ -1,16 +1,16 @@
+import style from '@studs/styles/components/header.scss?inline';
 import { LitElement, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { map } from 'lit/directives/map.js';
-import style from '@studs/styles/components/header.scss?inline';
+import { ResponsiveController } from '../../controllers/responsiveController';
 import { WithBloomreach } from '../../mixins/withBloomreach';
 import {
-  analyticsNavigationAction,
-  analyticsSearch,
-  getUrlFromLinkCompound,
-} from '../../utils/_analytics';
-import { isMobileDevice, isTablet } from '../../utils/shared';
+  getDocumentElement,
+  getWindow,
+  isMobileDevice,
+} from '../../utils/shared';
 
 export interface StudsHeaderProps {
   gtag?: string;
@@ -41,6 +41,9 @@ export class StudsHeader extends WithBloomreach(LitElement) {
   private _menuBreakpoint: number = 905;
   private _resizeTimer: NodeJS.Timeout | undefined;
   private _scrollTimer: NodeJS.Timeout | undefined;
+  private window = getWindow(this);
+  private document = getDocumentElement(this);
+  protected mediaQuery = new ResponsiveController(this);
 
   @state() private _open: boolean = false;
   @state() private _activeMenu?: string;
@@ -49,15 +52,15 @@ export class StudsHeader extends WithBloomreach(LitElement) {
   connectedCallback(): void {
     super.connectedCallback();
 
-    document.addEventListener('scroll', this.onWindowScroll);
-    window.addEventListener('resize', this.onWindowResize);
+    this.document.addEventListener('scroll', this.onWindowScroll);
+    this.window.addEventListener('resize', this.onWindowResize);
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
 
-    document.removeEventListener('scroll', this.onWindowScroll);
-    window.removeEventListener('resize', this.onWindowResize);
+    this.document.removeEventListener('scroll', this.onWindowScroll);
+    this.window.removeEventListener('resize', this.onWindowResize);
   }
 
   private get _doc() {
@@ -97,7 +100,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     return html`
       <div
         class="logo"
-        @click=${() => analyticsNavigationAction('Logo', 'header')}
+        @click=${() => this.analyticsNavigationAction('Logo', 'header')}
       >
         <a href="http://strongtie.com">
           <svg
@@ -252,9 +255,10 @@ export class StudsHeader extends WithBloomreach(LitElement) {
       const { dealerLocatorTitle, dealerLocatorUrl: dealerLocatorUrlRef } =
         this._doc.getData();
       return html`<a
-        href=${getUrlFromLinkCompound(dealerLocatorUrlRef, this._page).link}
+        href=${this.getUrlFromLinkCompound(dealerLocatorUrlRef, this._page)
+          .link}
         @click=${() => {
-          analyticsNavigationAction(dealerLocatorTitle, 'header');
+          this.analyticsNavigationAction(dealerLocatorTitle, 'header');
         }}
         class="locator"
         >${dealerLocatorTitle}</a
@@ -311,7 +315,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                         return html`
                           <li>
                             <a
-                              href="${getUrlFromLinkCompound(
+                              href="${this.getUrlFromLinkCompound(
                                 item.ctaLink,
                                 this._page
                               ).link}"
@@ -353,7 +357,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
         <a
           href=${hasChildren ? '#' : item.link.href}
           @click=${hasChildren
-            ? () => analyticsNavigationAction(item.name, 'header')
+            ? () => this.analyticsNavigationAction(item.name, 'header')
             : nothing}
           class=${classMap({
             'toggle-link': hasChildren,
@@ -375,7 +379,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                           class="navSection -header"
                           href=${child.link ? child.link.href : nothing}
                           @click=${() =>
-                            analyticsNavigationAction(
+                            this.analyticsNavigationAction(
                               `${analyticsParentName} ${child.name}`,
                               'header'
                             )}
@@ -392,7 +396,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
                                           ? link.link.href
                                           : nothing}
                                         @click=${() =>
-                                          analyticsNavigationAction(
+                                          this.analyticsNavigationAction(
                                             `${analyticsChildName} ${link.name}`,
                                             'header'
                                           )}
@@ -432,11 +436,11 @@ export class StudsHeader extends WithBloomreach(LitElement) {
         id="topNav"
         class=${classMap({
           active: this._open,
-          mobile: isTablet() && this._open,
+          mobile: this.mediaQuery.isTablet && this._open,
         })}
       >
         ${map(menuItems, (item) => this.renderNavItem(item))}
-        ${isTablet()
+        ${this.mediaQuery.isTablet
           ? html`<div class="navCategory -title -locator">
               ${this.renderDealerLocator}
             </div>`
@@ -509,7 +513,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     this._activeMenu = undefined;
     this._open = !this._open;
     this.requestUpdate();
-    if (this._open && isTablet()) {
+    if (this._open && this.mediaQuery.isTablet) {
       // on Open, prevent scroll on body
       document.body.style.overflow = 'hidden';
     } else {
@@ -522,7 +526,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
    *
    */
   private onWindowScroll = () => {
-    let posY = window.scrollY;
+    let posY = this.window.scrollY;
     clearTimeout(this._scrollTimer);
     this._scrollTimer = setTimeout(() => {
       // check if page has scrolled more than 50px.
@@ -566,7 +570,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
     const formData = new FormData(e.target as HTMLFormElement);
     const searchQuery = formData.get('q');
     const fallbackQuery = formData.get('search');
-    analyticsSearch(searchQuery || fallbackQuery, 'onsite');
+    this.analyticsSearch(searchQuery || fallbackQuery, 'onsite');
 
     (e.target as HTMLFormElement).submit();
   }
