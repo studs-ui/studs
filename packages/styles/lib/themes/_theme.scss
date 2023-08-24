@@ -42,12 +42,14 @@
   --link-focus:   #{colorVal("gray", 30)};
   --link-disabled:#{colorVal("orange", 20)};
 
-  --interactive:          var(--text-dark);
-  --interactive-selected: var(--primary);
+  --interactive-text:     var(--text-dark);
+  --interactive:          var(--primary);
   --interactive-hover:    var(--primary-hover);
   --interactive-disabled: var(--primary-disabled);
+  --interactive-thumb:    #{$white};
+  --interactive-unselected: #{colorVal("gray", 30)};
 
-  --disabled:     #{colorVal("gray", 30)};
+  --disabled:     #{colorVal("gray", 20)};
 
   --background:          #{colorVal("gray", 10)};
   --background-featured: #{colorVal("gray", 90)};
@@ -56,7 +58,7 @@
   --border-color: #{colorVal("gray", 20)};
 
   --shadow-color-rgb: #{toRGB($black)};
-  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 1);
+  --shadow: rgba(var(--shadow-color-rgb, #{$black}), .15);
   --box-shadow:  0 0.25rem 0.5rem var(--shadow);
 
   --tooltip-bkg:  #{colorVal("gray", 90)};
