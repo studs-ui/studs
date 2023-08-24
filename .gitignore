@@ -25,5 +25,6 @@ apps/**/storybook-static
 *.sw?
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
 .turbo
 **/**/dist

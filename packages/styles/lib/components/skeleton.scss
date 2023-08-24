@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin skeleton {
+.skeleton {
   background-color: rgba(0, 0, 0, 0.11);
   &.-linear {
     animation: skeleton-linear 1s linear infinite alternate;
@@ -29,7 +29,7 @@
   &.-circle {
     border-radius: 50%;
   }
-  &.-rectangular {
+  &.-rect {
   }
   &.-rounded {
     border-radius: 8px;
