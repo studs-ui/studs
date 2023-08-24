@@ -30,6 +30,7 @@ import { StudsResizerPane } from './components/display/resizer-pane';
 import { StudsFooter } from './components/navigation/studs-footer';
 import { StudsTextarea } from './components/inputs/textarea';
 import { StudsBadge } from './components/display/badge';
+import { StudsTabs } from './components/display/tabs';
 // Export Components
 export {
   StudsButton,
@@ -61,6 +62,7 @@ export {
   StudsFooter,
   StudsTextarea,
   StudsBadge,
+  StudsTabs
 };
 
 declare global {
@@ -94,6 +96,7 @@ declare global {
     'studs-footer': StudsFooter;
     'studs-textarea': StudsTextarea;
     'studs-badge': StudsBadge;
+    'studs-tabs': StudsTabs;
   }
 }
 
