@@ -1,49 +1,27 @@
-# Studs LIT Usage
+# Studs LIT
 
-Simpson Strong-tie Studs Library Usage
+Simpon Strong Tie Studs Libary using Google's LIT
 
-## Install STUDS
-
-For Web based tools, html, angular, svelte, etc.
-`npm install @studs/ui`
-
-For React
-`npm install @studs/react`
-
-For Vue
-`npm install @studs/vue`
-
-## Usage
-
-Check our site for directions on usage of each component
-
-**Example usage**
-`<studs-button buttontype="primary">Button Text</studs-button>`
-
-# Studs LIT Development
-
-Simpon Strong Tie Studs Libary
-
-## Install Requirements
-1. If you don't already have PNPM installed, install it via npm `npm i pnpm -g`
-2. Install turbo globally `npm i turbo -g` or `pnpm i turbo -g`
-   1. If you get an error that pnpm isn't setup yet, run `pnpm setup` and follow the instructions
 ## Setup
 
-Run `pnpm` to install contents
+Run `yarn` to install contents
 
-### Run dev (Presentation Layer, Styles and Components)
+### Vite
 
-Run `pnpm dev`
+Run `yarn dev`
+
+### Storybook
+
+Run `yarn storybook`
 
 ## Assets
 
-Put all publicly accesable assets within the correct workspaces's `public` folder. eg. `packages/ui/public`
+Put all publicly accesable assets with `public`
 Now you can reference them from root `./image.jpg`
 
 ## Components
 
-STUDS Components are single-filed within `/packages/ui/src/components`
+STUDS Components are single-filed with `/src/studs`
 
 #### Component Template Structure
 
@@ -52,14 +30,10 @@ import { createComponent } from "@lit-labs/react";
 import { LitElement, html } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { classMap } from "lit/directives/class-map.js";
+import React from "react";
 
-interface StudsComponentProps {
-    type: type;
-    type?: type;
-}
-
-@customElement("studs-component")
-export class StudsComponent extends LitElement {
+@customElement("studs-chip")
+export class StudsChip extends LitElement {
 
     render() {
         // Element goes here within the HTML tag
@@ -74,8 +48,7 @@ export class StudsComponent extends LitElement {
 Properties are reactive _attributes_ that can be updated from the component level.
 
 ```
-@property() name: StudsComponentProps["type"] = "defaultValue"
-@property() name?: StudsComponentProps["type"];
+@property() name: string = "defaultValue"
 ```
 
 #### Define States
@@ -85,14 +58,13 @@ Adding an underscore ensures better readability of what is a state or property.
 
 ```
 @state() private _name: string = false
-@state() private _name?: string;
 ```
 
 See [Reactive Properties](https://lit.dev/docs/components/properties/) for more.
 
 #### Access Properties/State
 
-Call the property using `this.property`.
+In order to access a state or property simply append a `this` to the beginning.
 
 ```
 ${this.icon}
@@ -125,13 +97,9 @@ render() {
         <!-- Returns class if true -->
         [`-${this.size}`]: this.size,
         <!-- Returns property class if true -->
-        [this.property]: this.property
+        [this.class]: this.class
     }
     return html`<div class="${classMap(classes)}">Example</div>`
-    or 
-    return html`<div class=${classMap({
-        class: true
-    })}></div>`
 }
 ```
 
@@ -139,21 +107,20 @@ render() {
 
 Lit has a native function to generate React Components from `@lit-labs/react` called `createComponent`
 
-- Open `packages/react/index.ts`
-- Import your component, eg. `StudsChip`
+- Open `src/react.ts`
+- Import your component, ei. `StudsChip`
 - Append the new element to the list of elements
 
 ```
-const StudsChipComponent = createComponent({
-  tagName: "studs-chip",
-  elementClass: StudsChip,
+const ReactButton = createComponent({
+  tagName: "example-button",
+  elementClass: ExampleButton,
   <!-- Ensure you add React -->
   react: React,
   <!-- Add Events that the React component needs to provide functionality for  -->
   events: {
     onclick: "click",
     onactivate: "activate",
-    customevent: "customevent"
   },
 })
 ```
@@ -166,7 +133,7 @@ const StudsChipComponent = createComponent({
 ```
 import {StudsChip} from ".."
 
-export {StudsChip}
+export {StudsChip} from "..
 ```
 
 - Inside `declare global` add your component to the list of components

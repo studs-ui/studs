@@ -1,0 +1,130 @@
+@use '../utilities' as *;
+
+// var position
+$top: 0.1em;
+$bottom: 0.1em;
+$left: 0;
+$right: 0;
+
+.badge {
+  display: inline-flex;
+  position: relative;
+  font-family: var(--font-family);
+
+  // Modifiers
+  &.-primary {
+    --badge-background: var(--primary);
+  }
+  &.-success {
+    --badge-background: var(--success-color);
+  }
+  &.-warning {
+    --badge-background: var(--warning-color);
+  }
+  &.-danger {
+    --badge-background: var(--error-color);
+  }
+  &.-info {
+    --badge-background: var(--info-color);
+  }
+
+  &.-small {
+    --size: 0.8rem;
+  }
+  &.-medium {
+    --size: 1rem;
+  }
+  &.-large {
+    --size: 1.2rem;
+  }
+
+  &.-top-right {
+    --top: $top;
+    --right: $right;
+  }
+
+  
+
+  .badgeContent {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--badge-background);
+    color: var(--badge-color);
+
+    padding: 0.25em;
+    border-radius: 1em;
+    line-height: 1;
+    min-width: 1.5em;
+    font-size: 0.8em;
+    position: absolute;
+
+    &.-badge {
+      font-size: var(--size);
+    }
+
+    &:where(.-top-right) {
+      top: -0.5em;
+      right: -1.25em;
+    }
+    &:where(.-bottom-right) {
+      bottom: -0.5em;
+      right: -1.25em;
+    }
+    &:where(.-top-left) {
+      top: -0.5em;
+      left: -1.25em;
+    }
+    &:where(.-bottom-left) {
+      bottom: -0.5em;
+      left: -1.25em;
+    }
+  }
+
+  .dot {
+    background-color: var(--badge-background);
+    color: var(--badge-color);
+
+    width: 0.5em;
+    height: 0.5em;
+    border-radius: 50%;
+
+    position: absolute;
+    right: 0;
+
+    &.-dot {
+      &:where(.-small) {
+        font-size: 0.4rem;
+      }
+      &:where(.-medium) {
+        font-size: 0.6rem;
+      }
+      &:where(.-large) {
+        font-size: 1.2rem;
+      }
+      &:where(.-extraLarge) {
+        font-size: 2rem;
+      }
+    }
+
+    &:where(.-top-right) {
+      top: $top;
+      right: $right;
+    }
+    &:where(.-bottom-right) {
+      bottom: $bottom;
+      right: $right;
+    }
+    &:where(.-top-left) {
+      left: $left;
+      top: $top;
+    }
+    &:where(.-bottom-left) {
+      left: $left;
+      bottom: $bottom;
+    }
+  }
+}

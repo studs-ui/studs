@@ -1,46 +1,21 @@
 {
-  "name": "studs-lit",
-  "private": false,
-  "version": "0.0.7",
-  "type": "module",
-  "main": "dist/studs-lit.js",
-  "module": "dist/studs-lit.js",
-  "style": "dist/studs-lit.css",
-  "files": [
-    "dist"
-  ],
+  "name": "studs",
+  "private": true,
   "scripts": {
-    "dev": "vite",
-    "build-lib": "tsc && vite build",
-    "build": "tsc && vite build && storybook build",
-    "preview": "vite preview",
-    "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build",
+    "build-lib": "turbo run build",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "storybook": "turbo run storybook",
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
     "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
   },
-  "dependencies": {
-    "@bloomreach/spa-sdk": "^22.0.0",
-    "@lit-labs/context": "^0.3.3",
-    "axios": "^1.4.0"
-  },
   "devDependencies": {
-    "@lit-labs/virtualizer": "^2.0.4",
-    "@splidejs/splide": "^4.1.4",
-    "@storybook/addon-essentials": "^7.1.1",
-    "@storybook/addon-links": "^7.1.1",
-    "@storybook/addon-mdx-gfm": "^7.1.1",
-    "@storybook/blocks": "^7.1.1",
-    "@storybook/react-vite": "^7.1.1",
-    "@storybook/web-components": "^7.1.1",
-    "@storybook/web-components-vite": "^7.1.1",
-    "lit": "^2.7.6",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "sass": "^1.64.1",
-    "storybook": "^7.1.1",
-    "storybook-addon-performance": "^0.17.1",
-    "typescript": "^5.1.6",
-    "vite": "^4.4.7"
-  }
+    "eslint": "^7.32.0",
+    "prettier": "^2.5.1",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@8.6.10"
 }
