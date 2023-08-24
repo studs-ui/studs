@@ -5,9 +5,12 @@
   &.-linear {
     animation: skeleton-linear 1s linear infinite alternate;
   }
-  // &.-wave {
-  //   animation: skeleton-wave 1s linear infinite alternate;
-  // }
+  &.-pulse {
+    animation: skeleton-pulse 1s linear infinite alternate;
+  }
+  &.-wave {
+    animation: skeleton-wave 1s linear infinite alternate;
+  }
   @keyframes skeleton-linear {
     0% {
       background-color: hsl(200, 20%, 80%);
@@ -16,20 +19,30 @@
       background-color: hsl(200, 20%, 95%);
     }
   }
-  // @keyframes skeleton-wave {
-  //   0% {
-  //     left: 0;
-  //     background-color: hsl(200, 20%, 80%);
-  //   }
-  //   100% {
-  //     right: 0;
-  //     background-color: hsl(200, 20%, 95%);
-  //   }
-  // }
+  @keyframes skeleton-wave {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    50% {
+      background-color: hsl(200, 20%, 95%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 80%);
+    }
+  }
+  @keyframes skeleton-pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
   &.-circle {
     border-radius: 50%;
-  }
-  &.-rect {
   }
   &.-rounded {
     border-radius: 8px;

@@ -26,7 +26,7 @@ export class StudsSkeleton extends LitElement {
         [`-${this.variant}`]: true,
         [`-${this.animation}`]: true,
       })}
-      styleMap=${styleMap({
+      style=${styleMap({
         width: this.width || '100%',
         height: this.height || '100%',
       })}
