@@ -1,292 +1,5 @@
 @use "../utilities" as *;
 
-@mixin button-border($border: 0 0 0 0.25em var(--button-border)) {
-  box-shadow: 0 0 0 0.1em $white, $border;
-}
-
-@mixin button {
-  --button-background: var(--button-default);
-  --button-border: var(--button-default);
-
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-
-  white-space: nowrap;
-  appearance: none;
-  padding: 0.75em 1em;
-  text-align: center;
-  line-height: 1;
-  color: var(--button-color);
-  border: 2px solid var(--button-border);
-  border-radius: 3px;
-  background-color: var(--button-background);
-  box-shadow: 0 0 0 $transparent, 0 0 0 $transparent;
-
-  transition: all var(--transition-s);
-
-  display: flex;
-  flex-direction: row;
-  gap: 0.5em;
-  justify-content: center;
-  align-items: center;
-
-  cursor: pointer;
-
-  .icon {
-    svg {
-      color: currentColor;
-      path {
-        color: currentColor;
-      }
-    }
-  }
-
-  &:not(.-cta, .-icon) {
-    width: 100%;
-    @media (min-width: $screen-xs) {
-      width: auto;
-    }
-  }
-
-  &.-selected {
-    background: gray;
-    border-color: gray;
-  }
-
-  &:hover {
-    --button-border: var(--button-hover);
-    --button-background: var(--button-hover);
-    box-shadow: 0 0.1em 0.25em rgba(var(--button-shadow-color), 0.5),
-      0 0.35em 0.5em rgba(var(--button-shadow-color), 0.25);
-  }
-
-  &:not(.-link) {
-    &:focus-visible {
-      @include button-border;
-      --button-border: var(--button-focused);
-      --button-background: var(--button-focused);
-      outline: none;
-    }
-
-    &:hover {
-      transform: var(--interactive-feedback);
-    }
-  }
-
-  &:active {
-    --button-border: var(--button-active);
-    --button-background: var(--button-active);
-    box-shadow: none;
-  }
-
-  &:disabled,
-  &.-disabled {
-    pointer-events: none;
-    opacity: 0.5;
-
-    &:hover,
-    &:focus-visible,
-    &:active {
-      --button-background: var(--button-default);
-      --button-border: var(--button-default);
-      box-shadow: none;
-      transform: none;
-    }
-  }
-
-  &.-small {
-    --font-size: #{$font-small};
-  }
-
-  &.-medium {
-    --font-size: #{$font-default};
-  }
-
-  &.-large {
-    --font-size: #{$font-large};
-  }
-
-  &.-extraLarge {
-    --font-size: #{$font-xl};
-  }
-
-  &.-cta {
-    padding: 1em 2.25em;
-    border-radius: 3.5em;
-
-    &:not(.-link) {
-      &:focus-visible {
-        @include button-border(0 0 0 0.3em var(--button-border));
-        --button-border: var(--button-default);
-        --button-background: var(--button-default);
-      }
-    }
-
-    .text {
-      font-weight: $font-semibold;
-    }
-
-    .text,
-    .icon.-font {
-      font-size: 1.25em;
-    }
-  }
-
-  &.-secondary {
-    --button-color: var(--button-default);
-    --button-border: var(--button-default);
-    --button-background: #{$transparent};
-    --button-shadow-color: var(--shadow-color-rgb);
-
-    &:hover {
-      --button-background: #{$transparent};
-    }
-
-    &:focus-visible {
-      --button-background: #{$transparent};
-    }
-
-    &:active {
-      --button-color: var(--button-active);
-      --button-border: var(--button-active);
-      --button-background: #{$transparent};
-    }
-  }
-
-  &.-tertiary {
-    --button-color: var(--button-default);
-    --button-border: #{$transparent};
-    --button-background: #{$transparent};
-    --button-shadow-color: #{$transparent};
-    --button-focused: var(--button-default);
-
-    &:focus-visible,
-    &:hover,
-    &:active {
-      --button-background: var(--interactive-bkg-secondary);
-      box-shadow: none;
-    }
-
-    &:active {
-      --button-color: var(--text-color);
-    }
-
-    &:hover {
-      --button-border: #{$transparent};
-      transform: none;
-    }
-
-    &:active {
-      --button-border: #{$transparent};
-      --button-color: var(--button-active);
-    }
-
-    .text {
-      font-weight: $font-semibold;
-    }
-  }
-
-  &.-link {
-    --button-background: #{$transparent};
-    --button-color: var(--text-color);
-    --button-border: var(--button-default);
-    // font-weight: var(--font-medium);
-
-    padding: 0.35em;
-
-    justify-content: flex-start;
-
-    border: 2px solid $transparent;
-
-    .text {
-      padding: 0.05em;
-      border-bottom: 1px solid var(--button-border);
-    }
-
-    .icon {
-      color: var(--button-default);
-    }
-
-    &:focus-visible {
-      --button-color: var(--text-color);
-      --button-border: var(--button-hover);
-      outline: 1px solid var(--border-color);
-    }
-    &:hover {
-      --button-color: var(--button-hover);
-      --button-border: var(--button-hover);
-      --button-background: #{$transparent};
-      box-shadow: none;
-    }
-    &:active {
-      --button-color: var(--button-active);
-      --button-border: var(--button-active);
-      --button-background: #{$transparent};
-    }
-  }
-
-  &.-floating {
-    --button-border: #{$transparent};
-    --button-background: var(--button-fab);
-    color: currentcolor;
-
-    .icon {
-      svg {
-        color: currentColor;
-      }
-    }
-
-    padding: 0.5em;
-    border-radius: 50%;
-    box-shadow: 0.05rem 0.05rem 0.15rem rgba(var(--shadow-color-rgb), 0.25),
-      0.15rem 0.15rem 0.65rem rgba(var(--shadow-color-rgb), 0.15);
-
-    &:focus-visible {
-      --button-background: var(--button-fab);
-    }
-
-    &:hover {
-      transform: none;
-    }
-  }
-
-  &.-icon {
-    --button-border: #{$transparent};
-    --button-background: #{$transparent};
-    color: currentcolor;
-    svg {
-      color: currentColor;
-    }
-
-    padding: 0.1em;
-    border-radius: 50%;
-
-    &:focus-visible,
-    &:hover {
-      --button-background: #{$transparent};
-      --button-border: #{$transparent};
-      transform: none;
-      box-shadow: 0 0 0 1px rgba(var(--shadow-color-rgb), 1);
-    }
-  }
-
-  &.-reverse {
-    studs-icon {
-      order: 2;
-    }
-    .text {
-      order: 1;
-    }
-  }
-
-  &.-vertical {
-    flex-direction: column;
-
-    .icon {
-      font-size: 1.5em; // @IDEA: testing. get approval on this.
-    }
-  }
-}
 
 :host {
   display: inline-block;
@@ -294,5 +7,134 @@
 }
 
 .button {
-  @include button;
+  --color:     var(--primary);
+  --hover:     var(--primary-hover);
+  --active:    var(--primary-active);
+  --disabled:  var(--primary-disabled);
+  --disabled-text:var(--text-disabled);
+
+  --border: var(--color);
+  --text: #{$white};
+
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) * .975);
+  font-weight: $font-semibold;
+
+  background: var(--color);
+  color: var(--text);
+  border: none;
+  outline: 2px solid $transparent;
+  outline-offset: 2px;
+  border-radius: 0.25em;
+
+  padding: 0.75em 1em;
+  box-shadow: var(--interactive-shadow);
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+
+
+  @include fontSizes;
+
+  &.-cta {
+   border-radius: 1.5em;
+
+   &:disabled {
+     --color: #{$transparent};
+   }
+  }
+
+  &.-primary {
+    --color:     var(--primary);
+    --hover:     var(--primary-hover);
+    --active:    var(--primary-active);
+    --disabled:  var(--primary-disabled);
+
+    &:disabled {
+      --disabled-text: #{$white};
+    }
+  }
+
+  &.-secondary {
+    --color:     var(--secondary);
+    --hover:     var(--secondary-hover);
+    --active:    var(--secondary-active);
+    --disabled:  var(--secondary-disabled);
+  }
+
+  &.-tertiary,
+  &.-text {
+    --border: transparent;
+    --color: var(--text-color);
+    --text: var(--color);
+
+    border: none;
+    border-radius: 0.125em;
+    box-shadow: none;
+    background: $transparent;
+
+    &:focus,
+    &:focus-visible {
+      --color: var(--primary-hover);
+    }
+  }
+
+  &.-link {
+    --text: var(--text-color);
+    --border: var(--border-color-med);
+
+    border: none;
+    border-radius: 0.125em;
+    box-shadow: none;
+    background: $transparent;
+
+    text-decoration: underline;
+    text-decoration-color: var(--color);
+    text-underline-offset: .25em;
+  }
+
+  &.-floating {
+    --color: #{$white};
+    border-radius: 1.5em;
+    padding: .75em;
+  }
+
+  &.-icon {
+    --color: var(--primary);
+  }
+
+  &.-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.-vertical {
+    flex-direction: column;
+
+    &.-reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+
+  &:hover {
+    --color: var(--hover);
+  }
+
+  &:active {
+    --color: var(--active);
+  }
+
+  &:disabled {
+    --color: var(--disabled);
+    --text:  var(--disabled-text);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline-color: var(--border);
+  }
 }

@@ -12,28 +12,29 @@
   --cta-active:   #{colorVal("orange", 60)};
   --cta-disabled: #{colorVal("orange", 10)};
 
-  --primary:      #{colorVal("orange", 50)};
-  --primaryRgb:   #{toRGB(#df4907)};
+  --primary:          #{colorVal("orange", 50)};
+  --primaryRgb:       #{toRGB(#df4907)};
   --primary-hover:    #{colorVal("orange", 40)};
   --primary-active:   #{colorVal("orange", 60)};
-  --primary-disabled: #{colorVal("orange", 10)};
+  --primary-disabled: #{colorVal("orange", 20)};
 
-  --secondary:    #{colorVal("gray", 60)};
-  --secondaryRgb: #{toRGB(#686868)};
+  --secondary:          #{colorVal("gray", 60)};
+  --secondaryRgb:       #{toRGB(#686868)};
   --secondary-hover:    #{colorVal("gray", 40)};
   --secondary-active:   #{colorVal("gray", 60)};
-  --secondary-disabled: #{colorVal("gray", 10)};
+  --secondary-disabled: #{colorVal("gray", 0)};
 
-  --tertiary:     #{colorVal("mauve", 50)};
-  --tertiaryRgb:  #{toRGB(#847087)};
+  --tertiary:          #{colorVal("mauve", 50)};
+  --tertiaryRgb:       #{toRGB(#847087)};
   --tertiary-hover:    #{colorVal("mauve", 40)};
   --tertiary-active:   #{colorVal("mauve", 60)};
   --tertiary-disabled: #{colorVal("mauve", 10)};
 
-  --text-color:   #{colorVal("gray", 80)};
-  --text-dark:    #{colorVal("gray", 100)};
-  --text-light:   #{colorVal("gray", 20)};
-  --heading-color:#{$black};
+  --text-color:    #{colorVal("gray", 80)};
+  --text-dark:     #{colorVal("gray", 100)};
+  --text-light:    #{colorVal("gray", 20)};
+  --text-disabled: #{colorVal("gray", 30)};
+  --heading-color: #{$black};
 
   --link-color:   #{colorVal("gray", 100)};
   --link-active:  #{colorVal("orange", 70)};
@@ -42,13 +43,6 @@
   --link-focus:   #{colorVal("gray", 30)};
   --link-disabled:#{colorVal("orange", 20)};
 
-  --interactive-text:     var(--text-dark);
-  --interactive:          var(--primary);
-  --interactive-hover:    var(--primary-hover);
-  --interactive-disabled: var(--primary-disabled);
-  --interactive-thumb:    #{$white};
-  --interactive-unselected: #{colorVal("gray", 30)};
-
   --disabled:     #{colorVal("gray", 20)};
 
   --background:          #{colorVal("gray", 10)};
@@ -56,15 +50,26 @@
   --background-content : #{$white};
 
   --border-color: #{colorVal("gray", 20)};
+  --border-color-med: #{colorVal("gray", 30)};
 
-  --shadow-color-rgb: #{toRGB($black)};
-  --shadow: rgba(var(--shadow-color-rgb, #{$black}), .15);
+  // --shadow-color-rgb: #{toRGB($black)};
+  --shadow-color-rgb: 40, 46, 51;
+  --shadow:      rgba(var(--shadow-color-rgb, black), .15);
+  --shadow-soft: rgba(var(--shadow-color-rgb, black), .25);
   --box-shadow:  0 0.25rem 0.5rem var(--shadow);
 
   --tooltip-bkg:  #{colorVal("gray", 90)};
   --tooltip-text: #{colorVal("gray", 0)};
   --tooltip-shadow: 0 .125rem .5rem rgba(var(--shadow-color-rgb, #{$black}), .5);
 
+  --interactive-text:     var(--text-dark);
+  --interactive:          var(--primary);
+  --interactive-hover:    var(--primary-hover);
+  --interactive-disabled: var(--primary-disabled);
+  --interactive-thumb:    #{$white};
+  --interactive-unselected: #{colorVal("gray", 30)};
+  --interactive-shadow:  0px 1px 2px 1px var(--shadow),
+                         0px 1px 2px 0px var(--shadow-soft);
 
  /* feedback colors */
   --info-color:    #{colorVal("gray", 80)};

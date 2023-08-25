@@ -15,21 +15,7 @@
     position: relative;
     color: var(--text-color);
 
-    &.-small {
-      --font-size: #{$font-small};
-    }
-
-    &.-medium {
-      --font-size: #{$font-default};
-    }
-
-    &.-large {
-      --font-size: #{$font-large};
-    }
-
-    &.-extraLarge {
-      --font-size: #{$font-xl};
-    }
+    @include fontSizes;
 
     &.-disabled {
       --text-color: var(--disabled);

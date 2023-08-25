@@ -4,6 +4,8 @@
   margin-bottom: 0.25rem;
   display: inline-block;
 
+  @include fontSizes;
+
   &.-required:after {
     content: '*';
     font-weight: bold;
@@ -13,18 +15,6 @@
   &.-disabled {
     color: var(--disabled);
     cursor: not-allowed;
-  }
-
-  &.-small {
-    --font-size: #{$font-small};
-  }
-
-  &.-medium {
-    --font-size: #{$font-default};
-  }
-
-  &.-large {
-    --font-size: #{$font-large};
   }
 
   &.-error {

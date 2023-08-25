@@ -18,9 +18,9 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage>
-            <studs-button 
-            onclick="alert('clicked')" 
-            buttontype="primary" 
+            <studs-button
+            onclick="alert('clicked')"
+            buttontype="primary"
             size="medium"
             icon="<svg>...</svg>"
             contentdirection="horizontal"
@@ -34,7 +34,7 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <h2>Examples</h2>
           <div class="componentGrid">
-            <presentational-component><studs-button onclick="alert('clicked')">CTA</studs-button></presentational-component>
+            <presentational-component><studs-button onclick="alert('clicked')">CTA Button</studs-button></presentational-component>
             <presentational-component>
               <studs-button buttontype="primary" onclick="alert('clicked')">Primary</studs-button>
             </presentational-component>
@@ -517,7 +517,7 @@ export class PresentationalPage extends LitElement {
             </presentational-component>
           </div>
         </div>
-        
+
       </div>
         <button slot="tablist">Grids</button>
         <div slot="Grids">
@@ -531,8 +531,8 @@ export class PresentationalPage extends LitElement {
             showborders="true"
             allowcolumnresizing="true"
             enableglobalsearch="true"
-            
-            
+
+
           ></studs-grid></presentational-usage>
         </div>
         <div class="group">
@@ -2596,11 +2596,11 @@ export class PresentationalPage extends LitElement {
               },
             ]}
             ></studs-grid>
-              
+
             </presentational-component>
           </div>
         </div>
-      </div> 
+      </div>
         <button slot="tablist">Modals</button>
       <div slot="Modals">
         <div class="group">
@@ -2652,7 +2652,7 @@ export class PresentationalPage extends LitElement {
                   </studs-button>
                 </div>
               </studs-modal>
-              
+
             </presentational-component>
           </div>
         </div>
@@ -2782,7 +2782,7 @@ export class PresentationalPage extends LitElement {
             </presentational-component>
           </div>
         </div>
-      </div> 
+      </div>
       <button slot="tablist">Toasts</button>
       <div slot="Toasts">
         <div class="group">
@@ -2835,9 +2835,9 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-switch 
-                checked="true" 
-                label="Checked" 
+              <studs-switch
+                checked="true"
+                label="Checked"
                 @switch-change=${(e: CustomEvent) =>
                   console.log(
                     `Switch changed! Checked status: ${e.detail.checked}`
@@ -2967,13 +2967,13 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
             <presentational-component>
-              <studs-input 
+              <studs-input
                 type="text"
-                variant="outlined" 
-                inputSize="large" 
+                variant="outlined"
+                inputSize="large"
                 label="My Label"
                 placeholder="Enter your name"
-                adornment="lbs" 
+                adornment="lbs"
                 adornment-position="start">
               </studs-input>
             </presentational-component>
@@ -3149,7 +3149,7 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <div class="componentGrid">
           <presentational-component>
-              <studs-textarea 
+              <studs-textarea
                 label="With Label and Placeholder"
                 placeholder="Enter your text here"
                 @change="${(e: CustomEvent) =>
@@ -3157,7 +3157,7 @@ export class PresentationalPage extends LitElement {
               </studs-textarea>
             </presentational-component>
             <presentational-component>
-              <studs-textarea 
+              <studs-textarea
                 label="With Character counter"
                 placeholder="Enter your text here"
                 character-counter
@@ -3166,7 +3166,7 @@ export class PresentationalPage extends LitElement {
               </studs-textarea>
             </presentational-component>
             <presentational-component>
-              <studs-textarea 
+              <studs-textarea
                 label="Required"
                 placeholder="Enter your text here"
                 required
@@ -3175,7 +3175,7 @@ export class PresentationalPage extends LitElement {
               </studs-textarea>
             </presentational-component>
             <presentational-component>
-              <studs-textarea 
+              <studs-textarea
                 label="Disabled"
                 placeholder="Enter your text here"
                 disabled
@@ -3184,7 +3184,7 @@ export class PresentationalPage extends LitElement {
               </studs-textarea>
             </presentational-component>
             <presentational-component>
-              <studs-textarea 
+              <studs-textarea
                 label="With custom rows and cols"
                 placeholder="Enter your text here"
                 rows="8"
@@ -3194,7 +3194,7 @@ export class PresentationalPage extends LitElement {
               </studs-textarea>
             </presentational-component>
             <presentational-component>
-              <studs-textarea 
+              <studs-textarea
                 label="With Error and Helper Text"
                 placeholder="Enter your text here"
                 maxlength="2"
