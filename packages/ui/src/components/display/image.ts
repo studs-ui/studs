@@ -24,7 +24,7 @@ export class StudsImage extends LitElement implements StudsImageProps {
 
   static styles = unsafeCSS(style);
 
-  get getPlaceholder() {
+  private get getPlaceholder() {
     if (this.placeholder && !this.src) {
       return html`
         <div class="placeholder">
@@ -58,7 +58,7 @@ export class StudsImage extends LitElement implements StudsImageProps {
     }
   }
 
-  get renderImages() {
+  private get renderImages() {
     const isSrcSet = this.small || this.medium || this.large;
     if (isSrcSet) {
       return html`
