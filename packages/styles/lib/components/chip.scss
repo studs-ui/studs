@@ -1,12 +1,6 @@
 @use "../utilities" as *;
 
-@mixin chip {
-  --color: var(--text-dark);
-  --bkg: var(--chip-default);
-  --hover: var(--chip-hover);
-  --active: var(--chip-active);
-  --chip-border: #{$transparent};
-
+.chip {
   padding: 0.5em 0.75em;
   display: inline-flex;
   flex-direction: row;
@@ -14,39 +8,18 @@
   align-items: center;
   gap: 0.25em;
 
-  color: var(--color);
-  background-color: var(--bkg);
+  color: var(--chip-text);
+  background-color: var(--chip-bkg);
   border: 2px solid var(--chip-border);
   border-radius: 0.35rem;
   cursor: default;
 
-  &.-small {
-    --font-size: #{$font-small};
+  font-size: var(--font-size);
 
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
-  }
-  &.-medium {
-    --font-size: #{$font-default};
+  @include fontSizes;
 
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
-  }
-  &.-large {
-    --font-size: #{$font-large};
-
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
-  }
-  &.-extraLarge {
-    --font-size: #{$font-xl};
-
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
+  ::slotted(img) {
+    max-height: 1.2em;
   }
 
   &.-reverse {
@@ -56,7 +29,7 @@
 
   .-close {
     &.button {
-      color: var(--color);
+      color: var(--chip-text);
       background: transparent;
       padding: 0;
       box-shadow: none;
@@ -65,7 +38,7 @@
       border: 1px solid $transparent;
       border-radius: 50%;
 
-      transition: all $transition-m;
+      transition: all var(--transition-m);
 
       &:hover {
         --color: var(--cta);
@@ -87,10 +60,14 @@
   &.-selected:not(.-secondary) {
     &,
     .-close {
-      --bkg: var(--chip-selected);
-      --hover: var(--chip-selected-hover);
-      --color: var(--button-color);
-      --chip-border: #{$transparent};
+      --chip-bkg:    #{colorVal("gray" ,10)};
+      --chip-text:   #{colorVal("gray", 90)};
+      --chip-border: #{colorVal("gray", 50)};
+
+      // --bkg: var(--chip-selected);
+      // --hover: var(--chip-selected-hover);
+      // --color: var(--button-color);
+      // --chip-border: #{$transparent};
     }
   }
 
@@ -152,8 +129,4 @@
   &.-noPointer {
     cursor: default;
   }
-}
-
-.chip {
-  @include chip;
 }
