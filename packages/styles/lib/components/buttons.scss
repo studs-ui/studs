@@ -34,6 +34,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   gap: 0.5em;
 
 
@@ -96,14 +97,27 @@
     text-underline-offset: .25em;
   }
 
-  /*
+  &.-floating {
+    --color: #{$white};
+    border-radius: 1.5em;
+    padding: .75em;
+  }
 
-    .-floating
-    .-icon
-    .-reverse
-    .-vertical
+  &.-icon {
+    --color: var(--primary);
+  }
 
-  */
+  &.-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.-vertical {
+    flex-direction: column;
+
+    &.-reverse {
+      flex-direction: column-reverse;
+    }
+  }
 
 
   &:hover {

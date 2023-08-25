@@ -15,7 +15,8 @@ $font-black: 700;
 $font-small: 0.8rem;
 $font-default: 1rem;
 $font-large: 2rem;
-$font-xl: 4rem;
+$font-xl: 3rem;
+$font-xxl: 4rem;
 
 
 @mixin fonts {
@@ -58,6 +59,7 @@ $font-xl: 4rem;
   &.-medium     {--font-size: #{$font-default}}
   &.-large      {--font-size: #{$font-large}}
   &.-extraLarge {--font-size: #{$font-xl}}
+  &.-huge       {--font-size: #{$font-xxl}}
 }
 
 
