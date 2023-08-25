@@ -1,7 +1,7 @@
 import { LitElement, html, nothing, unsafeCSS } from "lit";
 import { customElement, property } from "lit/decorators.js";
 import { ifDefined } from "lit/directives/if-defined.js";
-import style from "styles/image.scss?inline";
+import style from '@studs/styles/components/image.scss?inline';
 
 export interface StudsImageProps {
   placeholder: boolean;
@@ -12,15 +12,15 @@ export interface StudsImageProps {
   large?: string;
 }
 
-@customElement("studs-image")
-export class StudsImage extends LitElement {
-  @property({ type: Boolean }) placeholder: StudsImageProps["placeholder"] =
+@customElement('studs-image')
+export class StudsImage extends LitElement implements StudsImageProps {
+  @property({ type: Boolean }) placeholder: StudsImageProps['placeholder'] =
     true;
-  @property({ type: String }) src: StudsImageProps["src"];
-  @property({ type: String }) small: StudsImageProps["small"];
-  @property({ type: String }) medium: StudsImageProps["medium"];
-  @property({ type: String }) large: StudsImageProps["large"];
-  @property({ type: String }) alt: StudsImageProps["alt"];
+  @property({ type: String }) src: StudsImageProps['src'];
+  @property({ type: String }) small: StudsImageProps['small'];
+  @property({ type: String }) medium: StudsImageProps['medium'];
+  @property({ type: String }) large: StudsImageProps['large'];
+  @property({ type: String }) alt: StudsImageProps['alt'];
 
   static styles = unsafeCSS(style);
 
