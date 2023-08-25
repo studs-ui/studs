@@ -1,6 +1,5 @@
-import { html, svg, unsafeCSS } from 'lit';
 import style from '@studs/styles/components/icons.scss?inline';
-import { classMap } from 'lit/directives/class-map.js';
+import { svg, unsafeCSS } from 'lit';
 
 interface IconOptions {
   size?: 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';
