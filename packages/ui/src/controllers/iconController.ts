@@ -1,9 +1,8 @@
-import { html, svg, unsafeCSS } from 'lit';
 import style from '@studs/styles/components/icons.scss?inline';
-import { classMap } from 'lit/directives/class-map.js';
+import { svg, unsafeCSS } from 'lit';
 
 interface IconOptions {
-  size?: 'small' | 'medium' | 'large';
+  size?: 'small' | 'medium' | 'large' | 'xlarge' | 'xxlarge';
   color?: string;
 }
 
@@ -60,6 +59,10 @@ export class IconController {
           return '1.5rem';
         case 'large':
           return '2rem';
+        case 'xlarge':
+          return '2.5rem';
+        case 'xxlarge':
+          return '3rem';
       }
     }
     return '100%';

@@ -1,14 +1,36 @@
 @use '../utilities' as *;
 
-@mixin spinner {
+.spinner {
+
+    &[aria-hidden="true"] {
+      display: none;
+    }
+
+    &[aria-hidden="false"] {
+      display: block;
+    }
+
+   .-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    &:not([disabled]) {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   .loader {
     width: 50px;
     height: 50px;
-    border: 5px solid;
-    border-color: var(--cta) transparent;
-    border-radius: 50%;
     animation: spin 1.2s linear infinite;
     &.-spinner {
+      border: 5px solid;
+      border-color: var(--cta) transparent;
+      border-radius: 50%;
       --size: 40px;
       width: var(--size);
       height: var(--size);
@@ -29,29 +51,20 @@
         --size: 80px;
       }
     }
-    &:where(.secondary) {
+    &.-icon {
+      
+    }
+    &:where(.-secondary) {
       border-color: var(--cta) transparent;
     }
-    &:where(.inherit) {
+    &:where(.-inherit) {
       border-color: var(--background) transparent;
     }
-    &:where(.default) {
+    &:where(.-default) {
       border-color: var(--background) transparent;
     }
   }
 
-  .loader_icon {
-    animation: spin 1.2s linear infinite;
-    &:where(.secondary) {
-      color: var(--cta);
-    }
-    &:where(.inherit) {
-      color: var(--background-featured);
-    }
-    &:where(.default) {
-      color: var(--background);
-    }
-  }
 
   @keyframes spin {
     0% {
