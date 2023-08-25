@@ -278,6 +278,8 @@
   --transition-m : #{$transition-m};
   --transition-l : #{$transition-l};
   --transition-x : #{$transition-x};
+  --transition-xx: #{$transition-xx};
+  --transition-xxx: #{$transition-xxx};
 
   --interactive-feedback: translateY(-.075em) scale(1.01);
 
@@ -287,6 +289,8 @@
     --transition-m : 0s;
     --transition-l : 0s;
     --transition-x : 0s;
+    --transition-xx: 0s;
+    --transition-xxx: 0s;
 
     --interactive-feedback: translateY(0) scale(1);
     }
