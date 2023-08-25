@@ -13,10 +13,12 @@ import {
 } from 'lit/decorators.js';
 import style from '@studs/styles/components/modals.scss?inline';
 import { classMap } from 'lit/directives/class-map.js';
+import { getDocumentElement } from '../../utils/shared';
 
 export interface ModalProps {
   open: boolean;
   closeOnOverlayClick?: boolean;
+  closeOnEscape?: boolean;
   children?: TemplateResult | HTMLElement | string;
 }
 
@@ -26,10 +28,29 @@ export class StudsModal extends LitElement {
   @property({ type: Boolean }) open: ModalProps['open'] = false;
   @property({ type: Boolean })
   closeOnOverlayClick: ModalProps['closeOnOverlayClick'] = true;
+  @property({ type: Boolean }) closeOnEscape: ModalProps['closeOnEscape'] =
+    true;
 
   @state() private _hidden: boolean = !this.open;
 
   @queryAssignedElements({ slot: 'toggle' }) toggle!: HTMLElement[];
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (this.closeOnEscape) {
+      getDocumentElement(this).addEventListener('keydown', this.onEscapeClose);
+    }
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.closeOnEscape) {
+      getDocumentElement(this).removeEventListener(
+        'keydown',
+        this.onEscapeClose
+      );
+    }
+  }
 
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
@@ -90,16 +111,22 @@ export class StudsModal extends LitElement {
     `;
   }
 
+  onOverlayClose(event: any) {
+    if (event.target?.classList?.contains('-overlay')) {
+      this.onClose();
+    }
+  }
+
+  onEscapeClose = (event: KeyboardEvent) => {
+    if (event.key === 'Escape') {
+      this.onClose();
+    }
+  };
+
   onClose() {
     this._hidden = true;
     setTimeout(() => {
       this.open = false;
     }, 300);
-  }
-
-  onOverlayClose(event: any) {
-    if (event.target?.classList?.contains('-overlay')) {
-      this.onClose();
-    }
   }
 }

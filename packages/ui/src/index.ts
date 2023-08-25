@@ -30,7 +30,9 @@ import { StudsResizerPane } from './components/display/resizer-pane';
 import { StudsFooter } from './components/navigation/studs-footer';
 import { StudsTextarea } from './components/inputs/textarea';
 import { StudsBadge } from './components/display/badge';
+import { StudsSkeleton } from './components/display/skeleton';
 import { StudsTabs } from './components/display/tabs';
+import { StudsSpinner } from './components/display/spinner';
 // Export Components
 export {
   StudsButton,
@@ -62,7 +64,9 @@ export {
   StudsFooter,
   StudsTextarea,
   StudsBadge,
-  StudsTabs
+  StudsSkeleton,
+  StudsTabs,
+  StudsSpinner,
 };
 
 declare global {
@@ -96,7 +100,9 @@ declare global {
     'studs-footer': StudsFooter;
     'studs-textarea': StudsTextarea;
     'studs-badge': StudsBadge;
+    'studs-skeleton': StudsSkeleton;
     'studs-tabs': StudsTabs;
+    'studs-spinner': StudsSpinner;
   }
 }
 
