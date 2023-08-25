@@ -32,6 +32,7 @@ import { StudsTextarea } from './components/inputs/textarea';
 import { StudsBadge } from './components/display/badge';
 import { StudsSkeleton } from './components/display/skeleton';
 import { StudsTabs } from './components/display/tabs';
+import { StudsSpinner } from './components/display/spinner';
 // Export Components
 export {
   StudsButton,
@@ -65,6 +66,7 @@ export {
   StudsBadge,
   StudsSkeleton,
   StudsTabs,
+  StudsSpinner,
 };
 
 declare global {
@@ -100,6 +102,7 @@ declare global {
     'studs-badge': StudsBadge;
     'studs-skeleton': StudsSkeleton;
     'studs-tabs': StudsTabs;
+    'studs-spinner': StudsSpinner;
   }
 }
 
