@@ -20,9 +20,7 @@
   &.-top    label {flex-direction: column-reverse;}
   &.-bottom label {flex-direction: column;}
 
-  &.-small  {font-size: $font-small}
-  &.-medium {font-size: $font-default}
-  &.-large  {font-size: $font-large}
+  @include fontSizes;
 
   label {
     display: flex;

@@ -28,22 +28,14 @@ $right: 0;
     --badge-background: var(--info-color);
   }
 
-  &.-small {
-    --size: 0.8rem;
-  }
-  &.-medium {
-    --size: 1rem;
-  }
-  &.-large {
-    --size: 1.2rem;
-  }
+  @include fontSizes;
 
   &.-top-right {
     --top: $top;
     --right: $right;
   }
 
-  
+
 
   .badgeContent {
     display: flex;

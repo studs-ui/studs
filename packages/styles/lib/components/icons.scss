@@ -4,21 +4,7 @@
   --font-size: inherit;
   fill: inherit;
   &.-font{
-    &.-small {
-      --font-size: #{$font-small};
-    }
-
-    &.-medium {
-      --font-size: #{$font-default};
-    }
-
-    &.-large {
-      --font-size: #{$font-large};
-    }
-
-    &.-extraLarge {
-      --font-size: #{$font-xl};
-    }
+    @include fontSizes;
   }
 
   &.-file, svg {

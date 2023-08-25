@@ -37,7 +37,7 @@ type Story = StoryObj<ButtonProps>;
 export const CTA: Story = {
   args: {
     buttonType: "cta",
-    children: `Button`,
+    children: `CTA Button`,
   },
 };
 

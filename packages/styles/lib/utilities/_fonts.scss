@@ -53,6 +53,16 @@ $font-xl: 4rem;
   }
 }
 
+@mixin fontSizes {
+  &.-small      {--font-size: #{$font-small}}
+  &.-medium     {--font-size: #{$font-default}}
+  &.-large      {--font-size: #{$font-large}}
+  &.-extraLarge {--font-size: #{$font-xl}}
+}
+
+
+
+
 /*
 // for reference
 .material-symbols-outlined {
