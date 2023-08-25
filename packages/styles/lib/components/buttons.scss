@@ -1,0 +1,140 @@
+@use "../utilities" as *;
+
+
+:host {
+  display: inline-block;
+  position: relative;
+}
+
+.button {
+  --color:     var(--primary);
+  --hover:     var(--primary-hover);
+  --active:    var(--primary-active);
+  --disabled:  var(--primary-disabled);
+  --disabled-text:var(--text-disabled);
+
+  --border: var(--color);
+  --text: #{$white};
+
+  font-family: var(--font-family);
+  font-size: calc(var(--font-size) * .975);
+  font-weight: $font-semibold;
+
+  background: var(--color);
+  color: var(--text);
+  border: none;
+  outline: 2px solid $transparent;
+  outline-offset: 2px;
+  border-radius: 0.25em;
+
+  padding: 0.75em 1em;
+  box-shadow: var(--interactive-shadow);
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5em;
+
+
+  @include fontSizes;
+
+  &.-cta {
+   border-radius: 1.5em;
+
+   &:disabled {
+     --color: #{$transparent};
+   }
+  }
+
+  &.-primary {
+    --color:     var(--primary);
+    --hover:     var(--primary-hover);
+    --active:    var(--primary-active);
+    --disabled:  var(--primary-disabled);
+
+    &:disabled {
+      --disabled-text: #{$white};
+    }
+  }
+
+  &.-secondary {
+    --color:     var(--secondary);
+    --hover:     var(--secondary-hover);
+    --active:    var(--secondary-active);
+    --disabled:  var(--secondary-disabled);
+  }
+
+  &.-tertiary,
+  &.-text {
+    --border: transparent;
+    --color: var(--text-color);
+    --text: var(--color);
+
+    border: none;
+    border-radius: 0.125em;
+    box-shadow: none;
+    background: $transparent;
+
+    &:focus,
+    &:focus-visible {
+      --color: var(--primary-hover);
+    }
+  }
+
+  &.-link {
+    --text: var(--text-color);
+    --border: var(--border-color-med);
+
+    border: none;
+    border-radius: 0.125em;
+    box-shadow: none;
+    background: $transparent;
+
+    text-decoration: underline;
+    text-decoration-color: var(--color);
+    text-underline-offset: .25em;
+  }
+
+  &.-floating {
+    --color: #{$white};
+    border-radius: 1.5em;
+    padding: .75em;
+  }
+
+  &.-icon {
+    --color: var(--primary);
+  }
+
+  &.-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.-vertical {
+    flex-direction: column;
+
+    &.-reverse {
+      flex-direction: column-reverse;
+    }
+  }
+
+
+  &:hover {
+    --color: var(--hover);
+  }
+
+  &:active {
+    --color: var(--active);
+  }
+
+  &:disabled {
+    --color: var(--disabled);
+    --text:  var(--disabled-text);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline-color: var(--border);
+  }
+}

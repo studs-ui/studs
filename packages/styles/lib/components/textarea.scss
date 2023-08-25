@@ -1,0 +1,48 @@
+@use '../utilities' as *;
+
+@mixin textareaComponent {
+  .textareaWrapper {
+    display: inline-flex;
+    align-items: center;
+  }
+  .textarea {
+    appearance: none;
+    border: 1px solid var(--border-color);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    line-height: 1;
+    margin: 0;
+    padding: 0.75rem;
+  }
+  label {
+    margin-bottom: 0.25rem;
+    display: block;
+  }
+  .-required {
+    color: var(--error-color);
+  }
+  .-outlined {
+    border: 1px solid var(--border-color);
+  }
+  .-filled {
+    border: 1px solid var(--background);
+    background-color: var(--background);
+  }
+  .small {
+    padding: 0.5rem;
+  }
+  .large {
+    padding: 1rem;
+  }
+  .error {
+    border: 1px solid #df4907;
+  }
+  .error-text {
+    margin: 5px;
+    color: #df4907;
+  }
+}
+
+.textareaComponent {
+  @include textareaComponent;
+}

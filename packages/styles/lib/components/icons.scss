@@ -1,0 +1,33 @@
+@use "../utilities" as *;
+
+.icon {
+  --font-size: inherit;
+  fill: inherit;
+  &.-font{
+    @include fontSizes;
+  }
+
+  &.-file, svg {
+    --size: 1rem;
+    height: var(--size);
+    width: var(--size);
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    &.-small {
+      --size: 0.8rem;
+    }
+    &.-medium {
+      --size: 1rem;
+    }
+    &.-large {
+      --size: 2rem;
+    }
+    &.-extraLarge {
+      --size: 4rem;
+    }
+  }
+}

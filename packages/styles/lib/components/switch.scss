@@ -1,0 +1,109 @@
+@use '../utilities' as *;
+@use "../themes" as *;
+
+
+.switch {
+  --background: var(--interactive-unselected);
+  --thumb: var(--interactive-thumb);
+  --border: var(--background);
+
+  --w: 3.25em;
+  --h: 1.875em;
+  --p: 4px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &.-start  label {flex-direction: row;}
+  &.-end    label {flex-direction: row-reverse;}
+  &.-top    label {flex-direction: column-reverse;}
+  &.-bottom label {flex-direction: column;}
+
+  @include fontSizes;
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: .5em;
+  }
+
+  .wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: .5em;
+  }
+
+  .slider {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+
+    width: var(--w);
+    height: var(--h);
+    border-radius: var(--h);
+    background-color: var(--background);
+    transition: background-color var(--transition-m);
+
+    &::before {
+      cursor: pointer;
+      content: '';
+      width:  calc(var(--h) - (var(--p) * 2));
+      height: calc(var(--h) - (var(--p) * 2));
+      position: absolute;
+      left: var(--p);
+      z-index: 4;
+      border-radius: var(--h);
+      background-color: var(--thumb);
+      box-shadow: var(--box-shadow);
+
+      transition: left var(--transition-m);
+    }
+  }
+
+  [type=checkbox] {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    border: 0 0 transparent;
+    outline: none;
+    margin: 0;
+    padding: 0;
+
+    &:checked {
+      + label  .slider {
+        --background: var(--primary);
+
+        &::before {
+          left: calc(var(--w) - (var(--h) - var(--p)));
+        }
+      }
+    }
+
+    &:disabled {
+      + label  .slider {
+        cursor: not-allowed;
+        opacity: .4;
+      }
+    }
+
+    &:focus-visible,
+    &:not(:disabled):hover {
+      +label {
+        .slider {
+          &::after {
+            content: '';
+            width: calc(var(--w) + var(--p));
+            height: calc(var(--h) + var(--p));
+            border: 2px solid var(--background);
+            position: absolute;
+            left: calc(var(--p) * -1);
+            border-radius: calc(var(--h) + var(--p));
+          }
+        }
+      }
+    }
+  }
+}

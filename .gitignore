@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-storybook-static
+apps/**/storybook-static
 
 # Editor directories and files
 .vscode/*
@@ -25,3 +25,6 @@ storybook-static
 *.sw?
 package-lock.json
 yarn.lock
+pnpm-lock.yaml
+.turbo
+**/**/dist
