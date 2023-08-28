@@ -72,14 +72,14 @@ export const Link: Story = {
 export const Floating: Story = {
   args: {
     buttonType: "floating",
-    icon: '<svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+    icon: 'info',
   },
 };
 
 export const Icon: Story = {
   args: {
     buttonType: "icon",
-    icon: '<svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+    icon: 'info',
   },
 };
 
@@ -93,7 +93,7 @@ export const Disabled: Story = {
 export const LeftIcon: Story = {
   args: {
     iconPosition: "start",
-    icon: '<svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+    icon: 'info',
     children: `Button`,
   },
 };
@@ -101,13 +101,14 @@ export const LeftIcon: Story = {
 export const RightIcon: Story = {
   args: {
     iconPosition: "end",
-    icon: '<svg width="24px" height="24px" stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="#000000"><path d="M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>',
+    icon: 'info',
     children: `Button`,
   },
 };
 
 export const Vertical: Story = {
   args: {
+    icon: 'info',
     contentDirection: "vertical",
     children: `Button`,
   },

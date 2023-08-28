@@ -2,9 +2,10 @@ import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import style from '@studs/styles/components/chip.scss?inline';
+import { Icon, IconController } from '../../controllers/iconController';
 
 export interface ChipProps {
-  icon?: string;
+  icon?: Icon;
   iconPosition?: 'start' | 'end';
   size: 'small' | 'medium' | 'large';
   variant: 'primary' | 'secondary';
@@ -31,33 +32,28 @@ export class StudsChip extends LitElement {
   @property({ type: Boolean }) deletable: ChipProps['deletable'] = false;
   // @property({ type: Function }) onDelete?: ChipProps["onDelete"];
 
-  static styles = unsafeCSS(style);
+  static styles = [unsafeCSS(style), IconController.styles];
 
   renderDeleteButton() {
     if (this.deletable) {
       return html`<studs-button
         class="-close"
+        size="small"
         buttontype="icon"
-        icon='<svg stroke-width="1.5" width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M6.758 17.243L12.001 12m5.243-5.243L12 12m0 0L6.758 6.757M12.001 12l5.243 5.243" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>'
+        icon="close"
         @click=${this.onDelete}
       ></studs-button>`;
     }
   }
 
-  onDelete() {
-    const event = new CustomEvent('delete', {
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
-  }
+  private iconController = new IconController();
 
   renderIcon() {
     if (this.icon)
-      return html`<studs-icon
-        icon="${this.icon}"
-        size="${this.size}"
-      ></studs-icon>`;
+      return this.iconController.icon(this.icon, {
+        size: this.size,
+        color: 'inherit',
+      });
   }
 
   render() {
@@ -80,5 +76,13 @@ export class StudsChip extends LitElement {
         <span class="text"><slot></slot></span>
       </div>
     `;
+  }
+
+  onDelete() {
+    const event = new CustomEvent('delete', {
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(event);
   }
 }

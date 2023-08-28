@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin dropdown {
+.dropdown {
   --dropdown-border-color: #{colorVal("gray", 50)};
   --dropdown-label-color: #{colorVal("gray", 50)};
   display: flex;
@@ -101,9 +101,5 @@
 
 
   
-}
-
-.dropdown {
-  @include dropdown;
 }
 

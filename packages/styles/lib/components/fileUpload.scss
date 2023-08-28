@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin fileUpload {
+.fileupload {
   &-dragging,
   // &:hover {
   //   background-color: lighten(#6583fe, 28%);
