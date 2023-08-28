@@ -108,6 +108,19 @@
     --color: var(--primary);
   }
 
+  &.-close {
+    padding: .325em;
+    color: currentcolor;
+    background-color: $transparent;
+    border: 1px solid $transparent;
+    border-radius: 50%;
+    box-shadow: none;
+
+    &:hover {
+      border-color: var(--primary);
+    }
+  }
+
   &.-reverse {
     flex-direction: row-reverse;
   }

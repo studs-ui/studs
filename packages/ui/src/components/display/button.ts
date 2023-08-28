@@ -32,13 +32,13 @@ export interface ButtonProps {
 export class StudsButton extends LitElement {
   // CSS Properties
   @property({ type: String, attribute: 'button-type' })
-  buttonType: ButtonProps['buttonType'] = 'cta';
+    buttonType: ButtonProps['buttonType'] = 'cta';
   @property({ type: String }) size: ButtonProps['size'] = 'medium';
   @property({ type: Boolean }) disabled: ButtonProps['disabled'] = false;
   @property({ type: String, attribute: 'icon-position' })
-  iconPosition: ButtonProps['iconPosition'] = 'start';
+    iconPosition: ButtonProps['iconPosition'] = 'start';
   @property({ type: String, attribute: 'content-direction' })
-  contentDirection: ButtonProps['contentDirection'] = 'horizontal';
+    contentDirection: ButtonProps['contentDirection'] = 'horizontal';
   // @property() btnClasses: ButtonProps['btnClasses'] = '';
   @property({ type: String }) icon?: ButtonProps['icon'];
   @property({ type: String }) type: ButtonProps['type'] = 'button';

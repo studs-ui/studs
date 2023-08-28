@@ -37,9 +37,8 @@ export class StudsChip extends LitElement {
   renderDeleteButton() {
     if (this.deletable) {
       return html`<studs-button
-        class="-close"
         size="small"
-        buttontype="icon"
+        button-type="close"
         icon="close"
         @click=${this.onDelete}
       ></studs-button>`;
