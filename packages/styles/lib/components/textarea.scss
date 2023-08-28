@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin textareaComponent {
+.textareaComponent {
   .textareaWrapper {
     display: inline-flex;
     align-items: center;
@@ -41,8 +41,4 @@
     margin: 5px;
     color: #df4907;
   }
-}
-
-.textareaComponent {
-  @include textareaComponent;
 }

@@ -4,8 +4,10 @@ import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import style from '@studs/styles/components/dropdowns.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import { Icon, IconController } from '../../controllers/iconController';
 
 export interface DropdownProps extends WithFormInterface {
+  icon?: Icon;
   options: Option[];
   selected?: Option;
   placeholder?: string;
@@ -19,7 +21,7 @@ interface Option {
 @customElement('studs-dropdown')
 export class StudsDropdown extends WithForm(LitElement) {
   // Element Properties
-  @property({ type: String }) icon?: string = '';
+  @property({ type: String }) icon?: DropdownProps['icon'];
 
   // Dropdown Properties
   @property({ type: Boolean }) disabled: DropdownProps['disabled'] = false;
@@ -27,7 +29,7 @@ export class StudsDropdown extends WithForm(LitElement) {
   @property({ type: Object }) selected?: DropdownProps['selected'];
   @property({ type: String }) label: DropdownProps['label'] = 'Toggle Dropdown';
 
-  static styles = unsafeCSS(style);
+  static styles = [unsafeCSS(style), IconController.styles];
 
   // Internal Properties
   @state() private _open: boolean = false;
@@ -36,8 +38,10 @@ export class StudsDropdown extends WithForm(LitElement) {
     this._open = !this._open;
   }
 
+  private iconController = new IconController();
+
   renderIcon() {
-    if (this.icon) return html`<studs-icon icon="${this.icon}"></studs-icon>`;
+    if (this.icon) return this.iconController.icon(this.icon);
   }
 
   getSelected() {

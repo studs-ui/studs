@@ -56,12 +56,12 @@
   }
 
   ::slotted([slot='panel']) {
-    display: none;
+    display: none !important;
     padding: 0.625rem 1.25rem;
   }
 
   ::slotted([slot='panel'][selected]) {
-    display: block;
+    display: block !important;
   }
 
   &.tab-direction-column {

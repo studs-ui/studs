@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin inputComponent {
+.inputComponent {
   position: relative;
   .inputWrapper {
     display: inline-flex;
@@ -88,8 +88,4 @@
   .clearButton:hover {
     transform: translateY(-50%);
   }
-}
-
-.inputComponent {
-  @include inputComponent;
 }

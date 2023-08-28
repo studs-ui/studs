@@ -331,3 +331,11 @@ $url: "https://www.strongtie.com/_ui";
   font-weight: 700;
   font-style: normal;
 }
+
+@font-face {
+  font-family: 'Material Symbols Outlined';
+  font-style: normal;
+  font-weight: 100 700;
+  src: url("https://s2-www.strongtie.com/_ui/fonts/material-icons/MaterialIconsOutlined-Regular.otf") format("otf");
+  src: url("https://s2-www.strongtie.com/_ui/fonts/material-icons/MaterialIcons-Regular.ttf") format("truetype");
+}
