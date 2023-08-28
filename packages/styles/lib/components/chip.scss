@@ -1,7 +1,7 @@
 @use "../utilities" as *;
 
 .chip {
-  padding: 0.5em 0.75em;
+  padding: 0.25em 0.75em;
   display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
@@ -10,11 +10,12 @@
 
   color: var(--chip-text);
   background-color: var(--chip-bkg);
-  border: 2px solid var(--chip-border);
-  border-radius: 0.35rem;
+  border: 1px solid var(--chip-border);
+  border-radius: 0.125rem;
   cursor: default;
 
   font-size: var(--font-size);
+  line-height: 1.25em;
 
   @include fontSizes;
 
