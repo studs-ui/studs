@@ -83,6 +83,13 @@ export const Icon: Story = {
   },
 };
 
+export const Close: Story = {
+  args: {
+    buttonType: "close",
+    icon: 'close',
+  }
+}
+
 export const Disabled: Story = {
   args: {
     disabled: true,
