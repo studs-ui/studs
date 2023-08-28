@@ -48,19 +48,19 @@ export class PresentationalPage extends LitElement {
               <studs-button buttontype="link" onclick="alert('clicked')">Link</studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button buttontype="floating" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')"></studs-button>
+              <studs-button buttontype="floating" icon="info" onclick="alert('clicked')"></studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button buttontype="icon" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')"></studs-button>
+              <studs-button buttontype="icon" icon="info" onclick="alert('clicked')"></studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button buttontype="primary" iconposition="start" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')">Icon Left</studs-button>
+              <studs-button buttontype="primary" iconposition="start" icon="info" onclick="alert('clicked')">Icon Left</studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button buttontype="primary" iconposition="end" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')">Icon Right</studs-button>
+              <studs-button buttontype="primary" iconposition="end" icon="info" onclick="alert('clicked')">Icon Right</studs-button>
             </presentational-component>
             <presentational-component>
-              <studs-button buttontype="primary" contentdirection="vertical" icon="<svg width=&quot;24px&quot; height=&quot;24px&quot; stroke-width=&quot;1.5&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot; xmlns=&quot;http://www.w3.org/2000/svg&quot; color=&quot;#000000&quot;><path d=&quot;M9 17h6M12 6v7m0 0l3.5-3.5M12 13L8.5 9.5M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;1.5&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;></path></svg>" onclick="alert('clicked')">Vertical</studs-button>
+              <studs-button buttontype="primary" contentdirection="vertical" icon="info" onclick="alert('clicked')">Vertical</studs-button>
             </presentational-component>
             <presentational-component>
               <studs-button buttontype="primary" disabled>Disabled</studs-button>
