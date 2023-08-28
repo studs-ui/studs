@@ -17,9 +17,9 @@ export interface CarouselProps {
 export class StudsCarousel extends LitElement {
   //   Button Properties
   @property({ type: String }) nextIcon: CarouselProps['nextIcon'] =
-    '<svg stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+    'arrow_forward';
   @property({ type: String }) prevIcon: CarouselProps['prevIcon'] =
-    '<svg stroke-width="1.5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" color="currentColor"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
+    'arrow_back';
   // Carousel Properties
   @property({ type: Number }) perPage: CarouselProps['perPage'] = 3;
   @property({ type: Number }) initialSlide: CarouselProps['initialSlide'] = 0;
