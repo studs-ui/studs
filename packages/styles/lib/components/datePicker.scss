@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin datePicker {
+.datepicker {
   .dtp-wrapper {
     float: left;
     font-weight: 400;

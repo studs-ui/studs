@@ -24,10 +24,10 @@
     align-items: center;
   }
   .loader {
-    width: 50px;
-    height: 50px;
     animation: spin 1.2s linear infinite;
     &.-spinner {
+      width: 50px;
+      height: 50px;
       border: 5px solid;
       border-color: var(--cta) transparent;
       border-radius: 50%;
@@ -51,6 +51,7 @@
         --size: 80px;
       }
     }
+    
     &.-icon {
       
     }

@@ -9,7 +9,7 @@ export interface SpinnerProps {
   closeOnOverlayClick?: boolean;
   closeOnEscape?: boolean;
   disableBackdrop?: boolean;
-  color?: 'inherit' | 'primary' | 'secondary' | 'default';
+  color?: 'inherit' | 'primary' | 'secondary' | 'tertiary';
   icon?: Icon;
   open?: boolean;
   toggleOpen?: () => void;
@@ -28,7 +28,7 @@ export class StudsSpinner extends LitElement implements SpinnerProps {
 
   @property({ type: Boolean }) open: boolean = false;
 
-  static styles = unsafeCSS(style);
+  static styles = [unsafeCSS(style), IconController.styles];
 
   private iconController = new IconController();
 
@@ -62,6 +62,7 @@ export class StudsSpinner extends LitElement implements SpinnerProps {
                 <div class="loader -icon">
                   ${this.iconController.icon(this.icon, {
                     color: this.color,
+                    size: 'extraLarge',
                   })}
                 </div>
               `

@@ -2,7 +2,8 @@ import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import styles from '@studs/styles/components/buttons.scss?inline';
+import style from '@studs/styles/components/buttons.scss?inline';
+import { Icon, IconController } from '../../controllers/iconController';
 
 export interface ButtonProps {
   buttonType:
@@ -18,7 +19,7 @@ export interface ButtonProps {
   iconPosition: 'start' | 'end';
   contentDirection: 'horizontal' | 'vertical';
   btnClasses: string;
-  icon?: string;
+  icon?: Icon;
   children?: HTMLElement | TemplateResult | string;
   type: 'button' | 'submit' | 'reset';
 }
@@ -35,14 +36,16 @@ export class StudsButton extends LitElement {
   @property({ type: String }) icon?: ButtonProps['icon'];
   @property({ type: String }) type: ButtonProps['type'] = 'button';
 
-  static styles = unsafeCSS(styles);
+  static styles = [unsafeCSS(style), IconController.styles];
+
+  private iconController = new IconController();
 
   renderIcon() {
     if (this.icon)
-      return html`<studs-icon
-        icon="${this.icon}"
-        size="${this.size || 'medium'}"
-      ></studs-icon>`;
+      return this.iconController.icon(this.icon, {
+        size: this.size,
+        color: 'inherit',
+      });
   }
 
   render() {
