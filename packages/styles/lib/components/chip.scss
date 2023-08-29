@@ -1,6 +1,11 @@
 @use "../utilities" as *;
 
 .chip {
+  --bkg: var(--chip-bkg);
+  --text: var(--chip-text);
+  --border: var(--chip-border);
+  --hover: var(--chip-hover);
+
   padding: 0.1em 0.5em;
   display: inline-flex;
   flex-direction: row;
@@ -8,9 +13,9 @@
   align-items: center;
   gap: 0.25em;
 
-  color: var(--chip-text);
-  background-color: var(--chip-bkg);
-  border: 1px solid var(--chip-border);
+  color: var(--text);
+  background-color: var(--bkg);
+  border: 1px solid var(--border);
   border-radius: 0.125rem;
   cursor: default;
 
@@ -19,8 +24,10 @@
 
   @include fontSizes;
 
-  ::slotted(img) {
-    max-height: 1.2em;
+  ::slotted(.avatar) {
+    display: block;
+    width: 1.25em;
+    margin: 0.25em 0;
   }
 
   &.-deletable {
@@ -37,31 +44,6 @@
     flex-direction: row-reverse;
   }
 
-  .icon {
-    height: 1em;
-    width: 1em;
-
-    &:hover {
-      box-shadow: none;
-    }
-  }
-
-  &.-selected{
-    --chip-bkg:    var(--interactive);
-    --chip-text:   var(--interactive-text);
-    --chip-border: #{$transparent};
-  }
-
-  &.-disabled {
-    --bkg: var(--interactive-bkg-disabled);
-    --color: var(--disabled);
-    pointer-events: none;
-
-    .-close {
-      --color: var(--disabled);
-    }
-  }
-
   &.-clickable {
     cursor: pointer;
 
@@ -70,28 +52,26 @@
     }
 
     &:active {
-      --bkg: var(--active);
+      --bkg: var(--chip-focus);
     }
   }
 
-  .text {
-    text-decoration: none;
+  &.-selected{
+    --bkg: var(--interactive);
+    --text: var(--text-inverted);
+    --border: #{$transparent};
+    --hover: var(--interactive-hover);
   }
 
-  .avatar {
-    width: 1.5em;
-  }
-
-  .letter {
-    opacity: 0.7;
-    padding-right: 0.5em;
-    margin-right: 0.25em;
-    border-right: 1px solid var(--color);
-  }
-  &.-noClick {
+  &.-disabled {
+    opacity: .5;
     pointer-events: none;
   }
-  &.-noPointer {
-    cursor: default;
+
+  &:focus,
+  &:focus-visible {
+    --border: var(--primary);
+    --bkg: var(--chip-focus);
+    outline: none;
   }
 }
