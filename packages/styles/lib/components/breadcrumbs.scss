@@ -1,64 +1,70 @@
 @use '../utilities' as *;
 
 .breadcrumbs {
-  --seperator: '\e5cc';
-  --seperator-size: 1.1em;
-  --hover : var(--breadcrumb-hover);
-  --link-color: var(--breadcrumb-color);
+  --seperator: '/';
+  --color: var(--breadcrumb-color);
+  --hover: var(--breadcrumb-hover);
+  --current: var(--breadcrumb-current);
+  --gap: .5em;
 
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  gap: var(--gap);
   padding: 0;
   margin: 0;
   list-style: none;
 
-  &.-angle {
-    --seperator: '\e5cc';
-    --seperator-size: 1.1em;
-  }
-
-  &.-slash {
-    --seperator: '/';
-    --seperator-size: 1em;
-  }
-
-
   .crumb {
-    color: var(--link-color);
+    color: var(--color);
     display: inline-flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    gap: .25em;
-    position: relative;
-    margin-right: .25em;
-
-    &:last-of-type {
-      --seperator: '';
-      --hover: var(--breadcrumb-current);
-      --link-color: var(--breadcrumb-current);
-      user-select: none;
-      pointer-events: none;
-      cursor: default;
-    }
+    gap: var(--gap);
 
     &::after {
-      font-family: $font-material-sharp;
-      font-size: var(--seperator-size);
       content: var(--seperator);
     }
 
-    a {
-      color: currentcolor;
-      text-decoration: none;
-      border: none;
+    &:last-of-type {
+      --seperator: '';
+      --hover: var(--current);
+      --color: var(--current);
+      pointer-events: none;
+      cursor: default;
+    }
+  }
 
-      &:hover,
-      &:active {
-        color: var(--hover);
-      }
+  a {
+    color: currentcolor;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: .25em;
+    transition: all var(--transition-s);
+
+    &:hover,
+    &:active {
+      color: var(--hover);
+      text-decoration-color: currentcolor;
     }
 
+    &:focus,
+    &:focus-visible {
+      outline: 1px solid var(--current);
+      outline-offset: .25em;
+    }
+  }
+
+  &.-slash {
+    --seperator: '/';
+  }
+
+  &.-angle {
+    --seperator: 'chevron_right';
+
+    .crumb::after {
+      @include iconFont;
+    }
   }
 }
