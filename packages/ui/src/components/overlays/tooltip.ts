@@ -1,20 +1,20 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
-import { classMap } from 'lit/directives/class-map.js';
+import { Placement } from '@floating-ui/dom';
 import style from '@studs/styles/components/tooltips.scss?inline';
 import {
-  getComputedStyle,
-  getDocumentElement,
-  getParentNode,
-  getWindow,
-} from '../../utils/shared';
+  LitElement,
+  PropertyValueMap,
+  TemplateResult,
+  html,
+  unsafeCSS,
+} from 'lit';
+import { customElement, property } from 'lit/decorators.js';
+import { classMap } from 'lit/directives/class-map.js';
+import { PopperController } from '../../controllers/popperController';
+import { getDocumentElement, getParentNode } from '../../utils/shared';
 
 export interface TooltipProps {
-  open: boolean;
-  direction: 'top' | 'bottom' | 'left' | 'right';
-  arrowPosition: 'start' | 'center' | 'end';
+  position: Placement;
   disabled: boolean;
-  standalone?: boolean;
   element: HTMLElement;
   query?: string;
   children?: TemplateResult | HTMLElement | string;
@@ -22,47 +22,20 @@ export interface TooltipProps {
 
 @customElement('studs-tooltip')
 export class StudsTooltip extends LitElement {
-  @property({ type: Boolean }) open: TooltipProps['open'] = false;
-  @property({ type: String }) direction: TooltipProps['direction'] = 'bottom';
-  @property({ type: String }) arrowPosition: TooltipProps['arrowPosition'] =
-    'center';
+  @property({ type: String }) position: TooltipProps['position'] = 'bottom';
   @property({ type: Boolean }) disabled: TooltipProps['disabled'] = false;
-  @property({ type: Boolean }) standalone: boolean = false;
   @property({ type: String }) query: TooltipProps['query'];
-
   @property({ type: HTMLElement }) element: Element = getParentNode(
     this
   ) as Element;
-  @state() private _hovered: boolean = !this.open;
 
-  static styles = unsafeCSS(style);
+  static styles = [unsafeCSS(style), PopperController.styles];
 
-  protected _onParentHover = () => {
-    this.open = !this.open;
-    this.requestUpdate();
-  };
-
-  initParent() {
-    const isParent =
-      this.element?.tagName === (getParentNode(this) as Element)?.tagName;
-
-    if (isParent) {
-      const parentStyles = getComputedStyle(this.element);
-      const parentPosition = parentStyles.getPropertyValue('position');
-      if (parentPosition === 'static' || parentPosition === '') {
-        (this.element as HTMLElement).style.setProperty('position', 'relative');
-      }
-    } else {
-      const parentStyles = getComputedStyle(getParentNode(this) as Element);
-      const parentPosition = parentStyles.getPropertyValue('position');
-      if (parentPosition === 'static' || parentPosition === '') {
-        (getParentNode(this) as HTMLElement).style.setProperty(
-          'position',
-          'relative'
-        );
-      }
-    }
-  }
+  popperController = new PopperController(this, {
+    options: { placement: this.position },
+    trigger: this.element as HTMLElement,
+    disabled: this.disabled,
+  });
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -71,41 +44,33 @@ export class StudsTooltip extends LitElement {
       this.element = getDocumentElement(this).querySelector(
         this.query
       ) as HTMLElement;
-
       this.requestUpdate();
-    }
-    this.initParent();
-
-    if (!this.disabled) {
-      this.element?.addEventListener('mouseenter', this._onParentHover);
-      this.element?.addEventListener('mouseleave', this._onParentHover);
-    } else {
-      this.element?.removeEventListener('mouseenter', this._onParentHover);
-      this.element?.removeEventListener('mouseleave', this._onParentHover);
     }
   }
 
-  disconnectedCallback(): void {
-    super.disconnectedCallback();
+  protected update(
+    changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.update(changedProperties);
 
-    if (!this.disabled) {
-      this.element?.removeEventListener('mouseenter', this._onParentHover);
-      this.element?.removeEventListener('mouseleave', this._onParentHover);
+    if (changedProperties.has('element')) {
+      this.popperController.trigger = this.element as HTMLElement;
+    }
+    if (changedProperties.has('position')) {
+      this.popperController.options = {
+        placement: this.position,
+      };
+    }
+    if (changedProperties.has('disabled')) {
+      this.popperController.disabled = this.disabled;
     }
   }
 
   render() {
     const wrapperClasses = {
       tooltip: true,
+      popper: true,
       '-wrapper': true,
-      '-open': this.open,
-      '-standalone': this.standalone,
-    };
-    const containerClasses = {
-      tooltip: true,
-      '-container': true,
-      [`-${this.direction}`]: true,
-      [`-${this.arrowPosition}Arrow`]: true,
     };
 
     return html`<div
@@ -113,9 +78,8 @@ export class StudsTooltip extends LitElement {
       class=${classMap(wrapperClasses)}
       role="tooltip"
     >
-      <div class=${classMap(containerClasses)} aria-hidden=${!this._hovered}>
-        <slot></slot>
-      </div>
+      <slot></slot>
+      <div id="arrow"></div>
     </div>`;
   }
 }

@@ -1,6 +1,3 @@
-@use '../utilities' as *;
-@use 'overlays' as *;
-
 :host {
   display: contents;
   margin: 0px;
@@ -9,31 +6,16 @@
 }
 
 .tooltip {
-  @include tooltip();
+  font-size: 0.9em;
+  border: 1px solid var(--tooltip-bkg);
+  color: var(--tooltip-text);
+  background-color: var(--tooltip-bkg);
+  box-shadow: var(--tooltip-shadow);
+  padding: 0.5rem;
+  border-radius: 0.15rem;
+  font-family: var(--font-family);
 
-  &.-wrapper {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    top: 0;
-
-    &.-standalone {
-      position: relative;
-    }
-
-    .-container {
-      display: none;
-      visibility: hidden;
-      white-space: nowrap;
-      @include fadeIn;
-    }
-
-    &.-open {
-      .-container {
-        display: block;
-        visibility: visible;
-      }
-    }
+  #arrow {
+    background-color: var(--tooltip-bkg);
   }
 }

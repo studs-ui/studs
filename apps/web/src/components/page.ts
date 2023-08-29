@@ -2736,10 +2736,7 @@ export class PresentationalPage extends LitElement {
         <div class="group">
           <h2>Usage</h2>
           <presentational-usage>
-            <studs-tooltip direction="left" arrowPosition="end">
-              <studs-button buttontype="primary">Left</studs-button>
-              <div slot="tooltip">This is a left tooltip</div>
-            </studs-tooltip>
+              <studs-button buttontype="primary">Left<studs-tooltip position="bottom">Tooltip</studs-tooltip></studs-button>
           </presentational-usage>
         </div>
         <div class="group">
@@ -2748,7 +2745,7 @@ export class PresentationalPage extends LitElement {
               <studs-button buttontype="primary">
               Left
                 <studs-tooltip
-                  direction='left'
+                position='left'
                   >This is a left tooltip</studs-tooltip
                 >
             </studs-button>
@@ -2757,7 +2754,7 @@ export class PresentationalPage extends LitElement {
             <studs-button buttontype="primary">
               Right
                 <studs-tooltip
-                  direction='right'
+                position='right'
                   >This is a right tooltip</studs-tooltip
                 >
             </studs-button>
@@ -2766,7 +2763,7 @@ export class PresentationalPage extends LitElement {
             <studs-button buttontype="primary">
               Top
                 <studs-tooltip
-                  direction='top'
+                position='top'
                   >This is a top tooltip</studs-tooltip
                 >
             </studs-button>
@@ -2775,7 +2772,7 @@ export class PresentationalPage extends LitElement {
             <studs-button buttontype="primary">
               Bottom
                 <studs-tooltip
-                  direction='bottom'
+                position='bottom'
                   >This is a bottom tooltip</studs-tooltip
                 >
             </studs-button>

@@ -25,12 +25,13 @@
   },
   "dependencies": {
     "@bloomreach/spa-sdk": "^22.0.0",
-    "axios": "^1.4.0",
-    "@studs/styles": "workspace:*"
+    "@floating-ui/dom": "^1.5.1",
+    "@studs/styles": "workspace:*",
+    "axios": "^1.4.0"
   },
   "devDependencies": {
-    "@lit-labs/virtualizer": "^2.0.4",
     "@lit-labs/context": "^0.3.3",
+    "@lit-labs/virtualizer": "^2.0.4",
     "@storybook/addon-essentials": "^7.1.1",
     "@storybook/addon-links": "^7.1.1",
     "@storybook/addon-mdx-gfm": "^7.1.1",

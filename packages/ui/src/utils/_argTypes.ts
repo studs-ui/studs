@@ -37,8 +37,8 @@ export const variants = ({
     },
   };
 };
-export const direction = {
-  direction: {
+export const position = {
+  position: {
     control: { type: 'select' },
     options: ['top', 'bottom', 'left', 'right'],
   },

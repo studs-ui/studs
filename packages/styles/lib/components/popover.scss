@@ -1,8 +1,7 @@
 @use '../utilities' as *;
-@use 'overlays' as *;
 
 .popover {
-    @include tooltip();
+    // @include tooltip();
     &.-container {
         visibility: hidden;
         display: none;
