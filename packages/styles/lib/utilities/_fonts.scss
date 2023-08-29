@@ -63,6 +63,14 @@ $font-xxl: 4rem;
   &.-huge       {--font-size: #{$font-xxl}}
 }
 
+@mixin fontSizesRelative {
+  &.-small      {--font-size: 0.8em}
+  &.-medium     {--font-size: 1em}
+  &.-large      {--font-size: 2em}
+  &.-extraLarge {--font-size: 3em}
+  &.-huge       {--font-size: 4em}
+}
+
 
 
 

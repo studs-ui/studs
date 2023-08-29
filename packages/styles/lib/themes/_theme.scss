@@ -34,6 +34,7 @@
   --text-dark:     #{colorVal("gray", 100)};
   --text-light:    #{colorVal("gray", 20)};
   --text-disabled: #{colorVal("gray", 30)};
+  --text-inverted: #{$white};
   --heading-color: #{$black};
 
   --link-color:   #{colorVal("gray", 100)};
@@ -70,6 +71,13 @@
   --interactive-unselected: #{colorVal("gray", 30)};
   --interactive-shadow:  0px 1px 2px 1px var(--shadow),
                          0px 1px 2px 0px var(--shadow-soft);
+
+  --chip-bkg:    #{colorVal("gray" ,10)};
+  --chip-hover:  #{colorVal("gray",0)};
+  --chip-focus:  #{$white};
+  --chip-text:   #{colorVal("gray", 90)};
+  --chip-border: #{colorVal("gray", 50)};
+
 
  /* feedback colors */
   --info-color:    #{colorVal("gray", 80)};
@@ -117,11 +125,11 @@
   // --checkbox-color:    #{colorVal("orange", 60)};
   // --checkbox-disabled: #{colorVal("gray", 30)};
 
-  --chip-default :  #{colorVal("gray" ,10)};
-  --chip-hover :    #{colorVal("gray", 0)};
-  --chip-active :   #{colorVal("gray", 30)};
-  --chip-selected : #{colorVal("pumpkin", 40)};
-  --chip-selected-hover : #{colorVal("pumpkin", 50)};
+  // --chip-default :  #{colorVal("gray" ,10)};
+  // --chip-hover :    #{colorVal("gray", 0)};
+  // --chip-active :   #{colorVal("gray", 30)};
+  // --chip-selected : #{colorVal("pumpkin", 40)};
+  // --chip-selected-hover : #{colorVal("pumpkin", 50)};
 
   --anchor-color : #{colorVal("gray" ,100)};
   --anchor-hover-color :  #{colorVal("pumpkin" ,50)};
@@ -283,8 +291,6 @@
   --transition-m : #{$transition-m};
   --transition-l : #{$transition-l};
   --transition-x : #{$transition-x};
-  --transition-xx: #{$transition-xx};
-  --transition-xxx: #{$transition-xxx};
 
   --interactive-feedback: translateY(-.075em) scale(1.01);
 
@@ -294,8 +300,6 @@
     --transition-m : 0s;
     --transition-l : 0s;
     --transition-x : 0s;
-    --transition-xx: 0s;
-    --transition-xxx: 0s;
 
     --interactive-feedback: translateY(0) scale(1);
     }
