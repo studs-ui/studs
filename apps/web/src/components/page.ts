@@ -2631,37 +2631,35 @@ export class PresentationalPage extends LitElement {
     <div class="group">
       <h2>Usage</h2>
       <presentational-usage>
+      <studs-button buttontype="primary">Button
         <studs-popover direction="left" arrowPosition="center">
-          <studs-button buttontype="primary">Left</studs-button>
-          <div slot="popover">This is a left popover</div>
+            Popover
         </studs-popover>
+      </studs-button>
+        
       </presentational-usage>
     </div>
     <div class="group">
       <div class="componentGrid">
         <presentational-component>
-          <studs-popover direction="left" arrowPosition="center">
-            <studs-button buttontype="primary">Left</studs-button>
-            <div slot="popover">This is a left popover</div>
-          </studs-popover>
+            <studs-button buttontype="primary">
+              Left Popover <studs-popover position="left">This is a left popover</studs-popover>
+            </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-popover direction="right" arrowPosition="center">
-            <studs-button buttontype="primary">Right</studs-button>
-            <div slot="popover">This is a right popover</div>
-          </studs-popover>
+        <studs-button buttontype="primary">
+              Right Popover <studs-popover position="right" >This is a right popover</studs-popover>
+            </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-popover direction="top" arrowPosition="center">
-            <studs-button buttontype="primary">Top</studs-button>
-            <div slot="popover">This is a top popover</div>
-          </studs-popover>
+        <studs-button buttontype="primary">
+              Top Popover <studs-popover position="top" >This is a top popover</studs-popover>
+        </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-popover direction="bottom" arrowPosition="center">
-            <studs-button buttontype="primary">Bottom</studs-button>
-            <div slot="popover">This is a bottom popover</div>
-          </studs-popover>
+        <studs-button buttontype="primary">
+              Bottom Popover <studs-popover position="bottom">This is a bottom popover</studs-popover>
+        </studs-button>
         </presentational-component>
       </div>
     </div>
