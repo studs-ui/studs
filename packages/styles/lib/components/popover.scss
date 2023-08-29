@@ -1,27 +1,33 @@
 @use '../utilities' as *;
+:host {
+    display: contents;
+    margin: 0px;
+    padding: 0px;
+    outline: none;
+  }
 
-.popover {
-    // @include tooltip();
-    &.-container {
-        visibility: hidden;
-        display: none;
-        @include fadeIn();
-        &.-show {
-            visibility: visible;
-            display: flex;
-            align-items: center;
-            gap: .25em;
-        }
-        &.-right {
-            flex-direction: row-reverse;
-        }
+.popover {  
+    @include fadeIn();
+    font-size: 0.9em;
+    border: 1px solid var(--tooltip-bkg);
+    color: var(--tooltip-text);
+    background-color: var(--tooltip-bkg);
+    box-shadow: var(--tooltip-shadow);
+    padding: 0.5rem;
+    border-radius: 0.15rem;
+    font-family: var(--font-family);
+    &.-right {
+        flex-direction: row-reverse;
     }
-    &.-close {
-        background: transparent;
-        border: 0;
-        &::before {
-          content: "\2715";
-        }
-      }
+    &.-show {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.5em;
+    }
+    #arrow {
+      background-color: var(--tooltip-bkg);
+    }
+
 }
 

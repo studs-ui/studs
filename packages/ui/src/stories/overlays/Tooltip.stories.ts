@@ -44,28 +44,6 @@ export const Disabled: Story = {
   },
 };
 
-export const Static: Story = {
-  render: (args) => html`<studs-button
-    style="position: static"
-    buttontype="primary"
-  >
-    Button
-    <studs-tooltip
-      position=${ifDefined(args.position)}
-      ?disabled=${args.disabled}
-      query=${ifDefined(args.query)}
-      >${args.children}</studs-tooltip
-    >
-  </studs-button>`,
-  args: {
-    position: 'bottom',
-    disabled: false,
-    children: `
-      Hello!
-    `,
-  },
-};
-
 export const Standalone: Story = {
   render: () =>
     html`<div style="display: inline-block">

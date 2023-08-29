@@ -278,10 +278,8 @@ export class StudsSlider extends WithForm(LitElement) {
       });
       if (this._thumbLeft)
         return html`<studs-tooltip
-          standalone
           .element=${this._thumbLeft}
-          style="left: ${this._minPercentage}%"
-          direction="top"
+          position="left"
           class="tooltip"
         >
           ${this.getToolTipValue(this._minValue)}
@@ -293,10 +291,8 @@ export class StudsSlider extends WithForm(LitElement) {
       });
       if (this._thumbRight)
         return html`<studs-tooltip
-          standalone
           .element=${this._thumbRight}
-          style="left: ${this._maxPercentage}%"
-          direction="top"
+          position="right"
           class="tooltip"
           >${this.getToolTipValue(this._maxValue)}</studs-tooltip
         >`;
