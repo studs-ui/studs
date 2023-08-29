@@ -1,123 +1,47 @@
 @use "../utilities" as *;
 
-@mixin chip {
-  --color: var(--text-dark);
-  --bkg: var(--chip-default);
+.chip {
+  --bkg: var(--chip-bkg);
+  --text: var(--chip-text);
+  --border: var(--chip-border);
   --hover: var(--chip-hover);
-  --active: var(--chip-active);
-  --chip-border: #{$transparent};
 
-  padding: 0.5em 0.75em;
+  padding: 0.1em 0.5em;
   display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   gap: 0.25em;
 
-  color: var(--color);
+  color: var(--text);
   background-color: var(--bkg);
-  border: 2px solid var(--chip-border);
-  border-radius: 0.35rem;
+  border: 1px solid var(--border);
+  border-radius: 0.125rem;
   cursor: default;
 
-  &.-small {
-    --font-size: #{$font-small};
+  font-size: var(--font-size);
+  line-height: 1;
 
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
+  @include fontSizes;
+
+  ::slotted(.avatar) {
+    display: block;
+    width: 1.25em;
+    margin: 0.25em 0;
   }
-  &.-medium {
-    --font-size: #{$font-default};
 
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
-  }
-  &.-large {
-    --font-size: #{$font-large};
+  &.-deletable {
+    padding-left: 0.75em;
+    padding-right: 0.25em;
 
-    ::slotted(img) {
-      max-height: 1.2em;
-    }
-  }
-  &.-extraLarge {
-    --font-size: #{$font-xl};
-
-    ::slotted(img) {
-      max-height: 1.2em;
+    &.-reverse {
+      padding-left: 0.25em;
+      padding-right: 0.75em;
     }
   }
 
   &.-reverse {
     flex-direction: row-reverse;
-    gap: 0.7em;
-  }
-
-  .-close {
-    &.button {
-      color: var(--color);
-      background: transparent;
-      padding: 0;
-      box-shadow: none;
-      margin-left: -0.25em;
-      display: flex;
-      border: 1px solid $transparent;
-      border-radius: 50%;
-
-      transition: all $transition-m;
-
-      &:hover {
-        --color: var(--cta);
-        border-color: currentcolor;
-        box-shadow: none;
-      }
-    }
-  }
-
-  .icon {
-    height: 1em;
-    width: 1em;
-
-    &:hover {
-      box-shadow: none;
-    }
-  }
-
-  &.-selected:not(.-secondary) {
-    &,
-    .-close {
-      --bkg: var(--chip-selected);
-      --hover: var(--chip-selected-hover);
-      --color: var(--button-color);
-      --chip-border: #{$transparent};
-    }
-  }
-
-  &.-secondary {
-    --bkg: #{$transparent};
-    --chip-border: var(--chip-default);
-    --color: var(--text-dark);
-    --hover: var(--chip-selected-hover);
-
-    .-close {
-      --color: var(--text-dark);
-    }
-
-    &.-selected {
-      --color: var(--text-dark);
-      --chip-border: var(--chip-selected);
-    }
-  }
-
-  &.-disabled {
-    --bkg: var(--interactive-bkg-disabled);
-    --color: var(--disabled);
-    pointer-events: none;
-
-    .-close {
-      --color: var(--disabled);
-    }
   }
 
   &.-clickable {
@@ -128,32 +52,26 @@
     }
 
     &:active {
-      --bkg: var(--active);
+      --bkg: var(--chip-focus);
     }
   }
 
-  .text {
-    text-decoration: none;
+  &.-selected{
+    --bkg: var(--interactive);
+    --text: var(--text-inverted);
+    --border: #{$transparent};
+    --hover: var(--interactive-hover);
   }
 
-  .avatar {
-    width: 1.5em;
-  }
-
-  .letter {
-    opacity: 0.7;
-    padding-right: 0.5em;
-    margin-right: 0.25em;
-    border-right: 1px solid var(--color);
-  }
-  &.-noClick {
+  &.-disabled {
+    opacity: .5;
     pointer-events: none;
   }
-  &.-noPointer {
-    cursor: default;
-  }
-}
 
-.chip {
-  @include chip;
+  &:focus,
+  &:focus-visible {
+    --border: var(--primary);
+    --bkg: var(--chip-focus);
+    outline: none;
+  }
 }

@@ -9,10 +9,10 @@ const meta = {
   title: "Studs/Display/Button",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-button
-    buttonType="${ifDefined(args.buttonType)}"
+    button-type="${ifDefined(args.buttonType)}"
     size="${ifDefined(args.size)}"
-    iconPosition="${ifDefined(args.iconPosition)}"
-    contentDirection="${ifDefined(args.contentDirection)}"
+    icon-position="${ifDefined(args.iconPosition)}"
+    content-direction="${ifDefined(args.contentDirection)}"
     class="${ifDefined(args.class)}"
     icon="${ifDefined(args.icon)}"
     ?disabled="${args.disabled}"
@@ -82,6 +82,13 @@ export const Icon: Story = {
     icon: 'info',
   },
 };
+
+export const Close: Story = {
+  args: {
+    buttonType: "close",
+    icon: 'close',
+  }
+}
 
 export const Disabled: Story = {
   args: {
