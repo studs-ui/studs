@@ -8,7 +8,6 @@ import { WithForm, WithFormInterface } from '../../mixins/withForm';
 export interface InputProps extends WithFormInterface {
   type?: 'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file';
   value?: string;
-  variant?: 'standard' | 'outlined' | 'filled';
   inputSize?: 'small' | 'medium' | 'large';
   messageType?: 'error' | 'success' | 'warning';
   helperText?: string[];
@@ -22,7 +21,6 @@ export class StudsInput extends WithForm(LitElement) {
 
   @property({ type: String }) type: InputProps['type'] = 'text';
   @property({ type: String }) value: InputProps['value'] = '';
-  @property({ type: String }) variant?: InputProps['variant'];
   @property({ type: String }) inputSize?: InputProps['inputSize'];
   @property({ type: String }) messageType?: InputProps['messageType'];
   @property({ type: Array, attribute: 'helper-text' })
@@ -72,7 +70,6 @@ export class StudsInput extends WithForm(LitElement) {
   render() {
     const classes = {
       input: true,
-      [`${this.variant}`]: !!this.variant,
       [`${this.inputSize}`]: !!this.inputSize,
       [`${this.messageType}`]: !!this.messageType,
       [this.adornment && this.adornmentPosition ? this.adornmentPosition : '']:
