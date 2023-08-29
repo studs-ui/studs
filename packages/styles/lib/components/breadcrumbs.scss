@@ -1,6 +1,6 @@
 @use '../utilities' as *;
 
-@mixin breadcrumbs {
+.breadcrumbs {
   --seperator: '\e5cc';
   --seperator-size: 1.1em;
   --hover : var(--breadcrumb-hover);
