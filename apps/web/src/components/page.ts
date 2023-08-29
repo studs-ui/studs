@@ -7,7 +7,7 @@ import {
   createWarningToast,
 } from '@studs/ui';
 
-@customElement('presentational-page')
+@customElement( 'presentational-page' )
 export class PresentationalPage extends LitElement {
   render() {
     return html`
@@ -149,8 +149,10 @@ export class PresentationalPage extends LitElement {
               }} clickable>Interactable</studs-chip>
             </presentational-component>
             <presentational-component>
-              <studs-chip
-              clickable><img slot="accessory" class="avatar" src="./placeholders/smallUX/smallUX-avatar-sage.svg" alt="avatar">Interactable</studs-chip>
+              <studs-chip clickable>
+                <img slot="accessory" class="avatar" src="./placeholders/smallUX/smallUX-avatar-sage.svg" alt="avatar">
+                Interactable
+              </studs-chip>
             </presentational-component>
           </div>
         </div>

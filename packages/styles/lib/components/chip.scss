@@ -1,7 +1,7 @@
 @use "../utilities" as *;
 
 .chip {
-  padding: 0.25em 0.75em;
+  padding: 0.1em 0.5em;
   display: inline-flex;
   flex-direction: row;
   justify-content: space-between;
@@ -15,7 +15,7 @@
   cursor: default;
 
   font-size: var(--font-size);
-  line-height: 1.25em;
+  line-height: 1;
 
   @include fontSizes;
 
@@ -23,30 +23,18 @@
     max-height: 1.2em;
   }
 
-  &.-reverse {
-    flex-direction: row-reverse;
-    gap: 0.7em;
+  &.-deletable {
+    padding-left: 0.75em;
+    padding-right: 0.25em;
+
+    &.-reverse {
+      padding-left: 0.25em;
+      padding-right: 0.75em;
+    }
   }
 
-  .-close {
-    &.button {
-      color: var(--chip-text);
-      background: transparent;
-      padding: 0;
-      box-shadow: none;
-      margin-left: -0.25em;
-      display: flex;
-      border: 1px solid $transparent;
-      border-radius: 50%;
-
-      transition: all var(--transition-m);
-
-      &:hover {
-        --color: var(--cta);
-        border-color: currentcolor;
-        box-shadow: none;
-      }
-    }
+  &.-reverse {
+    flex-direction: row-reverse;
   }
 
   .icon {
@@ -58,34 +46,10 @@
     }
   }
 
-  &.-selected:not(.-secondary) {
-    &,
-    .-close {
-      --chip-bkg:    #{colorVal("gray" ,10)};
-      --chip-text:   #{colorVal("gray", 90)};
-      --chip-border: #{colorVal("gray", 50)};
-
-      // --bkg: var(--chip-selected);
-      // --hover: var(--chip-selected-hover);
-      // --color: var(--button-color);
-      // --chip-border: #{$transparent};
-    }
-  }
-
-  &.-secondary {
-    --bkg: #{$transparent};
-    --chip-border: var(--chip-default);
-    --color: var(--text-dark);
-    --hover: var(--chip-selected-hover);
-
-    .-close {
-      --color: var(--text-dark);
-    }
-
-    &.-selected {
-      --color: var(--text-dark);
-      --chip-border: var(--chip-selected);
-    }
+  &.-selected{
+    --chip-bkg:    var(--interactive);
+    --chip-text:   var(--interactive-text);
+    --chip-border: #{$transparent};
   }
 
   &.-disabled {

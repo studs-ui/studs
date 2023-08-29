@@ -115,6 +115,7 @@
     border: 1px solid $transparent;
     border-radius: 50%;
     box-shadow: none;
+    flex-direction: row-reverse;
 
     &:hover {
       border-color: var(--primary);
