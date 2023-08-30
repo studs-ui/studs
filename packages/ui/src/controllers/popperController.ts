@@ -18,7 +18,7 @@ import {
 // Define Types
 export class PopperController implements ReactiveController {
   host: ReactiveControllerHost;
-  public on: 'click' | 'hover' = 'hover';
+  public on: 'click' | 'hover' | 'manual' = 'hover';
   public trigger?: HTMLElement;
   private cleanup?: Function;
   public disabled: boolean = false;
@@ -37,7 +37,7 @@ export class PopperController implements ReactiveController {
       disabled,
     }: {
       options?: ComputePositionConfig;
-      on?: 'click' | 'hover';
+      on?: 'click' | 'hover' | 'manual';
       trigger?: HTMLElement;
       disabled?: boolean;
     }
@@ -102,17 +102,21 @@ export class PopperController implements ReactiveController {
 
   static styles = unsafeCSS(style);
 
-  public showPopper = (e: MouseEvent | FocusEvent) => {
-    this.popper?.classList.add('-show');
-    this.popper?.setAttribute('aria-hidden', 'false');
-    this.updatePosition();
-    if (this.on === 'click') e.stopPropagation();
+  public showPopper = (e?: MouseEvent | FocusEvent) => {
+    this.host.updateComplete.then(() => {
+      this.popper?.classList.add('-show');
+      this.popper?.setAttribute('aria-hidden', 'false');
+      this.updatePosition();
+      if (this.on === 'click' && e) e.stopPropagation();
+    });
   };
 
-  public hidePopper = (e: MouseEvent | FocusEvent) => {
-    this.popper?.classList.remove('-show');
-    this.popper?.setAttribute('aria-hidden', 'true');
-    if (this.on === 'click') e.stopPropagation();
+  public hidePopper = (e?: MouseEvent | FocusEvent) => {
+    this.host.updateComplete.then(() => {
+      this.popper?.classList.remove('-show');
+      this.popper?.setAttribute('aria-hidden', 'true');
+      if (this.on === 'click' && e) e.stopPropagation();
+    });
   };
 
   private updatePosition = () => {

@@ -111,7 +111,7 @@ declare global {
     'studs-tabs': StudsTabs;
     'studs-spinner': StudsSpinner;
     'studs-breadcrumbs': StudsBreadcrumbs;
-    'studs-coach-mark': StudsCoachMark;
+    'studs-coachmark': StudsCoachMark;
     'studs-image': StudsImage;
   }
 }
