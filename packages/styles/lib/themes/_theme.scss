@@ -78,6 +78,10 @@
   --chip-text:   #{colorVal("gray", 90)};
   --chip-border: #{colorVal("gray", 50)};
 
+  --breadcrumb-color:   #{colorVal("gray", 40)};
+  --breadcrumb-hover:   #{colorVal("gray", 90)};
+  --breadcrumb-current: var(--primary);
+
 
  /* feedback colors */
   --info-color:    #{colorVal("gray", 80)};
@@ -98,18 +102,9 @@
 
 
 
+
   /* @TODO: prune and edit these as needed  --Jp */
   --nav-border:   #{colorVal("gray", 30)};
-
-  --breadcrumb-color: #{colorVal("gray", 40)};
-  --breadcrumb-current: #{colorVal("orange", 60)};
-  --breadcrumb-hover: #{colorVal("gray", 90)};
-
-  // --interactive:              #{colorVal("orange", 40)};
-  // --interactive-bkg:          #{colorVal("orange", 30)};
-  // --interactive-bkg-disabled: #{colorVal("gray", 10)};
-  // --interactive-bkg-secondary:#{colorVal("gray", 0)};
-
 
   --button-color:   #{$white};
   --button-default: #{colorVal("orange", 50)};
