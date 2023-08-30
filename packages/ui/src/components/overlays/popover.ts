@@ -1,25 +1,39 @@
 import style from '@studs/styles/components/popover.scss?inline';
 import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
-import { customElement, queryAssignedElements, state } from 'lit/decorators.js';
+import {
+  customElement,
+  property,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { PopperController } from '../../controllers/popperController';
 import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
+import { IconController } from '../../controllers/iconController';
 
 export interface PopoverProps extends WithPopperInterface {
   children?: string | null | undefined;
+  icon?: string | null | undefined;
 }
 
 @customElement('studs-popover')
 export class StudsPopover extends WithPopper(LitElement) {
+  @property({ type: String }) icon?: PopoverProps['icon'];
   constructor() {
     super();
     if (this.popperController) this.popperController.on = 'click';
   }
 
-  static styles = [unsafeCSS(style), PopperController.styles];
+  static styles = [
+    unsafeCSS(style),
+    PopperController.styles,
+    IconController.styles,
+  ];
 
   @queryAssignedElements({ slot: 'footer' }) _footer!: HTMLElement[];
   @state() isFooter: boolean = false;
+
+  iconController = new IconController();
 
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
@@ -42,6 +56,7 @@ export class StudsPopover extends WithPopper(LitElement) {
       role="popover"
     >
       <header class="popover -title">
+        ${this.icon ? this.iconController.icon(this.icon) : nothing}
         <slot name="title"></slot>
         <studs-button
           aria-label="Close popover"

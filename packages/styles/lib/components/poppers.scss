@@ -1,4 +1,6 @@
+@use '../utilities' as *;
 .popper {
+  @include fadeIn();
   display: none;
   width: max-content;
   position: absolute;
