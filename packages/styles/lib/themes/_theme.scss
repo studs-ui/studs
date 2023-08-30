@@ -36,6 +36,7 @@
   --text-disabled: #{colorVal("gray", 30)};
   --text-inverted: #{$white};
   --heading-color: #{$black};
+  --placeholder-text: #{colorVal("gray", 30)};
 
   --link-color:   #{colorVal("gray", 100)};
   --link-active:  #{colorVal("orange", 70)};
@@ -88,17 +89,17 @@
   --info-bkg:      #{colorVal("gray", 0)};
   --info-rgb:      #{toRGB(#444444)};
 
-  --success-color: #{colorVal("sage", 40)};
+  --success-color: #{colorVal("sage", 50)};
   --success-bkg:   #{colorVal("sage", 0)};
   --success-rgb:   #{toRGB(#799e7e)};
 
-  --warning-color: #{colorVal("pumpkin", 30)};
-  --warning-bkg:   #{colorVal("pumpkin", 0)};
-  --warning-rgb:   #{toRGB(#e89f4d)};
+  --warning-color: #FBBD08;
+  --warning-bkg:   #fdf6e1;
+  --warning-rgb:   #{toRGB(#FBBD08)};
 
-  --error-color:   #{colorVal("terracotta", 70)};
-  --error-bkg:     #{colorVal("terracotta", 0)};
-  --error-rgb:     #{toRGB(#8f3b2f)};
+  --error-color:   #DA1E28;
+  --error-bkg:     #fae4e4;
+  --error-rgb:     #{toRGB(#DA1E28)};
 
 
 

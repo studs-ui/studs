@@ -54,3 +54,24 @@
 @mixin boxShadow {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
 }
+
+@mixin placeholders {
+  &:-ms-input-placeholder {
+    /* Internet Explorer 10-11 */
+    color: var(--placeholder-text);
+    transition: color var(--transition-m);
+  }
+
+  &::-ms-input-placeholder {
+    /* Microsoft Edge */
+    color: var(--placeholder-text);
+    transition: color var(--transition-m);
+  }
+
+  &::placeholder {
+    /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: var(--placeholder-text);
+    opacity: 1; /* Firefox */
+    transition: color var(--transition-m);
+  }
+}
