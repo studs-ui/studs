@@ -1,57 +1,81 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
 import style from '@studs/styles/components/popover.scss?inline';
+import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
+import {
+  customElement,
+  property,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { PopperController } from '../../controllers/popperController';
+import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
+import { IconController } from '../../controllers/iconController';
 
-export interface PopoverProps {
-  direction: 'top' | 'bottom' | 'left' | 'right';
-  arrowPosition: 'start' | 'center' | 'end';
-  children?: TemplateResult | HTMLElement | string;
+export interface PopoverProps extends WithPopperInterface {
+  children?: string | null | undefined;
+  icon?: string | null | undefined;
 }
 
 @customElement('studs-popover')
-export class StudsPopover extends LitElement {
-  @property({ type: String }) direction: PopoverProps['direction'] = 'bottom';
-  @property({ type: String }) arrowPosition: PopoverProps['arrowPosition'] =
-    'center';
-  //   Do these open onclick, or stay open on hover if persistant?
-  @state() private _open: boolean = false;
-  @state() private _hidden: boolean = !this._open;
-
-  static styles = unsafeCSS(style);
-
-  render() {
-    const containerClasses = {
-      popover: true,
-      '-container': true,
-      '-show': this._open,
-      [`-${this.direction}`]: true,
-      [`-${this.arrowPosition}Arrow`]: true,
-    };
-    return html`<div
-      @click=${() => {
-        this._open = !this._open;
-        this._hidden = !this._hidden;
-      }}
-      class="popover -wrapper"
-    >
-      <slot></slot>
-      <div class=${classMap(containerClasses)} aria-hidden=${this._hidden}>
-        <slot name="popover"></slot>
-        <studs-button
-          aria-label="Close popover"
-          buttontype="icon"
-          @click=${this.onClose}
-          icon="close"
-        ></studs-button>
-      </div>
-    </div>`;
+export class StudsPopover extends WithPopper(LitElement) {
+  @property({ type: String }) icon?: PopoverProps['icon'];
+  constructor() {
+    super();
+    if (this.popperController) this.popperController.on = 'click';
   }
 
-  onClose() {
-    this._hidden = true;
-    setTimeout(() => {
-      this._open = false;
-    }, 300);
+  static styles = [
+    unsafeCSS(style),
+    PopperController.styles,
+    IconController.styles,
+  ];
+
+  @queryAssignedElements({ slot: 'footer' }) _footer!: HTMLElement[];
+  @state() isFooter: boolean = false;
+
+  iconController = new IconController();
+
+  protected firstUpdated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.firstUpdated(_changedProperties);
+    if (this._footer.length > 0) {
+      this.isFooter = true;
+      this.scheduleUpdate();
+    }
+  }
+
+  render() {
+    return html`<div
+      class=${classMap({
+        popper: true,
+        popover: true,
+        '-wrapper': true,
+        [`-${this.position}`]: true,
+      })}
+      role="popover"
+    >
+      <header class="popover -title">
+        ${this.icon ? this.iconController.icon(this.icon) : nothing}
+        <slot name="title"></slot>
+        <studs-button
+          aria-label="Close popover"
+          button-type="close"
+          size="small"
+          icon="close"
+          @click=${this.popperController?.hidePopper}
+        ></studs-button>
+      </header>
+      <slot class="popover -media" name="media"></slot>
+      <main><slot></slot></main>
+      <!-- Renders Footer Container if Footer content is present
+           Otherwise, returns slot for addition of content -->
+      ${this.isFooter
+        ? html`<footer class="popover -footer">
+            <slot name="footer"></slot>
+          </footer>`
+        : html`<slot name="footer"></slot>`}
+      <div id="arrow"></div>
+    </div>`;
   }
 }

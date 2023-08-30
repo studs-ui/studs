@@ -1,5 +1,4 @@
 @use "../utilities" as *;
-@use 'overlays' as *;
 
 @mixin thumbSlider {
     background-color: var(--interactive-selected);
