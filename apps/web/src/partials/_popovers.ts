@@ -6,37 +6,44 @@ export const Popovers = html`
     <div class="group">
       <h2>Usage</h2>
       <presentational-usage>
-        <studs-popover direction="left" arrowPosition="center">
-          <studs-button buttontype="primary">Left</studs-button>
-          <div slot="popover">This is a left popover</div>
-        </studs-popover>
+        <studs-button
+          >Popover
+          <studs-popover position="bottom" icon="info">
+            <p slot="title">This is a popover</p>
+            <main>Popover content</main>
+          </studs-popover>
+        </studs-button>
       </presentational-usage>
     </div>
     <div class="group">
       <div class="componentGrid">
         <presentational-component>
-          <studs-popover direction="left" arrowPosition="center">
-            <studs-button buttontype="primary">Left</studs-button>
-            <div slot="popover">This is a left popover</div>
-          </studs-popover>
+          <studs-button
+            >Popover
+            <studs-popover position="bottom" icon="info">
+              <p slot="title">This is a popover</p>
+              <studs-image
+                src="https://ssttoolbox.widen.net/content/cusbzivu9t/jpeg/C_SCLC_InstPho_RI_Inst_StairCassetteLedgerConnector-exploded_C0.jpg?crop=true&amp;keep=c&amp;q=60&amp;w=900&amp;h=675"
+                slot="media"
+              ></studs-image>
+              <main>Popover content</main>
+              <studs-button button-type="primary" size="small" slot="footer"
+                >Yes</studs-button
+              >
+            </studs-popover>
+          </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-popover direction="right" arrowPosition="center">
-            <studs-button buttontype="primary">Right</studs-button>
-            <div slot="popover">This is a right popover</div>
-          </studs-popover>
-        </presentational-component>
-        <presentational-component>
-          <studs-popover direction="top" arrowPosition="center">
-            <studs-button buttontype="primary">Top</studs-button>
-            <div slot="popover">This is a top popover</div>
-          </studs-popover>
-        </presentational-component>
-        <presentational-component>
-          <studs-popover direction="bottom" arrowPosition="center">
-            <studs-button buttontype="primary">Bottom</studs-button>
-            <div slot="popover">This is a bottom popover</div>
-          </studs-popover>
+          <studs-button
+            >Popover
+            <studs-popover position="left" icon="info">
+              <p slot="title">This is a popover</p>
+              <main>Popover content</main>
+              <studs-button button-type="primary" size="small" slot="footer"
+                >Yes</studs-button
+              >
+            </studs-popover>
+          </studs-button>
         </presentational-component>
       </div>
     </div>
