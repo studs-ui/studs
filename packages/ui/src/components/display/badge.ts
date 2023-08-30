@@ -26,7 +26,7 @@ export class StudsBadge extends LitElement {
   @property({ type: String }) color: BadgeProps['color'] = 'primary';
   @property({ type: Boolean }) marker?: BadgeProps['marker'] = false;
 
-  static styles = unsafeCSS(style);
+  static styles = [unsafeCSS(style), IconController.styles];
 
   private iconController = new IconController();
 

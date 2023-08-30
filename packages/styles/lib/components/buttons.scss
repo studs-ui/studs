@@ -20,7 +20,7 @@
   font-size: calc(var(--font-size) * .975);
   font-weight: $font-semibold;
 
-  background: var(--color);
+  background-color: var(--color);
   color: var(--text);
   border: none;
   outline: 2px solid $transparent;
@@ -37,6 +37,7 @@
   align-items: center;
   gap: 0.5em;
 
+  transition: all var(--transition-m);
 
   @include fontSizes;
 
@@ -75,7 +76,7 @@
     border: none;
     border-radius: 0.125em;
     box-shadow: none;
-    background: $transparent;
+    background-color: $transparent;
 
     &:focus,
     &:focus-visible {
@@ -90,7 +91,7 @@
     border: none;
     border-radius: 0.125em;
     box-shadow: none;
-    background: $transparent;
+    background-color: $transparent;
 
     text-decoration: underline;
     text-decoration-color: var(--color);
@@ -105,6 +106,20 @@
 
   &.-icon {
     --color: var(--primary);
+  }
+
+  &.-close {
+    padding: .325em;
+    color: currentcolor;
+    background-color: $transparent;
+    border: 1px solid $transparent;
+    border-radius: 50%;
+    box-shadow: none;
+    flex-direction: row-reverse;
+
+    &:hover {
+      border-color: var(--primary);
+    }
   }
 
   &.-reverse {
@@ -126,6 +141,8 @@
 
   &:active {
     --color: var(--active);
+    box-shadow: none;
+    translate: 0 2px;
   }
 
   &:disabled {

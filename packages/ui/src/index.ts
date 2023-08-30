@@ -33,7 +33,7 @@ import { StudsBadge } from './components/display/badge';
 import { StudsSkeleton } from './components/display/skeleton';
 import { StudsTabs } from './components/display/tabs';
 import { StudsSpinner } from './components/display/spinner';
-import { StudsImage } from './components/display/image';
+import { StudsBreadcrumbs } from './components/display/breadcrumbs';
 // Export Components
 export {
   StudsButton,
@@ -68,7 +68,7 @@ export {
   StudsSkeleton,
   StudsTabs,
   StudsSpinner,
-  StudsImage,
+  StudsBreadcrumbs,
 };
 
 declare global {
@@ -105,7 +105,7 @@ declare global {
     'studs-skeleton': StudsSkeleton;
     'studs-tabs': StudsTabs;
     'studs-spinner': StudsSpinner;
-    'studs-image': StudsImage;
+    'studs-breadcrumbs': StudsBreadcrumbs;
   }
 }
 

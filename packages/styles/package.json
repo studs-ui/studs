@@ -8,11 +8,12 @@
   "exports": {
     "./components/*.scss": "./lib/components/*.scss",
     "./studs-base.css": {
+      "development": "./lib/styles.scss",
       "require": "./dist/style.css",
       "import": "./dist/style.css"
     },
     ".": {
-      "development": "./index.js",
+      "development": "./lib/styles.scss",
       "require": "./dist/style.css",
       "import": "./dist/style.css"
     }
