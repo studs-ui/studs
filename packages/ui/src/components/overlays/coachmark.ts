@@ -22,7 +22,7 @@ export class StudsCoachMark extends WithPopper(LitElement) {
       <header class="coachmark -title">
         <slot name="title"></slot>
       </header>
-      <slot name="coachmark -media"></slot>
+      <slot class="coachmark -media" name="media"></slot>
       <main><slot></slot></main>
       <footer class="coachmark -footer">
         <slot name="footer"></slot>

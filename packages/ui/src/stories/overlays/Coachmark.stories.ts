@@ -25,6 +25,10 @@ type Story = StoryObj<CoachMarkProps>;
 export const Default: Story = {
     args: {
         position: 'bottom',
-        children: html`<div slot="title">This is a coachmark</div><main>Coachmark Content</main><studs-button slot="footer">Back</studs-button><studs-button slot="footer">Next</studs-button>`,
+        children: html`
+        <div slot="title">This is a coachmark</div>
+        <main>Coachmark Content</main>
+        <studs-button button-type="secondary" size="small" slot="footer">Back</studs-button>
+        <studs-button button-type="primary" size="small" slot="footer">Next</studs-button>`,
     },
 };

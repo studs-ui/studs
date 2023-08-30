@@ -1,13 +1,10 @@
 .coachmark {
-    &.-show {
-        flex-direction: column;
-        align-items: flex-start;
-    }
     &.-wrapper {
         color: var(--text-color);
         min-width: 300px;
         text-align: left;
         box-shadow: 0px 1px 1px rgba(40, 46, 51, 0.25), 0px 1px 2px 1px rgba(40, 46, 51, 0.15);
+        flex-direction: column;
     }
     &.-title {
         padding: 0.5em;
