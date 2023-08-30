@@ -2647,19 +2647,19 @@ export class PresentationalPage extends LitElement {
             </studs-button>
         </presentational-component>
         <presentational-component>
-        <studs-button buttontype="primary">
+            <studs-button buttontype="primary">
               Right Popover <studs-popover position="right" >This is a right popover</studs-popover>
             </studs-button>
         </presentational-component>
         <presentational-component>
-        <studs-button buttontype="primary">
+            <studs-button buttontype="primary">
               Top Popover <studs-popover position="top" >This is a top popover</studs-popover>
-        </studs-button>
+            </studs-button>
         </presentational-component>
         <presentational-component>
-        <studs-button buttontype="primary">
+            <studs-button buttontype="primary">
               Bottom Popover <studs-popover position="bottom">This is a bottom popover</studs-popover>
-        </studs-button>
+            </studs-button>
         </presentational-component>
       </div>
     </div>
