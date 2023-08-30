@@ -12,13 +12,13 @@ type Story = StoryObj<any>;
 
 export const Primary: Story = {
   render: () => html`<studs-button-group>
-    <studs-button buttontype="primary" btnClasses="-group"
+    <studs-button button-type="primary" btnClasses="-group"
       >Button 1</studs-button
     >
-    <studs-button buttontype="primary" btnClasses="-group"
+    <studs-button button-type="primary" btnClasses="-group"
       >Button 2</studs-button
     >
-    <studs-button buttontype="primary" btnClasses="-group"
+    <studs-button button-type="primary" btnClasses="-group"
       >Button 3</studs-button
     >
   </studs-button-group>`,

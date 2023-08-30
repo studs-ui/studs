@@ -28,10 +28,10 @@ export const Default: Story = {
         within the modal itself.
       </p>
       <div slot="footer">
-        <studs-button size="small" buttontype="primary">Action</studs-button>
+        <studs-button size="small" button-type="primary">Action</studs-button>
         <studs-button
           size="small"
-          buttontype="secondary"
+          button-type="secondary"
           data-micromodal-close=""
           aria-label="Close this dialog window"
         >

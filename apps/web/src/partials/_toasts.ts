@@ -66,7 +66,7 @@ export const Toasts = html`
             heading="Custom Children"
             type="error"
             message="Children Toast"
-            ><studs-button buttontype="primary" size="small"
+            ><studs-button button-type="primary" size="small"
               >Click me</studs-button
             ></studs-toast
           >
@@ -78,7 +78,7 @@ export const Toasts = html`
             heading="Long Item"
             type="error"
             message="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum"
-            ><studs-button buttontype="primary" size="small"
+            ><studs-button button-type="primary" size="small"
               >Click me</studs-button
             ></studs-toast
           >

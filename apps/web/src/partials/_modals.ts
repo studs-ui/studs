@@ -16,12 +16,12 @@ export const Modals = html`
             within the modal itself. Also, <code>esc</code> to close modal.
           </p>
           <div slot="footer">
-            <studs-button size="small" buttontype="primary"
+            <studs-button size="small" button-type="primary"
               >Action</studs-button
             >
             <studs-button
               size="small"
-              buttontype="secondary"
+              button-type="secondary"
               data-micromodal-close
               aria-label="Close this dialog window"
             >
@@ -45,12 +45,12 @@ export const Modals = html`
               modal.
             </p>
             <div slot="footer">
-              <studs-button size="small" buttontype="primary"
+              <studs-button size="small" button-type="primary"
                 >Action</studs-button
               >
               <studs-button
                 size="small"
-                buttontype="secondary"
+                button-type="secondary"
                 aria-label="Close this dialog window"
               >
                 Close

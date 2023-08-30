@@ -18,7 +18,7 @@ export const Cards = html`
           >
             <div slot="main">This is my custom body content.</div>
             <div slot="footer">
-              <studs-button buttontype="primary" onclick="alert('clicked')"
+              <studs-button button-type="primary" onclick="alert('clicked')"
                 >Learn more</studs-button
               >
             </div>

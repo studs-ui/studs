@@ -7,7 +7,7 @@ import { position } from '../../utils/_argTypes';
 const meta = {
   title: 'Studs/Overlays/Tooltip',
   tags: ['autodocs'],
-  render: (args) => html`<studs-button buttontype="primary">
+  render: (args) => html`<studs-button button-type="primary">
     Button
     <studs-tooltip
       position=${ifDefined(args.position)}

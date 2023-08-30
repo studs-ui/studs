@@ -6,8 +6,8 @@ export const Tooltips = html`
     <div class="group">
       <h2>Usage</h2>
       <presentational-usage>
-        <studs-tooltip direction="left" arrowPosition="end">
-          <studs-button buttontype="primary">Left</studs-button>
+        <studs-tooltip position="left" arrowPosition="end">
+          <studs-button button-type="primary">Left</studs-button>
           <div slot="tooltip">This is a left tooltip</div>
         </studs-tooltip>
       </presentational-usage>
@@ -15,31 +15,31 @@ export const Tooltips = html`
     <div class="group">
       <div class="componentGrid">
         <presentational-component>
-          <studs-button buttontype="primary">
+          <studs-button button-type="primary">
             Left
-            <studs-tooltip direction="left"
+            <studs-tooltip position="left"
               >This is a left tooltip</studs-tooltip
             >
           </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-button buttontype="primary">
+          <studs-button button-type="primary">
             Right
-            <studs-tooltip direction="right"
+            <studs-tooltip position="right"
               >This is a right tooltip</studs-tooltip
             >
           </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-button buttontype="primary">
+          <studs-button button-type="primary">
             Top
-            <studs-tooltip direction="top">This is a top tooltip</studs-tooltip>
+            <studs-tooltip position="top">This is a top tooltip</studs-tooltip>
           </studs-button>
         </presentational-component>
         <presentational-component>
-          <studs-button buttontype="primary">
+          <studs-button button-type="primary">
             Bottom
-            <studs-tooltip direction="bottom"
+            <studs-tooltip position="bottom"
               >This is a bottom tooltip</studs-tooltip
             >
           </studs-button>

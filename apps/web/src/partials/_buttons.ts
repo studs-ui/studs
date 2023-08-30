@@ -8,7 +8,7 @@ export const Buttons = html`
       <presentational-usage>
         <studs-button
           onclick="alert('clicked')"
-          buttontype="primary"
+          button-type="primary"
           size="medium"
           icon="<svg>...</svg>"
           contentdirection="horizontal"

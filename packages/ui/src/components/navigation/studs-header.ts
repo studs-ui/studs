@@ -469,7 +469,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
               textButton: true,
               active: this._activeMenu || false,
             })}
-            buttontype="link"
+            button-type="link"
             @click=${this.onReturnClick}
           >
             <span>Main Menu</span>
@@ -482,7 +482,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
               active: this._open,
             })}
             size="large"
-            buttontype="link"
+            button-type="link"
           >
             <div class="menuIcon"></div>
             <span>Menu</span>

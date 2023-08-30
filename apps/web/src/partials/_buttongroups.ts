@@ -7,9 +7,9 @@ export const ButtonGroups = html`
       <h2>Usage</h2>
       <presentational-usage
         ><studs-button-group>
-          <studs-button buttontype="primary">One</studs-button>
-          <studs-button buttontype="primary">Two</studs-button>
-          <studs-button buttontype="primary">Three</studs-button>
+          <studs-button button-type="primary">One</studs-button>
+          <studs-button button-type="primary">Two</studs-button>
+          <studs-button button-type="primary">Three</studs-button>
         </studs-button-group></presentational-usage
       >
     </div>
