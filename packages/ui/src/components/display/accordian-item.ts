@@ -12,6 +12,7 @@ export class StudsAccordianItem extends LitElement {
     false;
 
   static styles = unsafeCSS(style);
+
   render() {
     const classes = {
       accordian: true,
@@ -34,7 +35,13 @@ export class StudsAccordianItem extends LitElement {
     </div>`;
   }
 
-  onToggle() {
+  private onToggle() {
     this.open = !this.open;
+  }
+  public show() {
+    this.open = true;
+  }
+  public hide() {
+    this.open = false;
   }
 }

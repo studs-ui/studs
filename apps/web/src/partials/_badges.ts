@@ -21,7 +21,7 @@ export const Badges = html`
         <presentational-component>
           <studs-badge
             icon="info"
-            count="1"
+            count="0"
             max="99"
             size="medium"
             position="top-right"

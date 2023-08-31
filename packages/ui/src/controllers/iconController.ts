@@ -3,11 +3,19 @@ import { html, unsafeCSS } from 'lit';
 import { classMap } from 'lit/directives/class-map.js';
 
 interface IconOptions {
-  size?: 'xsmall' | 'small' | 'medium' | 'large' | 'extraLarge' | 'xxlarge';
-  color?: 'inherit' | 'primary' | 'secondary' | 'tertiary';
+  size?: IconSize;
+  color?: IconColor;
 }
 
 export type Icon = string;
+export type IconSize =
+  | 'xsmall'
+  | 'small'
+  | 'medium'
+  | 'large'
+  | 'extraLarge'
+  | 'xxlarge';
+export type IconColor = 'inherit' | 'primary' | 'secondary' | 'tertiary';
 
 interface IconControllerProps {
   icon?: Icon;
@@ -20,6 +28,7 @@ export class IconController {
     if (icon) {
       return html`
         <i
+          part="studs-icon"
           class=${classMap({
             'studs-icon': true,
             icon: true,

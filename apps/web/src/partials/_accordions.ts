@@ -20,7 +20,7 @@ export const Accordions = html`
       <h2>Examples</h2>
       <div class="componentGrid">
         <presentational-component>
-          <studs-accordian enableheader enablesearch>
+          <studs-accordian enableheader enablesearch style="width: 100%">
             <studs-accordian-item
               ><div slot="toggle">Accordian One</div>
               <div>

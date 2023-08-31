@@ -17,6 +17,9 @@
         justify-self: flex-end;
         display: flex;
         gap: 1em;
+        ::part(studs-icon) {
+            color: var(--primary);
+        }
     }
     &.-panel {
         overflow: hidden;
