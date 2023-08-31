@@ -1,5 +1,11 @@
 @use '../utilities' as *;
 
+// studs-input {
+//   container-type: inline-size;
+//   container-name: inputComponent;
+//   width: 100%;
+// }
+
 .inputComponent {
   --border: var(--border-color);
   --outline: var(--primary);
@@ -7,12 +13,22 @@
 
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   align-items: center;
   gap: 1rem;
 
+  // @container inputComponent (max-width: 320px) {
+  //     flex-direction: column;
+  //     align-items: flex-start;
+  // }
+
   &.-top {
     flex-direction: column;
+  }
+
+  label {
+    width: max-content;
   }
 
   .inputWrapper {
@@ -138,3 +154,6 @@
     }
   }
 }
+
+
+
