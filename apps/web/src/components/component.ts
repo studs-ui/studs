@@ -9,11 +9,14 @@ export class PresentationalComponent extends LitElement {
     :host {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
 
       width: 100%;
       height: 100%;
       gap: 1rem;
+    }
+    ::slotted(*) {
+      margin-bottom: auto;
     }
   `;
 
