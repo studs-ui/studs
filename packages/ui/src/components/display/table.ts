@@ -2,11 +2,10 @@ import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import style from '@studs/styles/components/table.scss?inline';
 
-// https://github.com/lit/lit-element/issues/642
-
 export interface TableProps {
   fixedHeader: boolean;
   fixedOffset: string;
+  children?: string;
 }
 
 // Basic Table

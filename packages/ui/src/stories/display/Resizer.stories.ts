@@ -2,6 +2,7 @@ import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
 import { StudsResizerProps } from '../../components/display/resizer';
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 const meta = {
   title: "Studs/Display/Resizer",
@@ -9,7 +10,7 @@ const meta = {
   render: (args: any) => html`<studs-resizer
     style="height: 300px; display: block;"
     direction="${ifDefined(args.direction)}"
-    >${args.children}</studs-resizer
+    >${unsafeHTML(args.children)}</studs-resizer
   >`,
   argTypes: {
     direction: {
@@ -28,7 +29,7 @@ type Story = StoryObj<StudsResizerProps>;
 export const Horizontal: Story = {
   args: {
     direction: "horizontal",
-    children: html`
+    children: `
       <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
       <studs-resizer-pane>Panel Two</studs-resizer-pane>
     `,
@@ -38,7 +39,7 @@ export const Horizontal: Story = {
 export const Vertical: Story = {
   args: {
     direction: "vertical",
-    children: html`
+    children: `
       <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
       <studs-resizer-pane>Panel Two</studs-resizer-pane>
     `,

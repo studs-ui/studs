@@ -18,10 +18,10 @@ export const icon = {
     },
     description: `Define display icon (class) of the button component using html svg or font icon`,
   },
-  iconPosition: {
-    control: { type: 'select' },
-    options: ['start', 'end'],
-  },
+  // iconPosition: {
+  //   control: { type: 'select' },
+  //   options: ['start', 'end'],
+  // },
 };
 export const variants = ({
   name = 'variant',

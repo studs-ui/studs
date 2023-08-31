@@ -2,7 +2,71 @@
 @use './tables' as *;
 
 table {
-    @include table;
+  box-sizing: border-box;
+  border-spacing: 0px;
+  position: relative;
+  border-collapse: collapse;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 16px 10px -10px rgba(0, 0, 0, .1);
+
+  // testing
+  display: block;
+  width: 100%;
+  // max-height: 400px;
+  overflow-y: scroll;
+
+  &:hover {
+    td {
+      border-color: #d2d7d3;
+    }
+  }
+
+  thead {
+    &.-sticky {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    /* Table Header */
+     background: #fafafa;
+     border-color: transparent;
+     border-bottom: 1px solid #d2d7d3;
+     font-size: 0.9em;
+     color: var(--text-color);
+  }
+
+  thead th {
+    &:first-child {
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    &:not(:first-child):not(:last-child) {
+      border-left: 1px solid rgba(0, 0, 0, 0.06);
+      border-right: 1px solid rgba(0, 0, 0, 0.06);
+    }
+    &:last-child {
+      border-left: 1px solid rgba(0, 0, 0, 0.06);
+    }
+
+  }
+  tfoot td {
+    background-color: whitesmoke;
+  }
+
+  th, td {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    padding: 0.8rem;
+    position: relative;
+    transition: border-color .12s ease-out;
+    thead & {
+      font-weight: bold;
+    }
+  }
+
+  caption {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px;
+  }
 }
 
 .grid {

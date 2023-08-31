@@ -5,6 +5,7 @@ import style from '@studs/styles/components/breadcrumbs.scss?inline';
 
 export interface BreadcrumbsProps {
   separator: '/' | '>';
+  children?: string;
 }
 
 @customElement('studs-breadcrumbs')

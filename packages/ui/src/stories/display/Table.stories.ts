@@ -1,18 +1,22 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { TableProps } from '../../components/display/table';
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 const meta = {
   title: "Studs/Display/Table",
   tags: ["autodocs"],
+  render: (args) => html`
+    <studs-table>${unsafeHTML(args.children)}</studs-table>
+  `
 } satisfies Meta<TableProps>;
 
 export default meta;
 
 export const Default: StoryObj<TableProps> = {
-  render: () => html`
-    <studs-table>
-        <table>
+  args: {
+    children: `
+    <table>
         <caption>Table</caption>
         <colgroup span="2" data-style="{'backgroundColor': 'red'}">
         <col span="2" data-style="{'backgroundColor': 'red'}"></col>
@@ -124,7 +128,6 @@ export const Default: StoryObj<TableProps> = {
             <td>3</td>
         </tr>
         </tfoot>
-</table>
-  </studs-table>
-    `,
+    </table>
+    `}
 };

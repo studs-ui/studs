@@ -8,18 +8,57 @@ const meta = {
     title: "Studs/Display/Badge",
     tags: ["autodocs"],
     render: (args: any) => html`<studs-badge
-        icon="${ifDefined(args.icon)}"
-        count="${ifDefined(args.count)}"
-        max="${ifDefined(args.max)}"
-        ?showZero="${args.showZero}"
-        size="${ifDefined(args.size)}"
-        position="${ifDefined(args.position)}"
-        color="${ifDefined(args.color)}"
-        ?marker="${args.marker}"
+        icon=${ifDefined(args.icon)}
+        count=${ifDefined(args.count)}
+        max=${ifDefined(args.max)}
+        ?show-zero=${args.showZero}
+        size=${ifDefined(args.size)}
+        position=${ifDefined(args.position)}
+        color=${ifDefined(args.color)}
+        ?marker=${args.marker}
     ></studs-badge>`,
     argTypes: {
         ...size,
-        ...icon
+        ...icon,
+        count: {
+            control: {
+                type: "number",
+                min: 0,
+                max: 999,
+                step: 1,
+            },
+        },
+        max: {
+            control: {
+                type: "number",
+                min: 0,
+                max: 999,
+                step: 1,
+            },
+        },
+        showZero: {
+            control: {
+                type: "boolean",
+            },
+        },
+        position: {
+            control: {
+                type: "select",
+            },
+            options: ["top-right", "top-left", "bottom-right", "bottom-left"],
+        },
+        color: {
+            control: {
+                type: "select",
+
+                options: ["primary", "info", "warning", "error", "success"],
+            },
+        },
+        marker: {
+            control: {
+                type: "boolean",
+            },
+        },
     }
 } satisfies Meta<BadgeProps>;
 
@@ -62,7 +101,6 @@ export const Warning: Story = {
     args: {
         count: 17,
         max: 99,
-
         showZero: false,
         size: "medium",
         position: "top-right",

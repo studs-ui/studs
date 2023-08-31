@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from 'lit';
+import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import style from '@studs/styles/components/spinner.scss?inline';
 import { Icon, IconController } from '../../controllers/iconController';
@@ -36,6 +36,24 @@ export class StudsSpinner extends LitElement implements SpinnerProps {
     super.connectedCallback();
     if (this.closeOnEscape)
       getDocumentElement(this).addEventListener('keydown', this.onEscapeClose);
+  }
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.updated(_changedProperties);
+    if (_changedProperties.has('closeOnEscape')) {
+      if (this.closeOnEscape)
+        getDocumentElement(this).addEventListener(
+          'keydown',
+          this.onEscapeClose
+        );
+      else
+        getDocumentElement(this).removeEventListener(
+          'keydown',
+          this.onEscapeClose
+        );
+    }
   }
 
   public toggleOpen(): void {

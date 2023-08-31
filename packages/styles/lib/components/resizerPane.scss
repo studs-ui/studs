@@ -7,18 +7,18 @@
     min-width: max-content;
     &.-vertical {
         width: 100%;
-        &:not(.-disabled) {
+        &:not([disabled]) {
             padding-block-end: 10px;
         }
     }
     &.-horizontal {
         height: 100%;
-        &:not(.-disabled) {
+        &:not([disabled]) {
             padding-inline-end: 10px;
         }
     }
 
-    &.-disabled {
+    &[disabled] {
         flex: 1;
     }
 
@@ -42,7 +42,7 @@
         cursor: url('/assets/col-resize.svg'),  col-resize;
         border-right: 1px solid var(--border-color);
     }
-    .-disabled & {
+    [disabled] & {
         display: none;
     }
 }

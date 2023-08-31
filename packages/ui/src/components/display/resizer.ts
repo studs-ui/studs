@@ -1,4 +1,10 @@
-import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
+import {
+  LitElement,
+  PropertyValueMap,
+  TemplateResult,
+  html,
+  unsafeCSS,
+} from 'lit';
 import {
   customElement,
   property,
@@ -6,6 +12,7 @@ import {
 } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import style from '@studs/styles/components/resizer.scss?inline';
+import { StudsResizerPane } from './resizer-pane';
 
 export interface StudsResizerProps {
   direction: 'horizontal' | 'vertical';
@@ -18,6 +25,17 @@ export class StudsResizer extends LitElement {
     'horizontal';
 
   static styles = unsafeCSS(style);
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.updated(_changedProperties);
+    if (_changedProperties.has('direction')) {
+      this.panes.forEach((pane) => {
+        (pane as StudsResizerPane).direction = this.direction;
+      });
+    }
+  }
 
   render() {
     const classes = {

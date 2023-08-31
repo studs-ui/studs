@@ -29,13 +29,6 @@ export class StudsResizerPane extends LitElement {
 
   @query('.pane') pane!: HTMLElement;
 
-  connectedCallback(): void {
-    super.connectedCallback();
-    if (!this.direction)
-      this.direction =
-        this.parentElement?.getAttribute('direction') || 'horizontal';
-  }
-
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
@@ -61,7 +54,7 @@ export class StudsResizerPane extends LitElement {
     const paneClasses = {
       pane: true,
       [`-${this.direction}`]: true,
-      '-disabled': this.classList.contains('-last'),
+      '-resizing': this._pressed,
     };
     const stylemap = {
       [this.direction === 'horizontal' ? 'width' : 'height']: this.size + 'px',
@@ -73,9 +66,11 @@ export class StudsResizerPane extends LitElement {
         @mouseup=${this.onMouseMoveUp}
         @mouseleave=${this.onMouseLeave}
         style=${styleMap(stylemap)}
+        ?disabled=${this.classList.contains('-last')}
       >
         <slot></slot>
         <span
+          draggable=${this._pressed && !this.classList.contains('-last')}
           role="presentation"
           class="handle"
           @mousedown=${this.onMouseMoveDown}

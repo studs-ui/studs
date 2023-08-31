@@ -10,9 +10,28 @@ const meta = {
     step=${ifDefined(args.step)}
     .steps=${args.steps}
     direction=${ifDefined(args.direction)}
+    color=${ifDefined(args.color)}
   >
   </studs-stepper>`,
-  argTypes: {},
+  argTypes: {
+    color: {
+      control: {
+        type: 'select',
+      },
+      options: ['primary', 'secondary', 'initial'],
+    },
+    direction: {
+      control: {
+        type: 'select',
+      },
+      options: ['horizontal', 'vertical'],
+    },
+    step: {
+      control: {
+        type: 'number',
+      },
+    },
+  },
 } as Meta<StepperProps>;
 
 export default meta;

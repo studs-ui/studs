@@ -14,6 +14,7 @@ export interface StepperProps {
   steps: Array<Step>;
   step: number;
   direction: 'horizontal' | 'vertical';
+  color?: 'primary' | 'secondary' | 'initial';
 }
 
 @customElement('studs-stepper')
@@ -22,6 +23,7 @@ export class StudsStepper extends LitElement {
   @property({ type: Number }) step: StepperProps['step'] = 0;
   @property({ type: String }) direction: StepperProps['direction'] =
     'horizontal';
+  @property({ type: String }) color: StepperProps['color'] = 'initial';
 
   static styles = unsafeCSS(style);
 
@@ -48,6 +50,7 @@ export class StudsStepper extends LitElement {
     const classes = {
       stepper: true,
       [`-${this.direction}`]: true,
+      [`-${this.color}`]: true,
     };
 
     return html`
