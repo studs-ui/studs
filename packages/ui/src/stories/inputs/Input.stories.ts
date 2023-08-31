@@ -12,7 +12,6 @@ const meta = {
     value=${ifDefined(args.value)}
     placeholder=${ifDefined(args.placeholder)}
     label=${ifDefined(args.label)}
-    variant=${ifDefined(args.variant)}
     inputSize=${ifDefined(args.inputSize)}
     messageType=${ifDefined(args.messageType)}
     ?disabled=${args.disabled}
@@ -30,11 +29,6 @@ const meta = {
     name: { control: "text" },
     placeholder: { control: "text" },
     label: { control: "text" },
-    variant: {
-      control: { type: "select" },
-      options: ["standard", "outlined", "filled"],
-      defaultValue: "outlined",
-    },
     inputSize: {
       control: { type: "select" },
       options: ["small", "medium", "large"],
@@ -62,31 +56,10 @@ export const Default: Story = {
   args: {
     type: "text",
     label: "Default Input",
-    variant: "outlined",
     helperText: ["First error", "Second error"],
   },
 };
 
-export const Standard: Story = {
-  args: {
-    label: "Standard Input",
-    variant: "standard",
-  },
-};
-
-export const Outlined: Story = {
-  args: {
-    label: "Outlined Input",
-    variant: "outlined",
-  },
-};
-
-export const Filled: Story = {
-  args: {
-    label: "Filled Input",
-    variant: "filled",
-  },
-};
 
 export const Disabled: Story = {
   args: {

@@ -8,7 +8,6 @@ import { WithForm, WithFormInterface } from '../../mixins/withForm';
 export interface InputProps extends WithFormInterface {
   type?: 'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file';
   value?: string;
-  variant?: 'standard' | 'outlined' | 'filled';
   inputSize?: 'small' | 'medium' | 'large';
   messageType?: 'error' | 'success' | 'warning';
   helperText?: string[];
@@ -19,10 +18,10 @@ export interface InputProps extends WithFormInterface {
 @customElement('studs-input')
 export class StudsInput extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
+  disabled: boolean;
 
   @property({ type: String }) type: InputProps['type'] = 'text';
   @property({ type: String }) value: InputProps['value'] = '';
-  @property({ type: String }) variant?: InputProps['variant'];
   @property({ type: String }) inputSize?: InputProps['inputSize'];
   @property({ type: String }) messageType?: InputProps['messageType'];
   @property({ type: Array, attribute: 'helper-text' })
@@ -72,11 +71,16 @@ export class StudsInput extends WithForm(LitElement) {
   render() {
     const classes = {
       input: true,
-      [`${this.variant}`]: !!this.variant,
-      [`${this.inputSize}`]: !!this.inputSize,
-      [`${this.messageType}`]: !!this.messageType,
       [this.adornment && this.adornmentPosition ? this.adornmentPosition : '']:
         true,
+    };
+
+    const wrapperClasses = {
+      inputWrapper: true,
+      [`-${this.type}`]: !!this.type,
+      [`-disabled`]: !!this.disabled,
+      [`-${this.inputSize}`]: !!this.inputSize,
+      [`-${this.messageType}`]: !!this.messageType,
     };
 
     return html`
@@ -84,9 +88,9 @@ export class StudsInput extends WithForm(LitElement) {
         ${this.label
           ? html`<label ?required=${this.required}>${this.label}</label>`
           : ''}
-        <div class="inputWrapper">
+        <div class=${classMap(wrapperClasses)}>
           ${this.adornment && this.adornmentPosition === 'start'
-            ? html`<div class="adornmentStart">${this.adornment}</div>`
+            ? html`<div class="adornment -start">${this.adornment}</div>`
             : ''}
           <input
             type="${ifDefined(this.type)}"
@@ -98,7 +102,11 @@ export class StudsInput extends WithForm(LitElement) {
             class=${classMap(classes)}
           />
           ${this.adornment && this.adornmentPosition === 'end'
-            ? html`<div class="adornmentEnd">${this.adornment}</div>`
+            ? html`<div class="adornment -end">${this.adornment}</div>`
+            : ''}
+
+          ${this.type === 'search'
+            ? html`<div class="adornment -search">search</div>`
             : ''}
         </div>
         ${this.error && this.helperText
