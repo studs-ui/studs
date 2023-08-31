@@ -824,7 +824,7 @@ return html`
     <div class="group">
       <div class="componentGrid">
         <presentational-component>
-          <studs-input type="text" inputSize="large" label="My Label" placeholder="Enter your name" adornment="lbs" adornment-position="start">
+          <studs-input type="text" label="My Label" placeholder="Enter your name" adornment="lbs" adornment-position="start">
           </studs-input>
         </presentational-component>
         <presentational-component>
@@ -832,7 +832,7 @@ return html`
                 console.log('Selected value:', e.detail)}"></studs-input>
         </presentational-component>
         <presentational-component>
-          <studs-input type="email" name="email" label="Email" @change="${(e: CustomEvent) =>
+          <studs-input disabled placeholder="you@example.com" type="email" name="email" label="Email" @change="${(e: CustomEvent) =>
                 console.log('Selected value:', e.detail)}"></studs-input>
         </presentational-component>
         <presentational-component>
@@ -840,7 +840,7 @@ return html`
                 console.log('Selected value:', e.detail)}"></studs-input>
         </presentational-component>
         <presentational-component>
-          <studs-input type="number" name="number" label="Number" @change="${(e: CustomEvent) =>
+          <studs-input type="number" adornment="lbs" adornment-position="end" name="number" label="Number" @change="${(e: CustomEvent) =>
                 console.log('Selected value:', e.detail)}"></studs-input>
         </presentational-component>
         <presentational-component>
