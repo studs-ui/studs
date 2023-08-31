@@ -1,6 +1,6 @@
 @use "../utilities" as *;
 
-.accordian {
+.accordion {
     &.-container {
         display: flex;
         flex-direction: column;
@@ -9,6 +9,7 @@
         > header {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 1.2em 1em;
         }
     }
@@ -23,7 +24,9 @@
     }
     &.-panel {
         overflow: hidden;
+
         header {
+            transition: var(--transition-m) ease-in-out;
             display: flex;
             flex-direction: row;
             padding: 1.2em 1em;
@@ -31,13 +34,18 @@
             justify-content: space-between;
             gap: 0.25em;
             border: none;
-            background: #F4F4F4;
+            background-color: var(--accordion-bkg);
+            ::part(studs-icon) {
+                color: var(--primary);
+            }
         }
         main {
             overflow: hidden;
             display: grid;
             grid-template-rows: 0fr;
             transition: grid-template-rows .5s;
+            opacity: 0;
+            background: var(--background-content);
             
             > div.content {
                 overflow: hidden;
@@ -45,15 +53,48 @@
               }
             
         }
-        &.-open {
+        &.-small {
+            header {
+                padding: 0.5em 1em;
+            }
+        }
+        &.-large {
+            header {
+                padding: 1.5em 1em;
+            }
+        }
+        &:not([disabled]):hover {
+            header {
+                background-color: var(--accordion-hover);
+            }
+        }
+        &[disabled] {
+            header {
+                background-color: var(--disabled);
+                color: var(--text-disabled)
+            }
+        }
+        &.-start {
+            header {
+                flex-direction: row-reverse;
+                justify-content: flex-end;
+            }
+        }
+        &.-border {
+            border: 1px solid var(--border-color);
+        }
+        &[aria-hidden="false"] {
             header {
                 studs-button {
-                    transform: rotate(180deg);
+                    transform: rotate(-90deg);
                 }
             }
             main {
                 grid-template-rows: 1fr;
+                padding: 1em;
+                opacity: 1;
             }
         }
+        
     }
 }

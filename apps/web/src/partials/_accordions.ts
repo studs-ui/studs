@@ -6,42 +6,42 @@ export const Accordions = html`
     <div class="group">
       <h2>Usage</h2>
       <presentational-usage>
-        <studs-accordian enableheader enablesearch>
-          <studs-accordian-item>
-            <div slot="toggle">Accordian One</div>
+        <studs-accordion enable-header enable-search>
+          <studs-accordion-item>
+            <div slot="toggle">Accordion One</div>
             <div>
               <h3>Content</h3>
             </div>
-          </studs-accordian-item>
-        </studs-accordian>
+          </studs-accordion-item>
+        </studs-accordion>
       </presentational-usage>
     </div>
     <div class="group">
       <h2>Examples</h2>
       <div class="componentGrid">
         <presentational-component>
-          <studs-accordian enableheader enablesearch style="width: 100%">
-            <studs-accordian-item
-              ><div slot="toggle">Accordian One</div>
+          <studs-accordion enable-header enable-search style="width: 100%">
+            <studs-accordion-item
+              ><div slot="toggle">Accordion One</div>
               <div>
                 <h3>Content</h3>
                 <p>This allows for whatever</p>
                 <studs-button>Test</studs-button>
               </div>
-            </studs-accordian-item>
-            <studs-accordian-item
-              ><div slot="toggle">Accordian Two</div>
+            </studs-accordion-item>
+            <studs-accordion-item
+              ><div slot="toggle">Accordion Two</div>
               Test
-            </studs-accordian-item>
-            <studs-accordian-item
-              ><div slot="toggle">Accordian Three</div>
+            </studs-accordion-item>
+            <studs-accordion-item
+              ><div slot="toggle">Accordion Three</div>
               Test
-            </studs-accordian-item>
-            <studs-accordian-item
-              ><div slot="toggle">Accordian Four</div>
+            </studs-accordion-item>
+            <studs-accordion-item
+              ><div slot="toggle">Accordion Four</div>
               Test
-            </studs-accordian-item>
-          </studs-accordian>
+            </studs-accordion-item>
+          </studs-accordion>
         </presentational-component>
       </div>
     </div>

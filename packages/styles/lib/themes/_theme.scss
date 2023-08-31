@@ -73,6 +73,10 @@
   --interactive-shadow:  0px 1px 2px 1px var(--shadow),
                          0px 1px 2px 0px var(--shadow-soft);
 
+  --accordion-bkg: #{colorVal("gray", 0)};
+  --accordion-hover: #{colorVal("gray", 10)};
+  
+
   --chip-bkg:    #{colorVal("gray" ,10)};
   --chip-hover:  #{colorVal("gray",0)};
   --chip-focus:  #{$white};

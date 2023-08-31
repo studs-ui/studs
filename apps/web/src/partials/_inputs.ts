@@ -12,8 +12,6 @@ export const Inputs = html`
         <presentational-component>
           <studs-input
             type="text"
-            variant="outlined"
-            inputSize="large"
             label="My Label"
             placeholder="Enter your name"
             adornment="lbs"
@@ -28,7 +26,6 @@ export const Inputs = html`
             type="text"
             value="John"
             label="Adornment End"
-            variant="outlined"
             input-size="normal"
             adornment="lbs"
             adornment-position="end"
@@ -38,10 +35,11 @@ export const Inputs = html`
         </presentational-component>
         <presentational-component>
           <studs-input
+            disabled
+            placeholder="you@example.com"
             type="email"
             name="email"
             label="Email"
-            variant="outlined"
             @change="${(e: CustomEvent) =>
               console.log('Selected value:', e.detail)}"
           ></studs-input>
@@ -51,7 +49,6 @@ export const Inputs = html`
             type="search"
             name="search"
             label="Search"
-            variant="outlined"
             @change="${(e: CustomEvent) =>
               console.log('Selected value:', e.detail)}"
           ></studs-input>
@@ -59,9 +56,10 @@ export const Inputs = html`
         <presentational-component>
           <studs-input
             type="number"
+            adornment="lbs"
+            adornment-position="end"
             name="number"
             label="Number"
-            variant="outlined"
             @change="${(e: CustomEvent) =>
               console.log('Selected value:', e.detail)}"
           ></studs-input>
@@ -71,7 +69,6 @@ export const Inputs = html`
             type="password"
             name="password"
             label="Password"
-            variant="outlined"
             @change="${(e: CustomEvent) =>
               console.log('Selected value:', e.detail)}"
           ></studs-input>
