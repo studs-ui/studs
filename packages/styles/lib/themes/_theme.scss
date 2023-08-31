@@ -73,6 +73,10 @@
   --interactive-shadow:  0px 1px 2px 1px var(--shadow),
                          0px 1px 2px 0px var(--shadow-soft);
 
+  --accordion-bkg: #{colorVal("gray", 0)};
+  --accordion-hover: #{colorVal("gray", 10)};
+  
+
   --chip-bkg:    #{colorVal("gray" ,10)};
   --chip-hover:  #{colorVal("gray",0)};
   --chip-focus:  #{$white};
@@ -161,125 +165,10 @@
 }
 
 @mixin dark {
-  /* base colors */
-  --cta:          #{colorVal("orange", 60)};
-  --ctaRgb:       #{toRGB(#bb3d06)};
-  --primary:      #{colorVal("orange", 60)};
-  --ctaRgb:       #{toRGB(#bb3d06)};
-  --secondary:    #{colorVal("gray", 70)};
-  --ctaRgb:       #{toRGB(#565656)};
-  --tertiary:     #{colorVal("mauve", 70)};
-  --ctaRgb:       #{toRGB(#634f67)};
-
-  --text-color:  #{colorVal("gray", 20)};
-  --text-dark:   #{colorVal("gray", 0)};
-  --text-light:  #{colorVal("gray", 80)};
-
-  --link-color:   #{colorVal("gray", 0)};
-  --link-active:  #{colorVal("orange", 30)};
-  --link-hover:   #{colorVal("orange", 30)};
-  --link-visited: #{colorVal("gray", 30)};
-  --link-focus:   #{colorVal("gray", 70)};
-  --link-disabled:#{colorVal("orange", 20)};
-
-  --disabled:    #{colorVal("gray", 50)};
-  --background: #{colorVal("gray", 90)};
-  --background-featured: #{colorVal("gray", 20)};
-  --background-content :#{colorVal("gray", 80)};
-
-  /* feedback colors */
-  --info-color:    #{colorVal("gray", 0)};
-  --info-bkg:      #{colorVal("gray", 60)};
-  --info-rgb:      #{toRGB(#686868)};
-  --heading-color: #{$white};
-
-  --success-color: #{colorVal("sage", 90)};
-  --success-bkg:   #{colorVal("sage", 20)};
-  --success-rgb:      #{toRGB(#b8d0bb)};
-
-  --warning-color: #{colorVal("pumpkin", 0)};
-  --warning-bkg:   #{colorVal("pumpkin", 40)};
-  --warning-rgb:      #{toRGB(#D38225)};
-
-  --error-color:   #{colorVal("terracotta", 0)};
-  --error-bkg:     #{colorVal("terracotta", 80)};
-  --error-rgb:      #{toRGB(#7c271a)};
-
-
-
-  --breadcrumb-color: #{colorVal("gray", 50)};
-  --breadcrumb-current: #{colorVal("orange", 30)};
-  --breadcrumb-hover: #{colorVal("gray", 20)};
-
-  --border-color: #{colorVar("gray", 90)};
-
-
-  --interactive: #{colorVal("orange", 30)};
-  --interactive-bkg: #{colorVal("orange", 10)};
-  --interactive-bkg-disabled: #{colorVal("gray", 50)};
-  --interactive-bkg-secondary:#{colorVal("gray", 80)};
-
-
-  --tooltip-bkg: #{colorVal("gray", 20)};
-  --tooltip-text: #{colorVal("gray", 90)};
-
-  --button-color:   #{$white};
-  --button-default: #{colorVal("orange", 40)};
-  --button-focused: #{colorVal("orange", 60)};
-  --button-hover:   #{colorVal("orange", 40)};
-  --button-active:  #{colorVal("orange", 70)};
-  --button-fab:     #{colorVal("gray", 30)};
-  --button-shadow-color:  #{toRGB(#bb3d06)}; //@NOTE: due to Sass bug, this needs to be hard-coded for now
-
-  --badge-background: var(--button-default);
-  --badge-color: var(--button-color);
-
-  --checkbox-color: #{colorVal("orange", 40)};
-  --checkbox-disabled: #{colorVal("gray", 50)};
-
-  --chip-default :  #{colorVal("gray" ,60)};
-  --chip-hover :    #{colorVal("gray", 50)};
-  --chip-active :   #{colorVal("gray", 40)};
-  --chip-selected : #{colorVal("pumpkin", 40)};
-  --chip-selected-hover : #{colorVal("pumpkin", 50)};
-
-  --anchor-color : #{colorVal("gray" ,100)};
-  --anchor-hover-color :  #{colorVal("pumpkin" ,50)};
-  --anchor-visited : #{colorVal("mauve" ,80)};
-  --anchor-color-primary : #{colorVal("steel" ,30)};
-
-  --nav-border: #{colorVal("gray", 30)};
-
-  --logo-text: var(--background);
-  --logo-bkg-top: var(--text-color);
-  --logo-bkg-bottom: var(--text-color);
-
-  --card-background: #{colorVal("gray", 90)};
-  --card-border: #{$transparent};
-
-  --shadow-color-rgb: #{toRGB($black)};
-  --shadow: rgba(var(--shadow-color-rgb, #{$black}), 0.9);
-  --box-shadow: 0 0.25rem 5rem var(--shadow);
-
-  --dropdown-background-outline: #{colorVal("gray", 50)};
-  --dropdown-background: #{colorVal("gray", 50)};
-
-  --switch-color:    #{colorVal("orange", 50)};
-  --switch-disabled: #{colorVal("gray", 30)};
-
-
-  @media (prefers-contrast: more) {
-    --text-color: #{$white};
-    --text-dark: #{$white};
-    --text-light: #{$black};
-    --link-focus: #{colorVal("orange", 40)};
-    --background: #{colorVal("gray", 100)};
-    --tooltip-bkg:  #{colorVal("gray", 0)};
-    --tooltip-text: #{$black};
-    --box-shadow: 0 0 0 2px #{colorVal("gray", 10)};
-    --button-shadow-color:  #{toRGB(#000)};
-
-  }
+    // temporary. We're still working out the vars to use.
+    // when done, we'll make the dark theme
+    //              --Jp
+    @include light;
 }
 
 @mixin reducedMotion {

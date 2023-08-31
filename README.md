@@ -18,7 +18,7 @@ For Vue
 Check our site for directions on usage of each component
 
 **Example usage**
-`<studs-button buttontype="primary">Button Text</studs-button>`
+`<studs-button button-type="primary">Button Text</studs-button>`
 
 # Studs LIT Development
 

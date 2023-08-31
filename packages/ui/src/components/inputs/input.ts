@@ -1,8 +1,8 @@
-import { LitElement, html, unsafeCSS } from 'lit';
+import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import style from '@studs/styles/components/inputs.scss?inline';
+// import '@studs/styles/components/inputs.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 
 export interface InputProps extends WithFormInterface {
@@ -17,9 +17,6 @@ export interface InputProps extends WithFormInterface {
 
 @customElement('studs-input')
 export class StudsInput extends WithForm(LitElement) {
-  static styles = unsafeCSS(style);
-  disabled: boolean;
-
   @property({ type: String }) type: InputProps['type'] = 'text';
   @property({ type: String }) value: InputProps['value'] = '';
   @property({ type: String }) inputSize?: InputProps['inputSize'];
@@ -84,7 +81,7 @@ export class StudsInput extends WithForm(LitElement) {
     };
 
     return html`
-      <div class=${`inputComponent`}>
+      <div class=${`inputComponent`} part="studs-input">
         ${this.label
           ? html`<label ?required=${this.required}>${this.label}</label>`
           : ''}
@@ -104,7 +101,6 @@ export class StudsInput extends WithForm(LitElement) {
           ${this.adornment && this.adornmentPosition === 'end'
             ? html`<div class="adornment -end">${this.adornment}</div>`
             : ''}
-
           ${this.type === 'search'
             ? html`<div class="adornment -search">search</div>`
             : ''}

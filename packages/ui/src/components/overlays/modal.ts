@@ -91,7 +91,7 @@ export class StudsModal extends LitElement {
               <slot name="header"></slot>
               <studs-button
                 aria-label="Close modal"
-                buttontype="icon"
+                button-type="close"
                 @click=${this.onClose}
                 icon="close"
               ></studs-button>

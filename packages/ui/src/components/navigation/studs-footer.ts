@@ -106,7 +106,7 @@ export class StudsFooter
               })}
             >
               <div
-                @click=${() => this.onAccordianClick(item.name)}
+                @click=${() => this.onAccordionClick(item.name)}
                 class="footerNavSection -header"
               >
                 ${item.name}
@@ -317,7 +317,7 @@ export class StudsFooter
     `;
   }
 
-  onAccordianClick(name: string) {
+  onAccordionClick(name: string) {
     if (this.mediaQuery.isMobile) {
       if (this._selected === name) this._selected = undefined;
       else this._selected = name;

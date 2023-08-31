@@ -178,14 +178,14 @@ export class StudsToast extends LitElement {
       <slot></slot>
       ${this.action
         ? html`<div class="actions">
-            <studs-button buttontype="link" onclick=${this.onActionClick}
+            <studs-button button-type="link" onclick=${this.onActionClick}
               >${this.action}</studs-button
             >
           </div>`
         : ''}
       ${this.closeable
         ? html`<studs-button
-            buttontype="icon"
+            button-type="icon"
             icon="close"
             @click=${this.onClose}
           ></studs-button>`

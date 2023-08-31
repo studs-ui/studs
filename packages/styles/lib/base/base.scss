@@ -4,7 +4,7 @@
 @use '../utilities/colors';
 @use '../utilities/variables';
 @use '../utilities/mixins';
-@use '../components' as component;
+@forward '../components';
 
 @include fonts.fonts;
 
