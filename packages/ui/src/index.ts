@@ -34,6 +34,9 @@ import { StudsSkeleton } from './components/display/skeleton';
 import { StudsTabs } from './components/display/tabs';
 import { StudsSpinner } from './components/display/spinner';
 import { StudsBreadcrumbs } from './components/display/breadcrumbs';
+import { StudsCoachMark } from './components/overlays/coachmark';
+import { StudsImage } from './components/display/image';
+
 // Export Components
 export {
   StudsButton,
@@ -69,6 +72,8 @@ export {
   StudsTabs,
   StudsSpinner,
   StudsBreadcrumbs,
+  StudsCoachMark,
+  StudsImage,
 };
 
 declare global {
@@ -106,6 +111,8 @@ declare global {
     'studs-tabs': StudsTabs;
     'studs-spinner': StudsSpinner;
     'studs-breadcrumbs': StudsBreadcrumbs;
+    'studs-coachmark': StudsCoachMark;
+    'studs-image': StudsImage;
   }
 }
 
