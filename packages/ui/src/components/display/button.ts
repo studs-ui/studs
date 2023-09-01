@@ -3,11 +3,7 @@ import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import {
-  Icon,
-  IconColor,
-  IconController,
-} from '../../controllers/iconController';
+import { Icon, IconController } from '../../controllers/iconController';
 
 export interface ButtonProps {
   buttonType:
@@ -66,6 +62,7 @@ export class StudsButton extends LitElement {
     };
 
     return html`<button
+      part="studs-button"
       class="${classMap(classes)}"
       ?disabled=${this.disabled}
       type=${ifDefined(this.type)}

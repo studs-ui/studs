@@ -65,8 +65,8 @@ const meta = {
             },
             control: {
                 type: "select",
-                options: ["primary", "secondary", "default"],
             },
+            options: ["primary", "secondary", "default"],
         },
         icon: {
             name: "icon",
@@ -79,8 +79,8 @@ const meta = {
             },
             control: {
                 type: "select",
-                options: ["info", "success", "warning", "error"],
             },
+            options: ["", "info", "success", "warning", "error"],
         },
         open: {
             name: "open",

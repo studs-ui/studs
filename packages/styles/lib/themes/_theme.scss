@@ -176,6 +176,8 @@
   --transition-m : #{$transition-m};
   --transition-l : #{$transition-l};
   --transition-x : #{$transition-x};
+  --transition-xl : #{$transition-xl};
+  --transition-xxl : #{$transition-xxl};
 
   --interactive-feedback: translateY(-.075em) scale(1.01);
 
@@ -185,6 +187,8 @@
     --transition-m : 0s;
     --transition-l : 0s;
     --transition-x : 0s;
+    --transition-xl : 0;
+    --transition-xxl : 0;
 
     --interactive-feedback: translateY(0) scale(1);
     }

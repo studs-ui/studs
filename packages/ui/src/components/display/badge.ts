@@ -20,7 +20,8 @@ export class StudsBadge extends LitElement {
   @property({ type: String }) icon: BadgeProps['icon'];
   @property({ type: Number }) count: BadgeProps['count'] = 0;
   @property({ type: Number }) max: BadgeProps['max'] = 99;
-  @property({ type: Boolean }) showZero?: BadgeProps['showZero'] = false;
+  @property({ type: Boolean, attribute: 'show-zero' })
+  showZero?: BadgeProps['showZero'] = false;
   @property({ type: String }) size: BadgeProps['size'] = 'medium';
   @property({ type: String }) position: BadgeProps['position'] = 'top-right';
   @property({ type: String }) color: BadgeProps['color'] = 'primary';
@@ -31,8 +32,8 @@ export class StudsBadge extends LitElement {
   private iconController = new IconController();
 
   get badgeText() {
-    if (this.count === 0 && !this.showZero) return;
-    if (this.count === undefined || this.max === undefined) return;
+    if (this.count === 0 && !this.showZero) return null;
+    if (this.count === undefined || this.max === undefined) return null;
     else if (this.count > this.max) return `${this.max}+`;
     return this.count;
   }
@@ -54,8 +55,7 @@ export class StudsBadge extends LitElement {
                 [`-${this.position}`]: true,
               })}
             ></div>`
-          : nothing}
-        ${this.badgeText
+          : this.badgeText || this.badgeText === 0
           ? html`<span
               class=${classMap({
                 badgeContent: true,
