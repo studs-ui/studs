@@ -6,8 +6,6 @@ sidebar_position: 0
 
 ## Installation
 
-<studs-button>Test</studs-button>
-
 export const Tabs = ({children}) => (
   <studs-tabs tabdirection="row">
     {children}
@@ -17,12 +15,36 @@ export const Tabs = ({children}) => (
 <Tabs>
 <button slot="tab">Vanilla JS \ HTML</button>
 <section slot="panel">
-```js
-console.log('Every repo must come with a mascot.');
+
+#### npm
+```zsh
+npm install @studs/ui
 ```
+#### yarn
+```zsh
+yarn add @studs/ui
+```
+#### pnpm
+```zsh
+pnpm add @studs/ui
+```
+
 </section>
-<button slot="tab">Tab 2</button>
-<section slot="panel">Content for tab 2</section>
-<button slot="tab">Tab 3</button>
-<section slot="panel">Content for tab 3</section>
+<button slot="tab">React</button>
+<section slot="panel">
+
+#### npm
+```zsh
+npm install @studs/react
+```
+#### yarn
+```zsh
+yarn add @studs/react
+```
+#### pnpm
+```zsh
+pnpm add @studs/react
+```
+
+</section>
 </Tabs>
