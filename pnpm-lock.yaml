@@ -35,6 +35,9 @@ importers:
       '@mdx-js/react':
         specifier: ^1.6.22
         version: 1.6.22(react@17.0.2)
+      '@studs/styles':
+        specifier: workspace:*
+        version: link:../../packages/styles
       '@studs/ui':
         specifier: workspace:*
         version: link:../../packages/ui

@@ -19,6 +19,7 @@
     "@docusaurus/preset-classic": "2.4.1",
     "@mdx-js/react": "^1.6.22",
     "@studs/ui": "workspace:*",
+    "@studs/styles": "workspace:*",
     "clsx": "^1.2.1",
     "docusaurus-plugin-sass": "^0.2.5",
     "prism-react-renderer": "^1.3.5",
