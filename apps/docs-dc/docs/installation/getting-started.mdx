@@ -7,3 +7,22 @@ sidebar_position: 0
 ## Installation
 
 <studs-button>Test</studs-button>
+
+export const Tabs = ({children}) => (
+  <studs-tabs tabdirection="row">
+    {children}
+    </studs-tabs>
+);
+
+<Tabs>
+<button slot="tab">Vanilla JS \ HTML</button>
+<section slot="panel">
+```js
+console.log('Every repo must come with a mascot.');
+```
+</section>
+<button slot="tab">Tab 2</button>
+<section slot="panel">Content for tab 2</section>
+<button slot="tab">Tab 3</button>
+<section slot="panel">Content for tab 3</section>
+</Tabs>
