@@ -26,6 +26,7 @@ section {
   &.-list {
     display: flex;
     min-height: 5rem;
+    max-height:100vw;
     border-right: 1px solid var(--nav-border);
     @media (max-width: 767px) {
       width: 100%;

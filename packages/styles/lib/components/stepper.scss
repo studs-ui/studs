@@ -5,10 +5,17 @@
 }
 .stepper {
     --color: #{colorVal('gray', 30)};
+    --active: var(--success-color);
     width: 100%;
     display: flex;
     width: 100%;
     gap: 2em;
+    &.-primary {
+        --active: var(--primary);
+    }
+    &.-secondary {
+        --active: var(--secondary);
+    }
     &.-vertical {
         flex-direction: column;
         align-items: space-between;
@@ -42,7 +49,6 @@
             }
         }}
     }
-
     .step {
         &.-wrapper {
             display: flex;
@@ -78,14 +84,14 @@
             font-size: 0.9em;
         }
         &.-active {
-            --color: var(--success-color);
+            --color: var(--active);
             .-number {
                 background-color: var(--color);
                 color: $white;
             }
         }
         &.-complete {
-            --color: var(--success-color);
+            --color: var(--active);
         }
     }
 }

@@ -1,10 +1,9 @@
+import style from '@studs/styles/components/buttons.scss?inline';
 import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import style from '@studs/styles/components/buttons.scss?inline';
 import { Icon, IconController } from '../../controllers/iconController';
-import { getParentNode } from '../../utils/shared';
 
 export interface ButtonProps {
   buttonType:
@@ -22,24 +21,22 @@ export interface ButtonProps {
   disabled: boolean;
   iconPosition: 'start' | 'end';
   contentDirection: 'horizontal' | 'vertical';
-  // btnClasses: string;
   icon?: Icon;
-  children?: HTMLElement | TemplateResult | string;
   type: 'button' | 'submit' | 'reset';
+  children?: HTMLElement | TemplateResult | string;
 }
 
 @customElement('studs-button')
 export class StudsButton extends LitElement {
   // CSS Properties
   @property({ type: String, attribute: 'button-type' })
-    buttonType: ButtonProps['buttonType'] = 'cta';
+  buttonType: ButtonProps['buttonType'] = 'cta';
   @property({ type: String }) size: ButtonProps['size'] = 'medium';
   @property({ type: Boolean }) disabled: ButtonProps['disabled'] = false;
   @property({ type: String, attribute: 'icon-position' })
-    iconPosition: ButtonProps['iconPosition'] = 'start';
+  iconPosition: ButtonProps['iconPosition'] = 'start';
   @property({ type: String, attribute: 'content-direction' })
-    contentDirection: ButtonProps['contentDirection'] = 'horizontal';
-  // @property() btnClasses: ButtonProps['btnClasses'] = '';
+  contentDirection: ButtonProps['contentDirection'] = 'horizontal';
   @property({ type: String }) icon?: ButtonProps['icon'];
   @property({ type: String }) type: ButtonProps['type'] = 'button';
 
@@ -65,6 +62,7 @@ export class StudsButton extends LitElement {
     };
 
     return html`<button
+      part="studs-button"
       class="${classMap(classes)}"
       ?disabled=${this.disabled}
       type=${ifDefined(this.type)}

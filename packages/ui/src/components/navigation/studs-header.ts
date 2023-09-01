@@ -287,9 +287,10 @@ export class StudsHeader extends WithBloomreach(LitElement) {
             <studs-button
               class="location regionSelector"
               slot="toggle"
-              buttontype="link"
+              button-type="link"
               size="small"
-              icon='<svg
+            >
+              <svg
                 class="directionIcon"
                 width="0.75rem"
                 fill="var(--text-color)"
@@ -298,10 +299,8 @@ export class StudsHeader extends WithBloomreach(LitElement) {
               >
                 <path
                   d="m5.9999 7.9992c0.4125 0 0.76575-0.14701 1.0598-0.44101 0.2935-0.2935 0.44025-0.6465 0.44025-1.059 0-0.4125-0.14675-0.76575-0.44025-1.0598-0.294-0.29349-0.64725-0.44024-1.0598-0.44024s-0.7655 0.14675-1.059 0.44024c-0.294 0.29401-0.441 0.64726-0.441 1.0598 0 0.41249 0.147 0.76549 0.441 1.059 0.2935 0.294 0.6465 0.44101 1.059 0.44101zm0 5.5124c1.525-1.4 2.6562-2.672 3.3938-3.816 0.73746-1.1435 1.1063-2.159 1.1063-3.0465 0-1.3625-0.4345-2.4782-1.3035-3.3472-0.8685-0.8685-1.934-1.3028-3.1965-1.3028s-2.3282 0.43425-3.1972 1.3028c-0.8685 0.869-1.3028 1.9847-1.3028 3.3472 0 0.8875 0.36875 1.903 1.1062 3.0465 0.7375 1.144 1.8688 2.416 3.3938 3.816zm0 1.9875c-2.0125-1.7125-3.5155-3.3032-4.509-4.7722-0.994-1.4685-1.491-2.8278-1.491-4.0778 0-1.875 0.60325-3.3687 1.8097-4.4812 1.206-1.1125 2.6028-1.6688 4.1902-1.6688s2.9842 0.55625 4.1902 1.6688c1.2065 1.1125 1.8098 2.6062 1.8098 4.4812 0 1.25-0.4968 2.6093-1.4903 4.0778-0.99396 1.469-2.4972 3.0597-4.5097 4.7722z"
-                />
-              </svg>'
-            >
-              <span>${regionText || 'Region Selector'}</span>
+                /></svg
+              ><span>${regionText || 'Region Selector'}</span>
             </studs-button>
             ${title ? html`<h4 slot="header">${title}</h4>` : nothing}
             <div class="regionsWrapper">
@@ -470,7 +469,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
               textButton: true,
               active: this._activeMenu || false,
             })}
-            buttontype="link"
+            button-type="link"
             @click=${this.onReturnClick}
           >
             <span>Main Menu</span>
@@ -483,7 +482,7 @@ export class StudsHeader extends WithBloomreach(LitElement) {
               active: this._open,
             })}
             size="large"
-            buttontype="link"
+            button-type="link"
           >
             <div class="menuIcon"></div>
             <span>Menu</span>

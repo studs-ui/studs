@@ -65,7 +65,7 @@ export const ChipAvatar: Story = {
     children: html`<img
         slot="accessory"
         class="avatar"
-        src="./placeholders/smallUX/smallUX-avatar-sage.svg"
+        src="/smallUX/smallUX-avatar-sage.svg"
         alt="avatar"
       />
       Avatar`,

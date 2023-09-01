@@ -3,13 +3,13 @@
 .skeleton {
   background-color: rgba(0, 0, 0, 0.11);
   &.-linear {
-    animation: skeleton-linear var(--transition-xxx) linear infinite alternate;
+    animation: skeleton-linear var(--transition-xxl) linear infinite alternate;
   }
   &.-pulse {
-    animation: skeleton-pulse var(--transition-xxx) linear infinite alternate;
+    animation: skeleton-pulse var(--transition-xxl) linear infinite alternate;
   }
   &.-wave {
-    animation: skeleton-wave var(--transition-xxx) linear infinite alternate;
+    animation: skeleton-wave var(--transition-xxl) linear infinite alternate;
   }
   @keyframes skeleton-linear {
     0% {

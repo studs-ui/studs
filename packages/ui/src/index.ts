@@ -18,8 +18,8 @@ import { StudsToaster } from './components/overlays/toaster';
 import { StudsStepper } from './components/display/stepper';
 import { StudsSwitch } from './components/inputs/switch';
 import { StudsSlider } from './components/inputs/slider';
-import { StudsAccordian } from './components/display/accordian';
-import { StudsAccordianItem } from './components/display/accordian-item';
+import { StudsAccordion } from './components/display/accordion';
+import { StudsAccordionItem } from './components/display/accordion-item';
 import { StudsInput } from './components/inputs/input';
 import { StudsRadio } from './components/inputs/radio';
 import { StudsRadioGroup } from './components/inputs/radio-group';
@@ -56,8 +56,8 @@ export {
   StudsStepper,
   StudsSwitch,
   StudsSlider,
-  StudsAccordian,
-  StudsAccordianItem,
+  StudsAccordion,
+  StudsAccordionItem,
   StudsInput,
   StudsRadio,
   StudsRadioGroup,
@@ -94,8 +94,8 @@ declare global {
     'studs-toaster': StudsToaster;
     'studs-stepper': StudsStepper;
     'studs-switch': StudsSwitch;
-    'studs-accordian': StudsAccordian;
-    'studs-accordian-item': StudsAccordianItem;
+    'studs-accordion': StudsAccordion;
+    'studs-accordion-item': StudsAccordionItem;
     'studs-slider': StudsSlider;
     'studs-input': StudsInput;
     'studs-radio': StudsRadio;

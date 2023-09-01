@@ -1,91 +1,159 @@
 @use '../utilities' as *;
 
+// studs-input {
+//   container-type: inline-size;
+//   container-name: inputComponent;
+//   width: 100%;
+// }
+
 .inputComponent {
-  position: relative;
-  .inputWrapper {
-    display: inline-flex;
-    align-items: center;
-  }
-  .input {
-    appearance: none;
-    border: 1px solid var(--border-color);
-    border-radius: 0.25rem;
-    font-size: 1rem;
-    line-height: 1;
-    margin: 0;
-    padding: 0.5rem;
-  }
-  label {
-    margin-bottom: 0.25rem;
-    display: block;
-  }
-  .outlined {
-    border: 1px solid var(--border-color);
-  }
-  .filled {
-    border: 1px solid var(--background);
-    background-color: var(--background);
-  }
-  .standard {
-    border: 0;
-    outline: none;
-    border-bottom: 1px solid var(--border-color);
-  }
-  .small {
-    padding: 0.25rem;
-  }
-  .large {
-    padding: 0.75rem;
-  }
-  .start {
-    padding-left: 2rem;
-    &.-withClearButton {
-      padding-right: 1.8rem;
-    }
-  }
-  .end {
-    padding-right: 2rem;
-    &.-withClearButton {
-      padding-right: 3rem;
-    }
-  }
-  .adornmentStart {
-    &.-icon {
-      margin-top: 0.2rem;
-    }
-    position: absolute;
-    padding-left: 0.5rem;
-  }
-  .adornmentEnd {
-    &.-icon {
-      margin-top: 0.3rem;
-    }
-    margin-left: -1.5rem;
-  }
-  .button.interaction {
-    all: unset;
-    cursor: pointer;
-  }
-  .error {
-    border: 1px solid red;
-  }
-  .error-text {
-    margin: 5px;
-    color: red;
+  --border: var(--border-color);
+  --outline: var(--primary);
+  --background: rgba(white, .2);
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+
+  // @container inputComponent (max-width: 320px) {
+  //     flex-direction: column;
+  //     align-items: flex-start;
+  // }
+
+  &.-top {
+    flex-direction: column;
   }
 
-  .clearButton {
-    all: unset;
-    position: absolute;
-    right: 8px;
-    top: 52%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    &.-withAdorment {
-      right: 1.2rem;
+  label {
+    width: max-content;
+  }
+
+  .inputWrapper {
+    --text: var(--text-color);
+
+    border: 1px solid var(--border);
+    border-radius: 0.25rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    background-color: var(--background);
+    position: relative;
+
+    @include fontSizes;
+
+    &:has(input:focus, input:focus-visible) {
+      --border: var(--link-color);
+      outline: 2px solid var(--outline);
+    }
+
+    .adornment {
+      padding: 0 .5rem;
+
+      &.-search {
+        @include iconFont;
+      }
+    }
+
+    input {
+      border: none;
+      appearance: none;
+      font-size: var(--font-size);
+      line-height: 1;
+      margin: 0;
+      padding: 0.5rem;
+      color: var(--text);
+
+      background: transparent;
+
+      &:focus,
+      &:focus-visible {
+        outline: 1px solid var(--primary-active);
+        border-radius: 0;
+
+        @supports selector(:has(*)) {
+          outline: none;
+        }
+      }
+
+      @include placeholders;
+    }
+
+
+    [type="search"] {
+      padding-right: 0;
+
+      // &::-webkit-search-cancel-button {
+      //   -webkit-appearance: searchfield;
+      // }
+
+      /* we really need to replace this clear icon
+         with something that we have control over.
+                          --Jp
+      */
+
+      &::-webkit-search-cancel-button {
+        -webkit-appearance: none;
+        height: 0.9em;
+        width: 0.9em;
+        border-radius: 50em;
+        background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)
+                    no-repeat 50% 50%;
+        background-size: contain;
+        opacity: 0;
+        position: relative;
+        pointer-events: none;
+        transition: all var(--transition-m);
+      }
+
+      &:focus::-webkit-search-cancel-button {
+        cursor: pointer;
+        opacity: 0.3;
+        pointer-events: all;
+      }
+    }
+
+    /*
+    [type="text"] {}
+    [type="password"] {}
+    [type="number"] {}
+    [type="tel"] {}
+    [type="email"] {}
+    [type="file"] {}
+    */
+
+    &.-error {
+      --border: var(--error-color);
+      --text: var(--error-color);
+      --outline: var(--error-color);
+    }
+
+    &.-warning {
+      --border: var(--warning-color);
+      --text: var(--text-color);
+      --outline: var(--warning-color);
+    }
+
+    &.-success {
+      --outline: var(--success-color);
+      --border: var(--success-color);
+    }
+
+    &.-disabled {
+      --background: var(--disabled);
+      --border: var(--text-disabled);
+      --placeholder-text: var(--text-disabled);
+      --text: var(--text-disabled);
+      input {
+        cursor: not-allowed;
+      }
     }
   }
-  .clearButton:hover {
-    transform: translateY(-50%);
-  }
 }
+
+
+

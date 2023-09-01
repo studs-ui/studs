@@ -11,7 +11,7 @@
   label {
     display: flex;
     flex-direction: row;
-    gap: .5rem;
+    gap: .25rem;
     align-items: center;
     position: relative;
     color: var(--text-color);
@@ -24,35 +24,29 @@
     }
 
     &::before {
-      --unchecked: url("/public/assets/icons/material-icons-master/svg/check_box_outline_blank/baseline.svg");
-      --checked: url("/public/assets/icons/material-icons-master/svg/check_box/baseline.svg");
-      --indeterminate: url("/public/assets/icons/material-icons-master/svg/indeterminate_check_box/baseline.svg");
-
+      --unchecked: "check_box_outline_blank";
+      --checked: "check_box";
+      --indeterminate: "indeterminate_check_box";
       --symbol: var(--unchecked);
       --color: var(--text-dark);
-      transform: translateY(-.05em);
+
       cursor: pointer;
+      content: var(--symbol);
+      color: var(--color);
+      border: 1px solid transparent;
+      border-radius: 0.125em;
 
-      content:'';
-      width: 1em;
-      aspect-ratio: 1 / 1;
-      position: absolute;
-      left: -1.25em;
+      @include iconFont;
 
-      @include icon-mask(var(--symbol), var(--color));
+      font-size: 1.25em;
     }
   }
 
-  [type=checkbox]:focus-visible +  label::after {
-    content:'';
-    position: absolute;
-    left: -1.25em;
-    width: 1em;
-    height: 1em;
-    transform: scale(1.05) translateY(-.05em) translateX(-.05em);
-
-    border: 1px solid var(--primary);
-    border-radius: .15em;
+  [type=checkbox]:focus,
+  [type=checkbox]:focus-visible {
+    + label::before {
+      border-color: var(--primary);
+    }
   }
 
   [type=checkbox]:checked +  label::before {
@@ -65,11 +59,16 @@
     --color: var(--primary);
   }
 
+  [type=checkbox] + label:hover::before {
+    --color: var(--primary-hover);
+  }
+
   [type=checkbox]:disabled + label {
     &,
     &::before {
-      --text-color: var(--disabled);
-      --color: var(--disabled);
+      --text-color: var(--text-disabled);
+      --color: var(--text-disabled);
+      border-color: transparent;
     }
   }
 }
