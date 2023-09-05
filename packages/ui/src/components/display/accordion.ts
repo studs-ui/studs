@@ -25,9 +25,9 @@ export interface AccordionProps extends BaseAccordionProps {
 @customElement('studs-accordion')
 export class StudsAccordion extends LitElement {
   @property({ type: Boolean, attribute: 'enable-header' })
-  enableHeader: AccordionProps['enableHeader'] = true;
+  enableHeader: AccordionProps['enableHeader'] = false;
   @property({ type: Boolean, attribute: 'enable-search' })
-  enableSearch: AccordionProps['enableSearch'] = true;
+  enableSearch: AccordionProps['enableSearch'] = false;
   @property({ type: String, reflect: true }) size: AccordionProps['size'] =
     'medium';
   @property({ type: String, reflect: true })

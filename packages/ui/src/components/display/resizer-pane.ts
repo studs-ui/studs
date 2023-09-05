@@ -70,7 +70,6 @@ export class StudsResizerPane extends LitElement {
       >
         <slot></slot>
         <span
-          draggable=${this._pressed && !this.classList.contains('-last')}
           role="presentation"
           class="handle"
           @mousedown=${this.onMouseMoveDown}

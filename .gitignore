@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 apps/**/storybook-static
+apps/**/.docusaurus
 
 # Editor directories and files
 .vscode/*
