@@ -106,7 +106,6 @@ export class StudsInput extends WithForm(LitElement) {
                   button-type="tertiary"
                   icon="search"
                   size="small"
-                  @click=${this.onSubmit}
                 ></studs-button>
               </div>`
             : nothing}
@@ -122,9 +121,7 @@ export class StudsInput extends WithForm(LitElement) {
   }
 
   private onSubmit(e: SubmitEvent) {
-    e.preventDefault();
-    const form = this.closest('form');
-    if (form) form.submit();
+    // e.preventDefault();
   }
 
   private handleEnterSubmit(e: KeyboardEvent) {
