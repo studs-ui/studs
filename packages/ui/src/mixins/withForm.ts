@@ -6,27 +6,24 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 export declare class WithFormInterface {
   name?: string;
   label?: string;
+  labelType?: 'inline' | 'block';
   disabled: boolean;
   placeholder?: string;
   required?: boolean;
   error: boolean;
-  getName: () => string;
-  dispatch: Function;
+  dispatch: () => void;
 }
 
 export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
   class WithFormClass extends superClass {
     @property({ type: String }) name?: WithFormInterface['name'];
-    @property({ type: String }) label?: WithFormInterface['label'] = '';
+    @property({ type: String }) label?: WithFormInterface['label'];
+    @property({ type: String, attribute: 'label-type' }) labelType? = 'inline';
     @property({ type: String }) placeholder?: WithFormInterface['placeholder'];
     @property({ type: Boolean }) required?: WithFormInterface['required'];
     @property({ type: Boolean }) error: WithFormInterface['error'] = false;
     @property({ type: Boolean }) disabled: WithFormInterface['disabled'] =
       false;
-
-    get getName() {
-      return this.name || this.label || '';
-    }
 
     protected dispatch(detail: object) {
       if (detail !== undefined) {

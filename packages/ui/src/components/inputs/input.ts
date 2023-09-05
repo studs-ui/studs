@@ -1,8 +1,7 @@
-import { LitElement, html } from 'lit';
+import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
-// import '@studs/styles/components/inputs.scss?inline';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 
 export interface InputProps extends WithFormInterface {
@@ -11,18 +10,23 @@ export interface InputProps extends WithFormInterface {
   inputSize?: 'small' | 'medium' | 'large';
   messageType?: 'error' | 'success' | 'warning';
   helperText?: string[];
+  adornmentType?: 'icon' | 'text';
   adornment?: string;
   adornmentPosition?: 'start' | 'end';
+  clear?: () => void;
 }
 
 @customElement('studs-input')
 export class StudsInput extends WithForm(LitElement) {
   @property({ type: String }) type: InputProps['type'] = 'text';
   @property({ type: String }) value: InputProps['value'] = '';
-  @property({ type: String }) inputSize?: InputProps['inputSize'];
+  @property({ type: String, attribute: 'input-size' })
+  inputSize?: InputProps['inputSize'];
   @property({ type: String }) messageType?: InputProps['messageType'];
   @property({ type: Array, attribute: 'helper-text' })
   helperText?: InputProps['helperText'] = [];
+  @property({ type: String, attribute: 'adornment-type' }) adornmentType?:
+    | InputProps['adornmentType'] = 'text';
   @property({ type: String }) adornment?: InputProps['adornment'];
   @property({ type: String, attribute: 'adornment-position' })
   adornmentPosition?: InputProps['adornmentPosition'] = 'end';
@@ -30,39 +34,27 @@ export class StudsInput extends WithForm(LitElement) {
   connectedCallback(): void {
     super.connectedCallback();
     if (this.type === 'search') {
-      this.addEventListener('keydown', this.handleSubmit);
+      this.addEventListener('keydown', this.handleEnterSubmit);
     }
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
     if (this.type === 'search') {
-      this.removeEventListener('keydown', this.handleSubmit);
+      this.removeEventListener('keydown', this.handleEnterSubmit);
     }
   }
 
-  handleSubmit(e: KeyboardEvent) {
-    if (e.key === 'Enter') {
-      e.preventDefault();
-      // const form = this.getForm(this);
-      // if (form)
-      //   form.dispatchEvent(
-      //     new Event('submit', {
-      //       bubbles: true,
-      //       composed: true,
-      //     })
-      //   );
-    }
-  }
-
-  handleInput(e: Event) {
-    this.value = (e.target as HTMLInputElement).value;
-    this.dispatch(this.value);
-  }
-
-  handleClear() {
-    this.value = '';
-    this.dispatch(this.value);
+  private renderAdornment(position: InputProps['adornmentPosition']) {
+    return html`<div
+      class=${classMap({
+        adornment: true,
+        [`-${position}`]: true,
+        '-icon': this.adornmentType === 'icon' || false,
+      })}
+    >
+      ${this.adornment}
+    </div>`;
   }
 
   render() {
@@ -81,14 +73,20 @@ export class StudsInput extends WithForm(LitElement) {
     };
 
     return html`
-      <div class=${`inputComponent`} part="studs-input">
+      <div
+        class=${classMap({
+          inputComponent: true,
+          [`-${this.labelType}`]: this.labelType === 'block',
+        })}
+        part="studs-input"
+      >
         ${this.label
           ? html`<label ?required=${this.required}>${this.label}</label>`
-          : ''}
+          : nothing}
         <div class=${classMap(wrapperClasses)}>
           ${this.adornment && this.adornmentPosition === 'start'
-            ? html`<div class="adornment -start">${this.adornment}</div>`
-            : ''}
+            ? this.renderAdornment('start')
+            : nothing}
           <input
             type="${ifDefined(this.type)}"
             name=${ifDefined(this.name)}
@@ -99,11 +97,19 @@ export class StudsInput extends WithForm(LitElement) {
             class=${classMap(classes)}
           />
           ${this.adornment && this.adornmentPosition === 'end'
-            ? html`<div class="adornment -end">${this.adornment}</div>`
-            : ''}
+            ? this.renderAdornment('end')
+            : nothing}
           ${this.type === 'search'
-            ? html`<div class="adornment -search">search</div>`
-            : ''}
+            ? html`<div class="adornment -search">
+                <studs-button
+                  type="submit"
+                  button-type="tertiary"
+                  icon="search"
+                  size="small"
+                  @click=${this.onSubmit}
+                ></studs-button>
+              </div>`
+            : nothing}
         </div>
         ${this.error && this.helperText
           ? this.helperText.map(
@@ -113,6 +119,28 @@ export class StudsInput extends WithForm(LitElement) {
           : ''}
       </div>
     `;
+  }
+
+  private onSubmit(e: SubmitEvent) {
+    e.preventDefault();
+    const form = this.closest('form');
+    if (form) form.submit();
+  }
+
+  private handleEnterSubmit(e: KeyboardEvent) {
+    if (e.key === 'Enter') {
+      this.onSubmit(e as unknown as SubmitEvent);
+    }
+  }
+
+  private handleInput(e: Event) {
+    this.value = (e.target as HTMLInputElement).value;
+    this.dispatch(this.value);
+  }
+
+  public clear() {
+    this.value = '';
+    this.dispatch(this.value);
   }
 
   protected createRenderRoot(): Element | ShadowRoot {
