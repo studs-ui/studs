@@ -1,4 +1,4 @@
-import { LitElement } from 'lit';
+import { LitElement, PropertyValueMap } from 'lit';
 import { property, state } from 'lit/decorators.js';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
@@ -11,6 +11,7 @@ export declare class WithFormInterface {
   placeholder?: string;
   required?: boolean;
   error: boolean;
+  _internals?: ElementInternals;
   dispatch: () => void;
 }
 
@@ -26,32 +27,44 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     @property({ type: Boolean }) disabled: WithFormInterface['disabled'] =
       false;
 
-    @state() _internals = this.attachInternals();
+    @state() _internals?: WithFormInterface['_internals'];
+
+    connectedCallback(): void {
+      super.connectedCallback();
+      this._internals = this.attachInternals();
+    }
+
+    protected updated(
+      _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+    ): void {
+      super.updated(_changedProperties);
+      if (!this._internals) this._internals = this.attachInternals();
+    }
 
     // The following properties and methods aren't strictly required,
     // but browser-level form controls provide them. Providing them helps
     // ensure consistency with browser-provided controls.
     get form() {
-      return this._internals.form;
+      if (this._internals) return this._internals.form;
     }
     get type() {
-      return this.localName;
+      if (this._internals) return this.localName;
     }
     get validity() {
-      return this._internals.validity;
+      if (this._internals) return this._internals.validity;
     }
     get validationMessage() {
-      return this._internals.validationMessage;
+      if (this._internals) return this._internals.validationMessage;
     }
     get willValidate() {
-      return this._internals.willValidate;
+      if (this._internals) return this._internals.willValidate;
     }
 
     checkValidity() {
-      return this._internals.checkValidity();
+      if (this._internals) return this._internals.checkValidity();
     }
     reportValidity() {
-      return this._internals.reportValidity();
+      if (this._internals) return this._internals.reportValidity();
     }
 
     protected dispatch(detail: object) {

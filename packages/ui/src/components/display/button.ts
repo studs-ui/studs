@@ -74,7 +74,7 @@ export class StudsButton extends LitElement {
     super.updated(_changedProperties);
     if (_changedProperties.has('type')) {
       if (this.type === 'submit') {
-        this._internals = this.attachInternals();
+        if (!this._internals) this._internals = this.attachInternals();
       }
     }
   }

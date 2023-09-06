@@ -122,6 +122,16 @@ export class StudsInput extends WithForm(LitElement) {
 
   private onSubmit(e: SubmitEvent) {
     // e.preventDefault();
+    this.dispatchEvent(
+      new CustomEvent('submit', {
+        detail: {
+          value: this.value,
+        },
+        bubbles: true,
+        composed: true,
+      })
+    );
+    if (this._internals?.form) this._internals.form.submit();
   }
 
   private handleEnterSubmit(e: KeyboardEvent) {
