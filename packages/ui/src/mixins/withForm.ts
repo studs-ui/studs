@@ -20,7 +20,7 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     static formAssociated = true;
     @property({ type: String }) name?: WithFormInterface['name'];
     @property({ type: String }) label?: WithFormInterface['label'];
-    @property({ type: String, attribute: 'label-type' }) labelType? = 'inline';
+    @property({ type: String, attribute: 'label-type' }) labelType? = 'block';
     @property({ type: String }) placeholder?: WithFormInterface['placeholder'];
     @property({ type: Boolean }) required?: WithFormInterface['required'];
     @property({ type: Boolean }) error: WithFormInterface['error'] = false;

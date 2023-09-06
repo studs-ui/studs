@@ -3,6 +3,7 @@ import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import { map } from 'lit/directives/map.js';
 
 export interface InputProps extends WithFormInterface {
   type?: 'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file';
@@ -67,20 +68,6 @@ export class StudsInput extends WithForm(LitElement) {
   }
 
   render() {
-    const classes = {
-      input: true,
-      [this.adornment && this.adornmentPosition ? this.adornmentPosition : '']:
-        true,
-    };
-
-    const wrapperClasses = {
-      inputWrapper: true,
-      [`-${this.type}`]: !!this.type,
-      [`-disabled`]: !!this.disabled,
-      [`-${this.inputSize}`]: !!this.inputSize,
-      [`-${this.messageType}`]: !!this.messageType,
-    };
-
     return html`
       <div
         class=${classMap({
@@ -92,7 +79,15 @@ export class StudsInput extends WithForm(LitElement) {
         ${this.label
           ? html`<label ?required=${this.required}>${this.label}</label>`
           : nothing}
-        <div class=${classMap(wrapperClasses)}>
+        <div
+          class=${classMap({
+            inputWrapper: true,
+            [`-${this.type}`]: !!this.type,
+            [`-disabled`]: !!this.disabled,
+            [`-${this.inputSize}`]: !!this.inputSize,
+            [`-${this.messageType}`]: !!this.messageType,
+          })}
+        >
           ${this.adornment && this.adornmentPosition === 'start'
             ? this.renderAdornment('start')
             : nothing}
@@ -103,7 +98,12 @@ export class StudsInput extends WithForm(LitElement) {
             placeholder=${ifDefined(this.placeholder)}
             ?disabled=${this.disabled}
             @input=${this.handleInput}
-            class=${classMap(classes)}
+            class=${classMap({
+              input: true,
+              [this.adornment && this.adornmentPosition
+                ? this.adornmentPosition
+                : '']: true,
+            })}
           />
           ${this.adornment && this.adornmentPosition === 'end'
             ? this.renderAdornment('end')
@@ -133,10 +133,13 @@ export class StudsInput extends WithForm(LitElement) {
             : nothing}
         </div>
         ${this.error && this.helperText
-          ? this.helperText.map(
-              (text: string, i: number) =>
-                html`<p key=${i} class="error-text">${text}</p>`
-            )
+          ? html`<div class="messages">
+              ${map(
+                this.helperText,
+                (text: string, i: number) =>
+                  html`<p key=${i} class="error-text">${text}</p>`
+              )}
+            </div>`
           : ''}
       </div>
     `;
