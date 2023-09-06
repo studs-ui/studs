@@ -1,5 +1,5 @@
 import { LitElement, html, nothing } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
@@ -30,6 +30,15 @@ export class StudsInput extends WithForm(LitElement) {
   @property({ type: String }) adornment?: InputProps['adornment'];
   @property({ type: String, attribute: 'adornment-position' })
   adornmentPosition?: InputProps['adornmentPosition'] = 'end';
+
+  // If the Type is Password, provide the ability to show.
+  @state() showPassword = false;
+  private get inputType() {
+    if (this.type === 'password' && this.showPassword) {
+      return 'text';
+    }
+    return this.type;
+  }
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -88,7 +97,7 @@ export class StudsInput extends WithForm(LitElement) {
             ? this.renderAdornment('start')
             : nothing}
           <input
-            type="${ifDefined(this.type)}"
+            type=${this.inputType}
             name=${ifDefined(this.name)}
             value=${ifDefined(this.value)}
             placeholder=${ifDefined(this.placeholder)}
@@ -109,6 +118,19 @@ export class StudsInput extends WithForm(LitElement) {
                 ></studs-button>
               </div>`
             : nothing}
+          ${this.type === 'password'
+            ? html`<div class="adornment -password">
+                <studs-button
+                  type="button"
+                  button-type="tertiary"
+                  icon=${this.showPassword ? 'visibility_off' : 'visibility'}
+                  @click=${() => {
+                    this.showPassword = !this.showPassword;
+                  }}
+                  size="small"
+                ></studs-button>
+              </div>`
+            : nothing}
         </div>
         ${this.error && this.helperText
           ? this.helperText.map(
@@ -120,7 +142,7 @@ export class StudsInput extends WithForm(LitElement) {
     `;
   }
 
-  private onSubmit(e: SubmitEvent) {
+  private onSubmit() {
     // e.preventDefault();
     this.dispatchEvent(
       new CustomEvent('submit', {

@@ -91,6 +91,10 @@
       @include placeholders;
     }
 
+    ::-ms-reveal {
+      display: none;
+    }
+
 
     [type="search"] {
       padding-right: 0;

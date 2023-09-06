@@ -31,6 +31,10 @@ const meta = {
     name: { control: "text" },
     placeholder: { control: "text" },
     label: { control: "text" },
+    labelType: {
+      control: { type: "select" },
+      options: ["inline", "block"],
+    },
     inputSize: {
       control: { type: "select" },
       options: ["small", "medium", "large"],
@@ -48,6 +52,10 @@ const meta = {
       control: { type: "select" },
       options: ["start", "end"],
     },
+    adornmentType: {
+      control: { type: "select" },
+      options: ["icon", "text"],
+    }
   },
 } satisfies Meta<InputProps>;
 
@@ -132,6 +140,13 @@ export const Search: Story = {
   args: {
     type: "search",
     label: "Search",
+  },
+}
+
+export const Password: Story = {
+  args: {
+    type: "password",
+    label: "Password",
   },
 }
 
