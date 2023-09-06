@@ -63,6 +63,13 @@ export const Buttons = html`
         </presentational-component>
         <presentational-component>
           <studs-button
+            button-type="close"
+            icon="close"
+            onclick="alert('clicked')"
+          ></studs-button>
+        </presentational-component>
+        <presentational-component>
+          <studs-button
             button-type="primary"
             icon-position="start"
             icon="info"
