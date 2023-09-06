@@ -42,15 +42,15 @@ export class StudsTextarea extends WithForm(LitElement) {
   };
 
   render() {
-    const classes = {
-      textareaComponent: true,
-      [`-${this.variant}`]: !!this.variant,
-      [`${this.size}`]: !!this.size,
-      [`${this.messageType}`]: !!this.messageType,
-    };
-
     return html`
-      <div class="textareaComponent">
+      <div
+        class=${classMap({
+          textareaComponent: true,
+          [`-${this.variant}`]: !!this.variant,
+          [`${this.size}`]: !!this.size,
+          [`${this.messageType}`]: !!this.messageType,
+        })}
+      >
         ${this.label
           ? html`<label
               >${this.label}${this.required
@@ -68,7 +68,6 @@ export class StudsTextarea extends WithForm(LitElement) {
           ?required="${this.required}"
           ?disabled="${this.disabled}"
           @input="${this.handleInput}"
-          class=${classMap(classes)}
           .value=${this.value}
         ></textarea>
         ${this.characterCounter

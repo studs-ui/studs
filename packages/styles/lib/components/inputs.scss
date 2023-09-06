@@ -155,7 +155,7 @@
       --border: var(--success-color);
     }
 
-    &.-disabled {
+    &[disabled] {
       --background: var(--disabled);
       --border: var(--text-disabled);
       --placeholder-text: var(--text-disabled);

@@ -15,6 +15,10 @@
     margin: 0;
     color: var(--dropdown-label-color)
   }
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
   
   .-toggle {
     position: relative;

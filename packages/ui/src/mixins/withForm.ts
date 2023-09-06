@@ -12,7 +12,7 @@ export declare class WithFormInterface {
   required?: boolean;
   error: boolean;
   _internals?: ElementInternals;
-  dispatch: () => void;
+  dispatch: (value: any) => void;
 }
 
 export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {

@@ -83,10 +83,10 @@ export class StudsInput extends WithForm(LitElement) {
           class=${classMap({
             inputWrapper: true,
             [`-${this.type}`]: !!this.type,
-            [`-disabled`]: !!this.disabled,
             [`-${this.inputSize}`]: !!this.inputSize,
             [`-${this.messageType}`]: !!this.messageType,
           })}
+          ?disabled=${this.disabled}
         >
           ${this.adornment && this.adornmentPosition === 'start'
             ? this.renderAdornment('start')

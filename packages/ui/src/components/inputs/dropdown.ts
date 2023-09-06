@@ -95,14 +95,15 @@ export class StudsDropdown extends WithForm(LitElement) {
   }
 
   render() {
-    const classes = {
-      dropdown: true,
-      '-container': true,
-      '-disabled': this.disabled,
-      '-open': this._open,
-    };
 
-    return html` <div class=${classMap(classes)}>
+    return html` <div
+      class=${classMap({
+        dropdown: true,
+        '-container': true,
+        '-open': this._open,
+      })}
+      ?disabled=${this.disabled}
+    >
       ${this.label ? html`<p>${this.label}</p>` : nothing}
       <div class="-content">
         <button
