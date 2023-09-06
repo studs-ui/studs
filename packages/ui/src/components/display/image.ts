@@ -10,6 +10,7 @@ export interface StudsImageProps {
   small?: string;
   medium?: string;
   large?: string;
+  caption?: string;
 }
 
 @customElement('studs-image')
@@ -21,6 +22,7 @@ export class StudsImage extends LitElement implements StudsImageProps {
   @property({ type: String }) medium: StudsImageProps['medium'];
   @property({ type: String }) large: StudsImageProps['large'];
   @property({ type: String }) alt: StudsImageProps['alt'];
+  @property({ type: String }) caption: StudsImageProps['caption'];
 
   static styles = unsafeCSS(style);
 
@@ -28,7 +30,6 @@ export class StudsImage extends LitElement implements StudsImageProps {
     if (this.placeholder && !this.src) {
       return html`
         <div class="placeholder">
-          <?xml version="1.0" encoding="UTF-8"?>
           <svg
             width="100%"
             height="100%"
@@ -78,13 +79,19 @@ export class StudsImage extends LitElement implements StudsImageProps {
       `;
     } else if (this.src) {
       return html` <source srcset=${this.src} />
-        <img src="${this.src}" alt=${ifDefined(this.alt)} />`;
+        <img
+          src="${this.src}"
+          alt=${ifDefined(this.alt) || ifDefined(this.caption)}
+        />`;
     } else {
       return this.getPlaceholder;
     }
   }
 
   render() {
-    return html`<picture>${this.renderImages}</picture>`;
+    return html`<figure>
+      <picture>${this.renderImages}</picture>
+      ${this.caption ? html`<figcaption>${this.caption}</figcaption>` : nothing}
+    </figure>`;
   }
 }
