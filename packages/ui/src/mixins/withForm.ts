@@ -6,7 +6,7 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 export declare class WithFormInterface {
   name?: string;
   label?: string;
-  labelType?: 'inline' | 'block';
+  display?: 'inline' | 'block';
   disabled: boolean;
   placeholder?: string;
   required?: boolean;
@@ -20,7 +20,7 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
     static formAssociated = true;
     @property({ type: String }) name?: WithFormInterface['name'];
     @property({ type: String }) label?: WithFormInterface['label'];
-    @property({ type: String, attribute: 'label-type' }) labelType? = 'block';
+    @property({ type: String }) display? = 'block';
     @property({ type: String }) placeholder?: WithFormInterface['placeholder'];
     @property({ type: Boolean }) required?: WithFormInterface['required'];
     @property({ type: Boolean }) error: WithFormInterface['error'] = false;

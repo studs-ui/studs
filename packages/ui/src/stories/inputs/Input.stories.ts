@@ -12,7 +12,7 @@ const meta = {
     value=${ifDefined(args.value)}
     placeholder=${ifDefined(args.placeholder)}
     label=${ifDefined(args.label)}
-    label-type=${ifDefined(args.labelType)}
+    display=${ifDefined(args.display)}
     input-size=${ifDefined(args.inputSize)}
     messageType=${ifDefined(args.messageType)}
     ?disabled=${args.disabled}
@@ -31,7 +31,7 @@ const meta = {
     name: { control: "text" },
     placeholder: { control: "text" },
     label: { control: "text" },
-    labelType: {
+    display: {
       control: { type: "select" },
       options: ["inline", "block"],
     },
@@ -80,7 +80,7 @@ export const Disabled: Story = {
 export const LabelBlock: Story = {
   args: {
     label: "Label Block",
-    labelType: "block",
+    display: "block",
   },
 }
 
@@ -125,7 +125,7 @@ export const Search: Story = {
     value=${ifDefined(args.value)}
     placeholder=${ifDefined(args.placeholder)}
     label=${ifDefined(args.label)}
-    label-type=${ifDefined(args.labelType)}
+    display=${ifDefined(args.display)}
     input-size=${ifDefined(args.inputSize)}
     messageType=${ifDefined(args.messageType)}
     ?disabled=${args.disabled}

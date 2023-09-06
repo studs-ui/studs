@@ -72,7 +72,7 @@ export class StudsInput extends WithForm(LitElement) {
       <div
         class=${classMap({
           inputComponent: true,
-          [`-${this.labelType}`]: this.labelType === 'block',
+          [`-${this.display}`]: this.display === 'block',
         })}
         part="studs-input"
       >
