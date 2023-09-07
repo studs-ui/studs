@@ -4,7 +4,9 @@
   "type": "module",
   "main": "dist/index.cjs",
   "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
+    "./*": "./src/components/*",
     ".": {
       "development": "./src/index.js",
       "require": "./dist/index.cjs",
@@ -18,7 +20,7 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "vite build",
+    "build": "vite build && storybook build",
     "lint": "tsc",
     "test": "vitest",
     "build-storybook": "storybook build"
@@ -47,6 +49,7 @@
     "storybook": "^7.1.1",
     "storybook-addon-performance": "^0.17.1",
     "typescript": "^5.1.6",
-    "vite": "^4.4.7"
+    "vite": "^4.4.7",
+    "vite-plugin-dts": "^3.5.3"
   }
 }
