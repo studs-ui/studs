@@ -174,3 +174,9 @@ export {StudsChip}
 ```
 "studs-carousel": StudsCarousel;
 ```
+
+### Adding NPM Packages to apps/packages
+`pnpm add <package> --filter <package-name>`
+
+Example
+`pnpm add @11ty/eleventy --save-dev --filter @studs/docs`
