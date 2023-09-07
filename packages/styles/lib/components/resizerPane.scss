@@ -3,8 +3,19 @@
 }
 
 .pane {
-    position: relative;
-    min-width: max-content;
+    &.-wrapper {
+        position: relative;
+        min-width: max-content;
+    }
+    &.-header {
+        &::slotted(*) {
+            margin: 0
+        }
+    }
+    &.-header, &.-content {
+        display: block;
+        padding: 1em;
+    }
     &.-vertical {
         width: 100%;
         &:not([disabled]) {
