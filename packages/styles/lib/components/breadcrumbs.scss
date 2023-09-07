@@ -1,0 +1,70 @@
+@use '../utilities' as *;
+
+.breadcrumbs {
+  --seperator: '/';
+  --color: var(--breadcrumb-color);
+  --hover: var(--breadcrumb-hover);
+  --current: var(--breadcrumb-current);
+  --gap: .5em;
+
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--gap);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  .crumb {
+    color: var(--color);
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: var(--gap);
+
+    &::after {
+      content: var(--seperator);
+    }
+
+    &:last-of-type {
+      --seperator: '';
+      --hover: var(--current);
+      --color: var(--current);
+      pointer-events: none;
+      cursor: default;
+    }
+  }
+
+  a {
+    color: currentcolor;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-underline-offset: .25em;
+    transition: all var(--transition-s);
+
+    &:hover,
+    &:active {
+      color: var(--hover);
+      text-decoration-color: currentcolor;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: 1px solid var(--current);
+      outline-offset: .25em;
+    }
+  }
+
+  &.-slash {
+    --seperator: '/';
+  }
+
+  &.-angle {
+    --seperator: 'chevron_right';
+
+    .crumb::after {
+      @include iconFont;
+    }
+  }
+}

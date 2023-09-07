@@ -1,0 +1,55 @@
+{
+  "name": "@studs/ui",
+  "version": "0.0.7",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    "./*": "./src/components/*",
+    ".": {
+      "development": "./src/index.js",
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "test"
+  ],
+  "scripts": {
+    "dev": "storybook dev -p 6006",
+    "build": "vite build && storybook build",
+    "lint": "tsc",
+    "test": "vitest",
+    "build-storybook": "storybook build"
+  },
+  "dependencies": {
+    "@bloomreach/spa-sdk": "^22.0.0",
+    "@floating-ui/dom": "^1.5.1",
+    "@studs/styles": "workspace:*",
+    "axios": "^1.4.0"
+  },
+  "devDependencies": {
+    "@lit-labs/context": "^0.3.3",
+    "@lit-labs/virtualizer": "^2.0.4",
+    "@storybook/addon-essentials": "^7.1.1",
+    "@storybook/addon-links": "^7.1.1",
+    "@storybook/addon-mdx-gfm": "^7.1.1",
+    "@storybook/blocks": "^7.1.1",
+    "@storybook/manager-api": "^7.4.0",
+    "@storybook/react-vite": "^7.1.1",
+    "@storybook/web-components": "^7.1.1",
+    "@storybook/web-components-vite": "^7.1.1",
+    "lit": "^2.7.6",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "sass": "^1.64.1",
+    "storybook": "^7.1.1",
+    "storybook-addon-performance": "^0.17.1",
+    "typescript": "^5.1.6",
+    "vite": "^4.4.7",
+    "vite-plugin-dts": "^3.5.3"
+  }
+}

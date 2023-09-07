@@ -1,0 +1,21 @@
+:host {
+  display: contents;
+  margin: 0px;
+  padding: 0px;
+  outline: none;
+}
+
+.tooltip {
+  font-size: 0.9em;
+  border: 1px solid var(--tooltip-bkg);
+  color: var(--tooltip-text);
+  background-color: var(--tooltip-bkg);
+  box-shadow: var(--tooltip-shadow);
+  padding: 0.5rem;
+  border-radius: 0.15rem;
+  font-family: var(--font-family);
+
+  #arrow {
+    background-color: var(--tooltip-bkg);
+  }
+}

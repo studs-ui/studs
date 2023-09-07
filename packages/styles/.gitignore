@@ -11,8 +11,6 @@ node_modules
 dist
 dist-ssr
 *.local
-packages/**/storybook-static
-apps/**/.docusaurus
 
 # Editor directories and files
 .vscode/*
@@ -24,8 +22,3 @@ apps/**/.docusaurus
 *.njsproj
 *.sln
 *.sw?
-package-lock.json
-yarn.lock
-pnpm-lock.yaml
-.turbo
-**/**/dist
