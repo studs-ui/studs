@@ -11,7 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
-apps/**/storybook-static
+packages/**/storybook-static
 apps/**/.docusaurus
 
 # Editor directories and files

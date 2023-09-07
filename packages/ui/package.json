@@ -20,7 +20,7 @@
   ],
   "scripts": {
     "dev": "storybook dev -p 6006",
-    "build": "vite build",
+    "build": "vite build && storybook build",
     "lint": "tsc",
     "test": "vitest",
     "build-storybook": "storybook build"
