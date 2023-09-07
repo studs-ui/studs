@@ -9,6 +9,7 @@ import style from '@studs/styles/components/accordion.scss?inline';
 import inputStyle from '@studs/styles/components/inputs.scss?inline';
 import { StudsAccordionItem } from './accordion-item';
 import { classMap } from 'lit/directives/class-map.js';
+import { ResponsiveController } from '../../controllers/responsiveController';
 
 export interface BaseAccordionProps {
   size: 'small' | 'medium' | 'large';
@@ -25,9 +26,9 @@ export interface AccordionProps extends BaseAccordionProps {
 @customElement('studs-accordion')
 export class StudsAccordion extends LitElement {
   @property({ type: Boolean, attribute: 'enable-header' })
-  enableHeader: AccordionProps['enableHeader'] = true;
+  enableHeader: AccordionProps['enableHeader'] = false;
   @property({ type: Boolean, attribute: 'enable-search' })
-  enableSearch: AccordionProps['enableSearch'] = true;
+  enableSearch: AccordionProps['enableSearch'] = false;
   @property({ type: String, reflect: true }) size: AccordionProps['size'] =
     'medium';
   @property({ type: String, reflect: true })
@@ -36,6 +37,8 @@ export class StudsAccordion extends LitElement {
   direction: AccordionProps['direction'] = 'end';
   @property({ type: Boolean, reflect: true })
   disabled: AccordionProps['disabled'] = false;
+
+  private responsive = new ResponsiveController(this);
 
   @queryAssignedElements({ selector: 'studs-accordion-item' })
   items?: StudsAccordionItem[];

@@ -58,6 +58,14 @@ export const Primary: Story = {
   },
 };
 
+export const Disabled: Story = {
+  args: {
+    disabled: true,
+    children: "Disabled",
+    deletable: true,
+  },
+}
+
 export const ChipAvatar: Story = {
   args: {
     deletable: false,

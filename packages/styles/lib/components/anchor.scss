@@ -65,7 +65,7 @@
       }
     }
 
-    &.-disabled {
+    &[disabled] {
       pointer-events: none;
       &,
       &:hover,

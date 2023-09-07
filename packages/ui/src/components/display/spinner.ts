@@ -1,7 +1,6 @@
+import style from '@studs/styles/components/spinner.scss?inline';
 import { LitElement, PropertyValueMap, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import style from '@studs/styles/components/spinner.scss?inline';
-import { Icon, IconController } from '../../controllers/iconController';
 import { classMap } from 'lit/directives/class-map.js';
 import { getDocumentElement } from '../../utils/shared';
 
@@ -10,7 +9,6 @@ export interface SpinnerProps {
   closeOnEscape?: boolean;
   disableBackdrop?: boolean;
   color?: 'inherit' | 'primary' | 'secondary' | 'tertiary';
-  icon?: Icon;
   open?: boolean;
   toggleOpen?: () => void;
 }
@@ -24,13 +22,9 @@ export class StudsSpinner extends LitElement implements SpinnerProps {
   @property({ type: Boolean, attribute: 'disable-backdrop' })
   disableBackdrop: SpinnerProps['disableBackdrop'] = false;
   @property({ type: String }) color: SpinnerProps['color'] = 'primary';
-  @property({ type: String }) icon?: SpinnerProps['icon'];
-
   @property({ type: Boolean }) open: boolean = false;
 
-  static styles = [unsafeCSS(style), IconController.styles];
-
-  private iconController = new IconController();
+  static styles = [unsafeCSS(style)];
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -68,23 +62,10 @@ export class StudsSpinner extends LitElement implements SpinnerProps {
       <div class="-overlay" ?disabled=${this.disableBackdrop} @click=${
       this.closeOnOverlayClick ? this.onOverlayClose : null
     }>
-        ${
-          !this.icon
-            ? html`<div
-                class=${classMap({
-                  'loader -spinner': true,
-                  [`-${this.color}`]: true,
-                })}
-              ></div>`
-            : html`
-                <div class="loader -icon">
-                  ${this.iconController.icon(this.icon, {
-                    color: this.color,
-                    size: 'extraLarge',
-                  })}
-                </div>
-              `
-        }
+        <div class=${classMap({
+          'loader -spinner': true,
+          [`-${this.color}`]: true,
+        })}></div>
         </div>
       </div>
     </div>`;

@@ -13,6 +13,7 @@ const meta = {
       medium=${ifDefined(args.medium)}
       large=${ifDefined(args.large)}
       alt=${ifDefined(args.alt)}
+      caption=${ifDefined(args.caption)}
     ></studs-image>`,
   argTypes: {},
 } satisfies Meta<StudsImageProps>;
@@ -39,3 +40,10 @@ export const srcSet: StoryObj<StudsImageProps> = {
       "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg",
   },
 };
+
+export const Caption: StoryObj<StudsImageProps> = {
+  args: {
+    src: "https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg",
+    caption: "This is a caption.",
+  },
+}

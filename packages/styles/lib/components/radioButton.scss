@@ -2,6 +2,7 @@
 @use "../themes" as *;
 
 .radioButton {
+  display: flex;
   [type=radio] {
     opacity: 0;
     width: 0;
@@ -53,6 +54,7 @@
   }
 
   [type=radio]:disabled + label {
+    cursor: not-allowed;
     &,
     &::before {
       --text-color: var(--text-disabled);
@@ -61,6 +63,7 @@
     &:hover::before {
       --color: var(--text-disabled);
       border-color: transparent;
+      cursor: not-allowed;
     }
   }
 }
