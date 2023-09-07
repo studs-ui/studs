@@ -6,22 +6,37 @@
         flex-direction: column;
         border: 1px solid var(--border-color);
         border-radius: 0.2em;
+
         > header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 1.2em 1em;
+            @media(max-width: $screen-xs) {
+                flex-direction: column;
+            }
+        }
+    }
+    &.-search {
+        @media(max-width: $screen-xs) {
+            width: 100%;
+            studs-input, .inputComponent, .inputWrapper {
+                width: 100%;
+            }
         }
     }
     &.-actions {
-        margin-left: auto;
-        justify-self: flex-end;
+        @media (min-width: $screen-xs) {
+            margin-left: auto;
+            justify-self: flex-end;
+        }
         display: flex;
         gap: 1em;
         ::part(studs-icon) {
             color: var(--primary);
         }
     }
+
     &.-panel {
         overflow: hidden;
 
@@ -30,6 +45,7 @@
             display: flex;
             flex-direction: row;
             padding: 1.2em 1em;
+            flex-grow: 1;
             align-items: center;
             justify-content: space-between;
             gap: 0.25em;
@@ -86,7 +102,7 @@
         &[aria-hidden="false"] {
             header {
                 studs-button {
-                    transform: rotate(-90deg);
+                    transform: rotate(90deg);
                 }
             }
             main {

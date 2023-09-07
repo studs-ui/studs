@@ -1,4 +1,10 @@
 @use "../utilities" as *;
+:host {
+  display: inline-block;
+}
+:host([disabled]) {
+  cursor: not-allowed;
+}
 
 .chip {
   --bkg: var(--chip-bkg);
@@ -56,14 +62,14 @@
     }
   }
 
-  &.-selected{
+  &.-selected {
     --bkg: var(--interactive);
     --text: var(--text-inverted);
     --border: #{$transparent};
     --hover: var(--interactive-hover);
   }
 
-  &.-disabled {
+  &[disabled] {
     opacity: .5;
     pointer-events: none;
   }

@@ -62,14 +62,13 @@ export class StudsChip extends LitElement {
       [`-${this.contentDirection}`]: this.contentDirection,
       [`-${this.variant}`]: this.variant,
       '-reverse': this.iconPosition === 'start',
-      '-disabled': this.disabled,
       '-selected': this.selected,
       '-clickable': this.clickable,
       '-deletable': this.deletable,
     };
 
     return html`
-      <div class="${classMap(classes)}">
+      <div class="${classMap(classes)}" ?disabled=${this.disabled}>
         <slot name="accessory"></slot>
         <span class="text"><slot></slot></span>
         ${this.renderDeleteButton()} ${this.renderIcon()}

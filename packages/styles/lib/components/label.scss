@@ -12,7 +12,7 @@
     color: #df4907;
     margin-left: 0.1rem;
   }
-  &.-disabled {
+  &[disabled] {
     color: var(--disabled);
     cursor: not-allowed;
   }

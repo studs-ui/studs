@@ -1,6 +1,12 @@
 import style from '@studs/styles/components/buttons.scss?inline';
-import { LitElement, TemplateResult, html, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import {
+  LitElement,
+  PropertyValueMap,
+  TemplateResult,
+  html,
+  unsafeCSS,
+} from 'lit';
+import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { Icon, IconController } from '../../controllers/iconController';
@@ -28,6 +34,7 @@ export interface ButtonProps {
 
 @customElement('studs-button')
 export class StudsButton extends LitElement {
+  static formAssociated = true;
   // CSS Properties
   @property({ type: String, attribute: 'button-type' })
   buttonType: ButtonProps['buttonType'] = 'cta';
@@ -40,9 +47,37 @@ export class StudsButton extends LitElement {
   @property({ type: String }) icon?: ButtonProps['icon'];
   @property({ type: String }) type: ButtonProps['type'] = 'button';
 
+  @state() _internals?: ElementInternals;
+
   static styles = [unsafeCSS(style), IconController.styles];
 
   private iconController = new IconController();
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    if (this.type === 'submit') {
+      this._internals = this.attachInternals();
+      this.addEventListener('click', this.submit);
+    }
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if (this.type === 'submit') {
+      this.removeEventListener('click', this.submit);
+    }
+  }
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.updated(_changedProperties);
+    if (_changedProperties.has('type')) {
+      if (this.type === 'submit') {
+        if (!this._internals) this._internals = this.attachInternals();
+      }
+    }
+  }
 
   renderIcon() {
     if (this.icon)
@@ -69,5 +104,12 @@ export class StudsButton extends LitElement {
     >
       ${this.renderIcon()} <slot></slot>
     </button>`;
+  }
+
+  public submit() {
+    if (this._internals?.form) {
+      this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
+      this._internals.form.submit();
+    }
   }
 }

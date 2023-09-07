@@ -19,8 +19,14 @@ export const Resizers = html`
             style="height: 300px; display: block;"
             direction="horizontal"
           >
-            <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
-            <studs-resizer-pane>Panel Two</studs-resizer-pane>
+            <studs-resizer-pane size="50"
+              ><h3 slot="header">Panel One</h3>
+              <div slot="content">Padded Content</div></studs-resizer-pane
+            >
+            <studs-resizer-pane
+              ><h3 slot="header">Panel Two</h3>
+              <div slot="content">Padded Content</div></studs-resizer-pane
+            >
           </studs-resizer>
         </presentational-component>
         <presentational-component>

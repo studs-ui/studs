@@ -96,6 +96,10 @@
     text-decoration: underline;
     text-decoration-color: var(--color);
     text-underline-offset: .25em;
+
+    &:hover {
+      --text: var(--primary-hover);
+    }
   }
 
   &.-floating {
