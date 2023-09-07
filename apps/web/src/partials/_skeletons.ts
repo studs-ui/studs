@@ -21,6 +21,41 @@ export const Skeletons = html`
             height="50px"
           ></studs-skeleton>
         </presentational-component>
+        <presentational-component>
+          <div style="display: flex; gap: 10px;">
+            <studs-skeleton
+              variant="circle"
+              width="75px"
+              height="75px"
+            ></studs-skeleton>
+            <div
+              style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;"
+            >
+              <studs-skeleton
+                variant="text"
+                width="100px"
+                height="15px"
+              ></studs-skeleton>
+              <studs-skeleton
+                variant="text"
+                width="100px"
+                height="15px"
+              ></studs-skeleton>
+              <studs-skeleton
+                variant="text"
+                width="100px"
+                height="15px"
+              ></studs-skeleton>
+            </div>
+          </div>
+          <div style="display: block; padding: 10px;">
+            <studs-skeleton
+              variant="rect"
+              width="300px"
+              height="50px"
+            ></studs-skeleton>
+          </div>
+        </presentational-component>
       </div>
     </div>
   </div>

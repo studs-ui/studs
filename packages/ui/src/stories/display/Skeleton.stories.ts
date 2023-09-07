@@ -72,13 +72,14 @@ export const Text: Story = {
 }
 
 export const Group: Story = {
-    render: () => html`<div style="display: flex; gap: 10px;">
-            <studs-skeleton variant="circle" width="75px" height="75px"></studs-skeleton>
+    render: () => html`
+    <div style="display: flex; gap: 10px;">
+        <studs-skeleton variant="circle" width="75px" height="75px"></studs-skeleton>
         <div style="display: flex; flex-direction: column; gap: 10px; align-items: center; justify-content: center;">
             <studs-skeleton variant="text" width="100px" height="15px"></studs-skeleton>
             <studs-skeleton variant="text" width="100px" height="15px"></studs-skeleton>
             <studs-skeleton variant="text" width="100px" height="15px"></studs-skeleton>
         </div>
-
-    </div>        <div style="display: block; padding: 10px;"><studs-skeleton variant="rect" width="100%" height="75px"></studs-skeleton></div>`,
+    </div>
+    <div style="display: block; padding: 10px;"><studs-skeleton variant="rect" width="100%" height="75px"></studs-skeleton></div>`,
 }
