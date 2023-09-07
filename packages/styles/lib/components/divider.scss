@@ -1,0 +1,71 @@
+@use '../utilities' as *;
+
+@mixin divider {
+  height: 100%;
+  .wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .vertical-separator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #000000de;
+  }
+  .horizontal-separator {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    color: #000000de;
+    width: 100%;
+  }
+
+  .content-vertical {
+    padding: 0.5em 0;
+  }
+  .content-horizontal {
+    padding: 0 0.5em;
+  }
+
+  .vertical-line {
+   border-left: 1px solid #d3d7da;
+   height: 100%;
+   width: 1px;
+
+   &:where(.-small) {
+     border-left: 1px solid #d3d7da;
+   }
+
+   &:where(.-medium) {
+     border-left: 3px solid #d3d7da;
+   }
+
+   &:where(.-large) {
+     border-left: 5px solid #d3d7da;
+   }
+
+   &:where(.-extraLarge) {
+     border-left: 7px solid #d3d7da;
+   }
+ }
+
+  .horizontal-line {
+    border-bottom: 1px solid #d3d7da;
+    width: 100%;
+    &:where(.-small) {
+     border-bottom: 1px solid #d3d7da;
+    }
+    &:where(.-medium) {
+      border-bottom: 3px solid #d3d7da;
+    }
+    &:where(.-large) {
+      border-bottom: 5px solid #d3d7da;
+    }
+    &:where(.-extraLarge) {
+      border-bottom: 7px solid #d3d7da;
+    }
+  }
+}

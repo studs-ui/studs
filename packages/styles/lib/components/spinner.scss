@@ -1,0 +1,78 @@
+@use '../utilities' as *;
+
+.spinner {
+
+    &[aria-hidden="true"] {
+      display: none;
+    }
+
+    &[aria-hidden="false"] {
+      display: block;
+    }
+
+   .-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    &:not([disabled]) {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .loader {
+    animation: spin 1.2s linear infinite;
+    &.-spinner {
+      width: 50px;
+      height: 50px;
+      border: 5px solid;
+      border-color: var(--cta) transparent;
+      border-radius: 50%;
+      --size: 40px;
+      width: var(--size);
+      height: var(--size);
+
+      &.-small {
+        --size: 30px;
+      }
+
+      &.-medium {
+        --size: 40px;
+      }
+
+      &.-large {
+        --size: 50px;
+      }
+
+      &.-extraLarge {
+        --size: 80px;
+      }
+    }
+    
+    &.-icon {
+      
+    }
+    &:where(.-secondary) {
+      border-color: var(--cta) transparent;
+    }
+    &:where(.-inherit) {
+      border-color: var(--background) transparent;
+    }
+    &:where(.-default) {
+      border-color: var(--background) transparent;
+    }
+  }
+
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}

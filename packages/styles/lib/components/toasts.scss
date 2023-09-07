@@ -1,0 +1,177 @@
+@use "../utilities" as *;
+
+@mixin toast {
+  --toast-text: var(--info-color);
+  --toast-bkg: #{$white};
+  --toast-shadow: var(--info-rgb);
+  --toast-border: #{colorVal("orange", 50)};
+
+  > svg {
+    padding-inline-end: 1em;
+    min-width: 20px;
+  }
+
+  position: fixed;
+  right: 2rem;
+  bottom: 2rem;
+
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  max-width: $screen-sm;
+
+  background-color: var(--toast-bkg);
+  box-shadow: none;
+
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25em;
+
+  margin: 0.5rem 0;
+  padding: 1em;
+  border-radius: 0.125rem;
+  border-left: 3px solid var(--toast-border);
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  color: var(--toast-text);
+  background: var(--toast-bkg);
+  overflow: visible;
+
+  display: none;
+  max-width: 300px;
+
+  p {
+    margin: 0;
+    margin-inline-end: 2em;
+  }
+
+  &.-open {
+    animation: fadeIn 0.5s ease-in-out;
+    display: flex;
+  }
+
+  &.-row {
+    > div {
+      display: flex;
+      gap: 0.25em;
+    }
+  }
+
+  &.-static {
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+  }
+
+  &:not(.-static) {
+    &.-bottom {
+      &-right {
+        bottom: 0.5em;
+        right: 0.75em;
+      }
+      &-left {
+        bottom: 0.5em;
+        left: 0.75em;
+      }
+    }
+    &.-top {
+      &-right {
+        top: 0.5em;
+        right: 0.75em;
+      }
+      &-left {
+        top: 0.5em;
+        left: 0.75em;
+      }
+    }
+  }
+
+  &.-error {
+    --toast-border: var(--error-color);
+  }
+
+  &.-warning {
+    --toast-border: var(--warning-color);
+  }
+
+  &.-info {
+    --toast-border: var(--info-color);
+  }
+
+  &.-success {
+    --toast-border: var(--success-color);
+  }
+
+  &.-fadeIn {
+    animation: fadeIn 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    opacity: 0;
+  }
+
+  &.-fadeOut {
+    animation: fadeOut 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    opacity: 1;
+  }
+
+  &.-slideFadeLeftIn {
+    animation: slideFadeLeftIn 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    transform: translateX(100%);
+    opacity: 0;
+  }
+
+  &.-slideFadeLeftOut {
+    animation: slideFadeLeftOut 300ms ease-in-out forwards;
+    animation-delay: 100ms;
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast {
+  @include toast;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes slideFadeLeftIn {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFadeLeftOut {
+  0% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}

@@ -1,0 +1,83 @@
+@use "../utilities" as *;
+:host {
+  display: inline-block;
+}
+:host([disabled]) {
+  cursor: not-allowed;
+}
+
+.chip {
+  --bkg: var(--chip-bkg);
+  --text: var(--chip-text);
+  --border: var(--chip-border);
+  --hover: var(--chip-hover);
+
+  padding: 0.1em 0.5em;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25em;
+
+  color: var(--text);
+  background-color: var(--bkg);
+  border: 1px solid var(--border);
+  border-radius: 0.125rem;
+  cursor: default;
+
+  font-size: var(--font-size);
+  line-height: 1;
+
+  @include fontSizes;
+
+  ::slotted(.avatar) {
+    display: block;
+    width: 1.25em;
+    margin: 0.25em 0;
+  }
+
+  &.-deletable {
+    padding-left: 0.75em;
+    padding-right: 0.25em;
+
+    &.-reverse {
+      padding-left: 0.25em;
+      padding-right: 0.75em;
+    }
+  }
+
+  &.-reverse {
+    flex-direction: row-reverse;
+  }
+
+  &.-clickable {
+    cursor: pointer;
+
+    &:hover {
+      --bkg: var(--hover);
+    }
+
+    &:active {
+      --bkg: var(--chip-focus);
+    }
+  }
+
+  &.-selected {
+    --bkg: var(--interactive);
+    --text: var(--text-inverted);
+    --border: #{$transparent};
+    --hover: var(--interactive-hover);
+  }
+
+  &[disabled] {
+    opacity: .5;
+    pointer-events: none;
+  }
+
+  &:focus,
+  &:focus-visible {
+    --border: var(--primary);
+    --bkg: var(--chip-focus);
+    outline: none;
+  }
+}

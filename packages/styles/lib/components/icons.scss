@@ -1,0 +1,18 @@
+@use "../utilities" as *;
+
+.icon {
+  --font-size: 1.5rem;
+
+  @include iconFont;
+
+  &.-extraSmall {--font-size: 0.5rem;}
+  &.-small      {--font-size: 1rem;}
+  &.-medium     {--font-size: 1.5rem;}
+  &.-large      {--font-size: 2rem;}
+  &.-extraLarge {--font-size: 4rem;}
+
+  &.-inherit   {color: currentColor;}
+  &.-primary   {color: var(--primary);}
+  &.-secondary {color: var(--secondary);}
+  &.-tertiary  {color: var(--tertiary);}
+}
