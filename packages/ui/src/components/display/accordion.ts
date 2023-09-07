@@ -9,6 +9,7 @@ import style from '@studs/styles/components/accordion.scss?inline';
 import inputStyle from '@studs/styles/components/inputs.scss?inline';
 import { StudsAccordionItem } from './accordion-item';
 import { classMap } from 'lit/directives/class-map.js';
+import { ResponsiveController } from '../../controllers/responsiveController';
 
 export interface BaseAccordionProps {
   size: 'small' | 'medium' | 'large';
@@ -36,6 +37,8 @@ export class StudsAccordion extends LitElement {
   direction: AccordionProps['direction'] = 'end';
   @property({ type: Boolean, reflect: true })
   disabled: AccordionProps['disabled'] = false;
+
+  private responsive = new ResponsiveController(this);
 
   @queryAssignedElements({ selector: 'studs-accordion-item' })
   items?: StudsAccordionItem[];
