@@ -75,12 +75,12 @@ export class StudsCheckbox extends WithForm(LitElement) {
   };
 
   render() {
-    const classes = {
-      checkbox: true,
-    };
-
     return html`
-      <div class="${classMap(classes)}">
+      <div
+        class="${classMap({
+          checkbox: true,
+        })}"
+      >
         <input
           id="${this.inputId}"
           type="checkbox"

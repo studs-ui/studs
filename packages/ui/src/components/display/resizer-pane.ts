@@ -5,7 +5,13 @@ import {
   html,
   unsafeCSS,
 } from 'lit';
-import { customElement, property, query, state } from 'lit/decorators.js';
+import {
+  customElement,
+  property,
+  query,
+  queryAssignedElements,
+  state,
+} from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import style from '@studs/styles/components/resizerPane.scss?inline';
@@ -28,6 +34,8 @@ export class StudsResizerPane extends LitElement {
   static styles = unsafeCSS(style);
 
   @query('.pane') pane!: HTMLElement;
+  @queryAssignedElements({ slot: 'header' }) header!: HTMLCollection[];
+  @queryAssignedElements({ slot: 'content' }) content!: HTMLCollection[];
 
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
@@ -51,26 +59,39 @@ export class StudsResizerPane extends LitElement {
   }
 
   render() {
-    const paneClasses = {
-      pane: true,
-      [`-${this.direction}`]: true,
-      '-resizing': this._pressed,
-    };
-    const stylemap = {
-      [this.direction === 'horizontal' ? 'width' : 'height']: this.size + 'px',
-    };
     return html`
       <div
-        class=${classMap(paneClasses)}
+        class=${classMap({
+          pane: true,
+          '-wrapper': true,
+          [`-${this.direction}`]: true,
+          '-resizing': this._pressed,
+        })}
         @mousemove=${this.onMouseMove}
         @mouseup=${this.onMouseMoveUp}
         @mouseleave=${this.onMouseLeave}
-        style=${styleMap(stylemap)}
+        style=${styleMap({
+          [this.direction === 'horizontal' ? 'width' : 'height']:
+            this.size + 'px',
+        })}
         ?disabled=${this.classList.contains('-last')}
       >
+        <slot
+          name="header"
+          class=${classMap({
+            pane: true,
+            '-header': this.header && this.header.length > 0,
+          })}
+        ></slot>
+        <slot
+          name="content"
+          class=${classMap({
+            pane: true,
+            '-content': this.content && this.content.length > 0,
+          })}
+        ></slot>
         <slot></slot>
         <span
-          draggable=${this._pressed && !this.classList.contains('-last')}
           role="presentation"
           class="handle"
           @mousedown=${this.onMouseMoveDown}

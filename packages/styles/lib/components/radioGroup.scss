@@ -1,0 +1,14 @@
+.radioGroup {
+    border-width: 0px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8em;
+    &.-inline {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    legend {
+        display: contents;
+    }
+}

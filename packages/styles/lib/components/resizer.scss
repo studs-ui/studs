@@ -1,3 +1,7 @@
+:host {
+    max-width: -webkit-fill-available;
+}
+
 .resizer {
     &.-wrapper {
         display: flex;
