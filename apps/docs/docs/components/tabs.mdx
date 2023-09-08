@@ -12,7 +12,8 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
 
-```html
+<CodeBlocks
+  html={`
 <studs-tabs tabdirection="row">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
@@ -21,7 +22,9 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
-```
+  `}
+/>
+
 
 ## Disabled
 
@@ -34,7 +37,8 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
 
-```html
+<CodeBlocks
+  html={`
 <studs-tabs tabdirection="row">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
@@ -43,7 +47,8 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab" disabled="">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
-```
+  `}
+/>
 
 
 ## Contained
@@ -57,7 +62,8 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
 
-```html
+<CodeBlocks
+  html={`
 <studs-tabs tabdirection="row" variant="contained">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
@@ -66,7 +72,8 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
-```
+  `}
+/>
 
 ## Direction
 
@@ -79,7 +86,8 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
 
-```html
+<CodeBlocks
+  html={`
 <studs-tabs tabdirection="column">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
@@ -88,4 +96,5 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
-```
+  `}
+/>
