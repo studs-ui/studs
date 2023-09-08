@@ -7,14 +7,15 @@ const meta = {
   title: "Studs/Inputs/Dropdown",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-dropdown
-    class="${ifDefined(args.class)}"
     label="${ifDefined(args.label)}"
     icon="${ifDefined(args.icon)}"
     ?disabled="${args.disabled}"
     .options=${ifDefined(args.options)}
     .selected=${ifDefined(args.selected)}
   ></studs-dropdown>`,
-  argTypes: {},
+  argTypes: {
+    
+  },
 } satisfies Meta<DropdownProps>;
 
 export default meta;
@@ -23,7 +24,6 @@ type Story = StoryObj<DropdownProps>;
 
 export const Default: Story = {
   args: {
-    label: "Toggle Dropdown",
     disabled: false,
     options: [
       { value: "1", label: "Option 1" },

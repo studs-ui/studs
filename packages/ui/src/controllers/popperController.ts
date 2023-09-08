@@ -18,7 +18,7 @@ import {
 // Define Types
 export class PopperController implements ReactiveController {
   host: ReactiveControllerHost;
-  public on: 'click' | 'hover' | 'manual' = 'hover';
+  public on: 'click' | 'hover' | 'manual' | 'toggle' = 'hover';
   public trigger?: HTMLElement;
   private cleanup?: Function;
   public disabled: boolean = false;
@@ -27,6 +27,7 @@ export class PopperController implements ReactiveController {
   };
   public popper?: HTMLElement;
   public arrow?: HTMLElement;
+  _trigger?: HTMLElement;
 
   constructor(
     host: ReactiveControllerHost,
@@ -50,44 +51,64 @@ export class PopperController implements ReactiveController {
   }
 
   hostUpdated(): void {
-    const trigger = this.trigger || (this.host as unknown as HTMLElement);
-    if (!this.popper) {
-      const popper = (
-        this.host as unknown as LitElement
-      ).renderRoot.querySelector('[role]');
-      if (popper) {
-        if (!this.arrow) {
-          const arrow = popper.querySelector('#arrow');
-          if (arrow) this.arrow = arrow as HTMLElement;
+    this.host.updateComplete.then(() => {
+      const trigger = this.trigger || (this.host as unknown as HTMLElement);
+      if (!this.popper) {
+        const popper = (
+          this.host as unknown as LitElement
+        ).renderRoot.querySelector('[role]');
+        if (popper) {
+          if (!this.arrow) {
+            const arrow = popper.querySelector('#arrow');
+            if (arrow) this.arrow = arrow as HTMLElement;
+          }
+          this.cleanup = autoUpdate(
+            trigger,
+            popper as HTMLElement,
+            this.updatePosition
+          );
+          this.popper = popper as HTMLElement;
+          popper.setAttribute('aria-hidden', 'true');
         }
-        this.cleanup = autoUpdate(
-          trigger,
-          popper as HTMLElement,
-          this.updatePosition
-        );
-        this.popper = popper as HTMLElement;
-        popper.setAttribute('aria-hidden', 'true');
-      }
-
-      if (!this.disabled) {
-        if (this.on === 'hover') {
-          trigger?.addEventListener('mouseenter', this.showPopper);
-          trigger?.addEventListener('mouseleave', this.hidePopper);
-          trigger?.addEventListener('focus', this.showPopper);
-          trigger?.addEventListener('blur', this.hidePopper);
-        } else if (this.on === 'click') {
-          this.popper?.addEventListener('click', (e) => e.stopPropagation());
-          trigger?.addEventListener('click', this.showPopper);
+        if (!this.disabled) {
+          this.init();
         }
       }
-    }
+    });
   }
 
   hostDisconnected(): void {
     this.host.removeController(this);
+    this.destroy();
+    if (this.cleanup) this.cleanup();
+  }
 
+  static styles = unsafeCSS(style);
+
+  public init() {
     const trigger = this.trigger || (this.host as unknown as HTMLElement);
+    if (this.on === 'hover') {
+      trigger?.addEventListener('mouseenter', this.showPopper);
+      trigger?.addEventListener('mouseleave', this.hidePopper);
+      trigger?.addEventListener('focus', this.showPopper);
+      trigger?.addEventListener('blur', this.hidePopper);
+    } else if (this.on === 'click') {
+      this.popper?.addEventListener('click', (e) => e.stopPropagation());
+      trigger?.addEventListener('click', this.showPopper);
+    } else if (this.on === 'toggle') {
+      trigger?.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (this.popper?.getAttribute('aria-hidden') === 'true') {
+          this.showPopper();
+        } else {
+          this.hidePopper();
+        }
+      });
+    }
+  }
 
+  public destroy() {
+    const trigger = this.trigger || (this.host as unknown as HTMLElement);
     if (this.on === 'hover') {
       trigger?.removeEventListener('mouseenter', this.showPopper);
       trigger?.removeEventListener('mouseleave', this.hidePopper);
@@ -97,14 +118,16 @@ export class PopperController implements ReactiveController {
       this.popper?.removeEventListener('click', (e) => e.stopPropagation());
       trigger?.removeEventListener('click', this.showPopper);
     }
-    if (this.cleanup) this.cleanup();
   }
 
-  static styles = unsafeCSS(style);
+  public update() {
+    console.log(this.trigger || this.host);
+    this.destroy();
+    this.init();
+  }
 
   public showPopper = (e?: MouseEvent | FocusEvent) => {
     this.host.updateComplete.then(() => {
-      this.popper?.classList.add('-show');
       this.popper?.setAttribute('aria-hidden', 'false');
       this.updatePosition();
       if (this.on === 'click' && e) e.stopPropagation();
@@ -113,7 +136,6 @@ export class PopperController implements ReactiveController {
 
   public hidePopper = (e?: MouseEvent | FocusEvent) => {
     this.host.updateComplete.then(() => {
-      this.popper?.classList.remove('-show');
       this.popper?.setAttribute('aria-hidden', 'true');
       if (this.on === 'click' && e) e.stopPropagation();
     });
