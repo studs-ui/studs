@@ -1,18 +1,20 @@
 import style from '@studs/styles/components/dropdowns.scss?inline';
 import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
-import { customElement, property, query } from 'lit/decorators.js';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import { Icon, IconController } from '../../controllers/iconController';
 import { PopperController } from '../../controllers/popperController';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
+import { choose } from 'lit/directives/choose.js';
 
 export interface DropdownProps extends WithFormInterface, WithPopperInterface {
   icon?: Icon;
   options: Option[];
-  selected?: Option;
-  placeholder?: string;
+  selected?: Option | Option[] | null;
+  size: 'small' | 'medium';
+  type: 'default' | 'search' | 'multi';
 }
 
 interface Option {
@@ -28,7 +30,16 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
   // Dropdown Properties
   @property({ type: Object }) options: DropdownProps['options'] = [];
   @property({ type: Object }) selected?: DropdownProps['selected'];
-  @query('.-toggle') toggleButton?: HTMLElement;
+  @property({ type: String }) size?: DropdownProps['size'] = 'medium';
+  @property({ type: String }) type?: DropdownProps['type'] = 'default';
+
+  @state() private _query?: string;
+
+  @query('.toggle.-wrapper') toggleButton?: HTMLElement;
+
+  /**
+   * Initiate PopperController
+   */
 
   constructor() {
     super();
@@ -40,14 +51,6 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
-  static styles = [
-    unsafeCSS(style),
-    IconController.styles,
-    PopperController.styles,
-  ];
-
-  private iconController = new IconController();
-
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
@@ -58,39 +61,112 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
+  static styles = [
+    unsafeCSS(style),
+    IconController.styles,
+    PopperController.styles,
+  ];
+
+  private iconController = new IconController();
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.updated(_changedProperties);
+    if (this.options?.length > 5) {
+      this.type = 'search';
+    }
+  }
+
   get getSelected() {
     if (this.options) {
       if (this.selected) {
-        const selected = this.options.find(
-          (option) => option.value === this.selected?.value
-        );
-        return selected?.label;
+        return choose(this.type, [
+          [
+            'default',
+            () => {
+              const selected = this.options.find(
+                (option: Option) =>
+                  option.value === (this.selected as Option)?.value
+              );
+              return selected?.label;
+            },
+          ],
+          [
+            'search',
+            () => {
+                const selected = this.options.find(
+                  (option: Option) =>
+                    option.value === (this.selected as Option)?.value
+                );
+                this._query = selected?.label;
+                this.requestUpdate();
+                return selected?.label;
+              },
+            // prettier-ignore
+          ],
+          [
+            'multi',
+            () => {
+              const selected = this.options.filter(
+                (option: Option) =>
+                  option.value === (this.selected as Option)?.value
+              );
+              return selected;
+            },
+          ],
+        ]);
       } else if (!this.placeholder) {
-        return this.options[0].label;
+        if(this.type === "default") return this.options[0].label;
+      } else if(this.placeholder) {
+        return this.placeholder
       } else {
-        return this.placeholder;
+        return;
       }
     } else {
-      return this.placeholder;
+      return this.placeholder || null;
     }
   }
 
   renderDropdownOptions() {
+    const Template = (option: Option) => {
+      return html`<li>
+      <button
+        class=${classMap({
+          dropdown: true,
+          '-option': true,
+          '-selected':
+            option.value === (this.selected as Option)?.value,
+        })}
+        @click=${() => this.onSingleChange(option)}
+      >
+        ${option.label}
+        ${(this.selected as Option)?.value === option.value
+          ? this.iconController.icon('check')
+          : null}
+      </button>
+    </li>`
+    } 
     if (this.options)
-      return map(this.options, (option: Option) => {
-        return html`<button
-          class=${classMap({
-            '-option': true,
-            '-selected': option.value === this.selected?.value,
-          })}
-          @click=${() => this.onSingleChange(option)}
-        >
-          ${option.label}
-          ${this.selected?.value === option.value
-            ? this.iconController.icon('check')
-            : null}
-        </button>`;
-      });
+      return choose(this.type, [
+        [
+          'default',
+          () => {
+            return map(this.options, (option: Option) => {
+              return Template(option);
+            });
+          },
+        ],
+          [
+            'search',
+            () => {
+            const options = this._query ? this.options.filter((option: Option) => option.label.toLowerCase().includes(this._query.toLowerCase())) : this.options;
+            return map(options, (option: Option) => {
+              return Template(option);
+            });
+          },
+          ],
+      ]);
   }
 
   render() {
@@ -98,25 +174,62 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
       class=${classMap({
         dropdown: true,
         '-wrapper': true,
+        [`-${this.size}`]: this.size || false,
+        '-icon': this.icon || false,
       })}
       ?disabled=${this.disabled}
     >
       ${this.label ? html`<p>${this.label}</p>` : nothing}
       <div class="dropdown -content">
-        <button
-          class="dropdown -toggle"
+        <div
+          class="toggle -wrapper"
           ?disabled=${this.disabled}
           aria-label="Toggle Dropdown"
         >
-          ${this.icon ? this.iconController.icon(this.icon) : nothing}
-          ${this.getSelected} ${this.iconController.icon('expand_more')}
-        </button>
+          ${choose(this.type, [
+            [
+              'default',
+              () =>
+                html`<button class="toggle -item">
+                  ${this.getSelected} ${this.iconController.icon('expand_more')}
+                </button>`,
+            ],
+            [
+              'search',
+              () => html`<span class="toggle -item"
+                ><input
+                  type="text"
+                  placeholder=${this.placeholder}
+                  .value=${this._query || this.getSelected || ''}
+                  @input=${(e: any) => {
+                    this._query = e.target.value;
+                    if (this._query === '' || typeof this.query === undefined) this.selected = null;
+                    this.dispatch(e.target.value);
+                  }}
+                />${this.iconController.icon('expand_more')}</span
+              >`,
+            ],
+            [
+              'multi',
+              () => html`<span class="toggle -item">${this.getSelected}</span>`,
+            ],
+          ])}
+          ${this.icon
+            ? html`<studs-button
+                class="dropdown -action"
+                icon=${this.icon}
+                button-type="text"
+                size="small"
+                @click=${this.onActionButtonClick}
+              ></studs-button>`
+            : nothing}
+        </div>
 
-        <div class="dropdown -menu popper" role="menu">
+        <ul class="dropdown -menu popper" role="menu">
           ${this.renderDropdownOptions()}
           <slot></slot>
           <div id="arrow"></div>
-        </div>
+        </ul>
       </div>
     </div>`;
   }
@@ -128,5 +241,11 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     if (this._internals?.form) {
       this._internals.setFormValue(option.value);
     }
+  }
+
+  onActionButtonClick() {
+    this.dispatchEvent(
+      new CustomEvent('action-button-click', { bubbles: true, composed: true })
+    );
   }
 }
