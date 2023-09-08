@@ -73,46 +73,33 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     super.updated(_changedProperties);
-    if (this.options?.length > 5) {
+    if (this.options?.length > 5 && this.type === 'default') {
       this.type = 'search';
     }
   }
 
-  get getSelected() {
+  get getSelected(): string | string[] | undefined {
     if (this.options) {
       if (this.selected) {
         return choose(this.type, [
           [
             'default',
             () => {
-              const selected = this.options.find(
-                (option: Option) =>
-                  option.value === (this.selected as Option)?.value
-              );
-              return selected?.label;
+              return (this.selected as Option)?.label;
             },
           ],
           [
             'search',
             () => {
-                const selected = this.options.find(
-                  (option: Option) =>
-                    option.value === (this.selected as Option)?.value
-                );
-                this._query = selected?.label;
+                this._query = (this.selected as Option)?.label;
                 this.requestUpdate();
-                return selected?.label;
+                return (this.selected as Option)?.label;
               },
-            // prettier-ignore
           ],
           [
             'multi',
             () => {
-              const selected = this.options.filter(
-                (option: Option) =>
-                  option.value === (this.selected as Option)?.value
-              );
-              return selected;
+              return (this.selected as Option[]).map((option: Option) => option.label);
             },
           ],
         ]);
@@ -124,7 +111,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
         return;
       }
     } else {
-      return this.placeholder || null;
+      return this.placeholder || '';
     }
   }
 
@@ -166,6 +153,14 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             });
           },
           ],
+          [
+            'multi',
+            () => {
+              return map(this.options, (option: Option) => {
+                return Template(option);
+              });
+            }
+          ]
       ]);
   }
 
@@ -211,7 +206,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             ],
             [
               'multi',
-              () => html`<span class="toggle -item">${this.getSelected}</span>`,
+              () => html`<span class="toggle -item">${map(this.getSelected, (option: Option) => html`<studs-chip deletable>${option}</studs-chip>`)}${this.iconController.icon('expand_more')}`,
             ],
           ])}
           ${this.icon

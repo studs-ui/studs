@@ -58,6 +58,8 @@
       display: flex;
       gap: 1rem;
       align-items: center;
+      flex-wrap: wrap;
+      max-width: -webkit-fill-available;
       input {
         border: none;
         font-size: 1em;
@@ -100,6 +102,8 @@
     padding: 0.25rem 0.25rem;
     margin: 0;
     list-style-type: none;
+    max-height: 250px;
+    overflow-y: scroll;
     &[aria-hidden="false"] {
       display: flex;
     }

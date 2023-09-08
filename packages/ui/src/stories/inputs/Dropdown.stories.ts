@@ -145,3 +145,59 @@ export const Searchable: Story = {
     },
   },
 }
+
+export const MultiSelect: Story = {
+  args: {
+    type: "multi",
+    options: [
+      { value: "1", label: "Cat" },
+      { value: "2", label: "Dog" },
+      { value: "3", label: "Rat" },
+      { value: "4", label: "Monkey" },
+      { value: "5", label: "Lion" },
+      { value: "6", label: "Tiger" },
+      { value: "7", label: "Bear" },
+      { value: "8", label: "Elephant" },
+      { value: "9", label: "Giraffe" },
+      { value: "10", label: "Penguin" },
+      { value: "11", label: "Panda" },
+      { value: "12", label: "Pig" },
+      { value: "13", label: "Horse" },
+      { value: "14", label: "Cow" },
+      { value: "15", label: "Sheep" },
+      { value: "16", label: "Goat" },
+      { value: "17", label: "Chicken" },
+      { value: "18", label: "Duck" },
+      { value: "19", label: "Goose" },
+      { value: "20", label: "Turkey" },
+      { value: "21", label: "Dove" },
+      { value: "22", label: "Owl" },
+      { value: "23", label: "Parrot" },
+      { value: "24", label: "Eagle" },
+      { value: "25", label: "Falcon" },
+      { value: "26", label: "Hawk" },
+      { value: "27", label: "Pigeon" },
+      { value: "28", label: "Raven" },
+      { value: "29", label: "Robin" },
+      { value: "30", label: "Sparrow" },
+    ],
+    selected: [
+      {
+        value: "2",
+        label: "Dog",
+      },
+      {
+        value: "3",
+        label: "Rat",
+      },
+      {
+        value: "4",
+        label: "Monkey",
+      },
+      {
+        value: "5",
+        label: "Lion",
+      }
+    ],
+  },
+}
