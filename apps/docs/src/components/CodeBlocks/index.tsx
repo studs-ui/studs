@@ -56,11 +56,11 @@ export default function CodeBlocks({
     <>
       {preview && <div dangerouslySetInnerHTML={{ __html: html }}></div>}
       <studs-tabs tabdirection="row">
-        {tabs.map((tab) => (
-          <>
+        {tabs.map((tab, i) => (
+          <React.Fragment key={i}>
             <button slot="tab">{tab.label}</button>
             <section slot="panel">{tab.children}</section>
-          </>
+          </React.Fragment>
         ))}
       </studs-tabs>
     </>
