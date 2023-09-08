@@ -203,7 +203,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
                   .value=${this._query || this.getSelected || ''}
                   @input=${(e: any) => {
                     this._query = e.target.value;
-                    if (this._query === '' || typeof this.query === undefined) this.selected = null;
+                    if (this._query === '' || typeof this.query === undefined) this.selected = undefined;
                     this.dispatch(e.target.value);
                   }}
                 />${this.iconController.icon('expand_more')}</span
@@ -236,6 +236,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
 
   onSingleChange(option: Option) {
     this.selected = option;
+    if(this.type === "search") this._query = undefined;
     this.dispatch(option);
     this.popperController?.hidePopper();
     if (this._internals?.form) {
