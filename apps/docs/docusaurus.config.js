@@ -55,6 +55,7 @@ const config = {
   ],
 
   plugins: ['docusaurus-plugin-sass'],
+  themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/global.ts')],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
