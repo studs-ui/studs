@@ -1,5 +1,5 @@
 import React from 'react';
-import { StudsTabs } from '@studs/ui';
+import { StudsTabs, StudsResizer, StudsResizerPane } from '@studs/ui';
 
 declare global {
   namespace JSX {
@@ -7,6 +7,14 @@ declare global {
       'studs-tabs': React.DetailedHTMLProps<
         React.HTMLAttributes<StudsTabs>,
         StudsTabs
+      >;
+      'studs-resizer': React.DetailedHTMLProps<
+        React.HTMLAttributes<StudsResizer>,
+        StudsResizer
+      >;
+      'studs-resizer-pane': React.DetailedHTMLProps<
+        React.HTMLAttributes<StudsResizerPane>,
+        StudsResizerPane
       >;
     }
   }
