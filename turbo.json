@@ -1,11 +1,18 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalPassThroughEnv": [
+    "Path",
+    "APPDATA",
+    "LOCALAPPDATA",
+    "TMPDIR",
+    "HOME",
+    "TMP",
+    "GOROOT",
+    "USERPROFILE"
+  ],
+  "globalEnv": ["OS", "RUNNER_OS"],
   "pipeline": {
     "dev": {
-      "cache": false,
-      "persistent": true
-    },
-    "storybook": {
       "cache": false,
       "persistent": true
     },
