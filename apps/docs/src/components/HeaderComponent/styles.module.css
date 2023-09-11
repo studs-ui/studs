@@ -1,0 +1,14 @@
+.header {
+    margin-bottom: 3rem;
+}
+
+.header code {
+    background: none;
+    border: none;
+    color: #52525B;
+    font-size: 1.25rem;
+}
+
+.custom {
+    margin: 0 0.5em;
+  }
