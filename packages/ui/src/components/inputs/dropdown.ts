@@ -8,6 +8,7 @@ import { PopperController } from '../../controllers/popperController';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
 import { choose } from 'lit/directives/choose.js';
+import inputStyles from "@studs/styles/components/checkbox.scss?inline"
 
 export interface DropdownProps extends WithFormInterface, WithPopperInterface {
   icon?: Icon;
@@ -21,6 +22,7 @@ interface Option {
   label: string;
   value: string;
   icon?: Icon;
+  image?: string | URL;
 }
 
 @customElement('studs-dropdown')
@@ -33,7 +35,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
   @property({ type: String }) size?: DropdownProps['size'] = 'medium';
   @property({ type: String }) type?: DropdownProps['type'] = 'default';
 
-  @state() private _query?: string;
+  @state() private _query?: string = '';
 
   @query('.toggle.-wrapper') toggleButton?: HTMLElement;
 
@@ -65,6 +67,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     unsafeCSS(style),
     IconController.styles,
     PopperController.styles,
+    unsafeCSS(inputStyles),
   ];
 
   private iconController = new IconController();
@@ -115,7 +118,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
-  private getTemplate(option: Option) {
+  private getOptionTemplate(option: Option) {
     return choose (this.type, [
       ['multi', () => {
         const selected = (this.selected as Option[]).some((selectedOption: Option) => selectedOption.value === option.value);
@@ -150,25 +153,24 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
         </li>`);
     } 
   
-
   private getOptions() {
     if (this.options)
       return choose(this.type, [
           [
-            'search',
+            'default',
             () => {
-            const options = this._query ? this.options.filter((option: Option) => option.label.toLowerCase().includes(this._query.toLowerCase())) : this.options;
-            return map(options, (option: Option) => {
-              return this.getTemplate(option);
-            });
-          },
-          ]
+              return map(this.options, (option: Option) => {
+                return this.getOptionTemplate(option);
+              });
+            }
+          ],
       ], 
       () => {
-        return map(this.options, (option: Option) => {
-          return this.getTemplate(option);
+        const options = this._query ? this.options.filter((option: Option) => option.label.toLowerCase().includes(this._query.toLowerCase())) : this.options;
+        return map(options, (option: Option) => {
+          return this.getOptionTemplate(option);
         });
-      }
+      },
       );
   }
 
@@ -185,20 +187,26 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
         'search',
         () => html`<span class="toggle -item"
           ><input
-            type="text"
+            type="search"
             placeholder=${this.placeholder}
             .value=${this._query || this.getSelected || ''}
             @input=${(e: any) => {
               this._query = e.target.value;
-              if (this._query === '' || typeof this.query === undefined) this.selected = undefined;
-              this.dispatch(e.target.value);
+              if (this._query === '' || typeof this._query === undefined) this.selected = undefined;
             }}
           />${this.iconController.icon('expand_more')}</span
         >`,
       ],
       [
         'multi',
-        () => html`<span class="toggle -item">${map(this.getSelected as any, (option: Option) => html`<studs-chip deletable @delete=${() => this.onSelectedDelete(option)}>${option?.label}</studs-chip>`)}${this.iconController.icon('expand_more')}`,
+        () => html`<span class="toggle -item">${map(this.getSelected as any, (option: Option) => html`<studs-chip deletable @delete=${() => this.onSelectedDelete(option)}>${option?.label}</studs-chip>`)}<input
+        type="search"
+        placeholder=${this.placeholder || 'Search'}
+        .value=${this._query}
+        @input=${(e: any) => {
+          this._query = e.target.value;
+        }}
+      />${this.iconController.icon('expand_more')}`,
       ],
     ])
   }
@@ -272,6 +280,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     } else {
       this.selected = [option];
     }
+    this._query = '';
     this.requestUpdate();
     this.dispatch(this.selected);
     if (this._internals?.form) {
