@@ -54,12 +54,13 @@
     }
 
     &.-item {
+      max-width: 300px; // temporary until designers decide 
+      min-width: 100px; // temporary until designers decide 
       padding: 0.3125rem 1rem;
       display: flex;
       gap: 1rem;
       align-items: center;
-      flex-wrap: wrap;
-      max-width: -webkit-fill-available;
+      overflow-y: scroll;
       input {
         border: none;
         font-size: 1em;
@@ -132,13 +133,11 @@
     }
 
     &:hover {
-      color: #{colorVal("orange", 60)};
-      background-color: #{colorVal("walnut", 0)};
-      font-weight: 600;
+      background-color: var(--disabled);
     }
 
     &.-selected {
-      font-weight: 600;
+      background-color: var(--primary-disabled);
       > i {
         margin-left: auto;
       }
