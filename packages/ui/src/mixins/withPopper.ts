@@ -36,9 +36,9 @@ export const WithPopper = <T extends Constructor<LitElement>>(
       super.connectedCallback();
 
       if (this.query) {
-        this.element = getDocumentElement(this).querySelector(
-          this.query
-        ) as HTMLElement;
+        this.element =
+          (this.renderRoot.querySelector(this.query) as HTMLElement) ||
+          (getDocumentElement(this).querySelector(this.query) as HTMLElement);
         this.requestUpdate();
       }
     }
