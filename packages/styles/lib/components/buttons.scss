@@ -143,6 +143,13 @@
     }
   }
 
+  // Needs Styles
+  &.-image {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
 
   &:hover {
     --color: var(--hover);

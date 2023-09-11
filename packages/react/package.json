@@ -22,7 +22,8 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "tsc",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
     "@studs/styles": "workspace: *",

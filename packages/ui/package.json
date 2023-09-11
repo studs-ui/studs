@@ -6,9 +6,14 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./studs-base.css": {
+      "development": "./src/index.ts",
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
+    },
     "./*": "./src/components/*",
     ".": {
-      "development": "./src/index.js",
+      "development": "./src/index.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     }
@@ -23,7 +28,8 @@
     "build": "vite build && storybook build",
     "lint": "tsc",
     "test": "vitest",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
     "@bloomreach/spa-sdk": "^22.0.0",

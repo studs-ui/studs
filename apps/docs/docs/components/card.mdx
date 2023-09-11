@@ -1,5 +1,7 @@
 # Card
 
+<HeaderComponent htmlTag="studs-card" jsxTag="StudsCard" version="Since 2.0" status="Stable" />
+
 Cards can be used to group related subjects in a container.
 
 ## Card with Button 
@@ -9,17 +11,14 @@ Cards can be used to group related subjects in a container.
   <div slot="footer"><studs-button button-type="primary" onclick="alert('clicked')">Learn more</studs-button></div>
 </studs-card>
 
-```html
-<studs-card
-imageUrl="https://via.placeholder.com/200x200"
-altText="Studs Card Media"
-title="Title">
+<CodeBlocks
+  html={`
+<studs-card imageUrl="https://via.placeholder.com/200x200" altText="Studs Card Media" title="Title">
   <div slot="main">This is my custom body content.</div>
-  <div slot="footer">
-    <studs-button button-type="primary" onclick="alert('clicked')">Learn more</studs-button>
-  </div>
+  <div slot="footer"><studs-button button-type="primary" onclick="alert('clicked')">Learn more</studs-button></div>
 </studs-card>
-```
+  `}
+/>
 
 ## Card with Footer
 
@@ -28,11 +27,13 @@ title="Title">
     <div slot="footer">Footer</div>
   </studs-card>
 
-```html
+<CodeBlocks
+  html={`
 <studs-card imageurl="https://via.placeholder.com/200x200" 
     alttext="placeholder 
     image" title="Title">
     <div slot="main">This is my custom body content.</div>
     <div slot="footer">Footer</div>
 </studs-card>
-```
+  `}
+/>

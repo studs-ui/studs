@@ -22,7 +22,8 @@ export interface ButtonProps {
     | 'icon'
     | 'square'
     | 'circle'
-    | 'close';
+    | 'close'
+    | 'image';
   size: 'small' | 'medium' | 'large';
   disabled: boolean;
   iconPosition: 'start' | 'end';
@@ -102,6 +103,7 @@ export class StudsButton extends LitElement {
       ?disabled=${this.disabled}
       type=${ifDefined(this.type)}
     >
+      <slot name="media" class="image"></slot>
       ${this.renderIcon()} <slot></slot>
     </button>`;
   }

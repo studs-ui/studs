@@ -15,6 +15,7 @@ import {
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import style from '@studs/styles/components/resizerPane.scss?inline';
+import { getDocumentElement, getParentNode } from '../../utils/shared';
 
 export interface StudsResizerPaneProps {
   direction?: 'horizontal' | 'vertical' | string;
@@ -67,8 +68,6 @@ export class StudsResizerPane extends LitElement {
           [`-${this.direction}`]: true,
           '-resizing': this._pressed,
         })}
-        @mousemove=${this.onMouseMove}
-        @mouseup=${this.onMouseMoveUp}
         @mouseleave=${this.onMouseLeave}
         style=${styleMap({
           [this.direction === 'horizontal' ? 'width' : 'height']:
@@ -106,6 +105,7 @@ export class StudsResizerPane extends LitElement {
 
   private onMouseMoveDown(e: MouseEvent) {
     this._pressed = true;
+    this.requestUpdate();
     if (this.direction === 'horizontal') {
       this._position = e.clientX;
       this._initialSize =
@@ -123,9 +123,15 @@ export class StudsResizerPane extends LitElement {
         0;
       this.requestUpdate();
     }
+
+    getDocumentElement(this)?.addEventListener('mousemove', this.onMouseMove);
+    getDocumentElement(this)?.addEventListener('mouseup', this.onMouseMoveUp);
   }
   private _delta: number = 0;
-  private onMouseMove(e: MouseEvent) {
+  private onMouseMove = (e: MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+
     if (this._pressed) {
       if (this.direction === 'horizontal') {
         this._delta = e.clientX - this._position;
@@ -150,15 +156,25 @@ export class StudsResizerPane extends LitElement {
         })
       );
     }
-  }
+  };
 
-  private onMouseMoveUp() {
+  private onMouseMoveUp = () => {
     this._pressed = false;
     this._initialSize = 0;
     this._position = 0;
-  }
+    this.requestUpdate();
 
-  private onMouseLeave(e: MouseEvent) {
+    getDocumentElement(this)?.removeEventListener(
+      'mousemove',
+      this.onMouseMove
+    );
+    getDocumentElement(this)?.removeEventListener(
+      'mouseup',
+      this.onMouseMoveUp
+    );
+  };
+
+  private onMouseLeave() {
     if (this._pressed) {
       this.onMouseMoveUp();
     }
