@@ -15,6 +15,7 @@ steps:
 
 - checkout: self
 - script: |
+    npm install pnpm
     pnpm i
   displayName: 'npm install and build'
 
