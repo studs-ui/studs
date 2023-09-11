@@ -8,7 +8,7 @@ export interface ChipProps {
   icon?: Icon;
   iconPosition?: 'start' | 'end';
   size: 'small' | 'medium' | 'large';
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'infor';
   contentDirection: 'horizontal' | 'vertical';
   disabled: boolean;
   selected: boolean;
