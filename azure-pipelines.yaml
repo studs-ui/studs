@@ -15,19 +15,17 @@ steps:
 
 - checkout: self
 - script: |
-    npm install -g yarn
-    yarn --version
-    yarn
+    pnpm i
   displayName: 'npm install and build'
 
 - script:
-    yarn run build-lib
+    pnpm build
   displayName: build storybooks
 
 - task: CopyFilesOverSSH@0
   inputs:
     sshEndpoint: 'agent'
-    sourceFolder: 'dist'
+    sourceFolder: 'apps/docs/build'
     contents: '**/*'
     targetFolder: '/var/www/studs'
     cleanTargetFolder: true
