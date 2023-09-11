@@ -30,7 +30,6 @@ export class StudsChip extends LitElement {
   @property({ type: Boolean }) selected: ChipProps['selected'] = false;
   @property({ type: Boolean }) clickable: ChipProps['clickable'] = false;
   @property({ type: Boolean }) deletable: ChipProps['deletable'] = false;
-  // @property({ type: Function }) onDelete?: ChipProps["onDelete"];
 
   static styles = [unsafeCSS(style), IconController.styles];
 

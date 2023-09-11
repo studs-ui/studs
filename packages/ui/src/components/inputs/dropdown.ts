@@ -99,7 +99,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
           [
             'multi',
             () => {
-              return (this.selected as Option[]).map((option: Option) => option.label);
+              return (this.selected as Option[]).map((option: Option) => option);
             },
           ],
         ]);
@@ -125,7 +125,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             '-option': true,
             '-selected': selected,
           })}
-          @click=${() => this.onMultiChange(option)}
+          @click=${(event: MouseEvent) => this.onMultiChange(event, option)}
           >
             <studs-checkbox label=${option.label} .checked=${selected}></studs-checkbox>
           </li>
@@ -172,6 +172,37 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
       );
   }
 
+  private getToggle() {
+    return choose(this.type, [
+      [
+        'default',
+        () =>
+          html`<button class="toggle -item">
+            ${this.getSelected} ${this.iconController.icon('expand_more')}
+          </button>`,
+      ],
+      [
+        'search',
+        () => html`<span class="toggle -item"
+          ><input
+            type="text"
+            placeholder=${this.placeholder}
+            .value=${this._query || this.getSelected || ''}
+            @input=${(e: any) => {
+              this._query = e.target.value;
+              if (this._query === '' || typeof this.query === undefined) this.selected = undefined;
+              this.dispatch(e.target.value);
+            }}
+          />${this.iconController.icon('expand_more')}</span
+        >`,
+      ],
+      [
+        'multi',
+        () => html`<span class="toggle -item">${map(this.getSelected as any, (option: Option) => html`<studs-chip deletable @delete=${() => this.onSelectedDelete(option)}>${option?.label}</studs-chip>`)}${this.iconController.icon('expand_more')}`,
+      ],
+    ])
+  }
+
   render() {
     return html` <div
       class=${classMap({
@@ -189,34 +220,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
           ?disabled=${this.disabled}
           aria-label="Toggle Dropdown"
         >
-          ${choose(this.type, [
-            [
-              'default',
-              () =>
-                html`<button class="toggle -item">
-                  ${this.getSelected} ${this.iconController.icon('expand_more')}
-                </button>`,
-            ],
-            [
-              'search',
-              () => html`<span class="toggle -item"
-                ><input
-                  type="text"
-                  placeholder=${this.placeholder}
-                  .value=${this._query || this.getSelected || ''}
-                  @input=${(e: any) => {
-                    this._query = e.target.value;
-                    if (this._query === '' || typeof this.query === undefined) this.selected = undefined;
-                    this.dispatch(e.target.value);
-                  }}
-                />${this.iconController.icon('expand_more')}</span
-              >`,
-            ],
-            [
-              'multi',
-              () => html`<span class="toggle -item">${map(this.getSelected as any, (option: Option) => html`<studs-chip deletable @delete=${() => this.onSelectedDelete(option)}>${option}</studs-chip>`)}${this.iconController.icon('expand_more')}`,
-            ],
-          ])}
+          ${this.getToggle()}
           ${this.icon
             ? html`<studs-button
                 class="dropdown -action"
@@ -247,27 +251,22 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
-  private onSelectedDelete(option: Option) {
-    const selected = this.selected as Option[];
-    const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option.value);
-    selected.splice(index, 1);
-    this.selected = selected;
-    this.requestUpdate();
-    this.dispatch(this.selected);
-    this.popperController?.hidePopper();
-    if (this._internals?.form) {
-      this._internals.setFormValue(JSON.stringify(this.selected));
-    }
-  }
-
-  private onMultiChange(option: Option) {
+  private onMultiChange(event: MouseEvent, option: Option) {
+    const target = event.target as HTMLElement;
+    const checkbox = target.querySelector('studs-checkbox')
     if(this.selected) {
       const selected = this.selected as Option[];
       const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option.value);
       if(index > -1) {
         selected.splice(index, 1);
+        if(checkbox) {
+          checkbox.checked = false;
+        }
       } else {
         selected.push(option);
+        if(checkbox) {
+          checkbox.checked = true;
+        }
       }
       this.selected = selected;
     } else {
@@ -280,6 +279,18 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
+  private onSelectedDelete(option: Option) {
+    const selected = this.selected as Option[];
+    const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option?.value);
+    selected.splice(index, 1);
+    this.selected = selected;
+    this.requestUpdate();
+    this.dispatch(this.selected);
+    if (this._internals?.form) {
+      this._internals.setFormValue(JSON.stringify(this.selected));
+    }
+    this.popperController?.hidePopper();
+  }
 
   private onActionButtonClick() {
     this.dispatchEvent(

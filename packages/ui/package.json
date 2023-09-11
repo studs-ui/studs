@@ -6,9 +6,14 @@
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "exports": {
+    "./studs-base.css": {
+      "development": "./src/index.ts",
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
+    },
     "./*": "./src/components/*",
     ".": {
-      "development": "./src/index.js",
+      "development": "./src/index.ts",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     }

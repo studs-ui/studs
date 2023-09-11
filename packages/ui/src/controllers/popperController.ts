@@ -99,9 +99,9 @@ export class PopperController implements ReactiveController {
       trigger?.addEventListener('click', (e) => {
         e.stopPropagation();
         if (this.popper?.getAttribute('aria-hidden') === 'true') {
-          this.showPopper();
+          this.showPopper(e);
         } else {
-          this.hidePopper();
+          this.hidePopper(e);
         }
       });
     }
@@ -127,7 +127,7 @@ export class PopperController implements ReactiveController {
   }
 
   public showPopper = (e?: MouseEvent | FocusEvent) => {
-    this.host.updateComplete.then(() => {
+    this.host.updateComplete.then(() => {    
       this.popper?.setAttribute('aria-hidden', 'false');
       this.updatePosition();
       if (this.on === 'click' && e) e.stopPropagation();
