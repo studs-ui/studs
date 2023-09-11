@@ -85,8 +85,7 @@ export class StudsCheckbox extends WithForm(LitElement) {
           id="${this.inputId}"
           type="checkbox"
           name="${ifDefined(this.name)}"
-          value="${ifDefined(this.value)}"
-          ?checked="${this.checked}"
+          .checked="${this.checked}"
           ?disabled="${this.disabled}"
           @change="${this.handleChange}"
         />
