@@ -7,7 +7,7 @@
   top: 0;
   left: 0;
 
-  &.-show {
+  &[aria-hidden="false"] {
     display: flex;
   }
 

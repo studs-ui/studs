@@ -3,91 +3,133 @@
 .dropdown {
   --dropdown-border-color: #{colorVal("gray", 50)};
   --dropdown-label-color: #{colorVal("gray", 50)};
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 1rem;
-  font-size: 1em;
-
-  > p {
-    text-transform: uppercase;
-    padding: 0;
-    margin: 0;
-    color: var(--dropdown-label-color)
+  &.-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1em;
+      width: max-content;
+        > p {
+        text-transform: uppercase;
+        padding: 0;
+        margin: 0;
+        color: var(--dropdown-label-color)
+      }
   }
+
 
   &[disabled] {
     cursor: not-allowed;
   }
   
-  .-toggle {
-    position: relative;
-    min-width: 250px;
-    @include noSelect;
-    padding: 0;
-    margin: 5px;
-    padding: 0.25rem 0.5rem;
-    cursor: pointer;
+  .toggle {
+    &.-wrapper {
+      @include noSelect;
+      position: relative;
+      min-width: min-content;
+      cursor: pointer;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      color: inherit;
+      pointer-events: all;
+      background-color: var(--background-content);
+      border: 1px var(--border-color) solid;
+      border-radius: 0.125rem;
+      &:hover, &:focus-within, &:focus {
+        border-color: var(--primary);
+      }
+  
+      &[disabled] {
+        pointer-events: none;
+        opacity: 0.3;
+      }
 
-    display: flex;
-    align-items: center;
-    color: inherit;
-    font-weight: 600;
-    pointer-events: all;
-    background-color: var(--dropdown-background);
-    border: 1px var(--dropdown-border-color) solid;
-    border-radius: 0.125rem;
-
-    &[disabled] {
-      pointer-events: none;
-      opacity: 0.3;
+      > i {
+        padding-inline-start: 0.25em;
+        margin-left: auto;
+      }
     }
 
-    > svg {
-      margin-left: auto;
+    &.-item {
+      padding: 0.3125rem 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap;
+      max-width: -webkit-fill-available;
+      input {
+        border: none;
+        font-size: 1em;
+        &:focus-visible {
+          outline: none;
+        }
+      }
     }
-  }
 
-  &.-open {
-    .-toggle {
-      > svg {
-        transform: rotate(-180deg);
+    button.-item {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size: 1em;
+    }
+
+    
+
+    .-small & {
+      button {
+        padding: 0.125em 0.5em;
+      }
+    }
+
+    .-icon & {
+      .-action {
+        border-left: 1px solid var(--border-color);
       }
     }
   }
 
-  .-menuWrapper {
-    position: relative;
-    margin: 5px
-  }
-
-  .-menu {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 999;
-    background-color: var(--dropdown-background);
-    border: 1px var(--dropdown-border-color) solid;
-    border-radius: 0.125rem;
-    padding: 0.25rem 0.25rem;
-
-    display: flex;
+  &.-menu {
+    width: -webkit-fill-available;
+    color: var(--text-color);
+    background-color: var(--background-content);
+    text-align: left;
+    filter: drop-shadow(var(--box-shadow));
     flex-direction: column;
+    border-radius: 0.25em;
+    padding: 0.25rem 0.25rem;
+    margin: 0;
+    list-style-type: none;
+    max-height: 250px;
+    overflow-y: scroll;
+    &[aria-hidden="false"] {
+      display: flex;
+    }
+    #arrow {
+      background-color: var(--background-content);
+    }
   }
 
-  .-option {
+  &.-option, option {
     display: flex;
+    align-items: center;
     text-align: left;
     padding: 0.5rem 0.5rem;
     cursor: pointer;
     color: inherit;
     font-size: inherit;
-    font-weight: 500;
     pointer-events: all;
-    background-color: var(--dropdown-background);
+    background-color: transparent;
     border: none;
     border-radius: 0.125rem;
+    @supports(width: -webkit-fill-available) {
+      width: -webkit-fill-available;
+    }
+    @supports not (width: -webkit-fill-available) {
+      width: 100%;
+    }
 
     &:hover {
       color: #{colorVal("orange", 60)};
@@ -97,13 +139,10 @@
 
     &.-selected {
       font-weight: 600;
-      > svg {
+      > i {
         margin-left: auto;
       }
     }
   }
-
-
-  
 }
 
