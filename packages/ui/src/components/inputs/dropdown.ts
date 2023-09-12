@@ -1,143 +1,309 @@
-import { LitElement, html, nothing, unsafeCSS } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import style from '@studs/styles/components/dropdowns.scss?inline';
+import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
+import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
-import style from '@studs/styles/components/dropdowns.scss?inline';
-import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { Icon, IconController } from '../../controllers/iconController';
+import { PopperController } from '../../controllers/popperController';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
+import { choose } from 'lit/directives/choose.js';
+import inputStyles from "@studs/styles/components/checkbox.scss?inline"
 
-export interface DropdownProps extends WithFormInterface {
+export interface DropdownProps extends WithFormInterface, WithPopperInterface {
   icon?: Icon;
   options: Option[];
-  selected?: Option;
-  placeholder?: string;
+  selected?: Option | Option[] | null;
+  size: 'small' | 'medium';
+  type: 'default' | 'search' | 'multi';
 }
 
 interface Option {
   label: string;
   value: string;
+  icon?: Icon;
+  image?: string | URL;
 }
 
 @customElement('studs-dropdown')
-export class StudsDropdown extends WithForm(LitElement) {
+export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
   // Element Properties
   @property({ type: String }) icon?: DropdownProps['icon'];
-
   // Dropdown Properties
-  @property({ type: Boolean }) disabled: DropdownProps['disabled'] = false;
   @property({ type: Object }) options: DropdownProps['options'] = [];
   @property({ type: Object }) selected?: DropdownProps['selected'];
-  @property({ type: String }) label: DropdownProps['label'] = 'Toggle Dropdown';
+  @property({ type: String }) size?: DropdownProps['size'] = 'medium';
+  @property({ type: String }) type?: DropdownProps['type'] = 'default';
 
-  static styles = [unsafeCSS(style), IconController.styles];
+  @state() private _query?: string = '';
 
-  // Internal Properties
-  @state() private _open: boolean = false;
+  @query('.toggle.-wrapper') toggleButton?: HTMLElement;
 
-  toggle() {
-    this._open = !this._open;
-  }
+  /**
+   * Initiate PopperController
+   */
 
-  private iconController = new IconController();
-
-  renderIcon() {
-    if (this.icon) return this.iconController.icon(this.icon);
-  }
-
-  getSelected() {
-    if (this.options) {
-      if (this.selected) {
-        const selected = this.options.find(
-          (option) => option.value === this.selected?.value
-        );
-        return selected?.label;
-      } else if (!this.placeholder) {
-        return this.options[0].label;
-      } else {
-        return this.placeholder;
-      }
-    } else {
-      return this.placeholder;
+  constructor() {
+    super();
+    if (this.popperController) {
+      this.popperController.options = {
+        placement: 'bottom',
+      };
+      this.popperController.on = 'toggle';
     }
   }
 
-  renderDropdownOptions() {
+  protected firstUpdated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.firstUpdated(_changedProperties);
+    if (this.popperController && this.toggleButton instanceof HTMLElement) {
+      this.element = this.toggleButton;
+      this.scheduleUpdate();
+    }
+  }
+
+  static styles = [
+    unsafeCSS(style),
+    IconController.styles,
+    PopperController.styles,
+    unsafeCSS(inputStyles),
+  ];
+
+  private iconController = new IconController();
+
+  protected updated(
+    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
+  ): void {
+    super.updated(_changedProperties);
+    if (this.options?.length > 5 && this.type === 'default') {
+      this.type = 'search';
+    }
+  }
+
+  get getSelected(): string | string[] | undefined {
+    if (this.options) {
+      if (this.selected) {
+        return choose(this.type, [
+          [
+            'default',
+            () => {
+              return (this.selected as Option)?.label;
+            },
+          ],
+          [
+            'search',
+            () => {
+                this._query = (this.selected as Option)?.label;
+                this.requestUpdate();
+                return (this.selected as Option)?.label;
+              },
+          ],
+          [
+            'multi',
+            () => {
+              return (this.selected as Option[]).map((option: Option) => option);
+            },
+          ],
+        ]);
+      } else if (!this.placeholder) {
+        if(this.type === "default") return this.options[0].label;
+      } else if(this.placeholder) {
+        return this.placeholder
+      } else {
+        return;
+      }
+    } else {
+      return this.placeholder || '';
+    }
+  }
+
+  private getOptionTemplate(option: Option) {
+    return choose (this.type, [
+      ['multi', () => {
+        const selected = (this.selected as Option[]).some((selectedOption: Option) => selectedOption.value === option.value);
+        return html`
+          <li class=${classMap({
+            dropdown: true,
+            '-option': true,
+            '-selected': selected,
+          })}
+          @click=${(event: MouseEvent) => this.onMultiChange(event, option)}
+          >
+            <studs-checkbox label=${option.label} .checked=${selected}></studs-checkbox>
+          </li>
+        `
+      }],
+    ], () => html`
+        <li>
+            <button
+              class=${classMap({
+                dropdown: true,
+                '-option': true,
+                '-selected':
+                  option.value === (this.selected as Option)?.value,
+              })}
+              @click=${() => this.onSingleChange(option)}
+            >
+              ${option.label}
+              ${(this.selected as Option)?.value === option.value
+                ? this.iconController.icon('check')
+                : null}
+            </button>
+        </li>`);
+    } 
+  
+  private getOptions() {
     if (this.options)
-      return map(this.options, (option: Option) => {
-        const classes = {
-          '-option': true,
-          '-selected': option.value === this.selected?.value,
-        };
-        return html`<button
-          class=${classMap(classes)}
-          @click=${() => this.onChange(option)}
-        >
-          ${option.label}
-          ${this.selected?.value === option.value
-            ? html`<svg
-                width="10"
-                height="7"
-                viewBox="0 0 10 7"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M1 3.5L4 6L9 1"
-                  stroke="#231F20"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg> `
-            : null}
-        </button>`;
-      });
+      return choose(this.type, [
+          [
+            'default',
+            () => {
+              return map(this.options, (option: Option) => {
+                return this.getOptionTemplate(option);
+              });
+            }
+          ],
+      ], 
+      () => {
+        const options = this._query ? this.options.filter((option: Option) => option.label.toLowerCase().includes(this._query.toLowerCase())) : this.options;
+        return map(options, (option: Option) => {
+          return this.getOptionTemplate(option);
+        });
+      },
+      );
+  }
+
+  private getToggle() {
+    return choose(this.type, [
+      [
+        'default',
+        () =>
+          html`<button class="toggle -item">
+            ${this.getSelected} ${this.iconController.icon('expand_more')}
+          </button>`,
+      ],
+      [
+        'search',
+        () => html`<span class="toggle -item"
+          ><input
+            type="search"
+            placeholder=${this.placeholder}
+            .value=${this._query || this.getSelected || ''}
+            @input=${(e: any) => {
+              this._query = e.target.value;
+              if (this._query === '' || typeof this._query === undefined) this.selected = undefined;
+            }}
+          />${this.iconController.icon('expand_more')}</span
+        >`,
+      ],
+      [
+        'multi',
+        () => html`<span class="toggle -item">${map(this.getSelected as any, (option: Option) => html`<studs-chip deletable @delete=${() => this.onSelectedDelete(option)}>${option?.label}</studs-chip>`)}<input
+        type="search"
+        placeholder=${this.placeholder || 'Search'}
+        .value=${this._query}
+        @input=${(e: any) => {
+          this._query = e.target.value;
+        }}
+      />${this.iconController.icon('expand_more')}`,
+      ],
+    ])
   }
 
   render() {
-
     return html` <div
       class=${classMap({
         dropdown: true,
-        '-container': true,
-        '-open': this._open,
+        '-wrapper': true,
+        [`-${this.size}`]: this.size || false,
+        '-icon': this.icon || false,
       })}
       ?disabled=${this.disabled}
     >
       ${this.label ? html`<p>${this.label}</p>` : nothing}
-      <div class="-content">
-        <button
-          class="-toggle"
+      <div class="dropdown -content">
+        <div
+          class="toggle -wrapper"
           ?disabled=${this.disabled}
           aria-label="Toggle Dropdown"
-          @click=${() => this.toggle()}
         >
-          ${this.renderIcon()} ${this.getSelected()}
-          <svg
-            width="10"
-            height="5"
-            viewBox="0 0 10 5"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M1 1L5 4L9 1"
-              stroke="#383838"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-        </button>
-        <div class="-menuWrapper" ?hidden=${!this._open}>
-          <div class="-menu">${this.renderDropdownOptions()}</div>
+          ${this.getToggle()}
+          ${this.icon
+            ? html`<studs-button
+                class="dropdown -action"
+                icon=${this.icon}
+                button-type="text"
+                size="small"
+                @click=${this.onActionButtonClick}
+              ></studs-button>`
+            : nothing}
         </div>
+
+        <ul class="dropdown -menu popper" role="menu">
+          ${this.getOptions()}
+          <slot></slot>
+          <div id="arrow"></div>
+        </ul>
       </div>
     </div>`;
   }
 
-  onChange(option: Option) {
+  private onSingleChange(option: Option) {
     this.selected = option;
+    if(this.type === "search") this._query = undefined;
     this.dispatch(option);
-    this.toggle();
+    this.popperController?.hidePopper();
+    if (this._internals?.form) {
+      this._internals.setFormValue(option.value);
+    }
+  }
+
+  private onMultiChange(event: MouseEvent, option: Option) {
+    const target = event.target as HTMLElement;
+    const checkbox = target.querySelector('studs-checkbox')
+    if(this.selected) {
+      const selected = this.selected as Option[];
+      const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option.value);
+      if(index > -1) {
+        selected.splice(index, 1);
+        if(checkbox) {
+          checkbox.checked = false;
+        }
+      } else {
+        selected.push(option);
+        if(checkbox) {
+          checkbox.checked = true;
+        }
+      }
+      this.selected = selected;
+    } else {
+      this.selected = [option];
+    }
+    this._query = '';
+    this.requestUpdate();
+    this.dispatch(this.selected);
+    if (this._internals?.form) {
+      this._internals.setFormValue(JSON.stringify(this.selected));
+    }
+  }
+
+  private onSelectedDelete(option: Option) {
+    const selected = this.selected as Option[];
+    const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option?.value);
+    selected.splice(index, 1);
+    this.selected = selected;
+    this.requestUpdate();
+    this.dispatch(this.selected);
+    if (this._internals?.form) {
+      this._internals.setFormValue(JSON.stringify(this.selected));
+    }
+    this.popperController?.hidePopper();
+  }
+
+  private onActionButtonClick() {
+    this.dispatchEvent(
+      new CustomEvent('action-button-click', { bubbles: true, composed: true })
+    );
   }
 }

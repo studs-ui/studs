@@ -8,7 +8,7 @@ export interface ChipProps {
   icon?: Icon;
   iconPosition?: 'start' | 'end';
   size: 'small' | 'medium' | 'large';
-  variant: 'primary' | 'secondary';
+  variant: 'primary' | 'secondary' | 'infor';
   contentDirection: 'horizontal' | 'vertical';
   disabled: boolean;
   selected: boolean;
@@ -30,7 +30,6 @@ export class StudsChip extends LitElement {
   @property({ type: Boolean }) selected: ChipProps['selected'] = false;
   @property({ type: Boolean }) clickable: ChipProps['clickable'] = false;
   @property({ type: Boolean }) deletable: ChipProps['deletable'] = false;
-  // @property({ type: Function }) onDelete?: ChipProps["onDelete"];
 
   static styles = [unsafeCSS(style), IconController.styles];
 
@@ -70,8 +69,9 @@ export class StudsChip extends LitElement {
     return html`
       <div class="${classMap(classes)}" ?disabled=${this.disabled}>
         <slot name="accessory"></slot>
+        ${this.renderIcon()}
         <span class="text"><slot></slot></span>
-        ${this.renderDeleteButton()} ${this.renderIcon()}
+        ${this.renderDeleteButton()}
       </div>
     `;
   }
