@@ -1,0 +1,21 @@
+@use '../utilities' as *;
+.popper {
+  @include fadeIn();
+  display: none;
+  width: max-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &[aria-hidden="false"] {
+    display: flex;
+  }
+
+  #arrow {
+    background-color: inherit;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    transform: rotate(45deg);
+  }
+}

@@ -1,0 +1,53 @@
+@use '../utilities' as *;
+
+.skeleton {
+  background-color: rgba(0, 0, 0, 0.11);
+  &.-linear {
+    animation: skeleton-linear var(--transition-xxl) linear infinite alternate;
+  }
+  &.-pulse {
+    animation: skeleton-pulse var(--transition-xxl) linear infinite alternate;
+  }
+  &.-wave {
+    animation: skeleton-wave var(--transition-xxl) linear infinite alternate;
+  }
+  @keyframes skeleton-linear {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 95%);
+    }
+  }
+  @keyframes skeleton-wave {
+    0% {
+      background-color: hsl(200, 20%, 80%);
+    }
+    50% {
+      background-color: hsl(200, 20%, 95%);
+    }
+    100% {
+      background-color: hsl(200, 20%, 80%);
+    }
+  }
+  @keyframes skeleton-pulse {
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  &.-circle {
+    border-radius: 50%;
+  }
+  &.-rounded {
+    border-radius: 8px;
+  }
+  &.-text {
+    border-radius: 8px;
+  }
+}

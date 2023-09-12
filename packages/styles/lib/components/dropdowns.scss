@@ -1,0 +1,147 @@
+@use '../utilities' as *;
+
+.dropdown {
+  --dropdown-border-color: #{colorVal("gray", 50)};
+  --dropdown-label-color: #{colorVal("gray", 50)};
+  &.-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1em;
+      width: max-content;
+        > p {
+        text-transform: uppercase;
+        padding: 0;
+        margin: 0;
+        color: var(--dropdown-label-color)
+      }
+  }
+
+
+  &[disabled] {
+    cursor: not-allowed;
+  }
+  
+  .toggle {
+    &.-wrapper {
+      @include noSelect;
+      position: relative;
+      min-width: min-content;
+      cursor: pointer;
+      font-size: 1em;
+      display: flex;
+      align-items: center;
+      color: inherit;
+      pointer-events: all;
+      background-color: var(--background-content);
+      border: 1px var(--border-color) solid;
+      border-radius: 0.125rem;
+      &:hover, &:focus-within, &:focus {
+        border-color: var(--primary);
+      }
+  
+      &[disabled] {
+        pointer-events: none;
+        opacity: 0.3;
+      }
+
+      > i {
+        padding-inline-start: 0.25em;
+        margin-left: auto;
+      }
+    }
+
+    &.-item {
+      max-width: 300px; // temporary until designers decide 
+      min-width: 100px; // temporary until designers decide 
+      padding: 0.3125rem 1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      overflow-y: scroll;
+      input {
+        border: none;
+        font-size: 1em;
+        &:focus-visible {
+          outline: none;
+        }
+      }
+    }
+
+    button.-item {
+        cursor: pointer;
+        background-color: transparent;
+        border: none;
+        font-size: 1em;
+    }
+
+    
+
+    .-small & {
+      button {
+        padding: 0.125em 0.5em;
+      }
+    }
+
+    .-icon & {
+      .-action {
+        border-left: 1px solid var(--border-color);
+      }
+    }
+  }
+
+  &.-menu {
+    width: -webkit-fill-available;
+    color: var(--text-color);
+    background-color: var(--background-content);
+    text-align: left;
+    filter: drop-shadow(var(--box-shadow));
+    flex-direction: column;
+    border-radius: 0.25em;
+    padding: 0.25rem 0.25rem;
+    margin: 0;
+    list-style-type: none;
+    max-height: 250px;
+    overflow-y: scroll;
+    &[aria-hidden="false"] {
+      display: flex;
+    }
+    #arrow {
+      background-color: var(--background-content);
+    }
+  }
+
+  &.-option, option {
+    display: flex;
+    align-items: center;
+    text-align: left;
+    padding: 0.5rem 0.5rem;
+    cursor: pointer;
+    color: inherit;
+    font-size: inherit;
+    pointer-events: all;
+    background-color: transparent;
+    border: none;
+    border-radius: 0.125rem;
+    @supports(width: -webkit-fill-available) {
+      width: -webkit-fill-available;
+    }
+    @supports not (width: -webkit-fill-available) {
+      width: 100%;
+    }
+
+    &:hover {
+      background-color: var(--disabled);
+    }
+
+    &.-selected {
+      background-color: var(--primary-disabled);
+      > i {
+        margin-left: auto;
+      }
+    }
+  }
+}
+

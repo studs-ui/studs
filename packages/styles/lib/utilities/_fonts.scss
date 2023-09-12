@@ -1,0 +1,88 @@
+$font-family: "HelveticaNeue", "Helvetica", "Arial", sans-serif;
+$font-extended: "HelveticaNeueExtended", "Helvetica", "Arial", sans-serif;
+$font-condensed: "HelveticaNeueCondensed", "Helvetica", "Arial", sans-serif;
+
+$font-material-sharp: 'Material Symbols Sharp';
+$font-material-outline: 'Material Symbols Outlined';
+$font-material-rounded: 'Material Symbols Rounded';
+
+$font-light: 300;
+$font-normal: 400;
+$font-semibold: 500;
+$font-bold: 600;
+$font-black: 700;
+
+$font-small: 0.8rem;
+$font-default: 1rem;
+$font-large: 2rem;
+$font-xl: 3rem;
+$font-xxl: 4rem;
+
+
+@mixin fonts {
+  :root {
+    --font-family: #{$font-family};
+    --font-size: #{$font-default};
+    --font-icons: #{$font-material-outline};
+    --font-weight: #{$font-semibold};
+  }
+}
+
+@mixin iconFont {
+  font-family: var(--font-icons);
+  font-weight: normal;
+  font-style: normal;
+  font-size: var(--font-size);
+
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+
+  font-variation-settings:'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 48;
+}
+
+@mixin fontSizes {
+  &.-small      {--font-size: #{$font-small}}
+  &.-medium     {--font-size: #{$font-default}}
+  &.-large      {--font-size: #{$font-large}}
+  &.-extraLarge {--font-size: #{$font-xl}}
+  &.-huge       {--font-size: #{$font-xxl}}
+}
+
+@mixin fontSizesRelative {
+  &.-small      {--font-size: 0.8em}
+  &.-medium     {--font-size: 1em}
+  &.-large      {--font-size: 2em}
+  &.-extraLarge {--font-size: 3em}
+  &.-huge       {--font-size: 4em}
+}
+
+
+
+
+/*
+// for reference
+.material-symbols-outlined {
+  font-family: 'Material Symbols Outlined';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+  -moz-font-feature-settings: 'liga';
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*/

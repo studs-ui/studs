@@ -1,0 +1,38 @@
+{
+  "name": "@studs/styles",
+  "private": true,
+  "version": "0.0.7",
+  "type": "module",
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
+  "exports": {
+    "./components/*.scss": "./lib/components/*.scss",
+    "./studs-base.css": {
+      "development": "./lib/styles.scss",
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
+    },
+    ".": {
+      "development": "./lib/styles.scss",
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
+    }
+  },
+  "files": [
+    "dist",
+    "src",
+    "test"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "tsc",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "devDependencies": {
+    "sass": "^1.64.1",
+    "typescript": "^5.0.2",
+    "vite": "^4.4.5",
+    "vite-plugin-dts": "^3.5.3"
+  }
+}
