@@ -1,9 +1,10 @@
-import { LitElement, html, nothing } from 'lit';
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { map } from 'lit/directives/map.js';
+import style from '@studs/styles/components/inputs.scss?inline';
 
 export interface InputProps extends WithFormInterface {
   type?: 'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file';
@@ -32,14 +33,7 @@ export class StudsInput extends WithForm(LitElement) {
   @property({ type: String, attribute: 'adornment-position' })
   adornmentPosition?: InputProps['adornmentPosition'] = 'end';
 
-  // If the Type is Password, provide the ability to show.
-  @state() showPassword = false;
-  private get inputType() {
-    if (this.type === 'password' && this.showPassword) {
-      return 'text';
-    }
-    return this.type;
-  }
+  static styles = unsafeCSS(style);
 
   connectedCallback(): void {
     super.connectedCallback();
@@ -53,6 +47,15 @@ export class StudsInput extends WithForm(LitElement) {
     if (this.type === 'search') {
       this.removeEventListener('keydown', this.handleEnterSubmit);
     }
+  }
+
+  // If the Type is Password, provide the ability to show.
+  @state() showPassword = false;
+  private get inputType() {
+    if (this.type === 'password' && this.showPassword) {
+      return 'text';
+    }
+    return this.type;
   }
 
   private renderAdornment(position: InputProps['adornmentPosition']) {
@@ -93,6 +96,7 @@ export class StudsInput extends WithForm(LitElement) {
             : nothing}
           <input
             type=${this.inputType}
+            id=${this.inputId}
             name=${ifDefined(this.name)}
             value=${ifDefined(this.value)}
             placeholder=${ifDefined(this.placeholder)}
@@ -145,8 +149,8 @@ export class StudsInput extends WithForm(LitElement) {
     `;
   }
 
-  private onSubmit() {
-    // e.preventDefault();
+  private onSubmit(e: SubmitEvent) {
+    e.preventDefault();
     this.dispatchEvent(
       new CustomEvent('submit', {
         detail: {
@@ -156,7 +160,7 @@ export class StudsInput extends WithForm(LitElement) {
         composed: true,
       })
     );
-    if (this._internals?.form) this._internals.form.submit();
+    if (this.form) this.form.submit();
   }
 
   private handleEnterSubmit(e: KeyboardEvent) {
@@ -173,9 +177,5 @@ export class StudsInput extends WithForm(LitElement) {
   public clear() {
     this.value = '';
     this.dispatch(this.value);
-  }
-
-  protected createRenderRoot(): Element | ShadowRoot {
-    return this;
   }
 }

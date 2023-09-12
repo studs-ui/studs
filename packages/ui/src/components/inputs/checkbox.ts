@@ -15,13 +15,12 @@ export interface CheckboxProps extends WithFormInterface {
 
 @customElement('studs-checkbox')
 export class StudsCheckbox extends WithForm(LitElement) {
+
   static styles = unsafeCSS(style);
 
   @property({ type: String }) value: CheckboxProps['value'] = '';
   @property({ type: Boolean }) checked?: CheckboxProps['checked'];
   @property({ type: Boolean }) indeterminate?: CheckboxProps['indeterminate'];
-
-  private inputId = generateUniqueId('checkbox');
 
   private updateHandler = () => {
     const inputElement = this.shadowRoot?.querySelector(`#${this.inputId}`);
@@ -61,16 +60,12 @@ export class StudsCheckbox extends WithForm(LitElement) {
     if (this.disabled) {
       return;
     }
-
     // Update the checked property based on the checkbox state
     const input = e.target as HTMLInputElement;
     const newChecked = input.checked;
     if (newChecked !== this.checked) {
       this.checked = newChecked;
-
-      // Emit a custom event with the checked state
-      // this.dispatchEvent(new CustomEvent("change", { detail: this.checked }));
-      this.dispatch(this.value);
+      this.dispatch(newChecked);
     }
   };
 
@@ -85,16 +80,17 @@ export class StudsCheckbox extends WithForm(LitElement) {
           id="${this.inputId}"
           type="checkbox"
           name="${ifDefined(this.name)}"
+          value="${ifDefined(this.value)}"
           .checked="${this.checked}"
           ?disabled="${this.disabled}"
           @change="${this.handleChange}"
         />
-        <label for="${this.inputId}">${this.label}</label>
+        <label for="${this.inputId}" aria-seletable=${true}>${this.label}</label>
       </div>
     `;
   }
 
-  protected createRenderRoot(): Element | ShadowRoot {
-    return this;
-  }
+  // protected createRenderRoot(): Element | ShadowRoot {
+  //   return this;
+  // }
 }

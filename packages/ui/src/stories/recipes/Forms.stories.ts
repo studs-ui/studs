@@ -14,6 +14,7 @@ export const Form: Story = {
   render: () => {
     let values = {};
     function onSubmit(e: SubmitEvent) {
+      
       const form = (e.target as HTMLButtonElement).closest(
         'form'
       ) as HTMLFormElement;
@@ -27,11 +28,33 @@ export const Form: Story = {
     }
     return html`
       <form>
-        <studs-input name="test" label="Input 1"></studs-input>
-        <studs-input name="test2" label="Input 2"></studs-input>
-        <studs-input name="test3" label="Input 3"></studs-input>
+        <studs-input name="input" label="Input"></studs-input>
+        <div>
+          <studs-checkbox name="checkbox_1" label="Checkbox 1"></studs-checkbox>
+          <studs-checkbox name="checkbox_2" label="Checkbox 2"></studs-checkbox>
+          <studs-checkbox name="checkbox_3" label="Checkbox 3"></studs-checkbox>
+        </div>
+        <studs-radio-group
+        name='radio_group'
+        label='Radio Group'
+        display='inline'
+        value='radio1'
+      >
+        <studs-radio
+          value="radio1"
+          label="Radio 1"
+        ></studs-radio>
+        <studs-radio
+          value="radio2"
+          label="Radio 2"
+        ></studs-radio>
+        <studs-radio
+          value="radio3"
+          label="Radio 3"
+        ></studs-radio>
+      </studs-radio-group>
         <studs-button type="reset">Reset</studs-button>
-        <studs-button type="submit" @click=${onSubmit}>Submit</studs-button>
+        <studs-button @click=${onSubmit}>Submit</studs-button>
       </form>
     `;
   },
