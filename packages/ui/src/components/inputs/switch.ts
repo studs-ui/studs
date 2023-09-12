@@ -1,28 +1,19 @@
+import style from '@studs/styles/components/switch.scss?inline';
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import style from '@studs/styles/components/switch.scss?inline';
-import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { generateUniqueId } from '../../utils/shared';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
 
 export interface SwitchProps extends WithFormInterface {
-  checked: boolean;
-  disabled: boolean;
-  label: string;
   labelPosition: 'start' | 'end' | 'top' | 'bottom';
-  name: string;
   size: 'small' | 'medium' | 'large';
 }
 @customElement('studs-switch')
 export class StudsSwitch extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
-
-  @property({ type: Boolean }) checked: SwitchProps['checked'] = false;
   @property({ type: String, attribute: 'label-position' })
   labelPosition: SwitchProps['labelPosition'] = 'end';
   @property({ type: String }) size: SwitchProps['size'] = 'medium';
-
-  private inputId = generateUniqueId('checkbox');
 
   render() {
     return html`
@@ -31,7 +22,7 @@ export class StudsSwitch extends WithForm(LitElement) {
           type="checkbox"
           id="${this.inputId}"
           name=${ifDefined(this.name)}
-          ?checked=${this.checked}
+          .checked=${this.checked}
           ?disabled=${this.disabled}
           @change=${this.onChange}
         />
@@ -45,16 +36,5 @@ export class StudsSwitch extends WithForm(LitElement) {
         </label>
       </div>
     `;
-  }
-
-  onChange(e: Event) {
-    const target = e.target as HTMLInputElement;
-    this.checked = target.checked;
-
-    this.dispatch({ checked: this.checked });
-  }
-
-  protected createRenderRoot(): Element | ShadowRoot {
-    return this;
   }
 }
