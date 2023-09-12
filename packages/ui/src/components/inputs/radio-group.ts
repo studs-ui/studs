@@ -1,10 +1,10 @@
 import style from '@studs/styles/components/radioGroup.scss?inline';
 import { LitElement, html, nothing, unsafeCSS } from 'lit';
-import { customElement, property } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { StudsRadio } from './radio';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 export interface RadioGroupProps extends WithFormInterface {
   
@@ -13,13 +13,6 @@ export interface RadioGroupProps extends WithFormInterface {
 @customElement('studs-radio-group')
 export class StudsRadioGroup extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
-
-  onChange(event: Event) {
-    const target = event.target as StudsRadio;
-    this.value = target.value;
-    this.dispatch(this.value);
-  }
-
 
   // This method updates the checked status of each STUDS-RADIO element in the slot based on the valueValue of the StudsRadioGroup.
   initRadios(e: Event) {
@@ -36,7 +29,7 @@ export class StudsRadioGroup extends WithForm(LitElement) {
         studsRadio.setAttribute('aria-checked', 'false')
         studsRadio.checked = false
       };
-      radio.addEventListener('change', this.onChange.bind(this));
+      radio.addEventListener('change', this.onChange);
     });
   }
 

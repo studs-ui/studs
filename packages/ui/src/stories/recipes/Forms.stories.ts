@@ -29,6 +29,7 @@ export const Form: Story = {
     return html`
       <form>
         <studs-input name="input" label="Input"></studs-input>
+        <studs-switch name="switch" label="Switch"></studs-switch>
         <div>
           <studs-checkbox name="checkbox_1" label="Checkbox 1"></studs-checkbox>
           <studs-checkbox name="checkbox_2" label="Checkbox 2"></studs-checkbox>
@@ -53,8 +54,9 @@ export const Form: Story = {
           label="Radio 3"
         ></studs-radio>
       </studs-radio-group>
-        <studs-button type="reset">Reset</studs-button>
-        <studs-button @click=${onSubmit}>Submit</studs-button>
+      <studs-textarea name='textarea' label='Textarea'></studs-textarea>
+      <studs-button type="reset">Reset</studs-button>
+      <studs-button @click=${onSubmit}>Submit</studs-button>
       </form>
     `;
   },

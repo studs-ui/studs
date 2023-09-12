@@ -8,20 +8,17 @@ import style from '@studs/styles/components/inputs.scss?inline';
 
 export interface InputProps extends WithFormInterface {
   type?: 'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file';
-  value?: string;
   inputSize?: 'small' | 'medium' | 'large';
   messageType?: 'error' | 'success' | 'warning';
   helperText?: string[];
   adornmentType?: 'icon' | 'text';
   adornment?: string;
   adornmentPosition?: 'start' | 'end';
-  clear?: () => void;
 }
 
 @customElement('studs-input')
 export class StudsInput extends WithForm(LitElement) {
   @property({ type: String }) type: InputProps['type'] = 'text';
-  @property({ type: String }) value: InputProps['value'] = '';
   @property({ type: String, attribute: 'input-size' })
   inputSize?: InputProps['inputSize'];
   @property({ type: String }) messageType?: InputProps['messageType'];
@@ -77,7 +74,6 @@ export class StudsInput extends WithForm(LitElement) {
           inputComponent: true,
           [`-${this.display}`]: this.display === 'block',
         })}
-        part="studs-input"
       >
         ${this.label
           ? html`<label ?required=${this.required}>${this.label}</label>`
@@ -98,10 +94,10 @@ export class StudsInput extends WithForm(LitElement) {
             type=${this.inputType}
             id=${this.inputId}
             name=${ifDefined(this.name)}
-            value=${ifDefined(this.value)}
+            .value=${ifDefined(this.value)}
             placeholder=${ifDefined(this.placeholder)}
             ?disabled=${this.disabled}
-            @input=${this.handleInput}
+            @input=${this.onChange}
             class=${classMap({
               input: true,
               [this.adornment && this.adornmentPosition
@@ -167,15 +163,5 @@ export class StudsInput extends WithForm(LitElement) {
     if (e.key === 'Enter') {
       this.onSubmit(e as unknown as SubmitEvent);
     }
-  }
-
-  private handleInput(e: Event) {
-    this.value = (e.target as HTMLInputElement).value;
-    this.dispatch(this.value);
-  }
-
-  public clear() {
-    this.value = '';
-    this.dispatch(this.value);
   }
 }

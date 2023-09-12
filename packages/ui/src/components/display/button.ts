@@ -117,13 +117,8 @@ export class StudsButton extends LitElement {
 
   public submit() {
     if (this._internals?.form) {
-      this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
-      if(this._internals.form.onsubmit) {
-        this._internals.form.onsubmit;
-      } else {
-        // this._internals.form.submit();
-      }
-      // this._internals.form.submit();
+      // this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
+      this.dispatchEvent(new SubmitEvent('submit', { bubbles: true, composed: true }));
     }
   }
 

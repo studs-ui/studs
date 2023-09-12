@@ -77,6 +77,14 @@ export const Disabled: Story = {
   },
 };
 
+export const DefaultValue: Story = {
+  args: {
+    type: "text",
+    label: "Default Value",
+    value: "Default Value",
+  },
+}
+
 export const LabelBlock: Story = {
   args: {
     label: "Label Block",
