@@ -56,7 +56,6 @@ export class StudsTable extends LitElement {
       if(this.fixedHeader) {
         table?.classList.add('-sticky-header');
         const thead = table?.querySelector('thead')
-        console.log(thead);
       }
     }
       
