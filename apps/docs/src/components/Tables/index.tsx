@@ -30,7 +30,7 @@ type argsType = {
 const Tables = (props: TablesProps) => {
   const { args = [], headers = [], includesFormProps } = props;
 
-  const newArgs = includesFormProps ? [...FORM_PROPS, ...args] : args;
+  const mergedArgs = includesFormProps ? [...FORM_PROPS, ...args] : args;
 
   const mapColumn = useMemo(
     () => (row: argsType, colName: string) => {
@@ -69,7 +69,7 @@ const Tables = (props: TablesProps) => {
           </tr>
         </thead>
         <tbody>
-          {newArgs.map((row, idx) => (
+          {mergedArgs.map((row, idx) => (
             <tr key={idx}>
               {headers.map((col) => (
                 <td key={col}>{mapColumn(row, col)}</td>
