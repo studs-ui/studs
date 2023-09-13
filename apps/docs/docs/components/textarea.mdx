@@ -77,3 +77,69 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 ></studs-textarea>
   `}
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'value',
+      description: (
+        <>
+          The current value of the textarea, submitted as a name/value pair with
+          form data.
+        </>
+      ),
+      type: 'string',
+      default: "''",
+    },
+    {
+      name: 'rows',
+      description: <>The number of rows to display by default.</>,
+      type: 'number',
+      default: 3,
+    },
+    {
+      name: 'character-counter',
+      description: <>Show the character counter per limit length.</>,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'maxlength',
+      description: (
+        <>The maximum length of textarea that will be considered valid.</>
+      ),
+      type: 'number',
+      default: 100,
+    },
+    {
+      name: 'variant',
+      description: <>The textarea's theme variant.</>,
+      type: "standard' | 'outlined' | 'filled'",
+    },
+    {
+      name: 'size',
+      description: <>The textarea's size.</>,
+      type: "'small' | 'medium' | 'large'",
+    },
+    {
+      name: 'messagetype',
+      description: <>The textarea's helper text theme.</>,
+      type: "'error' | 'success' | 'warning'",
+    },
+    {
+      name: 'helper-text',
+      description: (
+        <>
+          The textarea's error text. This is only enabled with{' '}
+          <code>error</code> is true.
+        </>
+      ),
+      type: 'string[]',
+      default: '[]',
+    },
+  ]}
+></Tables>

@@ -100,3 +100,48 @@ Tabs make it easy to explore and switch between different views.
   </studs-tabs>
   `}
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'selectedindex',
+      description: <>The default value of selected tab by index.</>,
+      type: 'number',
+      default: '0',
+    },
+    {
+      name: 'tabdirection',
+      description: <>The tab's direction is horizontal or vertical.</>,
+      type: "'row' | 'column'",
+    },
+    {
+      name: 'variant',
+      description: <>The tab's variant theme</>,
+      type: "'line' | 'contained'",
+    },
+    {
+      name: 'disabled',
+      description: <>Disables the tab</>,
+      type: 'boolean',
+    },
+  ]}
+></Tables>
+
+## Slots
+
+<Tables
+  headers={['name', 'description']}
+  args={[
+    {
+      name: 'tab',
+      description: <>The tab's label</>,
+    },
+    {
+      name: 'panel',
+      description: <>The tab's content</>,
+    },
+  ]}
+></Tables>
