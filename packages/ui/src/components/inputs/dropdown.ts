@@ -242,7 +242,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             : nothing}
         </div>
 
-        <ul class="popper" role="listbox" aria-activedescendant=${ifDefined(this.type !== 'multi' ? (this.selected as Option).value : JSON.stringify(this.selected))} aria-multiselectable=${this.type === 'multi'} ?aria-required=${this.required}>
+        <ul class="popper" role="listbox" aria-activedescendant=${ifDefined(this.type !== 'multi' ? (this.selected as Option)?.value : JSON.stringify(this.selected))} aria-multiselectable=${this.type === 'multi'} ?aria-required=${this.required}>
           ${this.getOptions()}
           <slot></slot>
           <div id="arrow"></div>

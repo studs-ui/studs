@@ -153,8 +153,11 @@
 
     &[aria-selected="true"] {
       background-color: var(--primary-disabled);
-      > .selected:not(+ .adornment) {
+      > .selected {
         margin-left: auto;
+      }
+      .adornment + .selected {
+        margin-left: 0;
       }
     }
   }
