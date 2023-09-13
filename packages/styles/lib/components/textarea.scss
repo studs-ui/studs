@@ -42,7 +42,11 @@
     border: 1px solid #df4907;
   }
   .error-text {
-    margin: 5px;
+    margin: 0.5em;
     color: #df4907;
+  }
+  .helper-text {
+    margin: 0.5em;
+    color: var(--text);
   }
 }

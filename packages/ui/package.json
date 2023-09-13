@@ -24,6 +24,7 @@
     "test"
   ],
   "scripts": {
+    "vite": "vite",
     "dev": "storybook dev -p 6006",
     "build": "vite build && storybook build",
     "lint": "tsc",
