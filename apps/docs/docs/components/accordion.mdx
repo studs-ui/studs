@@ -4,31 +4,47 @@ sidebar_position: 0
 
 # Accordion
 
-<HeaderComponent htmlTag="studs-accordion" jsxTag="StudsAccordion" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-accordion"
+  jsxTag="StudsAccordion"
+  version="Since 2.0"
+  status="Stable"
+/>
 
 The accordion component allows the user to show and hide sections of related content on a page.
 
 ## Usage
 
-<studs-accordion enable-header="" enable-search="" size="medium" variant="borderless" direction="end">
-  <studs-accordion-item>
-    <div slot="toggle">Accordion One</div>
-    <div>
-      <h3>Content</h3>
-      <p>The cat sat lazily in the sun.</p>
-      <studs-button>Button</studs-button>
-    </div>
-  </studs-accordion-item>
-  <studs-accordion-item><div slot="toggle">Accordion Two</div>
-    The old man sat on the porch, watching the world go by.
-  </studs-accordion-item>
-  <studs-accordion-item><div slot="toggle">Accordion Three</div>
-    The smell of fresh coffee filled the air.
-  </studs-accordion-item>
-  <studs-accordion-item><div slot="toggle">Accordion Four</div>
-    She closed her eyes and took a deep breath, trying to calm herself.
-  </studs-accordion-item>
-</studs-accordion>
+<ResizerFeatures>
+  <studs-accordion
+    enable-header=""
+    enable-search=""
+    size="medium"
+    variant="borderless"
+    direction="end"
+  >
+    <studs-accordion-item>
+      <div slot="toggle">Accordion One</div>
+      <div>
+        <h3>Content</h3>
+        <p>The cat sat lazily in the sun.</p>
+        <studs-button>Button</studs-button>
+      </div>
+    </studs-accordion-item>
+    <studs-accordion-item>
+      <div slot="toggle">Accordion Two</div>
+      The old man sat on the porch, watching the world go by.
+    </studs-accordion-item>
+    <studs-accordion-item>
+      <div slot="toggle">Accordion Three</div>
+      The smell of fresh coffee filled the air.
+    </studs-accordion-item>
+    <studs-accordion-item>
+      <div slot="toggle">Accordion Four</div>
+      She closed her eyes and took a deep breath, trying to calm herself.
+    </studs-accordion-item>
+  </studs-accordion>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
