@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import useOnScreen from '@site/src/hooks/use0nScreen';
 
-const versionDefault = 'Since 2.0';
+const versionDefault = '1.0';
 const statusDefault = 'Stable';
 
 const HeaderComponent = ({ htmlTag, jsxTag, version, status }) => {
