@@ -98,16 +98,16 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: '#',
+                label: 'Simpson Strongtie',
+                href: 'https://www.strongtie.com/',
               },
               {
-                label: 'Discord',
-                href: '#',
+                label: 'Strongtie UX',
+                href: 'https://ux.strongtie.com/',
               },
               {
                 label: 'Twitter',
-                href: '#',
+                href: 'https://twitter.com/strongtie',
               },
             ],
           },
