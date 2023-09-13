@@ -55,18 +55,24 @@
 
     &.-item {
       max-width: 300px; // temporary until designers decide 
-      min-width: 100px; // temporary until designers decide 
+      min-width: 150px; // temporary until designers decide 
       padding: 0.3125rem 1rem;
       display: flex;
       gap: 1rem;
       align-items: center;
       overflow-y: scroll;
+      &:focus-visible {
+        outline-color: var(--primary);
+      }
       input {
         border: none;
         font-size: 1em;
         &:focus-visible {
           outline: none;
         }
+      }
+      > i {
+        margin-left: auto;
       }
     }
 
@@ -92,7 +98,7 @@
     }
   }
 
-  &.-menu {
+  [role="listbox"] {
     width: -webkit-fill-available;
     color: var(--text-color);
     background-color: var(--background-content);
@@ -113,7 +119,7 @@
     }
   }
 
-  &.-option, option {
+  [role="option"] {
     display: flex;
     align-items: center;
     text-align: left;
@@ -122,23 +128,32 @@
     color: inherit;
     font-size: inherit;
     pointer-events: all;
-    background-color: transparent;
-    border: none;
-    border-radius: 0.125rem;
     @supports(width: -webkit-fill-available) {
       width: -webkit-fill-available;
     }
     @supports not (width: -webkit-fill-available) {
       width: 100%;
     }
-
-    &:hover {
+    input {
+      opacity: 0;
+      position: absolute;
+    }
+    label {
+      display: contents;
+    }
+    .adornment {
+      margin-left: auto;
+    }
+    & + input:focus {
+      background-color: var(--disabled);
+    }
+    &:hover, &:focus, &:focus-within {
       background-color: var(--disabled);
     }
 
-    &.-selected {
+    &[aria-selected="true"] {
       background-color: var(--primary-disabled);
-      > i {
+      > .selected:not(+ .adornment) {
         margin-left: auto;
       }
     }
