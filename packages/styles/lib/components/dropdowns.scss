@@ -144,7 +144,7 @@
     .adornment {
       margin-left: auto;
     }
-    & + input:focus {
+    & + input:focus, & + input:focus-visible {
       background-color: var(--disabled);
     }
     &:hover, &:focus, &:focus-within {
