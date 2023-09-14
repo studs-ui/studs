@@ -29,6 +29,7 @@ import { Sliders } from '../partials/_sliders';
 import { Header } from '../partials/_header';
 import { Footer } from '../partials/_footer';
 import { Cards } from '../partials/_cards';
+import { Paginations } from '../partials/_paginations';
 
 @customElement('presentational-page')
 export class PresentationalPage extends LitElement {
@@ -67,6 +68,8 @@ export class PresentationalPage extends LitElement {
         ${Tables}
         <!-- Tabs-->
         ${Tabs}
+        <!-- Paginations -->
+        ${Paginations}
 
         <div slot="tabgroup">Inputs</div>
         <!-- Checkboxes-->
