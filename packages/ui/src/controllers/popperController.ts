@@ -125,6 +125,16 @@ export class PopperController implements ReactiveController {
     this.init();
   }
 
+  public disable() {
+    this.destroy();
+    this.disabled = true;
+  }
+
+  public enable() {
+    this.disabled = false;
+    this.init();
+  }
+
   public showPopper = (e?: MouseEvent | FocusEvent) => {
     this.host.updateComplete.then(() => {    
       this.popper?.setAttribute('aria-hidden', 'false');

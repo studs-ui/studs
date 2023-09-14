@@ -1,12 +1,23 @@
 # Checkbox
 
-<HeaderComponent htmlTag="studs-checkbox" jsxTag="StudsCheckbox" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-checkbox"
+  jsxTag="StudsCheckbox"
+  version="Since 2.0"
+  status="Stable"
+/>
 
 Checkboxes allow the user to toggle an option on or off.
 
 ## Default
 
-<studs-checkbox name="checkbox" value="checkbox" label="Checkbox"></studs-checkbox>
+<ResizerFeatures>
+  <studs-checkbox
+    name="checkbox"
+    value="checkbox"
+    label="Checkbox"
+  ></studs-checkbox>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -17,7 +28,14 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Checked
 
-<studs-checkbox name="checkbox1" value="checkbox1" label="Checkbox" checked=""></studs-checkbox>
+<ResizerFeatures>
+  <studs-checkbox
+    name="checkbox1"
+    value="checkbox1"
+    label="Checkbox"
+    checked=""
+  ></studs-checkbox>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -28,7 +46,14 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Disabled
 
-<studs-checkbox name="checkbox2" value="checkbox2" label="Checkbox" disabled=""></studs-checkbox>
+<ResizerFeatures>
+  <studs-checkbox
+    name="checkbox2"
+    value="checkbox2"
+    label="Checkbox"
+    disabled=""
+  ></studs-checkbox>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -39,7 +64,15 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Checked Disabled
 
-<studs-checkbox name="checkbox3" value="checkbox3" label="Checkbox" checked="" disabled=""></studs-checkbox>
+<ResizerFeatures>
+  <studs-checkbox
+    name="checkbox3"
+    value="checkbox3"
+    label="Checkbox"
+    checked=""
+    disabled=""
+  ></studs-checkbox>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -50,7 +83,14 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Indeterminate
 
-<studs-checkbox name="checkbox4" value="checkbox4" label="Checkbox" indeterminate=""></studs-checkbox>
+<ResizerFeatures>
+  <studs-checkbox
+    name="checkbox4"
+    value="checkbox4"
+    label="Checkbox"
+    indeterminate=""
+  ></studs-checkbox>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -61,9 +101,23 @@ Checkboxes allow the user to toggle an option on or off.
 
 ## Checkbox Group
 
-<studs-checkbox name="group1" value="group1" label="Group Option 1"></studs-checkbox>
-<studs-checkbox name="group2" value="group2" label="Group Option 2"></studs-checkbox>
-<studs-checkbox name="group3" value="group3" label="Group Option 3"></studs-checkbox>
+<ResizerFeatures>
+  <studs-checkbox
+    name="group1"
+    value="group1"
+    label="Group Option 1"
+  ></studs-checkbox>
+  <studs-checkbox
+    name="group2"
+    value="group2"
+    label="Group Option 2"
+  ></studs-checkbox>
+  <studs-checkbox
+    name="group3"
+    value="group3"
+    label="Group Option 3"
+  ></studs-checkbox>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -80,18 +134,58 @@ Checkboxes allow the user to toggle an option on or off.
 
 <Tables
   headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
   args={[
     {
       name: 'name',
       description: (
         <div>
-          A read-only promise that resolves when the component has {" "}
+          A read-only promise that resolves when the component has{' '}
           <a href="https://www.google.com">Google.com!</a>
         </div>
       ),
-      reflects: '',
+      reflects: false,
       type: 'string',
-      default: "''",
+    },
+    {
+      name: 'value',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'string',
+    },
+    {
+      name: 'checked',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'boolean',
+    },
+    {
+      name: 'label',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'string',
+    },
+    {
+      name: 'indeterminate',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'boolean',
+    },
+    {
+      name: 'disabled',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'boolean',
     },
   ]}
 ></Tables>

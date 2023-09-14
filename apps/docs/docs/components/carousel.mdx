@@ -3,3 +3,34 @@
 <HeaderComponent htmlTag="studs-carousel" jsxTag="StudsCarousel" version="Since 2.0" status="Stable" />
 
 Carousels display an arbitrary number of content slides along a horizontal or vertical axis.
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'slides',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: `[
+        {
+          "id": number,
+          "image": string,
+          "alt": string
+        },
+        ...
+      ]`
+    },
+    {
+      name: 'perPage',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "number"
+    },
+  ]}
+></Tables>
