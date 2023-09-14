@@ -201,3 +201,49 @@ export const MultiSelect: Story = {
     ],
   },
 }
+
+export const DropdownWithIcon: Story = {
+  args: {
+    icon: "search",
+    options: [
+      { value: "1", label: "Cat" },
+      { value: "2", label: "Dog" },
+      { value: "3", label: "Rat" },
+      { value: "4", label: "Monkey" },
+    ],
+    selected: {
+      value: "2",
+      label: "Dog",
+    },
+  },
+}
+
+export const OptionsWithIcon: Story = {
+  args: {
+    options: [
+      { value: "1", label: "Cat", icon: "apps" },
+      { value: "2", label: "Dog", icon: "arrow_circle_right" },
+      { value: "3", label: "Rat", icon: "terminal" },
+      { value: "4", label: "Monkey", icon: "123" },
+    ],
+    selected: {
+      value: "2",
+      label: "Dog",
+    },
+  },
+}
+
+export const OptionsWithImage: Story = {
+  args: {
+    options: [
+      { value: "1", label: "Cat", image: "https://picsum.photos/200" },
+      { value: "2", label: "Dog", image: "https://picsum.photos/200" },
+      { value: "3", label: "Rat", image: "https://picsum.photos/200" },
+      { value: "4", label: "Monkey", image: "https://picsum.photos/200" },
+    ],
+    selected: {
+      value: "2",
+      label: "Dog",
+    },
+  },
+}

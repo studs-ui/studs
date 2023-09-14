@@ -1,13 +1,11 @@
-import { LitElement, html, unsafeCSS } from 'lit';
+import style from '@studs/styles/components/textarea.scss?inline';
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
-import style from '@studs/styles/components/textarea.scss?inline';
-import { generateUniqueId } from '../../utils/shared';
 
 export interface TextareaProps extends WithFormInterface {
-  value?: string;
   rows?: number;
   cols?: number;
   characterCounter?: boolean;
@@ -21,8 +19,6 @@ export interface TextareaProps extends WithFormInterface {
 @customElement('studs-textarea')
 export class StudsTextarea extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
-
-  @property({ type: String }) value: TextareaProps['value'] = '';
   @property({ type: Number }) rows: TextareaProps['rows'] = 3;
   @property({ type: Number }) cols: TextareaProps['cols'] = 40;
   @property({ type: Boolean, attribute: 'character-counter' })
@@ -33,13 +29,6 @@ export class StudsTextarea extends WithForm(LitElement) {
   @property({ type: String }) messageType?: TextareaProps['messageType'];
   @property({ type: Array, attribute: 'helper-text' })
   helperText?: TextareaProps['helperText'] = [];
-
-  private textareaId = generateUniqueId('textarea');
-
-  handleInput = (event: Event) => {
-    this.value = (event.target as HTMLTextAreaElement).value;
-    this.dispatch(this.value);
-  };
 
   render() {
     return html`
@@ -59,15 +48,15 @@ export class StudsTextarea extends WithForm(LitElement) {
             >`
           : ''}
         <textarea
-          id="${this.textareaId}"
-          name="${ifDefined(this.name)}"
-          placeholder="${ifDefined(this.placeholder)}"
-          rows="${ifDefined(this.rows)}"
-          cols="${ifDefined(this.cols)}"
-          maxlength="${ifDefined(this.maxLength)}"
-          ?required="${this.required}"
-          ?disabled="${this.disabled}"
-          @input="${this.handleInput}"
+          id=${this.inputId}
+          name=${ifDefined(this.name)}
+          placeholder=${ifDefined(this.placeholder)}
+          rows=${ifDefined(this.rows)}
+          cols=${ifDefined(this.cols)}
+          maxlength=${ifDefined(this.maxLength)}
+          ?required=${this.required}
+          ?disabled=${this.disabled}
+          @input=${this.onChange}
           .value=${this.value}
         ></textarea>
         ${this.characterCounter
@@ -75,17 +64,13 @@ export class StudsTextarea extends WithForm(LitElement) {
               ${this.value?.length ?? 0}/${this.maxLength}
             </div>`
           : ''}
-        ${this.error && this.helperText
+        ${this.helperText
           ? this.helperText.map(
               (text: string, i: number) =>
-                html`<p key=${i} class="error-text">${text}</p>`
+                html`<p key=${i} class="helper-text">${text}</p>`
             )
-          : ''}
+          : nothing}
       </div>
     `;
-  }
-
-  protected createRenderRoot(): Element | ShadowRoot {
-    return this;
   }
 }

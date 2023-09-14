@@ -46,6 +46,15 @@ export const Vertical: Story = {
   },
 };
 
+export const Single: Story = {
+  args: {
+    direction: "horizontal",
+    children: `
+      <studs-resizer-pane fullwidth>Panel One</studs-resizer-pane>
+    `,
+  }
+}
+
 export const TwoPanel: Story = {
   render: () => html`<div style="width: 400px; height: 400px; display: block">
     <studs-resizer direction="horizontal">

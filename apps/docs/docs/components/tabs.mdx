@@ -1,10 +1,17 @@
 # Tabs
 
-<HeaderComponent htmlTag="studs-tabs" jsxTag="StudsTabs" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-tabs"
+  jsxTag="StudsTabs"
+  version="Since 2.0"
+  status="Stable"
+/>
 
 Tabs make it easy to explore and switch between different views.
 
 ## Default
+
+<ResizerFeatures>
 <studs-tabs tabdirection="row">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
@@ -13,7 +20,7 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
-
+</ResizerFeatures>
 <CodeBlocks
   html={`
 <studs-tabs tabdirection="row">
@@ -25,19 +32,22 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12670%3A148510&mode=dev"
 />
 
 
 ## Disabled
 
+<ResizerFeatures>
 <studs-tabs tabdirection="row">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
     <button slot="tab">Tab 2</button>
     <section slot="panel">Content for tab 2</section>
-    <button slot="tab" disabled="">Tab 3</button>
+    <button slot="tab" disabled>Tab 3</button>
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -50,12 +60,14 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
 </studs-tabs>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12670%3A148510&mode=dev"
 />
 
 
 ## Contained
 
-<studs-tabs tabdirection="row" variant="contained">
+<ResizerFeatures>
+  <studs-tabs tabdirection="row">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
     <button slot="tab">Tab 2</button>
@@ -63,6 +75,61 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-tabs tabdirection="row">
+    <button slot="tab">Tab 1</button>
+    <section slot="panel">Content for tab 1</section>
+    <button slot="tab">Tab 2</button>
+    <section slot="panel">Content for tab 2</section>
+    <button slot="tab">Tab 3</button>
+    <section slot="panel">Content for tab 3</section>
+</studs-tabs>
+  `}
+/>
+
+## Disabled
+
+<ResizerFeatures>
+  <studs-tabs tabdirection="row">
+    <button slot="tab">Tab 1</button>
+    <section slot="panel">Content for tab 1</section>
+    <button slot="tab">Tab 2</button>
+    <section slot="panel">Content for tab 2</section>
+    <button slot="tab" disabled="">
+      Tab 3
+    </button>
+    <section slot="panel">Content for tab 3</section>
+  </studs-tabs>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-tabs tabdirection="row">
+    <button slot="tab">Tab 1</button>
+    <section slot="panel">Content for tab 1</section>
+    <button slot="tab">Tab 2</button>
+    <section slot="panel">Content for tab 2</section>
+    <button slot="tab" disabled="">Tab 3</button>
+    <section slot="panel">Content for tab 3</section>
+</studs-tabs>
+  `}
+/>
+
+## Contained
+
+<ResizerFeatures>
+  <studs-tabs tabdirection="row" variant="contained">
+    <button slot="tab">Tab 1</button>
+    <section slot="panel">Content for tab 1</section>
+    <button slot="tab">Tab 2</button>
+    <section slot="panel">Content for tab 2</section>
+    <button slot="tab">Tab 3</button>
+    <section slot="panel">Content for tab 3</section>
+  </studs-tabs>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -75,11 +142,13 @@ Tabs make it easy to explore and switch between different views.
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12670%3A148510&mode=dev"
 />
 
 ## Direction
 
-<studs-tabs tabdirection="column">
+<ResizerFeatures>
+  <studs-tabs tabdirection="column">
     <button slot="tab">Tab 1</button>
     <section slot="panel">Content for tab 1</section>
     <button slot="tab">Tab 2</button>
@@ -87,16 +156,18 @@ Tabs make it easy to explore and switch between different views.
     <button slot="tab">Tab 3</button>
     <section slot="panel">Content for tab 3</section>
   </studs-tabs>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
-<studs-tabs tabdirection="column">
-    <button slot="tab">Tab 1</button>
-    <section slot="panel">Content for tab 1</section>
-    <button slot="tab">Tab 2</button>
-    <section slot="panel">Content for tab 2</section>
-    <button slot="tab">Tab 3</button>
-    <section slot="panel">Content for tab 3</section>
-  </studs-tabs>
+  <studs-tabs tabdirection="column">
+      <button slot="tab">Tab 1</button>
+      <section slot="panel">Content for tab 1</section>
+      <button slot="tab">Tab 2</button>
+      <section slot="panel">Content for tab 2</section>
+      <button slot="tab">Tab 3</button>
+      <section slot="panel">Content for tab 3</section>
+    </studs-tabs>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12670%3A148510&mode=dev"
 />

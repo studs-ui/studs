@@ -76,11 +76,11 @@ export class StudsChip extends LitElement {
     `;
   }
 
-  onDelete() {
-    const event = new CustomEvent('delete', {
-      bubbles: true,
-      composed: true,
-    });
-    this.dispatchEvent(event);
+  onDelete(event: MouseEvent) {
+    event.stopPropagation();
+    this.dispatchEvent(new CustomEvent('delete', {
+      bubbles: false,
+      composed: false,
+    }));
   }
 }

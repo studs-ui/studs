@@ -1,6 +1,6 @@
 import React from 'react';
+import { StudsTabs, StudsResizer, StudsResizerPane } from '@studs/ui';
 import { StudsChip } from '@studs/ui';
-import { StudsTabs } from '@studs/ui';
 import { StudsTable } from '@studs/ui';
 
 declare global {
@@ -17,6 +17,14 @@ declare global {
       'studs-table': React.DetailedHTMLProps<
         React.HTMLAttributes<StudsTable>,
         StudsTable
+      >;
+      'studs-resizer': React.DetailedHTMLProps<
+        React.HTMLAttributes<StudsResizer>,
+        StudsResizer
+      >;
+      'studs-resizer-pane': React.DetailedHTMLProps<
+        React.HTMLAttributes<StudsResizerPane>,
+        StudsResizerPane
       >;
     }
   }

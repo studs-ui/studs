@@ -8,7 +8,7 @@ import { PopperController } from '../../controllers/popperController';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
 import { choose } from 'lit/directives/choose.js';
-import inputStyles from "@studs/styles/components/checkbox.scss?inline"
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 export interface DropdownProps extends WithFormInterface, WithPopperInterface {
   icon?: Icon;
@@ -67,7 +67,6 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     unsafeCSS(style),
     IconController.styles,
     PopperController.styles,
-    unsafeCSS(inputStyles),
   ];
 
   private iconController = new IconController();
@@ -118,38 +117,39 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
+  private renderAdornment(option: Option) {
+    if(option.image) {
+      return html`<studs-image src=${option.image}></studs-image>`
+    } else if (option.icon) {
+      return html`<span class="adornment">${this.iconController.icon(option.icon)}</span>`
+    } else {
+      return nothing;
+    }
+  }
+
   private getOptionTemplate(option: Option) {
     return choose (this.type, [
       ['multi', () => {
         const selected = (this.selected as Option[]).some((selectedOption: Option) => selectedOption.value === option.value);
         return html`
-          <li class=${classMap({
-            dropdown: true,
-            '-option': true,
-            '-selected': selected,
-          })}
+          <li 
           @click=${(event: MouseEvent) => this.onMultiChange(event, option)}
+          role='option'
+          aria-selected=${selected}
           >
-            <studs-checkbox label=${option.label} .checked=${selected}></studs-checkbox>
+            <studs-checkbox name=${this.name} label=${option.label} .checked=${selected}></studs-checkbox>
+            ${this.renderAdornment(option)}
           </li>
         `
       }],
     ], () => html`
-        <li>
-            <button
-              class=${classMap({
-                dropdown: true,
-                '-option': true,
-                '-selected':
-                  option.value === (this.selected as Option)?.value,
-              })}
-              @click=${() => this.onSingleChange(option)}
-            >
-              ${option.label}
+        <li @click=${(event: MouseEvent) => this.onSingleChange(event, option)} role='option' aria-selected=${option.value === (this.selected as Option)?.value}>
+            <input type="radio" id=${option.value} name=${this.name} value=${option.value} .checked=${option.value}>
+            <label for=${option.value}>${option.label}</label>
+              ${this.renderAdornment(option)}
               ${(this.selected as Option)?.value === option.value
-                ? this.iconController.icon('check')
+                ? html`<span class="selected">${this.iconController.icon('check')}</span>`
                 : null}
-            </button>
         </li>`);
     } 
   
@@ -189,6 +189,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
           ><input
             type="search"
             placeholder=${this.placeholder}
+            @click=${this.onSearchClick}
             .value=${this._query || this.getSelected || ''}
             @input=${(e: any) => {
               this._query = e.target.value;
@@ -240,7 +241,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             : nothing}
         </div>
 
-        <ul class="dropdown -menu popper" role="menu">
+        <ul class="popper" role="listbox" aria-activedescendant=${ifDefined(this.type !== 'multi' ? (this.selected as Option)?.value : JSON.stringify(this.selected))} aria-multiselectable=${this.type === 'multi'} ?aria-required=${this.required}>
           ${this.getOptions()}
           <slot></slot>
           <div id="arrow"></div>
@@ -249,13 +250,17 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     </div>`;
   }
 
-  private onSingleChange(option: Option) {
+  private onSearchClick() {
+    this.popperController?.showPopper();
+  }
+
+  private onSingleChange(event: MouseEvent | PointerEvent, option: Option) {
     this.selected = option;
     if(this.type === "search") this._query = undefined;
     this.dispatch(option);
-    this.popperController?.hidePopper();
-    if (this._internals?.form) {
-      this._internals.setFormValue(option.value);
+    if((event as PointerEvent).pointerId !== -1) this.popperController?.hidePopper();
+    if (this.form) {
+      this.setFormValue(option.value);
     }
   }
 
@@ -283,22 +288,22 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     this._query = '';
     this.requestUpdate();
     this.dispatch(this.selected);
-    if (this._internals?.form) {
-      this._internals.setFormValue(JSON.stringify(this.selected));
+    if (this.form) {
+      this.setFormValue(JSON.stringify(this.selected));
     }
   }
 
-  private onSelectedDelete(option: Option) {
+  private onSelectedDelete = (option: Option) => {
     const selected = this.selected as Option[];
     const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option?.value);
     selected.splice(index, 1);
     this.selected = selected;
     this.requestUpdate();
     this.dispatch(this.selected);
-    if (this._internals?.form) {
-      this._internals.setFormValue(JSON.stringify(this.selected));
+    if (this.form) {
+      this.setFormValue(JSON.stringify(this.selected));
     }
-    this.popperController?.hidePopper();
+    // this.popperController?.showPopper();
   }
 
   private onActionButtonClick() {
