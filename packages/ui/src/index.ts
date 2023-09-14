@@ -36,6 +36,7 @@ import { StudsSpinner } from './components/display/spinner';
 import { StudsBreadcrumbs } from './components/display/breadcrumbs';
 import { StudsCoachMark } from './components/overlays/coachmark';
 import { StudsImage } from './components/display/image';
+import { StudsPagination } from './components/display/pagination';
 
 // Export Components
 export {
@@ -74,6 +75,7 @@ export {
   StudsBreadcrumbs,
   StudsCoachMark,
   StudsImage,
+  StudsPagination,
 };
 
 declare global {
@@ -113,6 +115,7 @@ declare global {
     'studs-breadcrumbs': StudsBreadcrumbs;
     'studs-coachmark': StudsCoachMark;
     'studs-image': StudsImage;
+    'studs-pagination': StudsPagination;
   }
 }
 
