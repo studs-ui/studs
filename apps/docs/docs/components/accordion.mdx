@@ -69,3 +69,77 @@ The accordion component allows the user to show and hide sections of related con
 </studs-accordion>
   `}
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'enable-header',
+      description: (
+        <div>
+          Enable the header
+        </div>
+      ),
+      reflects: false,
+      type: 'boolean',
+      default: "true",
+    },
+    {
+      name: 'enable-search',
+      description: (
+        <div>
+          Enable the search
+        </div>
+      ),
+      reflects: false,
+      type: 'boolean',
+      default: "true",
+    },
+    {
+      name: 'size',
+      description: (
+        <div>
+          Size of the accordion
+        </div>
+      ),
+      reflects: false,
+      type: "'small' | 'medium' | 'large'",
+      default: "medium",
+    },
+    {
+      name: 'variant',
+      description: (
+        <div>
+          Variant of the accordion
+        </div>
+      ),
+      reflects: false,
+      type: "'border' | 'borderless'",
+      default: "borderless",
+    },
+    {
+      name: 'direction',
+      description: (
+        <div>
+          Direction of the accordion
+        </div>
+      ),
+      reflects: false,
+      type: "'start' | 'end'",
+      default: "end",
+    },
+    {
+      name: 'disabled',
+      description: (
+        <div>
+          Disable the accordion
+        </div>
+      ),
+      reflects: false,
+      type: "boolean",
+      default: "false",
+    },
+  ]}
+></Tables>
