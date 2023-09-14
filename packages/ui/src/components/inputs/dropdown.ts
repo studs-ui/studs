@@ -8,7 +8,6 @@ import { PopperController } from '../../controllers/popperController';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
 import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
 import { choose } from 'lit/directives/choose.js';
-import inputStyles from "@studs/styles/components/checkbox.scss?inline"
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 export interface DropdownProps extends WithFormInterface, WithPopperInterface {
@@ -68,7 +67,6 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     unsafeCSS(style),
     IconController.styles,
     PopperController.styles,
-    unsafeCSS(inputStyles),
   ];
 
   private iconController = new IconController();
@@ -191,6 +189,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
           ><input
             type="search"
             placeholder=${this.placeholder}
+            @click=${this.onSearchClick}
             .value=${this._query || this.getSelected || ''}
             @input=${(e: any) => {
               this._query = e.target.value;
@@ -251,6 +250,10 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     </div>`;
   }
 
+  private onSearchClick() {
+    this.popperController?.showPopper();
+  }
+
   private onSingleChange(event: MouseEvent | PointerEvent, option: Option) {
     this.selected = option;
     if(this.type === "search") this._query = undefined;
@@ -290,7 +293,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
-  private onSelectedDelete(option: Option) {
+  private onSelectedDelete = (option: Option) => {
     const selected = this.selected as Option[];
     const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option?.value);
     selected.splice(index, 1);
@@ -300,7 +303,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     if (this.form) {
       this.setFormValue(JSON.stringify(this.selected));
     }
-    this.popperController?.hidePopper();
+    // this.popperController?.showPopper();
   }
 
   private onActionButtonClick() {

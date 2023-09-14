@@ -6,6 +6,41 @@
 //   width: 100%;
 // }
 
+@mixin searchInput() {
+  [type="search"] {
+    padding-right: 0;
+
+    // &::-webkit-search-cancel-button {
+    //   -webkit-appearance: searchfield;
+    // }
+
+    /* we really need to replace this clear icon
+       with something that we have control over.
+                        --Jp
+    */
+
+    &::-webkit-search-cancel-button {
+      -webkit-appearance: none;
+      height: 0.9em;
+      width: 0.9em;
+      border-radius: 50em;
+      background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)
+                  no-repeat 50% 50%;
+      background-size: contain;
+      opacity: 0;
+      position: relative;
+      pointer-events: none;
+      transition: all var(--transition-m);
+    }
+
+    &:focus::-webkit-search-cancel-button {
+      cursor: pointer;
+      opacity: 0.3;
+      pointer-events: all;
+    }
+  }
+}
+
 .inputComponent {
   --border: var(--border-color);
   --outline: var(--primary);
@@ -96,38 +131,7 @@
     }
 
 
-    [type="search"] {
-      padding-right: 0;
-
-      // &::-webkit-search-cancel-button {
-      //   -webkit-appearance: searchfield;
-      // }
-
-      /* we really need to replace this clear icon
-         with something that we have control over.
-                          --Jp
-      */
-
-      &::-webkit-search-cancel-button {
-        -webkit-appearance: none;
-        height: 0.9em;
-        width: 0.9em;
-        border-radius: 50em;
-        background: url(https://pro.fontawesome.com/releases/v5.10.0/svgs/solid/times-circle.svg)
-                    no-repeat 50% 50%;
-        background-size: contain;
-        opacity: 0;
-        position: relative;
-        pointer-events: none;
-        transition: all var(--transition-m);
-      }
-
-      &:focus::-webkit-search-cancel-button {
-        cursor: pointer;
-        opacity: 0.3;
-        pointer-events: all;
-      }
-    }
+    @include searchInput;
 
     /*
     [type="text"] {}
