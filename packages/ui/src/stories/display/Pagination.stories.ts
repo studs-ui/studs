@@ -25,10 +25,9 @@ const meta = {
             }
         },
         itemsPerPage: {
-            control: {
-                type: 'number',
-                default: 10
-            }
+            control: { type: "select" },
+            options: [10, 25, 50, 100],
+            defaultValue: 10,
         },
         hasJumper: {
             control: {
@@ -63,7 +62,8 @@ type Story = StoryObj<PaginationProps>;
 export const Default: Story = {
     args: {
         currentPage: 1,
-        totalItems: 1500
+        totalItems: 1500,
+        itemsPerPage: 10,
     },
 };
 
