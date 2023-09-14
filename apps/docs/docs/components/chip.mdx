@@ -1,12 +1,19 @@
 # Chip
 
-<HeaderComponent htmlTag="studs-chip" jsxTag="StudsChip" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-chip"
+  jsxTag="StudsChip"
+  version="Since 2.0"
+  status="Stable"
+/>
 
 Chips are compact elements that represent an input, attribute, or action.
 
 ## Default
 
-<studs-chip>Default</studs-chip>
+<ResizerFeatures>
+  <studs-chip>Default</studs-chip>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -17,7 +24,11 @@ Chips are compact elements that represent an input, attribute, or action.
 
 ## Primary
 
-<studs-chip variant="primary" deletable="">Primary</studs-chip>
+<ResizerFeatures>
+  <studs-chip variant="primary" deletable="">
+    Primary
+  </studs-chip>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -29,12 +40,19 @@ Chips are compact elements that represent an input, attribute, or action.
 ## Chip Avatar
 
 ```html
+
 ```
 
 ## Chip Letter
 
-<studs-chip clickable=""><div slot="accessory" class="letter">A</div>
-      Letter</studs-chip>
+<ResizerFeatures>
+  <studs-chip clickable="">
+    <div slot="accessory" class="letter">
+      A
+    </div>
+    Letter
+  </studs-chip>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -54,3 +72,85 @@ Chips are compact elements that represent an input, attribute, or action.
   `}
   figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=11883%3A102222&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'children',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string",
+    },
+    {
+      name: 'deletable',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+    {
+      name: 'variant',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'primary' | 'secondary'"
+    },
+    {
+      name: 'icon',
+      description: (
+        <>Define display icon (class) of the button component using html svg or font icon</>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'size',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'small' | 'medium' | 'large'",
+      default: "medium",
+    },
+    {
+      name: 'contentDirection',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'horizontal' | 'vertical'"
+    },
+    {
+      name: 'disabled',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+    {
+      name: 'selected',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+    {
+      name: 'clickable',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+  ]}
+></Tables>

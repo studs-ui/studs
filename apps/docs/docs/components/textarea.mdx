@@ -1,12 +1,19 @@
 # Textarea
 
-<HeaderComponent htmlTag="studs-textarea" jsxTag="StudsTextarea" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-textarea"
+  jsxTag="StudsTextarea"
+  version="Since 2.0"
+  status="Stable"
+/>
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Default
 
-<studs-textarea></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -17,7 +24,9 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Standard
 
-<studs-textarea label="Standard Textarea" variant="standard"></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea label="Standard Textarea" variant="standard"></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -28,7 +37,9 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Outlined
 
-<studs-textarea label="Outlined Textarea" variant="outlined"></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea label="Outlined Textarea" variant="outlined"></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -39,7 +50,9 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Filled
 
-<studs-textarea label="Filled Textarea" variant="filled"></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea label="Filled Textarea" variant="filled"></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -50,7 +63,9 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Disabled
 
-<studs-textarea disabled=""></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea disabled=""></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -61,7 +76,9 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Error Message
 
-<studs-textarea label="Label" error="" messagetype="error"></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea label="Label" error="" messagetype="error"></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -72,7 +89,13 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## With Character Counter
 
-<studs-textarea maxlength="100" label="Textarea with Character Counter" character-counter></studs-textarea>
+<ResizerFeatures>
+  <studs-textarea
+    maxlength="100"
+    label="Textarea with Character Counter"
+    character-counter
+  ></studs-textarea>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`

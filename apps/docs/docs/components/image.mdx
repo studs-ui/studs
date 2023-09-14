@@ -1,12 +1,22 @@
 # Image
 
-<HeaderComponent htmlTag="studs-image" jsxTag="StudsImage" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-image"
+  jsxTag="StudsImage"
+  version="Since 2.0"
+  status="Stable"
+/>
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
 
 ## Image
 
-<studs-image src="https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg" alt="A picture of a box."></studs-image>
+<ResizerFeatures>
+  <studs-image
+    src="https://ssttoolbox.widen.net/content/whccz2ba5x/jpeg/homepage-hero-at3g.jpeg"
+    alt="A picture of a box."
+  ></studs-image>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -17,3 +27,27 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   `}
   figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10120%3A75849&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'src',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'alt',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+  ]}
+></Tables>
