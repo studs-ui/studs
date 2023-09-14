@@ -50,11 +50,43 @@ Cards can be used to group related subjects in a container.
 
 <CodeBlocks
   html={`
-<studs-card imageurl="https://via.placeholder.com/200x200" 
-    alttext="placeholder 
+<studs-card imageurl="https://via.placeholder.com/200x200"
+    alttext="placeholder
     image" title="Title">
     <div slot="main">This is my custom body content.</div>
     <div slot="footer">Footer</div>
 </studs-card>
   `}
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'imageUrl',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'altText',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'title',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+  ]}
+></Tables>

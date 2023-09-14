@@ -214,3 +214,51 @@ Buttons represent actions that are available to the user.
 <studs-button onclick="alert('clicked')" size="small">Button</studs-button>
   `}
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'buttonType',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'primary' | 'secondary' | 'cta' | 'tertiary' | 'link' | 'floating' | 'icon'"
+    },
+    {
+      name: 'children',
+      description: (
+        <></>
+      ),
+      reflects: false,
+    },
+    {
+      name: 'size',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'small' | 'medium' | 'large'",
+      default: "medium",
+    },
+    {
+      name: 'contentDirection',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'horizontal' | 'vertical'",
+    },
+    {
+      name: 'icon',
+      description: (
+        <>Define display icon (class) of the button component using html svg or font icon</>
+      ),
+      reflects: false,
+      type: "string",
+    },
+  ]}
+></Tables>

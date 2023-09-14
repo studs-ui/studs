@@ -128,18 +128,62 @@ Checkboxes allow the user to toggle an option on or off.
 
 <Tables
   headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
   args={[
     {
       name: 'name',
       description: (
+<<<<<<< HEAD
         <div>
           A read-only promise that resolves when the component has{' '}
           <a href="https://www.google.com">Google.com!</a>
         </div>
+=======
+       <></>
+>>>>>>> 6267bc9 (added Properties table from Accordion to Image page)
       ),
-      reflects: '',
+      reflects: false,
       type: 'string',
-      default: "''",
+    },
+    {
+      name: 'value',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'string',
+    },
+    {
+      name: 'checked',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'boolean',
+    },
+    {
+      name: 'label',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'string',
+    },
+    {
+      name: 'indeterminate',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'boolean',
+    },
+    {
+      name: 'disabled',
+      description: (
+       <></>
+      ),
+      reflects: false,
+      type: 'boolean',
     },
   ]}
 ></Tables>
