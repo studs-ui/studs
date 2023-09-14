@@ -7,6 +7,7 @@ import {
 } from 'lit';
 import { customElement, property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { ResponsiveController } from '../../controllers/responsiveController';
 import './button';
 import '../inputs/input';
 import '../inputs/dropdown';
@@ -70,17 +71,19 @@ export class StudsPagination extends LitElement {
 
   @state() private pages: Array<number | string> = [];
 
+  protected mediaQuery = new ResponsiveController(this);
+
   connectedCallback() {
     super.connectedCallback();
 
     setTimeout(() => {
-      window?.addEventListener('resize', () => this._paginate());
+      this.getRootNode()?.addEventListener('resize', () => this._paginate());
     });
   }
 
   disconnectedCallback() {
     super.disconnectedCallback();
-    window?.removeEventListener('resize', this._paginate);
+    this.getRootNode()?.removeEventListener('resize', this._paginate);
   }
 
   updated(changedProperties: PropertyValues<this>) {
@@ -208,7 +211,7 @@ export class StudsPagination extends LitElement {
           ?disabled=${this.currentPage === 1}
         ></studs-button>
         <ul class="page-list">
-          ${window.innerWidth < 768
+          ${this.mediaQuery.isMobile
             ? html`${this._renderSinglePage(this.currentPage)}`
             : this.pages.map((page) => html`${this._renderSinglePage(page)}`)}
         </ul>

@@ -6,12 +6,6 @@
   gap: 0.875rem;
 }
 
-.pagination * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .page-container {
   display: flex;
   align-items: center;
@@ -23,6 +17,9 @@
   list-style: none;
   user-select: none;
   gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .dots {
