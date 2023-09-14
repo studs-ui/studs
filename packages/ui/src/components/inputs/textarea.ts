@@ -1,5 +1,5 @@
 import style from '@studs/styles/components/textarea.scss?inline';
-import { LitElement, html, unsafeCSS } from 'lit';
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -64,12 +64,12 @@ export class StudsTextarea extends WithForm(LitElement) {
               ${this.value?.length ?? 0}/${this.maxLength}
             </div>`
           : ''}
-        ${this.error && this.helperText
+        ${this.helperText
           ? this.helperText.map(
               (text: string, i: number) =>
-                html`<p key=${i} class="error-text">${text}</p>`
+                html`<p key=${i} class="helper-text">${text}</p>`
             )
-          : ''}
+          : nothing}
       </div>
     `;
   }
