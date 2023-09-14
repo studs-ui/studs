@@ -1,3 +1,4 @@
+import style from '@studs/styles/components/resizerPane.scss?inline';
 import {
   LitElement,
   PropertyValueMap,
@@ -14,14 +15,14 @@ import {
 } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { styleMap } from 'lit/directives/style-map.js';
-import style from '@studs/styles/components/resizerPane.scss?inline';
-import { getDocumentElement, getParentNode } from '../../utils/shared';
 
 export interface StudsResizerPaneProps {
   direction?: 'horizontal' | 'vertical' | string;
   size?: number;
   min?: number;
   max?: number;
+  single: boolean;
+  disabled?: boolean;
   children?: TemplateResult | HTMLElement | string;
 }
 
@@ -31,6 +32,7 @@ export class StudsResizerPane extends LitElement {
   @property({ type: Number }) size?: StudsResizerPaneProps['size'];
   @property({ type: Number }) min: StudsResizerPaneProps['min'] = 50;
   @property({ type: Number }) max: StudsResizerPaneProps['max'];
+  @property({type: Boolean}) disabled: StudsResizerPaneProps['disabled'] = false;
 
   static styles = unsafeCSS(style);
 
@@ -38,24 +40,28 @@ export class StudsResizerPane extends LitElement {
   @queryAssignedElements({ slot: 'header' }) header!: HTMLCollection[];
   @queryAssignedElements({ slot: 'content' }) content!: HTMLCollection[];
 
+  get axis(): { direction: 'width' | 'height'; client: 'clientX' | 'clientY' } {
+    if(this.direction === 'vertical') {
+      return {
+        direction: 'height',
+        client: 'clientY',
+      }
+    }
+    return {
+      direction: 'width',
+      client: 'clientX',
+    }
+  }
+
   protected firstUpdated(
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     super.firstUpdated(_changedProperties);
-    if (this.direction === 'horizontal') {
-      if (!this.size && !this.classList.contains('-last')) {
-        this.size = this.pane.getBoundingClientRect().width;
-      }
-      if (!this.max) {
-        this.max = this.parentElement?.getBoundingClientRect().width;
-      }
-    } else if (this.direction === 'vertical') {
-      if (!this.size && !this.classList.contains('-last')) {
-        this.size = this.pane.getBoundingClientRect().height;
-      }
-      if (!this.max) {
-        this.max = this.parentElement?.getBoundingClientRect().height;
-      }
+    if (!this.size && !this.disabled) {
+      this.size = this.pane.getBoundingClientRect()[this.axis.direction];
+    }
+    if (!this.max) {
+      this.max = this.parentElement?.getBoundingClientRect()[this.axis.direction];
     }
   }
 
@@ -68,12 +74,11 @@ export class StudsResizerPane extends LitElement {
           [`-${this.direction}`]: true,
           '-resizing': this._pressed,
         })}
-        @mouseleave=${this.onMouseLeave}
         style=${styleMap({
           [this.direction === 'horizontal' ? 'width' : 'height']:
             this.size + 'px',
         })}
-        ?disabled=${this.classList.contains('-last')}
+        ?disabled=${this.disabled}
       >
         <slot
           name="header"
@@ -105,39 +110,19 @@ export class StudsResizerPane extends LitElement {
 
   private onMouseMoveDown(e: MouseEvent) {
     this._pressed = true;
+    this._position = e[this.axis.client];
+    this._initialSize = (e.target as HTMLElement)?.closest('.pane')?.getBoundingClientRect()[this.axis.direction] || this.size || 0;
     this.requestUpdate();
-    if (this.direction === 'horizontal') {
-      this._position = e.clientX;
-      this._initialSize =
-        (e.target as HTMLElement)?.closest('.pane')?.getBoundingClientRect()
-          .width ||
-        this.size ||
-        0;
-      this.requestUpdate();
-    } else {
-      this._position = e.clientY;
-      this._initialSize =
-        (e.target as HTMLElement)?.closest('.pane')?.getBoundingClientRect()
-          .height ||
-        this.size ||
-        0;
-      this.requestUpdate();
-    }
-
-    getDocumentElement(this)?.addEventListener('mousemove', this.onMouseMove);
-    getDocumentElement(this)?.addEventListener('mouseup', this.onMouseMoveUp);
+    (this.getRootNode() as Document)?.addEventListener('mousemove', this.onMouseMove);
+    (this.getRootNode() as Document)?.addEventListener('mouseup', this.onMouseMoveUp);
   }
+
   private _delta: number = 0;
   private onMouseMove = (e: MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
-
     if (this._pressed) {
-      if (this.direction === 'horizontal') {
-        this._delta = e.clientX - this._position;
-      } else if (this.direction === 'vertical') {
-        this._delta = e.clientY - this._position;
-      }
+      this._delta = e[this.axis.client] - this._position;
 
       let newSize = this._initialSize + this._delta;
       if (this.min && newSize <= this.min) {
@@ -146,8 +131,10 @@ export class StudsResizerPane extends LitElement {
       if (this.max && newSize >= this.max) {
         this.size = this.max;
       }
+
       this.size = newSize;
       this.requestUpdate();
+
       this.dispatchEvent(
         new CustomEvent('resize', {
           detail: {
@@ -164,19 +151,14 @@ export class StudsResizerPane extends LitElement {
     this._position = 0;
     this.requestUpdate();
 
-    getDocumentElement(this)?.removeEventListener(
+    (this.getRootNode() as Document)?.removeEventListener(
       'mousemove',
       this.onMouseMove
     );
-    getDocumentElement(this)?.removeEventListener(
+    (this.getRootNode() as Document)?.removeEventListener(
       'mouseup',
       this.onMouseMoveUp
     );
   };
 
-  private onMouseLeave() {
-    if (this._pressed) {
-      this.onMouseMoveUp();
-    }
-  }
 }

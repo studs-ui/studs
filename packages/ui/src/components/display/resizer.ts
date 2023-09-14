@@ -55,9 +55,9 @@ export class StudsResizer extends LitElement {
 
   registerResizerPanes() {
     this.panes.forEach((pane, index) => {
-      if (index === this.panes.length - 1) {
-        pane.classList.add('-last');
-      }
+      if (this.panes.length > 1 && index === this.panes.length - 1) {
+        (pane as StudsResizerPane).disabled = true;
+      } 
     });
   }
 }

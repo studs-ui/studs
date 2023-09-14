@@ -60,12 +60,19 @@ export class StudsButton extends LitElement {
       this._internals = this.attachInternals();
       this.addEventListener('click', this.submit);
     }
+    if(this.type === 'reset') {
+      this._internals = this.attachInternals();
+      this.addEventListener('click', this.reset);
+    }
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
     if (this.type === 'submit') {
       this.removeEventListener('click', this.submit);
+    }
+    if(this.type === 'reset') {
+      this.removeEventListener('click', this.reset);
     }
   }
 
@@ -110,8 +117,12 @@ export class StudsButton extends LitElement {
 
   public submit() {
     if (this._internals?.form) {
-      this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
-      this._internals.form.submit();
+      // this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
+      this.dispatchEvent(new SubmitEvent('submit', { bubbles: true, composed: true }));
     }
+  }
+
+  public reset() {
+    if(this._internals?.form) this._internals.form.reset();
   }
 }
