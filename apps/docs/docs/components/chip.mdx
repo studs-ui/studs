@@ -19,6 +19,7 @@ Chips are compact elements that represent an input, attribute, or action.
   html={`
 <studs-chip>Default</studs-chip>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=11883%3A102222&mode=dev"
 />
 
 ## Primary
@@ -33,6 +34,7 @@ Chips are compact elements that represent an input, attribute, or action.
   html={`
 <studs-chip variant="primary" deletable="">Primary</studs-chip>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=11883%3A102222&mode=dev"
 />
 
 ## Chip Avatar
@@ -57,6 +59,7 @@ Chips are compact elements that represent an input, attribute, or action.
 <studs-chip clickable=""><div slot="accessory" class="letter">A</div>
       Letter</studs-chip>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=11883%3A102222&mode=dev"
 />
 
 ## Chip Size
@@ -67,4 +70,87 @@ Chips are compact elements that represent an input, attribute, or action.
   html={`
 <studs-chip size="large" clickable selected>Large</studs-chip>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=11883%3A102222&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'children',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string",
+    },
+    {
+      name: 'deletable',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+    {
+      name: 'variant',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'primary' | 'secondary'"
+    },
+    {
+      name: 'icon',
+      description: (
+        <>Define display icon (class) of the button component using html svg or font icon</>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'size',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'small' | 'medium' | 'large'",
+      default: "medium",
+    },
+    {
+      name: 'contentDirection',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'horizontal' | 'vertical'"
+    },
+    {
+      name: 'disabled',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+    {
+      name: 'selected',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+    {
+      name: 'clickable',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+  ]}
+></Tables>

@@ -1,5 +1,6 @@
 @use '../utilities' as *;
-@use '../components/inputs.scss' as *;
+@use './inputs.scss' as *;
+@use './table.scss' as *;
 
 @mixin gridOperatorsOverlay {
   height: auto;
@@ -116,4 +117,9 @@
     padding: 10px;
   }
 
+  @include table()
+}
+
+.grid {
+    @include grid;
 }

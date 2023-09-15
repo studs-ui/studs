@@ -155,7 +155,6 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
           break;
         }
         default: {
-          console.log(this.tagName.toLowerCase(), this.value)
           this.setFormValue('')
           this.value = '';
           break;

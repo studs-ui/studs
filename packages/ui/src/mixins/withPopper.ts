@@ -2,7 +2,7 @@ import { Placement } from '@floating-ui/dom';
 import { LitElement, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 import { PopperController } from '../controllers/popperController';
-import { getDocumentElement, getParentNode } from '../utils/shared';
+import { getParentNode } from '../utils/shared';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
@@ -38,7 +38,7 @@ export const WithPopper = <T extends Constructor<LitElement>>(
       if (this.query) {
         this.element =
           (this.renderRoot.querySelector(this.query) as HTMLElement) ||
-          (getDocumentElement(this).querySelector(this.query) as HTMLElement);
+          (this.getRootNode() as Document).querySelector(this.query) as HTMLElement;
         this.requestUpdate();
       }
     }
