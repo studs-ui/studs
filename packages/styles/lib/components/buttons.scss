@@ -143,11 +143,27 @@
     }
   }
 
-  // Needs Styles
   &.-image {
+    --imageSize: 1rem;
+
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+    gap: .5em;
+    padding: 0.5em;
+
+    &.-small  { --imageSize: 0.75rem }
+    &.-medium { --imageSize: 1rem }
+    &.-large  { --imageSize: 2rem }
+
+    ::slotted(img) {
+      object-fit: cover;
+      display: inline-block;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: 100%;
+      max-width: calc(var(--imageSize) * 5.75);
+    }
   }
 
 
