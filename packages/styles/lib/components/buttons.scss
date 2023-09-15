@@ -129,6 +129,10 @@
     &:hover {
       border-color: var(--primary);
     }
+    &:active {
+      translate: 0 0;
+      color: var(--active);
+    }
   }
 
   &.-reverse {
