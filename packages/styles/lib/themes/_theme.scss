@@ -75,7 +75,7 @@
 
   --accordion-bkg: #{colorVal("gray", 0)};
   --accordion-hover: #{colorVal("gray", 10)};
-  
+
 
   --chip-bkg:    #{colorVal("gray" ,10)};
   --chip-hover:  #{colorVal("gray",0)};
@@ -89,13 +89,13 @@
 
 
  /* feedback colors */
-  --info-color:    #{colorVal("gray", 80)};
-  --info-bkg:      #{colorVal("gray", 0)};
-  --info-rgb:      #{toRGB(#444444)};
+  --info-color:    #1890FF;
+  --info-bkg:      #e0f0ff;
+  --info-rgb:      #{toRGB(#1890FF)};
 
-  --success-color: #{colorVal("sage", 50)};
-  --success-bkg:   #{colorVal("sage", 0)};
-  --success-rgb:   #{toRGB(#799e7e)};
+  --success-color: #3AAD49;
+  --success-bkg:   #e8f7ea;
+  --success-rgb:   #{toRGB(#3AAD49)};
 
   --warning-color: #FBBD08;
   --warning-bkg:   #fdf6e1;
