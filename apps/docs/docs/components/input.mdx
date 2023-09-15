@@ -183,3 +183,72 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   `}
   figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=11883%3A104654&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'type',
+      description: (
+        <>
+          The type of input. Works the same as a native <code>input</code>{' '}
+          element. But has support for some other types.
+        </>
+      ),
+      type: "'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file'",
+      default: 'text',
+    },
+    {
+      name: 'value',
+      description: (
+        <>
+          The current value of the input, submitted as a name/value pair with
+          form data.
+        </>
+      ),
+      type: 'string',
+      default: "''",
+    },
+    {
+      name: 'input-size',
+      description: <>The input's size.</>,
+      type: "'small' | 'medium' | 'large'",
+    },
+    {
+      name: 'messagetype',
+      description: <>The input's helper text theme.</>,
+      type: "'error' | 'success' | 'warning'",
+    },
+    {
+      name: 'helper-text',
+      description: (
+        <>
+          The array of input's helper text. This is only enabled with{' '}
+          <code>error</code> is true.
+        </>
+      ),
+      type: 'string[]',
+      default: '[]',
+    },
+    {
+      name: 'adornment-type',
+      description: <>The input's adornment type.</>,
+      type: "'icon' | 'text'",
+      default: 'text',
+    },
+    {
+      name: 'adornment',
+      description: <>The input's adornment.</>,
+      type: 'string',
+    },
+    {
+      name: 'adornmentposition',
+      description: <>The input's adornment position.</>,
+      type: "'start' | 'end'",
+      default: 'end',
+    },
+  ]}
+></Tables>

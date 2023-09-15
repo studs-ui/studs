@@ -96,3 +96,82 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   `}
   figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12239%3A127439&mode=dev"
 />
+
+## Properties
+
+### Radio Group
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'inline']}
+  args={[
+    {
+      name: 'name',
+      description: (
+        <>
+          The name of the studs-radio-group, submitted as a name/value pair with
+          form data.
+        </>
+      ),
+      type: 'string',
+      default: "''",
+    },
+    {
+      name: 'label',
+      description: <>The label of the studs-radio-group.</>,
+      type: 'string',
+      default: "''",
+    },
+    {
+      name: 'display',
+      description: <>The display of the radios</>,
+      type: "'inline' | 'block'",
+      default: 'block',
+    },
+    {
+      name: 'selectedvalue',
+      description: <>The selected value of the radio group</>,
+      type: 'string',
+      default: "''",
+    },
+  ]}
+></Tables>
+
+### Radio
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'value',
+      description: (
+        <>
+          The radio’s value. When selected, the radio group will receive this
+          value.
+        </>
+      ),
+      type: 'string',
+      default: "''",
+    },
+    {
+      name: 'checked',
+      description: <>The checked status by default.</>,
+      type: 'boolean',
+      default: 'false',
+    },
+  ]}
+></Tables>
+
+## Slots
+
+### Radio Group
+
+<Tables
+  headers={['name', 'description']}
+  args={[
+    {
+      name: '(default)',
+      description: <>The radio</>,
+    },
+  ]}
+></Tables>
