@@ -1,4 +1,4 @@
-import { FIGMA_EMBED_URL, FIGMA_URL_REGEX } from '@site/src/constant/constant';
+import { FIGMA_EMBED_URL, FIGMA_URL_REGEX } from '@site/src/utils/constants';
 import CodeBlock from '@theme/CodeBlock';
 import Playground from '@theme/Playground';
 import ReactLiveScope from '@theme/ReactLiveScope';
