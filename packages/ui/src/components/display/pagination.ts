@@ -8,9 +8,6 @@ import {
 import { customElement, property, state } from 'lit/decorators.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { ResponsiveController } from '../../controllers/responsiveController';
-import './button';
-import '../inputs/input';
-import '../inputs/dropdown';
 import style from '@studs/styles/components/pagination.scss?inline';
 
 export interface PaginationProps {
@@ -52,20 +49,20 @@ export class StudsPagination extends LitElement {
   @property({ type: Array, attribute: false })
   itemsPerPageOptions = [
     {
-      text: '10 Items',
-      value: 10,
+      label: '10 Items',
+      value: '10',
     },
     {
-      text: '25 Items',
-      value: 25,
+      label: '25 Items',
+      value: '25',
     },
     {
-      text: '50 Items',
-      value: 50,
+      label: '50 Items',
+      value: '50',
     },
     {
-      text: '100 Items',
-      value: 100,
+      label: '100 Items',
+      value: '100',
     },
   ];
 
@@ -174,8 +171,7 @@ export class StudsPagination extends LitElement {
   }
 
   private _selectHandler(event: CustomEvent) {
-    const target = event.target as HTMLSelectElement;
-    this.itemsPerPage = +target?.value || 100;
+    this.itemsPerPage = +event.detail.value || 100;
     this._changePage(1);
   }
 
@@ -204,7 +200,6 @@ export class StudsPagination extends LitElement {
         <studs-button
           @click="${this._pageBack}"
           button-type="tertiary"
-          size="small"
           icon="arrow_left"
           class="previous"
           label="Previous"
@@ -218,7 +213,6 @@ export class StudsPagination extends LitElement {
         <studs-button
           @click="${this._pageForward}"
           button-type="tertiary"
-          size="small"
           icon="arrow_right"
           class="next"
           label="Next"
@@ -233,17 +227,12 @@ export class StudsPagination extends LitElement {
       ? html`
           <div class="select">
             <label>${this.selectLabel}</label>
-            <select
+            <studs-dropdown
               value=${this.itemsPerPage}
-              required
+              .options=${this.itemsPerPageOptions}
               @change="${this._selectHandler}"
             >
-              ${this.itemsPerPageOptions.map((option) => {
-                return html`<option .value=${option.value.toString()}>
-                  ${option.text}
-                </option>`;
-              })}
-            </select>
+            </studs-dropdown>
           </div>
         `
       : null;
@@ -251,7 +240,11 @@ export class StudsPagination extends LitElement {
     const jumperEl = this.hasJumper
       ? html` <div class="jumper">
           <label>${this.jumperLabel}</label>
-          <input value="${this.currentPage}" @change="${this._inputHandler}" />
+          <studs-input
+            value="${this.currentPage}"
+            input-size="small"
+            @change="${this._inputHandler}"
+          ></studs-input>
         </div>`
       : null;
 

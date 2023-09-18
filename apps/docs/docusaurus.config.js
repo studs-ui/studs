@@ -38,7 +38,8 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-                    sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: '/',
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -69,12 +70,6 @@ const config = {
           src: 'img/logo.svg',
         },
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
-          },
           {
             href: 'https://github.com/studs-ui/studs',
             label: 'GitHub',
@@ -127,7 +122,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-          }),
+    }),
 };
 
 module.exports = config;
