@@ -1,6 +1,7 @@
 {
   "name": "studs-ui",
   "version": "0.0.8",
+  "private": false,
   "scripts": {
     "build-lib": "turbo run build",
     "build": "turbo run build",
