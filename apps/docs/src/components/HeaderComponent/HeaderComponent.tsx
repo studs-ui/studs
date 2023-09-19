@@ -32,9 +32,9 @@ const HeaderComponent = ({ htmlTag, jsxTag, version, status }) => {
         {tag} | {jsxTag}
       </code>
       <div>
-        <studs-chip ref={ref} class="custom" variant="infor" size="small">
+        {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
           {version || versionDefault}
-        </studs-chip>
+        </studs-chip> */}
 
         <studs-chip
           ref={ref}
