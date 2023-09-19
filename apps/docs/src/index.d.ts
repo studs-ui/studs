@@ -1,5 +1,10 @@
 import React from 'react';
-import { StudsTabs, StudsResizer, StudsResizerPane } from '@studs/ui';
+import {
+  StudsTabs,
+  StudsResizer,
+  StudsResizerPane,
+  StudsDropdown,
+} from '@studs/ui';
 import { StudsChip } from '@studs/ui';
 import { StudsTable } from '@studs/ui';
 
@@ -13,7 +18,7 @@ declare global {
       'studs-tabs': React.DetailedHTMLProps<
         React.HTMLAttributes<StudsTabs>,
         StudsTabs
-      >,
+      >;
       'studs-table': React.DetailedHTMLProps<
         React.HTMLAttributes<StudsTable>,
         StudsTable
@@ -26,7 +31,10 @@ declare global {
         React.HTMLAttributes<StudsResizerPane>,
         StudsResizerPane
       >;
+      'studs-dropdown': React.DetailedHTMLProps<
+        React.HTMLAttributes<StudsDropdown>,
+        StudsDropdown
+      >;
     }
   }
 }
-
