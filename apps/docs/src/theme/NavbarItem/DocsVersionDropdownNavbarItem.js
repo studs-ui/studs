@@ -4,7 +4,7 @@ import {
   useActiveDocContext,
 } from '@docusaurus/plugin-content-docs/client';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
-import { useLocation } from '@docusaurus/router';
+import { useLocation, useHistory } from '@docusaurus/router';
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);
@@ -16,6 +16,7 @@ export default function DocsVersionDropdownNavbarItem({
   dropdownItemsAfter,
   ...props
 }) {
+  const history = useHistory();
   const { search, hash } = useLocation();
   const activeDocContext = useActiveDocContext(docsPluginId);
   const versions = useVersions(docsPluginId);
@@ -28,6 +29,7 @@ export default function DocsVersionDropdownNavbarItem({
       getVersionMainDoc(version);
     return {
       label: version.label,
+      value: version.label,
       // preserve ?search#hash suffix on version switches
       to: `${versionDoc.path}${search}${hash}`,
       isActive: () => version === activeDocContext.activeVersion,
@@ -51,18 +53,21 @@ export default function DocsVersionDropdownNavbarItem({
   const _selectHandler = (event) => {
     const to = event.detail?.to;
     if (!to) return;
-    location.href = to;
+    history.push(to);
   }
 
   const _items = items?.map(item => ({
     ...item,
     value: item.label,
-  })) || []
+  })) || [];
+
+  const activeVersion = items.find(x => x.isActive());
 
   return (
     <studs-dropdown
       ref={dropdownRef}
       size="small"
+      selected={JSON.stringify(activeVersion)}
       onChange={_selectHandler}
       options={JSON.stringify(_items)}
     ></studs-dropdown>
