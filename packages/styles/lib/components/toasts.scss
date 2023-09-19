@@ -1,15 +1,43 @@
 @use "../utilities" as *;
+@use "icons" as icon;
 
-@mixin toast {
-  --toast-text: var(--info-color);
+@keyframes fadeIn {
+  from { opacity: 0 }
+    to { opacity: 1 }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1 }
+    to { opacity: 0 }
+}
+
+@keyframes slideFadeLeftIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideFadeLeftOut {
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.toast {
+  --toast-text: var(--text-color);
   --toast-bkg: #{$white};
   --toast-shadow: var(--info-rgb);
   --toast-border: #{colorVal("orange", 50)};
-
-  > svg {
-    padding-inline-end: 1em;
-    min-width: 20px;
-  }
 
   position: fixed;
   right: 2rem;
@@ -29,33 +57,51 @@
   gap: 0.25em;
 
   margin: 0.5rem 0;
-  padding: 1em;
   border-radius: 0.125rem;
-  border-left: 3px solid var(--toast-border);
 
-  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; // convert to CSS var when we have dark mode --Jp
   color: var(--toast-text);
   background: var(--toast-bkg);
   overflow: visible;
 
   display: none;
-  max-width: 300px;
+
+  .toastMessage {
+    padding: 1.125em calc(1em + 10px) 1em 0.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 0.5rem;
+
+    border-bottom: 5px solid var(--toast-border);
+
+    > div {
+      flex-direction: column;
+    }
+  }
+
+  strong {
+    display: block;
+    margin-bottom: 0.25em;
+  }
 
   p {
     margin: 0;
-    margin-inline-end: 2em;
+  }
+
+  .icon {
+    align-self: flex-start;
+
+    @include icon.icon;
+
+    font-variation-settings:'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 48;
   }
 
   &.-open {
     animation: fadeIn 0.5s ease-in-out;
     display: flex;
-  }
-
-  &.-row {
-    > div {
-      display: flex;
-      gap: 0.25em;
-    }
   }
 
   &.-static {
@@ -67,6 +113,10 @@
   }
 
   &:not(.-static) {
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
     &.-bottom {
       &-right {
         bottom: 0.5em;
@@ -86,6 +136,14 @@
         top: 0.5em;
         left: 0.75em;
       }
+    }
+  }
+
+  studs-button {
+    align-self: flex-start;
+
+    &::part(studs-button) {
+      margin: .75rem .5rem;
     }
   }
 
@@ -132,46 +190,4 @@
   }
 }
 
-.toast {
-  @include toast;
-}
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-
-@keyframes slideFadeLeftIn {
-  0% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-  100% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-}
-
-@keyframes slideFadeLeftOut {
-  0% {
-    transform: translateX(0);
-    opacity: 1;
-  }
-  100% {
-    transform: translateX(100%);
-    opacity: 0;
-  }
-}
