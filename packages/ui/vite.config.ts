@@ -15,6 +15,11 @@ export default defineConfig({
       // Don't forgot to update your package.json as well.
       formats: ['es', 'cjs'],
     },
+    rollupOptions: {
+      // make sure to externalize deps that shouldn't be bundled
+      // into your library
+      external: ['@studs/styles'],
+    },
   },
   resolve: {
     alias: {
