@@ -1,5 +1,5 @@
 {
-  "name": "studs",
+  "name": "@studs",
   "version": "0.0.8",
   "scripts": {
     "build-lib": "turbo run build",
