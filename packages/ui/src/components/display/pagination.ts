@@ -177,7 +177,9 @@ export class StudsPagination extends LitElement {
 
   private _renderSinglePage(page: number | string) {
     if (typeof page === 'string') {
-      return html`<li class="dots"></li>`;
+      return html`<li class="dots">
+                    <i class="icon">more_horiz</i>
+                  </li>`;
     }
     const ariaCurrent = this.currentPage === page ? 'page' : undefined;
 
@@ -200,7 +202,7 @@ export class StudsPagination extends LitElement {
         <studs-button
           @click="${this._pageBack}"
           button-type="tertiary"
-          icon="arrow_left"
+          icon="chevron_left"
           class="previous"
           label="Previous"
           ?disabled=${this.currentPage === 1}
@@ -213,7 +215,7 @@ export class StudsPagination extends LitElement {
         <studs-button
           @click="${this._pageForward}"
           button-type="tertiary"
-          icon="arrow_right"
+          icon="chevron_right"
           class="next"
           label="Next"
           ?disabled=${this.currentPage === this._getLastPage()}
