@@ -25,7 +25,7 @@ export interface ButtonProps {
     | 'close'
     | 'image';
   size: 'small' | 'medium' | 'large';
-  variant?: 'outline' | 'filled';
+  variant?: 'outline';
   disabled: boolean;
   iconPosition: 'start' | 'end';
   contentDirection: 'horizontal' | 'vertical';
@@ -103,7 +103,6 @@ export class StudsButton extends LitElement {
       [`-${this.buttonType}`]: this.buttonType,
       [`-${this.size}`]: true,
       '-outline': this.variant === 'outline',
-      '-filled': this.variant === 'filled',
       '-vertical': this.contentDirection === 'vertical',
       '-reverse': this.iconPosition === 'end',
     };

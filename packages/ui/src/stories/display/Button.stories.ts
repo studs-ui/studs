@@ -31,7 +31,7 @@ const meta = {
     ...icon,
     variant: {
       control: { type: "select" },
-      options: ["outline", "filled"],
+      options: ["outline"],
     },
   },
 } satisfies Meta<ButtonProps>;
