@@ -79,11 +79,6 @@ const config = {
           {
             type: 'docsVersionDropdown',
           },
-          {
-            href: 'https://github.com/studs-ui/studs',
-            label: 'GitHub',
-            position: 'right',
-          },
         ],
       },
       footer: {

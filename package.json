@@ -1,7 +1,7 @@
 {
-  "name": "studs",
-  "private": true,
-  "version": "0.0.0",
+  "name": "studs-ui",
+  "version": "0.0.8",
+  
   "scripts": {
     "build-lib": "turbo run build",
     "build": "turbo run build",
@@ -12,7 +12,7 @@
     "storybook": "turbo run storybook",
     "changeset": "changeset",
     "changeset-version": "changeset version",
-    "publish": "turbo run build lint test && changeset version && changeset publish",
+    "publish-packages": "turbo run build && changeset version && changeset publish",
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
     "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
   },

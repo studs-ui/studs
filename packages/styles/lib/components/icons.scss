@@ -1,6 +1,6 @@
 @use "../utilities" as *;
 
-.icon {
+@mixin icon {
   --font-size: 1.5rem;
 
   @include iconFont;
@@ -15,4 +15,13 @@
   &.-primary   {color: var(--primary);}
   &.-secondary {color: var(--secondary);}
   &.-tertiary  {color: var(--tertiary);}
+
+  &.-info      {color: var(--info-color)}
+  &.-success   {color: var(--success-color)}
+  &.-warning   {color: var(--warning-color)}
+  &.-error     {color: var(--error-color)}
+}
+
+.icon {
+  @include icon
 }
