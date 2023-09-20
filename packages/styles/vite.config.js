@@ -6,7 +6,7 @@ export default defineConfig({
   // plugins: [dts({ rollupTypes: true })],
   build: {
     lib: {
-      entry: resolve(__dirname, './index.ts'),
+      entry: resolve(__dirname, '/index.ts'),
       name: 'StudsStyles',
       fileName: 'index',
     },
