@@ -245,7 +245,7 @@ export class StudsPagination extends LitElement {
           <label>${this.jumperLabel}</label>
           <studs-input
             value="${this.currentPage}"
-            input-size="small"
+            input-size="short"
             @change="${this._inputHandler}"
           ></studs-input>
         </div>`
@@ -259,7 +259,7 @@ export class StudsPagination extends LitElement {
     };
 
     return html` <nav class="pagination" aria-label="Pagination">
-      ${getHelperElements()} ${this.renderPages()}
+       ${this.renderPages()} ${getHelperElements()}
     </nav>`;
   }
 }

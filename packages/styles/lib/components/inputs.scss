@@ -110,6 +110,7 @@
       margin: 0;
       padding: 0.5rem;
       color: var(--text);
+      width: 100%;
 
       background: transparent;
 
@@ -124,6 +125,14 @@
       }
 
       @include placeholders;
+    }
+
+    &.-short {
+      width: 3em;
+
+      input {
+        text-align: center;
+      }
     }
 
     ::-ms-reveal {

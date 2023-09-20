@@ -8,7 +8,7 @@ import style from '@studs/styles/components/inputs.scss?inline';
 
 export interface InputProps extends WithFormInterface {
   type?: 'text' | 'password' | 'number' | 'tel' | 'email' | 'search' | 'file';
-  inputSize?: 'small' | 'medium' | 'large';
+  inputSize?: 'short' | 'small' | 'medium' | 'large';
   messageType?: 'error' | 'success' | 'warning';
   helperText?: string[];
   adornmentType?: 'icon' | 'text';
