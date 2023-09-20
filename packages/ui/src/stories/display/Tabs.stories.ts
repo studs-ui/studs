@@ -11,11 +11,25 @@ const meta = {
     variant=${ifDefined(args.variant)}
   >
     <button slot="tab">Tab 1</button>
-    <section slot="panel">Content for tab 1</section>
+    <section slot="panel">
+      <h3>Content for tab 1</h3>
+      <p>Lorem ipsum dolor sit amet eget fames facilisis mauris suspendisse nisl sed. Et a mi hac pharetra morbi aenean porta a malesuada aliquam vivamus aliquet. Eget mi dictumst nec malesuada dictumst facilisi laoreet cras eget proin. Semper pulvinar dapibus facilisis incididunt risus pretium morbi elementum praesent. Congue nisl urna pretium vulputate integer tellus nec tortor adipiscing nibh suspendisse lobortis cras.</p>
+    </section>
+
     <button slot="tab">Tab 2</button>
-    <section slot="panel">Content for tab 2</section>
+    <section slot="panel">
+      <h3>Content for tab 2</h3>
+      <p>Lorem ipsum dolor sit amet eget iaculis consectetur arcu id. Bibendum odio habitasse sed egestas platea augue ut curabitur eros vivamus tincidunt tempor pharetra curabitur. Tellus labore fermentum massa lobortis gravida praesent dictumst curabitur eleifend porttitor. Vitae cursus volutpat sed eleifend molestie maecenas do gravida turpis adipiscing nisi lacus hendrerit. Pharetra orci mauris incididunt purus pretium magna neque non sodales nisl ullamcorper.</p>
+      <p>Tempus egestas volutpat sagittis cras nunc convallis dictum vestibulum justo. A viverra fames suspendisse condimentum ornare tempor tincidunt. Enim facilisis praesent eu nibh in semper cras. Aliquet risus pulvinar imperdiet suspendisse magna senectus iaculis tortor pharetra. Interdum duis condimentum nisl rhoncus facilisis feugiat sed.</p>
+    </section>
+
     <button slot="tab" ?disabled=${args.disabled}>Tab 3</button>
-    <section slot="panel">Content for tab 3</section>
+    <section slot="panel">
+      <h3>Content for tab 3</h3>
+      <p>Lorem ipsum dolor sit amet bibendum sapien malesuada scelerisque non. A vel augue sagittis platea eiusmod luctus senectus lectus. Lacinia pretium quis hendrerit nibh nisl dictumst diam lectus diam ullamcorper pulvinar interdum. Quisque consequat massa aenean justo labore enim lacus imperdiet eleifend senectus duis. Facilisi tincidunt nec dictum pellentesque do arcu luctus.</p>
+      <p>Elementum pharetra velit rhoncus vel aliqua etiam a est incididunt lacus tortor tellus bibendum malesuada. Dapibus fusce integer vestibulum feugiat fermentum eu facilisi est pretium proin. Feugiat purus netus ac phasellus congue praesent fringilla condimentum praesent. Donec ut duis odio diam mi praesent eget. Magna semper interdum libero ultrices orci hendrerit porta pellentesque gravida volutpat convallis porta justo egestas.</p>
+      <p>Blandit dolore condimentum augue praesent fringilla augue blandit do consequat platea elementum et eget habitasse. Blandit urna fusce cursus orci elit auctor bibendum ullamcorper mollis elit laoreet. Viverra aliquam incididunt laoreet pretium enim do aenean egestas aenean auctor. Laoreet lectus interdum labore lacinia morbi magna tincidunt. Dolore tellus magna sodales iaculis dictum eros convallis libero odio gravida.</p>
+    </section>
   </studs-tabs>`,
   argTypes: {
     tabDirection: {

@@ -6,6 +6,9 @@
 
     &.row {
       flex-direction: row;
+      width: max-content;
+      max-width: 100%;
+      gap: 2rem;
     }
 
     &.column {
@@ -36,7 +39,7 @@
       text-align: start;
       border: none;
       background-color: transparent;
-      padding: 0.625rem 1.25rem;
+      padding: 0;
       cursor: pointer;
       font-size: 1rem;
       outline: none;
