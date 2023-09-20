@@ -49,6 +49,7 @@
    }
   }
 
+
   &.-primary {
     --color:     var(--primary);
     --hover:     var(--primary-hover);
@@ -146,6 +147,25 @@
       flex-direction: column-reverse;
     }
   }
+
+  &.-outline {
+    --color: var(--tab-background);
+    --border: var(--border-color);
+    --text: var(--text-color);
+    border: 1px solid var(--border);
+    box-shadow: none;
+
+    &.-primary {
+      --border: var(--primary);
+      --color: var(--tab-selected);
+    }
+
+    &:hover {
+      --text: var(--primary);
+      --color: var(--tab-border);
+    }
+  }
+
 
   &.-image {
     --imageSize: 1rem;
