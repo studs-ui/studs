@@ -1,5 +1,21 @@
 # @studs/ui
 
+## 0.1.5
+
+### Patch Changes
+
+- Continued Testing
+- Updated dependencies
+  - @studs/styles@0.1.3
+
+## 0.1.4
+
+### Patch Changes
+
+- Bundle Styles into UI
+- Updated dependencies
+  - @studs/styles@0.1.3
+
 ## 0.1.3
 
 ### Patch Changes

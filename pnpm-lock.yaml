@@ -41,9 +41,6 @@ importers:
       '@studs/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@studs/styles':
-        specifier: workspace:*
-        version: link:../../packages/styles
       '@studs/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -62,9 +59,6 @@ importers:
       react-dom:
         specifier: ^17.0.2
         version: 17.0.2(react@17.0.2)
-      sass:
-        specifier: ^1.64.1
-        version: 1.64.1
     devDependencies:
       '@docusaurus/module-type-aliases':
         specifier: 2.4.1

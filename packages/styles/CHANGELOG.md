@@ -4,6 +4,18 @@
 
 ### Patch Changes
 
+- Continued Testing
+
+## 0.1.3
+
+### Patch Changes
+
+- Bundle Styles into UI
+
+## 0.1.3
+
+### Patch Changes
+
 - Implement Sass into @studs/styles to resolve dependency
 
 ## 0.1.2
