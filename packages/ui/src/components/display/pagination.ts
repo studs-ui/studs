@@ -188,6 +188,7 @@ export class StudsPagination extends LitElement {
         @click="${() => this._changePage(page)}"
         button-type=${this.currentPage === page ? 'primary' : 'secondary'}
         size="small"
+        variant="outline"
         label="Page ${page}"
         aria-current=${ifDefined(ariaCurrent)}
       >
