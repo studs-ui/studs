@@ -25,6 +25,7 @@ export interface ButtonProps {
     | 'close'
     | 'image';
   size: 'small' | 'medium' | 'large';
+  variant?: 'outline' | 'filled';
   disabled: boolean;
   iconPosition: 'start' | 'end';
   contentDirection: 'horizontal' | 'vertical';
@@ -40,6 +41,7 @@ export class StudsButton extends LitElement {
   @property({ type: String, attribute: 'button-type' })
   buttonType: ButtonProps['buttonType'] = 'cta';
   @property({ type: String }) size: ButtonProps['size'] = 'medium';
+  @property({ type: String }) variant?: ButtonProps['variant'];
   @property({ type: Boolean }) disabled: ButtonProps['disabled'] = false;
   @property({ type: String, attribute: 'icon-position' })
   iconPosition: ButtonProps['iconPosition'] = 'start';
@@ -100,6 +102,8 @@ export class StudsButton extends LitElement {
       button: true,
       [`-${this.buttonType}`]: this.buttonType,
       [`-${this.size}`]: true,
+      '-outline': this.variant === 'outline',
+      '-filled': this.variant === 'filled',
       '-vertical': this.contentDirection === 'vertical',
       '-reverse': this.iconPosition === 'end',
     };

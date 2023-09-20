@@ -12,6 +12,7 @@ const meta = {
   render: (args: any) => html`<studs-button
     button-type="${ifDefined(args.buttonType)}"
     size="${ifDefined(args.size)}"
+    variant="${ifDefined(args.variant)}"
     icon-position="${ifDefined(args.iconPosition)}"
     content-direction="${ifDefined(args.contentDirection)}"
     class="${ifDefined(args.class)}"
@@ -28,6 +29,10 @@ const meta = {
     ...size,
     ...contentDirection,
     ...icon,
+    variant: {
+      control: { type: "select" },
+      options: ["outline", "filled"],
+    },
   },
 } satisfies Meta<ButtonProps>;
 
