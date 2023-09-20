@@ -14,6 +14,10 @@
   --ifm-color-primary-lighter: #359962;
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
+  --ifm-background-color: #f4f4f4;
+  --ifm-footer-background-color: #1d1d1d;
+  --ifm-footer-color: #e3e3e3;
+  --ifm-footer-link-color: #cbcfd3;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
 }
 
@@ -26,6 +30,10 @@
   --ifm-color-primary-light: #29d5b0;
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
+  --ifm-background-color: #1b1b1d;
+  --ifm-footer-background-color: #1c1e21;
+  --ifm-footer-color: inherit;
+  --ifm-footer-link-color: #dadde1;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
 }
 
@@ -36,4 +44,7 @@
 .pagination-nav {
   display: none;
 }
-iframe#webpack-dev-server-client-overlay{display:none!important}
+
+iframe#webpack-dev-server-client-overlay {
+  display: none !important;
+}
