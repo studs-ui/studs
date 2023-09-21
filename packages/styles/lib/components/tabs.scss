@@ -1,84 +1,99 @@
 @use '../utilities' as *;
 
 .tabsComponent {
-  .tabs {
-    display: flex;
+  --border: transparent;
 
-    &.row {
-      flex-direction: row;
-      width: max-content;
-      max-width: 100%;
-      gap: 2rem;
-    }
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 
-    &.column {
-      flex-direction: column;
-    }
-
-    &.-contained {
-      ::slotted([slot='tab']) {
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        border-bottom: none;
-        border-bottom-left-radius: 0;
-        border-bottom-right-radius: 0;
-        background: #f8f8f8;
-      }
-      ::slotted([slot='tab'][selected]) {
-        background: #fff;
-        border-bottom-color: #fff;
-      }
-      ::slotted([slot='tab']:not([selected]):hover) {
-        background: #f0f0f0;
-      }
-    }
-  }
-  .tabs > {
-    ::slotted([slot='tab']) {
-      flex: 1 1 auto;
-      text-align: start;
-      border: none;
-      background-color: transparent;
-      padding: 0;
-      cursor: pointer;
-      font-size: 1rem;
-      outline: none;
-      border-bottom: 2px solid #ccc;
-      color: #555;
-      transition: 0.3s;
-    }
-
-    ::slotted([slot='tab'][selected]) {
-      border-color: #ff5308;
-    }
-
-    ::slotted([slot='tab'][disabled]) {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
-  }
-
-  ::slotted([slot='panel']) {
-    display: none !important;
-    padding: 0.625rem 1.25rem;
+  ::slotted(section){
+    display: none;
+    padding: 0;
   }
 
   ::slotted([slot='panel'][selected]) {
-    display: block !important;
+    display: block;
   }
 
-  &.tab-direction-column {
-    display: flex;
+  &.-column {
     flex-direction: row;
+
 
     .tabs > {
       ::slotted([slot='tab']) {
         border-bottom: none;
-        border-right: 2px solid #ccc;
-      }
-      ::slotted([slot='tab'][selected]) {
-        border-color: #ff5308;
+        border-right: 2px solid var(--border);
+        width: max-content;
+        padding: 0.25em 0.5em;
+        padding-left: 0;
       }
     }
+  }
+
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+    align-items: flex-start;
+
+    &.-row {
+      flex-direction: row;
+      width: max-content;
+      max-width: 100%;
+      gap: 1rem;
+    }
+
+    &.-column {
+      flex-direction: column;
+      height: fit-content;
+    }
+
+    ::slotted([slot='tab']) {
+      font-size: 1rem;
+      flex: 1 1 auto;
+      text-align: start;
+      border: none;
+      border-bottom: 2px solid var(--border);
+      outline: none;
+      background-color: transparent;
+      padding: 0;
+      cursor: pointer;
+      color: var(--text-color);
+      transition: all var(--transition-m);
+    }
+
+    ::slotted([slot='tab'][selected]) {
+      --border: var(--primary);
+    }
+
+    ::slotted([slot='tab'][disabled]) {
+      --border: transparent;
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    &.-contained {
+      /* @TODO: change all this once we know
+          what contained is supposed to look like
+                  --Jp
+      */
+      // ::slotted([slot='tab']) {
+      //   border: 1px solid var(--border);
+      //   border-radius: 4px;
+      //   border-bottom: none;
+      //   border-bottom-left-radius: 0;
+      //   border-bottom-right-radius: 0;
+      //   background: #f8f8f8;
+      // }
+      // ::slotted([slot='tab'][selected]) {
+      //   background: #fff;
+      //   border-bottom-color: #fff;
+      // }
+      // ::slotted([slot='tab']:not([selected]):hover) {
+      //   background: #f0f0f0;
+      // }
+    }
+
   }
 }
