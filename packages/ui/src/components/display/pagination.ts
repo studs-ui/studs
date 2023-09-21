@@ -177,7 +177,9 @@ export class StudsPagination extends LitElement {
 
   private _renderSinglePage(page: number | string) {
     if (typeof page === 'string') {
-      return html`<li class="dots"></li>`;
+      return html`<li class="dots">
+                    <i class="icon">more_horiz</i>
+                  </li>`;
     }
     const ariaCurrent = this.currentPage === page ? 'page' : undefined;
 
@@ -186,6 +188,7 @@ export class StudsPagination extends LitElement {
         @click="${() => this._changePage(page)}"
         button-type=${this.currentPage === page ? 'primary' : 'secondary'}
         size="small"
+        variant="outline"
         label="Page ${page}"
         aria-current=${ifDefined(ariaCurrent)}
       >
@@ -200,7 +203,7 @@ export class StudsPagination extends LitElement {
         <studs-button
           @click="${this._pageBack}"
           button-type="tertiary"
-          icon="arrow_left"
+          icon="chevron_left"
           class="previous"
           label="Previous"
           ?disabled=${this.currentPage === 1}
@@ -213,7 +216,7 @@ export class StudsPagination extends LitElement {
         <studs-button
           @click="${this._pageForward}"
           button-type="tertiary"
-          icon="arrow_right"
+          icon="chevron_right"
           class="next"
           label="Next"
           ?disabled=${this.currentPage === this._getLastPage()}
@@ -242,7 +245,7 @@ export class StudsPagination extends LitElement {
           <label>${this.jumperLabel}</label>
           <studs-input
             value="${this.currentPage}"
-            input-size="small"
+            input-size="short"
             @change="${this._inputHandler}"
           ></studs-input>
         </div>`
@@ -256,7 +259,7 @@ export class StudsPagination extends LitElement {
     };
 
     return html` <nav class="pagination" aria-label="Pagination">
-      ${getHelperElements()} ${this.renderPages()}
+       ${this.renderPages()} ${getHelperElements()}
     </nav>`;
   }
 }

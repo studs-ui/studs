@@ -4,7 +4,7 @@
   htmlTag="studs-switch"
   jsxTag="StudsSwitch"
   version="Since 2.0"
-  status="Stable"
+  status="Unstable"
 />
 
 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -110,3 +110,30 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   `}
   figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'checked',
+      description: <>Draws the switch in a checked state.</>,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'label-position',
+      description: <>The position of label.</>,
+      type: "'start' | 'end' | 'top' | 'bottom'",
+      default: 'end',
+    },
+    {
+      name: 'size',
+      description: <>The switch's size.</>,
+      type: "'small' | 'medium' | 'large'",
+      default: 'medium',
+    },
+  ]}
+></Tables>

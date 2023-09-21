@@ -21,7 +21,7 @@ const config = {
   organizationName: 'Simpson Strong-Tie', // Usually your GitHub org/user name.
   projectName: 'studs', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -38,7 +38,14 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-                    sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: '/',
+          versions: {
+            current: {
+              label: '0.0.1',
+              path: '',
+            },
+          },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -70,20 +77,11 @@ const config = {
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
-          },
-          {
-            href: 'https://github.com/studs-ui/studs',
-            label: 'GitHub',
-            position: 'right',
+            type: 'docsVersionDropdown',
           },
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Docs',
@@ -127,7 +125,7 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-          }),
+    }),
 };
 
 module.exports = config;

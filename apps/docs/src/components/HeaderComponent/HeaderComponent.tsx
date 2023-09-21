@@ -1,11 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import useOnScreen from '@site/src/hooks/use0nScreen';
+import { useDocsVersion } from '@docusaurus/theme-common/internal';
 
-const versionDefault = '1.0';
-const statusDefault = 'Stable';
+const HeaderComponent = ({ htmlTag, jsxTag }) => {
+  const { label: version, banner, badge, ...rest } = useDocsVersion();
+  const isUnreleased = banner === 'unreleased';
 
-const HeaderComponent = ({ htmlTag, jsxTag, version, status }) => {
   const tag = `<${htmlTag}>`;
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
@@ -33,7 +34,7 @@ const HeaderComponent = ({ htmlTag, jsxTag, version, status }) => {
       </code>
       <div>
         <studs-chip ref={ref} class="custom" variant="infor" size="small">
-          {version || versionDefault}
+          {version}
         </studs-chip>
 
         <studs-chip
@@ -42,7 +43,7 @@ const HeaderComponent = ({ htmlTag, jsxTag, version, status }) => {
           size="small"
           selected
         >
-          {status || statusDefault}
+          {isUnreleased ? 'Unstable' : 'Stable'}
         </studs-chip>
       </div>
     </div>
