@@ -1,59 +1,77 @@
-.navbar.horizontal {
+.navbar {
+  &.horizontal {
     display: flex;
-    align-items: center;
     width: fit-content;
-    padding: 1rem;
     background-color: #f0f0f0;
     overflow: auto;
+    .arrow {
+      transform: rotate(90deg);
+      &.open {
+        transform: rotate(-90deg);
+      }
+    }
+    .nav-group {
+      border-bottom: 0;
+      .nav-item {
+        position: absolute;
+        background-color: #f0f0f0;
+        padding: 1rem;
+      }
+    }
   }
 
-  .navbar.vertical {
+  &.vertical {
     display: flex;
     flex-direction: column;
     padding: 1rem;
     height: 100vh;
     background-color: #f0f0f0;
     overflow: auto;
+    .arrow {
+      &.open {
+        transform: rotate(90deg);
+      }
+    }
   }
-  
+
+  ::slotted(section) {
+    padding: 1rem;
+  }
+
   .nav-group {
-    padding: 10px;
+    padding: 1rem;
     border-bottom: 1px solid #ddd;
   }
-  
+
   .nav-group .nav-header {
     display: flex;
     align-items: center;
   }
-  
+
   .nav-item {
     padding-left: 1.5rem;
+    max-width: 200px;
   }
-  
+
   a {
     display: block;
     color: #333;
     text-decoration: none;
     padding: 0.5rem 0;
   }
-  
+
   a:hover {
     color: #ff5308;
   }
-  
+
   .prefix-icon {
     margin-right: 0.5rem;
   }
-  
+
   .arrow {
     cursor: pointer;
     display: inline-block;
     margin-left: 0.5rem;
-    transform: rotate(90deg);
     transition: transform 0.3s ease;
   }
-  
-  .arrow.open {
-    // transform: rotate(90deg);
-  }
-  
+}

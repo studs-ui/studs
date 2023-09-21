@@ -45,13 +45,25 @@ export const Navbar = html`
     <div class="group">
       <div class="componentGrid">
         <presentational-component>
+          <h2>Horizontal Navbar</h2>
+          <studs-navbar
+            .items="${mockdata}"
+            .showIcon="${true}"
+            mode="horizontal"
+          >
+          <section slot="header">Logo</section>
+          <section slot="footer">Links</section>
+        </studs-navbar>
+        </presentational-component>
+        <presentational-component>
+          <h2>Vertical Navbar</h2>
           <studs-navbar
             .items="${mockdata}"
             .showIcon="${true}"
             mode="vertical"
           >
           <section slot="header">Logo</section>
-          <section slot="footer">Footer content</section>
+          <section slot="footer">Links</section>
         </studs-navbar>
         </presentational-component>
       </div>

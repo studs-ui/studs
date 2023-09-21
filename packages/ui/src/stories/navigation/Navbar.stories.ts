@@ -6,12 +6,12 @@ const meta = {
   title: "Studs/Navigation/Navbar",
   tags: ["autodocs"],
   render: (args) => html`
-  <studs-sidebar 
+  <studs-navbar 
     .items="${mockdata}" 
     .showIcon="${args.showIcon}"
     mode="${args.mode}">
   >
-  </studs-sidebar>`,
+  </studs-navbar>`,
   argTypes: {
     showIcon: {
         control: {

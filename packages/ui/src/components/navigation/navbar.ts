@@ -1,6 +1,7 @@
 import { html, unsafeCSS, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import style from '@studs/styles/components/navbar.scss?inline';
+import { SidebarItem } from './sidebar';
 
 export interface NavbarItem {
   label: string;
@@ -23,7 +24,48 @@ export class StudsNavbar extends LitElement {
 
   static styles = unsafeCSS(style);
 
-  toggleLinks(item: NavbarItem) {
+  toggleLinks(item: NavbarItem): void {
+    const index = this.items?.indexOf(item);
+    if (index !== undefined && index !== null) {
+      this.items[index].initiallyOpened = !this.items[index].initiallyOpened;
+      if (this.items[index].initiallyOpened) {
+        // Close all other submenus
+        this.items = this.items.map((otherItem, otherIndex) => {
+          if (otherIndex !== index) {
+            return {
+              ...otherItem,
+              initiallyOpened: false,
+            }
+          }
+          return otherItem
+        });
+      }
+    }
+  }
+
+  handleMouseOver(e: Event, item: SidebarItem) {
+    e.stopPropagation();
+    if(this.mode === 'vertical') {
+      return false
+    }
+    console.log('mouseover', item)
+    this.toggleLinks(item)
+  }
+
+  handleMouseLeave(e: Event, item: SidebarItem) {
+    e.stopPropagation();
+    if(this.mode === 'vertical') {
+      return false
+    }
+    console.log('mouseleave', item)
+    item.initiallyOpened = !item.initiallyOpened;
+    this.requestUpdate();
+  }
+
+  handleClick(item: SidebarItem) {
+    if(this.mode === 'horizontal') {
+      return false
+    }
     item.initiallyOpened = !item.initiallyOpened;
     this.requestUpdate();
   }
@@ -33,7 +75,7 @@ export class StudsNavbar extends LitElement {
       subMenuIcon: 'chevron_right',
     },
     'vertical': {
-      subMenuIcon: 'chevron_left',
+      subMenuIcon: 'chevron_right',
     }
   }
 
@@ -46,7 +88,7 @@ export class StudsNavbar extends LitElement {
         ${this.items?.map(
           (item) => html`
             <div class="nav-group">
-              <div class="nav-header" @click=${() => this.toggleLinks(item)}>
+              <div class="nav-header" @click="${() => this.handleClick(item)}" @mouseover=${(e: Event) => this.handleMouseOver(e, item)} @mouseleave=${(e: Event) => this.handleMouseLeave(e, item)}>
                 ${this.showIcon && item.icon
                   ? html`<studs-icon
                       class="prefix-icon"
@@ -63,7 +105,7 @@ export class StudsNavbar extends LitElement {
               </div>
               ${item.links?.length
                 ? html`
-                    <div class="nav-item" ?hidden=${!item.initiallyOpened}>
+                    <div class="nav-item" ?hidden=${!item.initiallyOpened}  @mouseleave=${(e: Event) => this.handleMouseLeave(e, item)}>
                       ${item.links.map(
                         (link) =>
                           html` <a href="${link.link}">${link.label}</a> `
