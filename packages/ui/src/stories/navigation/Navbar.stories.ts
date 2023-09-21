@@ -9,7 +9,7 @@ const meta = {
   <studs-navbar 
     .items="${mockdata}" 
     .showIcon="${args.showIcon}"
-    mode="${args.mode}">
+    mode="${args.mode}"
   >
   </studs-navbar>`,
   argTypes: {
@@ -38,11 +38,9 @@ export const Default: Story = {
 };
 
 const mockdata = [
-  { label: 'Home', icon: 'home' },
   {
     label: 'Products',
     icon: 'category',
-    initiallyOpened: true,
     links: [
       { label: 'Connectors', link: '/' },
       { label: 'Anchoring System', link: '/' },
@@ -59,16 +57,20 @@ const mockdata = [
       { label: 'Project Ideas & Inspiration', link: '/' },
     ],
   },
-  { label: 'Resource Center', icon: 'business_center' },
-  { label: 'Training & Education', icon: 'school' },
+  {
+    label: 'Resource Center',
+    icon: 'business_center',
+  },
+  {
+    label: 'Training & Education',
+    icon: 'school',
+    links: [
+      { label: 'Local Workshops', link: '/' },
+      { label: 'Online Courses', link: '/' },
+    ],
+  },
   {
     label: 'Customer Service',
     icon: 'support_agent',
-    links: [
-      { label: 'Contact us', link: '/' },
-      { label: 'Product Information', link: '/' },
-      { label: 'Custormer Survey', link: '/' },
-    ],
   },
-  { label: 'Dealer Locator', icon: 'location_on' },
 ];

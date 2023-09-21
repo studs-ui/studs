@@ -1,7 +1,6 @@
 import { html } from 'lit';
 
 const mockdata = [
-  { label: 'Home', icon: 'home' },
   {
     label: 'Products',
     icon: 'category',
@@ -21,18 +20,22 @@ const mockdata = [
       { label: 'Project Ideas & Inspiration', link: '/' },
     ],
   },
-  { label: 'Resource Center', icon: 'business_center' },
-  { label: 'Training & Education', icon: 'school' },
+  {
+    label: 'Resource Center',
+    icon: 'business_center',
+  },
+  {
+    label: 'Training & Education',
+    icon: 'school',
+    links: [
+      { label: 'Local Workshops', link: '/' },
+      { label: 'Online Courses', link: '/' },
+    ],
+  },
   {
     label: 'Customer Service',
     icon: 'support_agent',
-    links: [
-      { label: 'Contact us', link: '/' },
-      { label: 'Product Information', link: '/' },
-      { label: 'Custormer Survey', link: '/' },
-    ],
   },
-  { label: 'Dealer Locator', icon: 'location_on' },
 ];
 
 export const Navbar = html`
@@ -51,9 +54,9 @@ export const Navbar = html`
             .showIcon="${true}"
             mode="horizontal"
           >
-          <section slot="header">Logo</section>
-          <section slot="footer">Links</section>
-        </studs-navbar>
+            <section slot="header">Header</section>
+            <section slot="footer">Footer</section>
+          </studs-navbar>
         </presentational-component>
         <presentational-component>
           <h2>Vertical Navbar</h2>
@@ -62,9 +65,9 @@ export const Navbar = html`
             .showIcon="${true}"
             mode="vertical"
           >
-          <section slot="header">Logo</section>
-          <section slot="footer">Links</section>
-        </studs-navbar>
+            <section slot="header">Header</section>
+            <section slot="footer">Footer</section>
+          </studs-navbar>
         </presentational-component>
       </div>
     </div>

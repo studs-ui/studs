@@ -35,9 +35,9 @@ export class StudsNavbar extends LitElement {
             return {
               ...otherItem,
               initiallyOpened: false,
-            }
+            };
           }
-          return otherItem
+          return otherItem;
         });
       }
     }
@@ -45,39 +45,37 @@ export class StudsNavbar extends LitElement {
 
   handleMouseOver(e: Event, item: SidebarItem) {
     e.stopPropagation();
-    if(this.mode === 'vertical') {
-      return false
+    if (this.mode === 'vertical') {
+      return false;
     }
-    console.log('mouseover', item)
-    this.toggleLinks(item)
+    this.toggleLinks(item);
   }
 
   handleMouseLeave(e: Event, item: SidebarItem) {
     e.stopPropagation();
-    if(this.mode === 'vertical') {
-      return false
+    if (this.mode === 'vertical') {
+      return false;
     }
-    console.log('mouseleave', item)
     item.initiallyOpened = !item.initiallyOpened;
     this.requestUpdate();
   }
 
   handleClick(item: SidebarItem) {
-    if(this.mode === 'horizontal') {
-      return false
+    if (this.mode === 'horizontal') {
+      return false;
     }
     item.initiallyOpened = !item.initiallyOpened;
     this.requestUpdate();
   }
 
   iconsForMode = {
-    'horizontal': {
+    horizontal: {
       subMenuIcon: 'chevron_right',
     },
-    'vertical': {
+    vertical: {
       subMenuIcon: 'chevron_right',
-    }
-  }
+    },
+  };
 
   icons = this.iconsForMode[this.mode];
 
@@ -88,7 +86,12 @@ export class StudsNavbar extends LitElement {
         ${this.items?.map(
           (item) => html`
             <div class="nav-group">
-              <div class="nav-header" @click="${() => this.handleClick(item)}" @mouseover=${(e: Event) => this.handleMouseOver(e, item)} @mouseleave=${(e: Event) => this.handleMouseLeave(e, item)}>
+              <div
+                class="nav-header"
+                @click="${() => this.handleClick(item)}"
+                @mouseover=${(e: Event) => this.handleMouseOver(e, item)}
+                @mouseleave=${(e: Event) => this.handleMouseLeave(e, item)}
+              >
                 ${this.showIcon && item.icon
                   ? html`<studs-icon
                       class="prefix-icon"
@@ -98,14 +101,21 @@ export class StudsNavbar extends LitElement {
                 ${item.links?.length
                   ? html`
                       <span class="arrow ${item.initiallyOpened ? 'open' : ''}">
-                        <studs-icon icon="${this.icons.subMenuIcon}"></studs-icon>
+                        <studs-icon
+                          icon="${this.icons.subMenuIcon}"
+                        ></studs-icon>
                       </span>
                     `
                   : ''}
               </div>
               ${item.links?.length
                 ? html`
-                    <div class="nav-item" ?hidden=${!item.initiallyOpened}  @mouseleave=${(e: Event) => this.handleMouseLeave(e, item)}>
+                    <div
+                      class="nav-item"
+                      ?hidden=${!item.initiallyOpened}
+                      @mouseleave=${(e: Event) =>
+                        this.handleMouseLeave(e, item)}
+                    >
                       ${item.links.map(
                         (link) =>
                           html` <a href="${link.link}">${link.label}</a> `
