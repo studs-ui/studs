@@ -83,6 +83,10 @@
   --chip-text:   #{colorVal("gray", 90)};
   --chip-border: #{colorVal("gray", 50)};
 
+  --tab-background: white;
+  --tab-border: #{colorVal("gray", 10)};
+  --tab-selected: #{colorVal("gray", 0)};
+
   --breadcrumb-color:   #{colorVal("gray", 40)};
   --breadcrumb-hover:   #{colorVal("gray", 90)};
   --breadcrumb-current: var(--primary);
