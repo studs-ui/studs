@@ -31,6 +31,7 @@ import { Footer } from '../partials/_footer';
 import { Cards } from '../partials/_cards';
 import { Paginations } from '../partials/_paginations';
 import { Sidebar } from '../partials/_sidebar';   
+import { Navbar } from '../partials/_navbar';
 
 @customElement('presentational-page')
 export class PresentationalPage extends LitElement {
@@ -95,6 +96,8 @@ export class PresentationalPage extends LitElement {
         ${Footer}
         <!-- Sidebar -->
         ${Sidebar}
+        <!-- Navbar -->
+        ${Navbar}
 
         <div slot="tabgroup">Overlays</div>
         <!-- Modals-->
