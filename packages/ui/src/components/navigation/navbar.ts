@@ -1,7 +1,6 @@
 import { html, unsafeCSS, LitElement } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import style from '@studs/styles/components/navbar.scss?inline';
-import { SidebarItem } from './sidebar';
 
 export interface NavbarItem {
   label: string;
@@ -43,7 +42,7 @@ export class StudsNavbar extends LitElement {
     }
   }
 
-  handleMouseOver(e: Event, item: SidebarItem) {
+  handleMouseOver(e: Event, item: NavbarItem) {
     e.stopPropagation();
     if (this.mode === 'vertical') {
       return false;
@@ -51,7 +50,7 @@ export class StudsNavbar extends LitElement {
     this.toggleLinks(item);
   }
 
-  handleMouseLeave(e: Event, item: SidebarItem) {
+  handleMouseLeave(e: Event, item: NavbarItem) {
     e.stopPropagation();
     if (this.mode === 'vertical') {
       return false;
@@ -60,7 +59,7 @@ export class StudsNavbar extends LitElement {
     this.requestUpdate();
   }
 
-  handleClick(item: SidebarItem) {
+  handleClick(item: NavbarItem) {
     if (this.mode === 'horizontal') {
       return false;
     }
