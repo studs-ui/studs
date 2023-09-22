@@ -46,6 +46,8 @@
   --link-disabled:#{colorVal("orange", 20)};
 
   --disabled:     #{colorVal("gray", 0)};
+  --highlight:    #{colorVal("gray", 0)};
+  --selected:     #{colorVal("orange", 0)};
 
   --background:          #{colorVal("gray", 10)};
   --background-featured: #{colorVal("gray", 90)};
@@ -76,7 +78,6 @@
   --accordion-bkg: #{colorVal("gray", 0)};
   --accordion-hover: #{colorVal("gray", 10)};
 
-
   --chip-bkg:    #{colorVal("gray" ,10)};
   --chip-hover:  #{colorVal("gray",0)};
   --chip-focus:  #{$white};
@@ -85,7 +86,7 @@
 
   --tab-background: white;
   --tab-border: #{colorVal("gray", 10)};
-  --tab-selected: #{colorVal("gray", 0)};
+  --tab-selected: var(--highlight);
 
   --breadcrumb-color:   #{colorVal("gray", 40)};
   --breadcrumb-hover:   #{colorVal("gray", 90)};
@@ -148,12 +149,16 @@
   --card-background: #{$white};
   --card-border:     #{$transparent};
 
-
   --dropdown-background-outline: #{colorVal("gray", 20)};
   --dropdown-background: #{$white};
 
   --switch-color:    #{colorVal("orange", 50)};
   --switch-disabled: #{colorVal("gray", 30)};
+
+
+
+
+
 
   @media (prefers-contrast: more) {
     --text-color: #{$black};
