@@ -61,10 +61,10 @@ function getStorybookBaseUrl() {
 
     if (hostname.includes("studs.strongtie.com")) {
       return "https://studs.strongtie.com/storybook?path=/docs"; 
-    } else if (hostname.includes("staging.studs.strongtie.com")) {
-      return "https://staging.studs.strongtie.com/storybook?path=/docs";
-    } else if (hostname.includes("dev.studs.strongtie.com")) {
-      return "https://dev.studs.strongtie.com/storybook?path=/docs";
+    } else if (hostname.includes("studs-staging.strongtie.com")) {
+      return "https://studs-staging.strongtie.com/storybook?path=/docs";
+    } else if (hostname.includes("studs-dev.strongtie.com")) {
+      return "https://studs-dev.strongtie.com/storybook?path=/docs";
     } else if (hostname.includes("localhost")) {
       return "http://localhost:6006/?path=/docs";
     }
