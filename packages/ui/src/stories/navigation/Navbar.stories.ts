@@ -1,16 +1,17 @@
 import { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
-import { SidebarProps } from "../../components/navigation/sidebar";
+import { NavbarProps } from "../../components/navigation/navbar";
 
 const meta = {
-  title: "Studs/Navigation/Sidebar",
+  title: "Studs/Navigation/Navbar",
   tags: ["autodocs"],
   render: (args) => html`
-  <studs-sidebar 
+  <studs-navbar 
     .items="${mockdata}" 
     .showIcon="${args.showIcon}"
+    mode="${args.mode}"
   >
-  </studs-sidebar>`,
+  </studs-navbar>`,
   argTypes: {
     showIcon: {
         control: {
@@ -18,25 +19,28 @@ const meta = {
             default: false,
         }
     },
+    mode: {
+        control: { type: "select" },
+        options: ["horizontal", "vertical"],
+    },
   },
-} satisfies Meta<SidebarProps>;
+} satisfies Meta<NavbarProps>;
 
 export default meta;
 
-type Story = StoryObj<SidebarProps>;
+type Story = StoryObj<NavbarProps>;
 
 export const Default: Story = {
   args: {
     showIcon: true,
+    mode: 'horizontal',
   },
 };
 
 const mockdata = [
-  { label: 'Home', icon: 'home' },
   {
     label: 'Products',
     icon: 'category',
-    initiallyOpened: true,
     links: [
       { label: 'Connectors', link: '/' },
       { label: 'Anchoring System', link: '/' },
@@ -53,16 +57,20 @@ const mockdata = [
       { label: 'Project Ideas & Inspiration', link: '/' },
     ],
   },
-  { label: 'Resource Center', icon: 'business_center' },
-  { label: 'Training & Education', icon: 'school' },
+  {
+    label: 'Resource Center',
+    icon: 'business_center',
+  },
+  {
+    label: 'Training & Education',
+    icon: 'school',
+    links: [
+      { label: 'Local Workshops', link: '/' },
+      { label: 'Online Courses', link: '/' },
+    ],
+  },
   {
     label: 'Customer Service',
     icon: 'support_agent',
-    links: [
-      { label: 'Contact us', link: '/' },
-      { label: 'Product Information', link: '/' },
-      { label: 'Custormer Survey', link: '/' },
-    ],
   },
-  { label: 'Dealer Locator', icon: 'location_on' },
 ];
