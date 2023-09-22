@@ -11,4 +11,14 @@
 
 .custom {
     margin: 0 0.5em;
-  }
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.img {
+    width: 1.3rem; 
+    margin-right: 0.25rem
+}
