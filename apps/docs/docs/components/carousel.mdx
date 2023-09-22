@@ -1,6 +1,13 @@
 # Carousel
 
-<HeaderComponent htmlTag="studs-carousel" jsxTag="StudsCarousel" version="Since 2.0" status="Unstable" />
+<HeaderComponent
+  htmlTag="studs-carousel"
+  jsxTag="StudsCarousel"
+  version="Since 2.0"
+  status="Unstable"
+  urlGithub="display/carousel.ts"
+  urlStrbook="studs-display-carousel--docs"
+/>
 
 Carousels display an arbitrary number of content slides along a horizontal or vertical axis.
 
@@ -11,9 +18,7 @@ Carousels display an arbitrary number of content slides along a horizontal or ve
   args={[
     {
       name: 'slides',
-      description: (
-        <></>
-      ),
+      description: <></>,
       reflects: false,
       type: `[
         {
@@ -22,15 +27,13 @@ Carousels display an arbitrary number of content slides along a horizontal or ve
           "alt": string
         },
         ...
-      ]`
+      ]`,
     },
     {
       name: 'perPage',
-      description: (
-        <></>
-      ),
+      description: <></>,
       reflects: false,
-      type: "number"
+      type: 'number',
     },
   ]}
 ></Tables>

@@ -2,8 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import styles from './styles.module.css';
 import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
+import Link from '@docusaurus/Link';
+import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
 
-const HeaderComponent = ({ htmlTag, jsxTag }) => {
+const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
   const { label: version, banner, badge, ...rest } = useDocsVersion();
   const isUnreleased = banner === 'unreleased';
 
@@ -22,7 +24,7 @@ const HeaderComponent = ({ htmlTag, jsxTag }) => {
       );
       versionElement?.setAttribute(
         'style',
-        'background-color: #444444; color: #fff; border: transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
+        'background-color: #444444; color: #fff; border: 1px solid transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
       );
     });
   }, [isVisible]);
@@ -32,19 +34,46 @@ const HeaderComponent = ({ htmlTag, jsxTag }) => {
       <code>
         {tag} | {jsxTag}
       </code>
-      <div>
-        <studs-chip ref={ref} class="custom" variant="infor" size="small">
+      <div className={styles.wrapper}>
+        <studs-chip
+          style={{ display: 'inherit' }}
+          ref={ref}
+          class="custom"
+          size="small"
+          variant="infor"
+        >
           {version}
         </studs-chip>
 
         <studs-chip
           ref={ref}
+          style={{ display: 'inherit' }}
           class={`custom ${styles.custom}`}
           size="small"
           selected
         >
           {isUnreleased ? 'Unstable' : 'Stable'}
         </studs-chip>
+        <Link
+          to={`${BASE_URL_GITHUB}/${urlGithub}`}
+          target="_blank"
+          className={styles.wrapper}
+        >
+          <img src="/img/github.svg" alt="github" className={styles.img} />
+          <span>Github</span>
+        </Link>
+        <Link
+          className={`${styles.custom} ${styles.wrapper}`}
+          to={`${BASE_URL_STRB}/${urlStrbook}`}
+          target="_blank"
+        >
+          <img
+            src="/img/storybook.svg"
+            alt="storybook"
+            className={styles.img}
+          />
+          <span>Storybook</span>
+        </Link>
       </div>
     </div>
   );
