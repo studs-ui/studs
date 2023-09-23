@@ -79,7 +79,7 @@
     box-shadow: none;
     background-color: $transparent;
 
-    &:focus,
+    // &:focus,
     &:focus-visible {
       --color: var(--primary-hover);
     }
@@ -206,7 +206,7 @@
     --text:  var(--disabled-text);
   }
 
-  &:focus,
+  // &:focus,
   &:focus-visible {
     outline-color: var(--border);
   }

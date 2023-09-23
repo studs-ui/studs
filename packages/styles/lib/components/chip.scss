@@ -74,7 +74,7 @@
     pointer-events: none;
   }
 
-  &:focus,
+  // &:focus,
   &:focus-visible {
     --border: var(--primary);
     --bkg: var(--chip-focus);
