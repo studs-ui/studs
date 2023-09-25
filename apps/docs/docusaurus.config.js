@@ -69,6 +69,9 @@ const config = {
     ({
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
+      colorMode: {
+        disableSwitch: true,
+      },
       navbar: {
         title: 'STUDS',
         logo: {
@@ -79,6 +82,11 @@ const config = {
           {
             type: 'docsVersionDropdown',
           },
+          {
+            type: 'html',
+            position: 'right',
+            value: "<img class='custom-img' src='/img/sst_logo.svg' alt='...' />"
+          }
         ],
       },
       footer: {
