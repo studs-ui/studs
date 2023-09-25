@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import { live } from 'lit/directives/live.js';
 
 export interface CheckboxProps extends WithFormInterface {
   indeterminate?: boolean;
@@ -58,7 +59,7 @@ export class StudsCheckbox extends WithForm(LitElement) {
           type="checkbox"
           name=${ifDefined(this.name)}
           value=${ifDefined(this.value)}
-          .checked=${this.checked}
+          .checked=${live(this.checked)}
           ?disabled=${this.disabled}
           @change=${this.onChange}
         />

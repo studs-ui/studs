@@ -103,6 +103,22 @@ export const Default: Story = {
   },
 };
 
+export const Groups: Story = {
+  args: {
+    options: [
+      {
+        name: "Group 1", 
+        options: [
+        { value: "1", label: "Option 1" },
+        { value: "2", label: "Option 2" },
+        { value: "3", label: "Option 3" },
+        { value: "4", label: "Option 4" }
+      ]
+      }
+    ]
+  }
+};
+
 export const Disabled: Story = {
   args: {
     disabled: true,

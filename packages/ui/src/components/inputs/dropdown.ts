@@ -1,5 +1,5 @@
 import style from '@studs/styles/components/dropdowns.scss?inline';
-import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
+import { LitElement, PropertyValueMap, TemplateResult, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { choose } from 'lit/directives/choose.js';
 import { classMap } from 'lit/directives/class-map.js';
@@ -10,10 +10,12 @@ import { PopperController } from '../../controllers/popperController';
 import { WithForm } from '../../mixins/withForm';
 import { WithPopper } from '../../mixins/withPopper';
 import { StudsCheckbox } from './checkbox';
+import { repeat } from 'lit/directives/repeat.js';
 
 interface Option {
-  label: string;
-  value: string;
+  label?: string;
+  value?: string;
+  name?: string;
   icon?: Icon;
   image?: string | URL;
   options?: Option[];
@@ -24,7 +26,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
   // Element Properties
   @property({ type: String }) icon?: Icon;
   // Dropdown Properties
-  @property({ type: Object }) options: Option[] = [];
+  @property({ type: Array }) options: Option[] = [];
   @property({ type: Object }) selected?: Option | Option[] | null;
   @property({ type: String }) size?: 'small' | 'medium' = 'medium';
   @property({ type: String }) type?: 'default' | 'search' | 'multi' = 'default';
@@ -125,8 +127,19 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
-  private getOptionTemplate(option: Option) {
-    return choose(this.type, [
+  private getOptionTemplate(option: Option): TemplateResult | undefined {
+    if(option.options && option.options?.length > 0) {
+      return html`<li class="group">
+        ${option.name ? html`<span>${option.name}</span>` : nothing}
+        <ul>
+          <!-- ${this.getOptions(option.options)} -->
+          ${repeat(option.options, (option) => option.value || option.name, (option: Option) => {
+            return this.getOptionTemplate(option);
+          })}
+        </ul>
+      </li>`
+    } else {
+      return choose(this.type, [
         ['multi', () => {
             const selected = (this.selected as Option[]).some((selectedOption: Option) => selectedOption.value === option.value);
             return html`
@@ -135,7 +148,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
                 role="option"
                 aria-selected=${selected}
               >
-                <studs-checkbox name=${this.name} label=${option.label} .checked=${selected} @change=${
+                <studs-checkbox name=${ifDefined(this.name)} label=${ifDefined(option.label)} .checked=${selected} @change=${
               (event: Event) => {
                 event.stopPropagation();
                 this.onMultiChange(event as MouseEvent, option);
@@ -148,22 +161,23 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
       ],
       () => html` <li @click=${(event: MouseEvent) => this.onSingleChange(event, option)} role="option" aria-selected=${option.value === (this.selected as Option)?.value}>
         <input type="radio" id=${option.value} name=${this.name} value=${option.value} .checked=${option.value} />
-        <label for=${option.value}>${option.label}</label>
+        <label for=${ifDefined(option.value)}>${option.label}</label>
         ${this.renderAdornment(option)}
         ${(this.selected as Option)?.value === option.value
           ? html`<span class="selected">${this.iconController.icon('check')}</span>`
           : null}
       </li>`
     );
+    }
   }
 
-  private getOptions() {
-    if (this.options)
+  private getOptions(options?: Option[]) {
+    if (options)
       return choose(this.type, [
           [
             'default',
             () => {
-              return map(this.options, (option: Option) => {
+              return repeat(this.options, (option) => option.value || option.name, (option: Option) => {
                 return this.getOptionTemplate(option);
               });
             }
@@ -186,7 +200,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
                   ></studs-checkbox>
                 </li>`
               : null}
-            ${map(options, (option: Option) => this.getOptionTemplate(option))}`;
+            ${repeat(options, (option) => option.value || option.name,(option: Option) => this.getOptionTemplate(option))}`;
           return html`<li>No options found</li>`;
         }
       );
@@ -278,7 +292,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
           aria-multiselectable=${this.type === 'multi'}
           aria-required=${ifDefined(this.required)}
         >
-          ${this.getOptions()}
+          ${this.getOptions(this.options)}
           <slot></slot>
           <div id="arrow"></div>
         </ul>
@@ -376,7 +390,6 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     if (this.form) {
       this.setFormValue(JSON.stringify(this.selected));
     }
-    // this.popperController?.showPopper();
   };
 
   private onActionButtonClick() {
