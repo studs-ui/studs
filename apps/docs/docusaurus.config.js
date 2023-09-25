@@ -116,16 +116,20 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'More Resources',
             items: [
               {
                 label: 'GitHub',
                 href: 'https://github.com/studs-ui/studs',
               },
+              {
+                label: 'Storybook',
+                href: `https://studs-staging.strongtie.com/storybook/?path=/docs/example-introduction--docs`,
+              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
