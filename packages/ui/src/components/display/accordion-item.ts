@@ -30,19 +30,18 @@ export class StudsAccordionItem extends LitElement {
         [`-${this.direction}`]: true,
       })}
       ?disabled=${this.disabled}
-      aria-hidden=${!this.open}
+      aria-expanded=${this.open}
     >
-      <header class="accordion -header">
+      <header class="accordion -header" @click=${this.onToggle}>
         <slot name="toggle">Accordion Header</slot>
         <studs-button
           size="medium"
           button-type="close"
           icon="chevron_right"
-          @click=${this.onToggle}
           ?disabled=${this.disabled}
         ></studs-button>
       </header>
-      <main>
+      <main aria-hidden=${!this.open}>
         <div class="content"><slot></slot></div>
       </main>
     </div>`;
