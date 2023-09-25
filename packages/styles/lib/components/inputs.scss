@@ -87,7 +87,8 @@
 
     @include fontSizes;
 
-    &:has(input:focus, input:focus-visible) {
+    // &:has(input:focus, input:focus-visible) {
+    &:has( input:focus-visible) {
       --border: var(--link-color);
       outline: 2px solid var(--outline);
     }
@@ -110,10 +111,11 @@
       margin: 0;
       padding: 0.5rem;
       color: var(--text);
+      width: 100%;
 
       background: transparent;
 
-      &:focus,
+      // &:focus,
       &:focus-visible {
         outline: 1px solid var(--primary-active);
         border-radius: 0;
@@ -124,6 +126,14 @@
       }
 
       @include placeholders;
+    }
+
+    &.-short {
+      width: 3em;
+
+      input {
+        text-align: center;
+      }
     }
 
     ::-ms-reveal {

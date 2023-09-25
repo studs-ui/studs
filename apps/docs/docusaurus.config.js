@@ -40,6 +40,12 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
+          versions: {
+            current: {
+              label: '0.0.1',
+              path: '',
+            },
+          },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -69,9 +75,13 @@ const config = {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
         },
+        items: [
+          {
+            type: 'docsVersionDropdown',
+          },
+        ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Docs',

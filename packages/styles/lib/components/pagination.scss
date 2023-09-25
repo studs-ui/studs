@@ -1,3 +1,5 @@
+@use "icons" as icon;
+
 .pagination {
   display: flex;
   flex-wrap: wrap;
@@ -26,9 +28,9 @@
   margin: 0 0.5rem;
 }
 
-.dots::before {
-  content: ' \B7 \B7 \B7';
-  color: #273142;
+.icon {
+  color: var(--text-disabled);
+  @include icon.icon;
 }
 
 .pagination-helpers {

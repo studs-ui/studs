@@ -1,7 +1,7 @@
 {
   "name": "@studs/docs",
-  "version": "0.0.7",
-  "private": true,
+  "version": "0.1.0",
+  
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start",
@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
+    "@docusaurus/plugin-content-docs": "^2.4.1",
     "@docusaurus/preset-classic": "2.4.1",
     "@docusaurus/theme-common": "^2.4.1",
     "@docusaurus/theme-live-codeblock": "^2.4.1",

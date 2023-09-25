@@ -53,14 +53,13 @@ export class StudsTabs extends LitElement {
   render() {
     const wrapperClasses = {
       tabsComponent: true,
-      'tab-direction-row': this.tabDirection === 'row',
-      'tab-direction-column': this.tabDirection === 'column',
+      [`-${this.tabDirection}`]: this.tabDirection
     };
 
     const navClasses = {
       tabs: true,
       [`-${this.variant}`]: !!this.variant,
-      [`${this.tabDirection}`]: !!this.tabDirection,
+      [`-${this.tabDirection}`]: !!this.tabDirection,
     };
 
     return html`

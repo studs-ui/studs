@@ -49,7 +49,7 @@
       text-decoration-color: currentcolor;
     }
 
-    &:focus,
+    // &:focus,
     &:focus-visible {
       outline: 1px solid var(--current);
       outline-offset: .25em;
