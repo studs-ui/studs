@@ -2,23 +2,21 @@
 @use './inputs.scss' as *;
 
 .dropdown {
-
   &.-wrapper {
-      position: relative;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-      font-size: 1em;
-      width: max-content;
-        > p {
-        text-transform: uppercase;
-        padding: 0;
-        margin: 0;
-        color: var(--text-color);
-      }
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1em;
+    width: max-content;
+    > p {
+      text-transform: uppercase;
+      padding: 0;
+      margin: 0;
+      color: var(--text-color);
+    }
   }
-
 
   &[disabled] {
     cursor: not-allowed;
@@ -84,13 +82,11 @@
     }
 
     button.-item {
-        cursor: pointer;
-        background-color: transparent;
-        border: none;
-        font-size: 1em;
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      font-size: 1em;
     }
-
-
 
     .-small & {
       button {
@@ -105,7 +101,7 @@
     }
   }
 
-  [role="listbox"] {
+  [role='listbox'] {
     width: -webkit-fill-available;
     color: var(--text-color);
     background-color: var(--background-content);
@@ -121,9 +117,22 @@
 
     padding: 0;
     min-width: 100%;
+    li {
+      display: flex;
+      align-items: center;
+      text-align: left;
+      padding: 0.5rem 0.5rem;
+      color: inherit;
+      font-size: inherit;
+      pointer-events: all;
+      width: 100%;
 
+      @supports (width: -webkit-fill-available) {
+        width: -webkit-fill-available;
+      }
+    }
 
-    &[aria-hidden="false"] {
+    &[aria-hidden='false'] {
       display: flex;
     }
     #arrow {
@@ -132,22 +141,9 @@
     }
   }
 
-  [role="option"] {
-    display: flex;
-    align-items: center;
-    text-align: left;
-    padding: 0.5rem 0.5rem;
+  [role='option'] {
     cursor: pointer;
-    color: inherit;
-    font-size: inherit;
-    pointer-events: all;
-    width: 100%;
-
-    @supports(width: -webkit-fill-available) {
-      width: -webkit-fill-available;
-    }
-
-    input[type="radio"] {
+    input[type='radio'] {
       opacity: 0;
       position: absolute;
     }
@@ -167,7 +163,7 @@
       background-color: var(--highlight);
     }
 
-    &[aria-selected="true"] {
+    &[aria-selected='true'] {
       background-color: var(--selected);
       > .selected {
         margin-left: auto;
@@ -178,4 +174,3 @@
     }
   }
 }
-

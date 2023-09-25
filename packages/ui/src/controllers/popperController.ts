@@ -19,6 +19,7 @@ import {
 export class PopperController implements ReactiveController {
   host: ReactiveControllerHost;
   public on: 'click' | 'hover' | 'manual' | 'toggle' = 'hover';
+  public open: boolean = false;
   public trigger?: HTMLElement;
   private cleanup?: Function;
   public disabled: boolean = false;
@@ -58,7 +59,10 @@ export class PopperController implements ReactiveController {
           this.host as unknown as LitElement
         ).renderRoot.querySelector('[role]');
         if (popper) {
-          this._trigger.setAttribute('aria-haspopup', popper.getAttribute('role') || 'true');
+          this._trigger.setAttribute(
+            'aria-haspopup',
+            popper.getAttribute('role') || 'true'
+          );
           this._trigger.setAttribute('aria-expanded', 'false');
           if (!this.arrow) {
             const arrow = popper.querySelector('#arrow');
@@ -136,13 +140,18 @@ export class PopperController implements ReactiveController {
   }
 
   public showPopper = (e?: MouseEvent | FocusEvent) => {
-    this.host.updateComplete.then(() => {    
+    this.host.updateComplete.then(() => {
+      this.open = true;
       this.popper?.setAttribute('aria-hidden', 'false');
       if (this._trigger) {
         this._trigger.setAttribute('aria-expanded', 'true');
-        if(this.popper?.getAttribute('role') === 'listbox' || this.popper?.getAttribute('role') === 'menu') {
-          const activeDescendant: HTMLElement | null = this.popper.querySelector('[aria-selected="true"]');
-          if(activeDescendant) activeDescendant.focus();
+        if (
+          this.popper?.getAttribute('role') === 'listbox' ||
+          this.popper?.getAttribute('role') === 'menu'
+        ) {
+          const activeDescendant: HTMLElement | null =
+            this.popper.querySelector('[aria-selected="true"]');
+          if (activeDescendant) activeDescendant.focus();
         }
       }
       this.updatePosition();
@@ -152,6 +161,7 @@ export class PopperController implements ReactiveController {
 
   public hidePopper = (e?: MouseEvent | FocusEvent) => {
     this.host.updateComplete.then(() => {
+      this.open = false;
       this.popper?.setAttribute('aria-hidden', 'true');
       if (this._trigger) {
         this._trigger.setAttribute('aria-expanded', 'false');
