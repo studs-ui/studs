@@ -7,6 +7,7 @@
   "types": "dist/index.d.ts",
   "exports": {
     "./studs-base.css": {
+      "development": "./src/index.ts",
       "require": "./dist/style.css",
       "import": "./dist/style.css",
       "style": "./dist/style.css",
@@ -14,6 +15,7 @@
     },
     "./*": "./src/components/*",
     ".": {
+      "development": "./src/index.ts",
       "require": "./dist/index.cjs",
       "script": "./dist/index.cjs",
       "import": "./dist/index.js"
