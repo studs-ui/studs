@@ -76,10 +76,6 @@
       display: grid;
       grid-template-rows: 0fr;
       transition: grid-template-rows var(--transition-m);
-      transition: grid-template-rows var(--transition-m),
-        -ms-grid-rows var(--transition-m);
-      transition: grid-template-rows var(--transition-m),
-        -ms-grid-rows var(--transition-m);
       opacity: 0;
       background: var(--background-content);
 
