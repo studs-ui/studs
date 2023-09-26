@@ -72,18 +72,12 @@ const config = {
       navbar: {
         title: 'STUDS',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Simpson Strong-Tie',
+          src: 'img/sst_logo.svg',
         },
         items: [
           {
             type: 'docsVersionDropdown',
-          },
-          {
-            type: 'html',
-            position: 'right',
-            value:
-              "<img class='custom-img' src='/img/sst_logo.svg' alt='...' />",
           },
         ],
       },
@@ -93,8 +87,8 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/category/getting-started',
+                label: 'Installation',
+                to: '/getting-started/installation',
               },
             ],
           },
@@ -129,6 +123,11 @@ const config = {
             ],
           },
         ],
+        logo: {
+          alt: 'Simpson Strong-Tie',
+          src: 'img/hangerman.svg',
+          width: 100,
+        },
         copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc.`,
       },
       prism: {
