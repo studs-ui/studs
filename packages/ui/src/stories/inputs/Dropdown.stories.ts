@@ -95,10 +95,7 @@ export const Default: Story = {
       { value: "3", label: "Option 3" },
       { value: "4", label: "Option 4" },
     ],
-    selected: {
-      value: "2",
-      label: "Option 2",
-    },
+    selected: "2",
     size: "medium"
   },
 };
@@ -109,10 +106,15 @@ export const Groups: Story = {
       {
         name: "Group 1", 
         options: [
-        { value: "1", label: "Option 1" },
-        { value: "2", label: "Option 2" },
-        { value: "3", label: "Option 3" },
-        { value: "4", label: "Option 4" }
+          { value: "1", label: "Cat" },
+          { value: "2", label: "Dog" },
+      ]
+      },
+      {
+        name: "Group 2", 
+        options: [
+          { value: "5", label: "Lion" },
+          { value: "9", label: "Dog"}
       ]
       }
     ]
@@ -128,10 +130,7 @@ export const Disabled: Story = {
       { value: "3", label: "Option 3" },
       { value: "4", label: "Option 4" },
     ],
-    selected: {
-      value: "2",
-      label: "Option 2",
-    },
+    selected: "3"
   },
 };
 
@@ -155,10 +154,7 @@ export const Searchable: Story = {
       { value: "3", label: "Rat" },
       { value: "4", label: "Monkey" },
     ],
-    selected: {
-      value: "2",
-      label: "Dog",
-    },
+    selected: "2",
   },
 }
 
@@ -198,24 +194,36 @@ export const MultiSelect: Story = {
       { value: "30", label: "Sparrow" },
     ],
     selected: [
-      {
-        value: "2",
-        label: "Dog",
-      },
-      {
-        value: "3",
-        label: "Rat",
-      },
-      {
-        value: "4",
-        label: "Monkey",
-      },
-      {
-        value: "5",
-        label: "Lion",
-      }
+      "2", "3", "4", "5"
     ],
   },
+}
+
+export const MultiSelectGroup: Story = {
+  args: {
+    type: "multi",
+    options: [
+      {
+        name: "Group 1", 
+        options: [
+          { value: "1", label: "Cat" },
+          { value: "2", label: "Dog" },
+          { value: "3", label: "Rat" },
+          { value: "4", label: "Monkey" },
+      ]
+      },
+      {
+        name: "Group 2", 
+        options: [
+          { value: "5", label: "Lion" },
+          { value: "6", label: "Tiger" },
+          { value: "7", label: "Bear" },
+          { value: "8", label: "Elephant" },
+          { value: "9", label: "Dog"}
+      ]
+      }
+    ]
+  }
 }
 
 export const DropdownWithIcon: Story = {
@@ -227,10 +235,7 @@ export const DropdownWithIcon: Story = {
       { value: "3", label: "Rat" },
       { value: "4", label: "Monkey" },
     ],
-    selected: {
-      value: "2",
-      label: "Dog",
-    },
+    selected: "2",
   },
 }
 
@@ -242,10 +247,7 @@ export const OptionsWithIcon: Story = {
       { value: "3", label: "Rat", icon: "terminal" },
       { value: "4", label: "Monkey", icon: "123" },
     ],
-    selected: {
-      value: "2",
-      label: "Dog",
-    },
+    selected: "2",
   },
 }
 
@@ -257,9 +259,6 @@ export const OptionsWithImage: Story = {
       { value: "3", label: "Rat", image: "https://picsum.photos/200" },
       { value: "4", label: "Monkey", image: "https://picsum.photos/200" },
     ],
-    selected: {
-      value: "2",
-      label: "Dog",
-    },
+    selected: "2"
   },
 }
