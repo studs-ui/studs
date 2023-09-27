@@ -1,39 +1,41 @@
 import style from '@studs/styles/components/dropdowns.scss?inline';
-import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
+import { LitElement, PropertyValueMap, TemplateResult, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
+import { choose } from 'lit/directives/choose.js';
 import { classMap } from 'lit/directives/class-map.js';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { map } from 'lit/directives/map.js';
 import { Icon, IconController } from '../../controllers/iconController';
 import { PopperController } from '../../controllers/popperController';
-import { WithForm, WithFormInterface } from '../../mixins/withForm';
-import { WithPopper, WithPopperInterface } from '../../mixins/withPopper';
-import { choose } from 'lit/directives/choose.js';
-import { ifDefined } from 'lit/directives/if-defined.js';
-
-export interface DropdownProps extends WithFormInterface, WithPopperInterface {
-  icon?: Icon;
-  options: Option[];
-  selected?: Option | Option[] | null;
-  size: 'small' | 'medium';
-  type: 'default' | 'search' | 'multi';
-}
+import { WithForm } from '../../mixins/withForm';
+import { WithPopper } from '../../mixins/withPopper';
+import { StudsCheckbox } from './checkbox';
+import { repeat } from 'lit/directives/repeat.js';
 
 interface Option {
-  label: string;
-  value: string;
+  label?: string;
+  value?: string;
+  name?: string;
   icon?: Icon;
   image?: string | URL;
+  options?: Option[];
 }
 
 @customElement('studs-dropdown')
+/**
+ * A custom dropdown component that extends LitElement and includes WithForm and WithPopper mixins.
+ * @fires StudsDropdown#change - Fired when the selected option(s) change.
+ * @fires StudsDropdown#input - Fired when the user types in the search input (only for search and multi type dropdowns).
+ * @fires StudsDropdown#toggle - Fired when the dropdown is opened or closed.
+ */
 export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
   // Element Properties
-  @property({ type: String }) icon?: DropdownProps['icon'];
+  @property({ type: String }) icon?: Icon;
   // Dropdown Properties
-  @property({ type: Object }) options: DropdownProps['options'] = [];
-  @property({ type: Object }) selected?: DropdownProps['selected'];
-  @property({ type: String }) size?: DropdownProps['size'] = 'medium';
-  @property({ type: String }) type?: DropdownProps['type'] = 'default';
+  @property({ type: Array }) options: Option[] = [];
+  @property({ type: Object }) selected?: string | string[] | null;
+  @property({ type: String }) size?: 'small' | 'medium' = 'medium';
+  @property({ type: String }) type?: 'default' | 'search' | 'multi' = 'default';
 
   @state() private _query?: string = '';
 
@@ -75,11 +77,64 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
   ): void {
     super.updated(_changedProperties);
-    if (this.options?.length > 5 && this.type === 'default') {
+    const groupOptions = this.options?.reduce((acc: Option[], option: Option) => {
+      if(option.options) {
+        acc.push(...option.options);
+      }
+      return acc;
+    }, []);
+    if ((this.options?.length > 5 || groupOptions?.length > 5) && this.type === 'default') {
       this.type = 'search';
     }
   }
 
+  /**
+   * Returns an array of options that match the current query.
+   * If there is no query, returns all options.
+   * @returns An array of Option objects.
+   */
+  get filteredOptions(): Option[] {
+    if (!this._query) {
+      return this.options;
+    }
+  
+    const filteredOptions: Option[] = [];
+  
+    for (const option of this.options) {
+      if (option.options) {
+        const filteredSubOptions = option.options.filter(subOption => subOption.label?.toLowerCase().includes(this._query.toLowerCase()));
+        if (filteredSubOptions.length > 0) {
+          filteredOptions.push({ ...option, options: filteredSubOptions });
+        }
+      } else if (option.label?.toLowerCase().includes(this._query.toLowerCase())) {
+        filteredOptions.push(option);
+      }
+    }
+  
+    return filteredOptions;
+  }
+
+  /**
+   * Returns the total number of options in the dropdown, including nested options.
+   * @returns The total number of options in the dropdown.
+   */
+  get length(): number {
+    const combinedOptions = this.options?.reduce((acc: Option[], option: Option) => {
+      if(option.options) {
+        acc.push(...option.options);
+      } else {
+        acc.push(option);
+      }
+      return acc;
+    }
+    , []);
+    return combinedOptions?.length || 0;
+  }
+
+  /**
+   * Returns the selected option(s) label(s) based on the dropdown type.
+   * @returns The selected option(s) label(s) or undefined if no option is selected.
+   */
   get getSelected(): string | string[] | undefined {
     if (this.options) {
       if (this.selected) {
@@ -87,28 +142,71 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
           [
             'default',
             () => {
-              return (this.selected as Option)?.label;
+              const selected = this.options.find(
+                (option: Option) => {
+                  if(option.options) 
+                    return option.options.some((subOption: Option) => subOption.value === this.selected);
+                  return option.value === this.selected
+                }
+              )
+              if(!selected?.label && selected?.options) {
+                return selected?.options.find((option: Option) => option.value === this.selected)?.label;
+              } else {
+                return selected?.label;
+              }
             },
           ],
           [
             'search',
             () => {
-                this._query = (this.selected as Option)?.label;
+              const selected = this.options.find(
+                (option: Option) => {
+                  if(option.options) 
+                    return option.options.some((subOption: Option) => subOption.value === this.selected);
+                  return option.value === this.selected
+                }
+              )
+              if(!selected?.label && selected?.options) {
+                this._query = selected?.options.find((option: Option) => option.value === this.selected)?.label;;
                 this.requestUpdate();
-                return (this.selected as Option)?.label;
-              },
+                return selected?.options.find((option: Option) => option.value === this.selected)?.label;
+              } else {
+                this._query = selected?.label;
+                this.requestUpdate();
+              }
+              
+              return selected?.label;
+            },
           ],
           [
             'multi',
             () => {
-              return (this.selected as Option[]).map((option: Option) => option);
+              const selected: Option[] = [];
+              (this.selected as string[]).forEach((option: string) => {
+                const selectedOption = this.options.find(
+                  (selectedOption: Option) => {
+                    if(selectedOption.options) 
+                      return selectedOption.options.some((subOption: Option) => subOption.value === option);
+                    return selectedOption.value === option
+                  }
+                );
+                if(!selectedOption?.label && selectedOption?.options) {
+                  selected.push(selectedOption?.options.find((subOption: Option) => subOption.value === option) as Option);
+                } 
+                else {
+                  selected.push(selectedOption as Option)
+                }
+              });
+              return selected.map(
+                (option: Option) => option
+              );
             },
           ],
         ]);
       } else if (!this.placeholder) {
-        if(this.type === "default") return this.options[0].label;
-      } else if(this.placeholder) {
-        return this.placeholder
+        if (this.type === 'default') return this.options[0].label;
+      } else if (this.placeholder) {
+        return this.placeholder;
       } else {
         return;
       }
@@ -117,64 +215,131 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
+  /**
+   * Renders the adornment for a given option in the dropdown.
+   * @param option - The option to render the adornment for.
+   * @returns The rendered adornment element.
+   */
   private renderAdornment(option: Option) {
-    if(option.image) {
-      return html`<studs-image src=${option.image}></studs-image>`
+    if (option.image) {
+      return html`<studs-image class="adornment" src=${option.image}></studs-image>`;
     } else if (option.icon) {
-      return html`<span class="adornment">${this.iconController.icon(option.icon)}</span>`
+      return html`<span class="adornment"
+        >${this.iconController.icon(option.icon)}</span
+      >`;
     } else {
       return nothing;
     }
   }
 
-  private getOptionTemplate(option: Option) {
-    return choose (this.type, [
-      ['multi', () => {
-        const selected = (this.selected as Option[]).some((selectedOption: Option) => selectedOption.value === option.value);
-        return html`
-          <li 
-          @click=${(event: MouseEvent) => this.onMultiChange(event, option)}
-          role='option'
-          aria-selected=${selected}
-          >
-            <studs-checkbox name=${this.name} label=${option.label} .checked=${selected}></studs-checkbox>
-            ${this.renderAdornment(option)}
-          </li>
-        `
-      }],
-    ], () => html`
-        <li @click=${(event: MouseEvent) => this.onSingleChange(event, option)} role='option' aria-selected=${option.value === (this.selected as Option)?.value}>
-            <input type="radio" id=${option.value} name=${this.name} value=${option.value} .checked=${option.value}>
-            <label for=${option.value}>${option.label}</label>
-              ${this.renderAdornment(option)}
-              ${(this.selected as Option)?.value === option.value
-                ? html`<span class="selected">${this.iconController.icon('check')}</span>`
-                : null}
-        </li>`);
-    } 
-  
-  private getOptions() {
+  /**
+   * Returns a TemplateResult for the given option, based on the type of the dropdown.
+   * @param option - The option to render.
+   * @returns A TemplateResult for the given option.
+   */
+  /**
+   * Returns a TemplateResult for rendering a single option in the dropdown.
+   * @param option - The option to render.
+   * @returns A TemplateResult for the option.
+   */
+  private getOptionTemplate(option: Option): TemplateResult | undefined {
+      return choose(this.type, [
+        ['multi', () => {
+            const selected = (this.selected as string[])?.some((selectedOption: string) => selectedOption === option.value);
+            return html`
+              <li
+                @click=${(event: MouseEvent) => this.onMultiChange(event, option)}
+                role="option"
+                aria-selected=${selected}
+              >
+                <studs-checkbox name=${ifDefined(this.name)} label=${ifDefined(option.label)} .checked=${selected} @change=${
+              (event: Event) => {
+                event.stopPropagation();
+                this.onMultiChange(event as MouseEvent, option);
+                }}></studs-checkbox>
+                ${this.renderAdornment(option)}
+              </li>
+            `;
+          },
+        ],
+      ],
+      () => html` <li @click=${(event: MouseEvent) => this.onSingleChange(event, option)} role="option" aria-selected=${option.value === this.selected}>
+        <input type="radio" id=${option.value} name=${this.name} value=${option.value} .checked=${option.value} />
+        <label for=${ifDefined(option.value)}>${option.label}</label>
+        ${this.renderAdornment(option)}
+        ${this.selected === option.value
+          ? html`<span class="selected">${this.iconController.icon('check')}</span>`
+          : null}
+      </li>`
+    );
+    
+  }
+
+  /**
+   * Renders the option type for the dropdown component.
+   * @param option - The option to render.
+   * @returns The HTML template for the option.
+   */
+  private renderOptionType(option: Option) {
+    if(option.options && option.options?.length > 0) {
+      return html`<li class="group -wrapper">
+        ${option.name ? html`<span class="group -header">${option.name}</span>` : nothing}
+        <ul>
+          ${repeat(option.options, (option) => option.value || option.name, (option: Option) => {
+            return this.getOptionTemplate(option);
+          })}
+        </ul>
+      </li>`
+    }
+    return this.getOptionTemplate(option);
+  }
+
+  /**
+   * Returns a TemplateResult of the options to be rendered in the dropdown.
+   * If `this.options` is defined, it will render the options based on the `type` property.
+   * If `this.filteredOptions` is empty, it will render a "No options found" message.
+   * @returns {TemplateResult | undefined} A TemplateResult of the options to be rendered in the dropdown.
+   */
+  private getOptions(): TemplateResult | undefined {
     if (this.options)
       return choose(this.type, [
           [
             'default',
             () => {
-              return map(this.options, (option: Option) => {
-                return this.getOptionTemplate(option);
+              return repeat(this.options, (option) => option.value || option.name, (option: Option) => {
+                return this.renderOptionType(option);
               });
             }
           ],
-      ], 
-      () => {
-        const options = this._query ? this.options.filter((option: Option) => option.label.toLowerCase().includes(this._query.toLowerCase())) : this.options;
-        return map(options, (option: Option) => {
-          return this.getOptionTemplate(option);
-        });
-      },
-      );
+        ],
+        () => {
+          if (this.filteredOptions.length > 0)
+            return html` ${this.options && this.length > 5 && !this._query && this.type === 'multi'
+              ? html`<li @click=${this.onSelectAllChange} role="option">
+                  <studs-checkbox
+                    name=${this.name}
+                    label=${this.selected === this.options
+                      ? 'Deselect All'
+                      : 'Select All'}
+                    @change=${(event: Event) => {
+                      event.stopPropagation();
+                      this.onSelectAllChange(event as MouseEvent);
+                    }}
+                  ></studs-checkbox>
+                </li>`
+              : null}
+
+            ${repeat(this.filteredOptions, (option) => option.value || option.name,(option: Option) => this.renderOptionType(option))}`;
+          return html`<li>No options found</li>`;
+        }
+      ) as TemplateResult;
   }
 
-  private getToggle() {
+  /**
+   * Returns the toggle element for the dropdown component based on the type of dropdown.
+   * @returns {TemplateResult} The toggle element as a TemplateResult.
+   */
+  private getToggle(): TemplateResult {
     return choose(this.type, [
       [
         'default',
@@ -188,28 +353,36 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
         () => html`<span class="toggle -item"
           ><input
             type="search"
-            placeholder=${this.placeholder}
-            @click=${this.onSearchClick}
-            .value=${this._query || this.getSelected || ''}
-            @input=${(e: any) => {
-              this._query = e.target.value;
-              if (this._query === '' || typeof this._query === undefined) this.selected = undefined;
+            placeholder=${ifDefined(this.placeholder)}
+            .value=${this._query || (this.getSelected as string) || ''}
+            @input=${(event: InputEvent) => {
+              this.onSearchChange(event);
+              if (this._query === '' || typeof this._query === undefined)
+                this.selected = undefined;
             }}
           />${this.iconController.icon('expand_more')}</span
         >`,
       ],
       [
         'multi',
-        () => html`<span class="toggle -item">${map(this.getSelected as any, (option: Option) => html`<studs-chip deletable @delete=${() => this.onSelectedDelete(option)}>${option?.label}</studs-chip>`)}<input
-        type="search"
-        placeholder=${this.placeholder || 'Search'}
-        .value=${this._query}
-        @input=${(e: any) => {
-          this._query = e.target.value;
-        }}
-      />${this.iconController.icon('expand_more')}`,
+        () => html`<span class="toggle -item"
+          >${map(
+            this.getSelected as Option[],
+            (option: Option) =>
+              html`<studs-chip
+                deletable
+                @delete=${() => this.onSelectedDelete(option)}
+                >${option?.label}</studs-chip
+              >`
+          )}<input
+            type="search"
+            placeholder=${this.placeholder || 'Search'}
+            .value=${this._query}
+            @input=${this.onSearchChange}
+          />${this.iconController.icon('expand_more')}</span
+        >`,
       ],
-    ])
+    ]);
   }
 
   render() {
@@ -234,14 +407,24 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             ? html`<studs-button
                 class="dropdown -action"
                 icon=${this.icon}
-                button-type="text"
+                button-type="tertiary"
                 size="small"
                 @click=${this.onActionButtonClick}
               ></studs-button>`
             : nothing}
         </div>
 
-        <ul class="popper" role="listbox" aria-activedescendant=${ifDefined(this.type !== 'multi' ? (this.selected as Option)?.value : JSON.stringify(this.selected))} aria-multiselectable=${this.type === 'multi'} ?aria-required=${this.required}>
+        <ul
+          class="popper"
+          role="listbox"
+          aria-activedescendant=${ifDefined(
+            this.type !== 'multi'
+              ? (this.selected as Option)?.value
+              : JSON.stringify(this.selected)
+          )}
+          aria-multiselectable=${this.type === 'multi'}
+          aria-required=${ifDefined(this.required)}
+        >
           ${this.getOptions()}
           <slot></slot>
           <div id="arrow"></div>
@@ -250,40 +433,107 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     </div>`;
   }
 
-  private onSearchClick() {
-    this.popperController?.showPopper();
+  /**
+   * Handles the change event of the search input element.
+   * If the popper controller is not open, it shows the popper.
+   * Sets the query to the value of the input element.
+   * @param event - The input event.
+   */
+  private onSearchChange(event: InputEvent) {
+    if (this.popperController && !this.popperController.open) {
+      this.popperController.showPopper();
+    }
+    this._query = (event.target as HTMLInputElement).value;
   }
 
+  /**
+   * Handles the change event for a single-select dropdown.
+   * @param event - The mouse or pointer event that triggered the change.
+   * @param option - The selected option.
+   */
   private onSingleChange(event: MouseEvent | PointerEvent, option: Option) {
-    this.selected = option;
-    if(this.type === "search") this._query = undefined;
+    this.selected = option.value;
+    if (this.type === 'search') this._query = undefined;
     this.dispatch(option);
-    if((event as PointerEvent).pointerId !== -1) this.popperController?.hidePopper();
-    if (this.form) {
+    if ((event as PointerEvent).pointerId !== -1)
+      this.popperController?.hidePopper();
+    if (this.form && option.value) {
       this.setFormValue(option.value);
     }
   }
 
+  /**
+   * Handles the change event for a multi-select dropdown.
+   * @param event - The mouse event that triggered the change.
+   * @param option - The option that was selected or deselected.
+   */
   private onMultiChange(event: MouseEvent, option: Option) {
     const target = event.target as HTMLElement;
-    const checkbox = target.querySelector('studs-checkbox')
-    if(this.selected) {
-      const selected = this.selected as Option[];
-      const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option.value);
-      if(index > -1) {
+    const checkbox = target.querySelector('studs-checkbox');
+
+    if (this.selected) {
+      const selected = this.selected as string[];
+      const index = selected.findIndex(
+        (selectedOption: string) => selectedOption === option.value
+      );
+      if (index > -1) {
         selected.splice(index, 1);
-        if(checkbox) {
+        if (checkbox) {
           checkbox.checked = false;
+        } else if (target instanceof StudsCheckbox) {
+            target.checked = false;
         }
       } else {
-        selected.push(option);
-        if(checkbox) {
+        if(option.value) selected.push(option.value);
+        if (checkbox) {
           checkbox.checked = true;
+        } else if (target instanceof StudsCheckbox) {
+            target.checked = true;
         }
       }
       this.selected = selected;
     } else {
-      this.selected = [option];
+      if(option.value)
+      this.selected = [option.value];
+    }
+
+    this._query = '';
+    this.requestUpdate();
+    this.dispatch(this.selected);
+
+    if (this.form) {
+      this.setFormValue(JSON.stringify(this.selected));
+    }
+  }
+
+  /**
+   * Handles the change event when the "Select All" checkbox is clicked.
+   * @param event - The MouseEvent object.
+   */
+  private onSelectAllChange(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    const checkbox = target.querySelector('studs-checkbox');
+    const options: string[] = [];
+
+    this.options.forEach((option: Option) => {
+      if (option.options) {
+        option.options.forEach((subOption: Option) => {
+          if (subOption.value) options.push(subOption.value);
+        });
+      }
+      else if (option.value) options.push(option.value);
+    });
+
+    if (JSON.stringify(this.selected) === JSON.stringify(options)) {
+      this.selected = [];
+      if (checkbox) {
+        checkbox.checked = false;
+      }
+    } else {
+      this.selected = options;
+      if (checkbox) {
+        checkbox.checked = true;
+      }
     }
     this._query = '';
     this.requestUpdate();
@@ -293,9 +543,15 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     }
   }
 
+  /**
+   * Callback function that is called when an option is deleted from the selected options.
+   * @param option - The option that was deleted.
+   */
   private onSelectedDelete = (option: Option) => {
-    const selected = this.selected as Option[];
-    const index = selected.findIndex((selectedOption: Option) => selectedOption.value === option?.value);
+    const selected = this.selected as string[];
+    const index = selected.findIndex(
+      (selectedOption: string) => selectedOption === option?.value
+    );
     selected.splice(index, 1);
     this.selected = selected;
     this.requestUpdate();
@@ -303,9 +559,13 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
     if (this.form) {
       this.setFormValue(JSON.stringify(this.selected));
     }
-    // this.popperController?.showPopper();
-  }
+  };
 
+  /**
+   * Dispatches a custom event when the action button is clicked.
+   * 
+   * @returns void
+   */
   private onActionButtonClick() {
     this.dispatchEvent(
       new CustomEvent('action-button-click', { bubbles: true, composed: true })
