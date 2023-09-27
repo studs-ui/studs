@@ -1,7 +1,6 @@
 {
   "name": "@studs/docs",
   "version": "0.1.0",
-  
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start",
@@ -32,6 +31,7 @@
     "sass": "^1.64.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.23.0",
     "@docusaurus/module-type-aliases": "2.4.1",
     "@tsconfig/docusaurus": "^1.0.5",
     "lit": "^2.7.6",
