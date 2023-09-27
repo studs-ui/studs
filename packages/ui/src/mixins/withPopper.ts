@@ -29,7 +29,6 @@ export const WithPopper = <T extends Constructor<LitElement>>(
 
     connectedCallback(): void {
       this.element = this.parentElement as HTMLElement;
-      console.log({element: this.element, parentNode: this.parentNode, parentElement: this.parentElement, parent: getParentNode(this)});
       super.connectedCallback();
       if (this.query) {
         this.element =
