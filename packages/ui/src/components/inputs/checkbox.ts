@@ -4,6 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import { live } from 'lit/directives/live.js';
 
 export interface CheckboxProps extends WithFormInterface {
   indeterminate?: boolean;
@@ -11,7 +12,6 @@ export interface CheckboxProps extends WithFormInterface {
 
 @customElement('studs-checkbox')
 export class StudsCheckbox extends WithForm(LitElement) {
-
   static styles = unsafeCSS(style);
   @property({ type: Boolean }) indeterminate?: CheckboxProps['indeterminate'];
 
@@ -35,7 +35,6 @@ export class StudsCheckbox extends WithForm(LitElement) {
 
   connectedCallback() {
     super.connectedCallback();
-    this.addEventListener('change', this.onChange);
     this.shadowRoot
       ?.querySelector(`#${this.inputId}`)
       ?.addEventListener('update', this.updateHandler);
@@ -45,7 +44,6 @@ export class StudsCheckbox extends WithForm(LitElement) {
     this.shadowRoot
       ?.querySelector(`#${this.inputId}`)
       ?.removeEventListener('update', this.updateHandler);
-    this.removeEventListener('change', this.onChange);
     super.disconnectedCallback();
   }
 
@@ -57,15 +55,17 @@ export class StudsCheckbox extends WithForm(LitElement) {
         })}"
       >
         <input
-          id="${this.inputId}"
+          id=${this.inputId}
           type="checkbox"
-          name="${ifDefined(this.name)}"
-          value="${ifDefined(this.value)}"
-          .checked="${this.checked}"
-          ?disabled="${this.disabled}"
-          @change="${this.onChange}"
+          name=${ifDefined(this.name)}
+          value=${ifDefined(this.value)}
+          .checked=${live(this.checked)}
+          ?disabled=${this.disabled}
+          @change=${this.onChange}
         />
-        <label for="${this.inputId}" aria-seletable=${true}>${this.label}</label>
+        <label for="${ifDefined(this.inputId)}" aria-selectable=${true}
+          >${this.label}</label
+        >
       </div>
     `;
   }
