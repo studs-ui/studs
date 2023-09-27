@@ -29,3 +29,4 @@ yarn.lock
 pnpm-lock.yaml
 .turbo
 **/**/dist
+**/**/vite.config.ts.timestamp-*
