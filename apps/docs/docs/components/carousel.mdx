@@ -15,6 +15,23 @@ description: Carousels display an arbitrary number of content slides along a hor
 
 Carousels display an arbitrary number of content slides along a horizontal or vertical axis.
 
+## Default
+
+<ResizerFeatures>
+  <studs-carousel
+    slides='[{"id":"1","image":"https://picsum.photos/id/1/300","alt":"image 1"},{"id":"2","image":"https://picsum.photos/id/10/300","alt":"image 2"},{"id":"3","image":"https://picsum.photos/id/268/300","alt":"image 3"},{"id":"4","image":"https://picsum.photos/id/25/300","alt":"image 4"}]'
+    perPage="3"></studs-carousel>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-carousel
+    slides='[{"id":"1","image":"https://picsum.photos/id/1/300","alt":"image 1"},{"id":"2","image":"https://picsum.photos/id/10/300","alt":"image 2"},{"id":"3","image":"https://picsum.photos/id/268/300","alt":"image 3"},{"id":"4","image":"https://picsum.photos/id/25/300","alt":"image 4"}]'
+    perPage="3"></studs-carousel>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73936&mode=dev"
+/>
+
 ## Properties
 
 <Tables
@@ -24,8 +41,7 @@ Carousels display an arbitrary number of content slides along a horizontal or ve
       name: 'slides',
       description: <></>,
       reflects: false,
-      type: `[
-        {
+      type: `[{
           "id": number,
           "image": string,
           "alt": string
