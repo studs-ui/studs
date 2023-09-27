@@ -37,6 +37,7 @@ import { StudsBreadcrumbs } from './components/display/breadcrumbs';
 import { StudsCoachMark } from './components/overlays/coachmark';
 import { StudsImage } from './components/display/image';
 import { StudsPagination } from './components/display/pagination';
+import { StudsNavbar } from './components/navigation/navbar';
 
 // Export Components
 export {
@@ -76,6 +77,7 @@ export {
   StudsCoachMark,
   StudsImage,
   StudsPagination,
+  StudsNavbar,
 };
 
 declare global {
@@ -116,6 +118,7 @@ declare global {
     'studs-coachmark': StudsCoachMark;
     'studs-image': StudsImage;
     'studs-pagination': StudsPagination;
+    'studs-navbar': StudsNavbar;
   }
 }
 

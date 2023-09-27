@@ -40,7 +40,7 @@
     }
   }
 
-  [type=checkbox]:focus,
+  // [type=checkbox]:focus,
   [type=checkbox]:focus-visible {
     + label::before {
       border-color: var(--primary);

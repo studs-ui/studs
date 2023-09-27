@@ -40,6 +40,12 @@ const config = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           routeBasePath: '/',
+          versions: {
+            current: {
+              label: '1.0.0-alpha.1',
+              path: '',
+            },
+          },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           // editUrl:
@@ -66,19 +72,23 @@ const config = {
       navbar: {
         title: 'STUDS',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Simpson Strong-Tie',
+          src: 'img/sst_logo.svg',
         },
+        items: [
+          {
+            type: 'docsVersionDropdown',
+          },
+        ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/category/getting-started',
+                label: 'Installation',
+                to: '/getting-started/installation',
               },
             ],
           },
@@ -100,16 +110,25 @@ const config = {
             ],
           },
           {
-            title: 'More',
+            title: 'More Resources',
             items: [
               {
                 label: 'GitHub',
                 href: 'https://github.com/studs-ui/studs',
               },
+              {
+                label: 'Storybook',
+                href: `https://studs-staging.strongtie.com/storybook/?path=/docs/example-introduction--docs`,
+              },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc. Built with Docusaurus.`,
+        logo: {
+          alt: 'Simpson Strong-Tie',
+          src: 'img/hangerman.svg',
+          width: 100,
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,

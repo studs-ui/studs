@@ -1,6 +1,90 @@
+---
+description: Spinners are used to show the progress of an indeterminate operation.
+---
+
 # Spinner
 
-<HeaderComponent htmlTag="studs-spinner" jsxTag="StudsSpinner" version="Since 2.0" status="Unstable" />
+<HeaderComponent
+  htmlTag="studs-spinner"
+  jsxTag="StudsSpinner"
+  version="Since 2.0"
+  status="Unstable"
+  urlGithub="display/spinner.ts"
+  urlStrbook="studs-display-spinner--docs"
+/>
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+Spinners are used to show the progress of an indeterminate operation.
 
+## Default
+
+<ResizerFeatures>
+  <studs-spinner open></studs-spinner>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-spinner open></studs-spinner>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73954&mode=dev"
+/>
+
+## Close on click
+
+<ResizerFeatures>
+  <studs-spinner open close-on-overlay-click></studs-spinner>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-spinner open close-on-overlay-click></studs-spinner>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73954&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'open',
+      description: <div>Open the spinner</div>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'close-on-overlay-click',
+      description: <>Close spinner when clicking outside of it</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'close-on-escape',
+      description: <>Close spinner when pressing escape</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'disable-backdrop',
+      description: <>Disable the backdrop</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'color',
+      description: <>Color of the spinner</>,
+      reflects: false,
+      type: 'primary | secondary | default',
+      default: 'primary',
+    },
+    {
+      name: 'icon',
+      description: <>Icon to display in the spinner</>,
+      reflects: false,
+      type: 'info | success | warning | error',
+      default: 'undefined',
+    },
+  ]}
+></Tables>

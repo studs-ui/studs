@@ -49,6 +49,7 @@
    }
   }
 
+
   &.-primary {
     --color:     var(--primary);
     --hover:     var(--primary-hover);
@@ -78,7 +79,7 @@
     box-shadow: none;
     background-color: $transparent;
 
-    &:focus,
+    // &:focus,
     &:focus-visible {
       --color: var(--primary-hover);
     }
@@ -147,6 +148,25 @@
     }
   }
 
+  &.-outline {
+    --color: var(--tab-background);
+    --border: var(--border-color);
+    --text: var(--text-color);
+    border: 1px solid var(--border);
+    box-shadow: none;
+
+    &.-primary {
+      --border: var(--primary);
+      --color: var(--tab-selected);
+    }
+
+    &:hover {
+      --text: var(--primary);
+      --color: var(--tab-border);
+    }
+  }
+
+
   &.-image {
     --imageSize: 1rem;
 
@@ -186,7 +206,7 @@
     --text:  var(--disabled-text);
   }
 
-  &:focus,
+  // &:focus,
   &:focus-visible {
     outline-color: var(--border);
   }

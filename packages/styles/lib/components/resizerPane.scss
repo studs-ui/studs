@@ -5,7 +5,6 @@
 .pane {
     &.-wrapper {
         position: relative;
-        min-width: max-content;
     }
     &.-header {
         &::slotted(*) {

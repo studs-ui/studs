@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@docusaurus/core": "2.4.1",
+    "@docusaurus/plugin-content-docs": "^2.4.1",
     "@docusaurus/preset-classic": "2.4.1",
     "@docusaurus/theme-common": "^2.4.1",
     "@docusaurus/theme-live-codeblock": "^2.4.1",
@@ -29,6 +30,7 @@
     "react-dom": "^17.0.2"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.23.0",
     "@docusaurus/module-type-aliases": "2.4.1",
     "@tsconfig/docusaurus": "^1.0.5",
     "lit": "^2.7.6",

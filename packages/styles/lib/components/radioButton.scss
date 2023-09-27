@@ -41,7 +41,7 @@
     }
   }
 
-  [type=radio]:focus,
+  // [type=radio]:focus,
   [type=radio]:focus-visible{
     + label::before {
       --color: var(--primary);

@@ -1,6 +1,63 @@
+---
+description: Tooltips display informative text when users hover over, focus on, or tap an element.
+---
+
 # Tooltip
 
-<HeaderComponent htmlTag="studs-tooltip" jsxTag="StudsTooltip" version="Since 2.0" status="Unstable" />
+<HeaderComponent
+  htmlTag="studs-tooltip"
+  jsxTag="StudsTooltip"
+  version="Since 2.0"
+  status="Unstable"
+  urlGithub="overlays/tooltip.ts"
+  urlStrbook="studs-overlays-tooltip--docs"
+/>
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+Tooltips display informative text when users hover over, focus on, or tap an element.
 
+## Default
+
+<ResizerFeatures>
+  <studs-button button-type="primary">
+    Button
+    <studs-tooltip position="bottom">Hello!</studs-tooltip>
+  </studs-button>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-button button-type="primary">
+    Button
+    <studs-tooltip position="bottom">Hello!</studs-tooltip>
+  </studs-button>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13213%3A126437&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'children',
+      description: <div>The content of tooltip</div>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+    {
+      name: 'position',
+      description: <div>Tooltip's position</div>,
+      reflects: false,
+      type: 'top | top-start | top-end | bottom | bottom-start | bottom-end | left | left-start | left-end | right | right-start | right-end',
+      default: '',
+    },
+    {
+      name: 'disabled',
+      description: <div>Disable show tooltip</div>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+  ]}
+></Tables>
