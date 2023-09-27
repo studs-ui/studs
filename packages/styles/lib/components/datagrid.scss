@@ -2,52 +2,32 @@
 @use './inputs.scss' as *;
 @use './table.scss' as *;
 
-@mixin gridOperatorsOverlay {
-  height: auto;
-  .operatorIndicator {
-    margin-right: 10px;
-  }
-}
-
-@mixin gridSearchValueOverlay {
-  max-height: 300px;
-  height: auto;
-  [data-simplebar] {
-    max-height: 300px;
-    height: auto;
-    width: 100%;
-  }
-}
-
-@mixin grid {
+.grid {
+  @include table();
   display: flex;
   flex-direction: column;
   gap: 5px;
   &.-virtualized {
     tbody {
-      height: 500px
+      min-height: 500px !important;
+      width: 100%;
+      overflow: auto;
     }
   } 
+  
 
   table {
     position: relative;
-    width: max(fit-content, 100%);
-    table-layout: fixed;
+    width: -webkit-fill-available;
+    width: -moz-fit-content;
+    table-layout:fixed;
     border-collapse: collapse;
     border-spacing: 0;
     cursor: default;
 
-    tbody {
-      display: table-row-group !important;
-    }
-
     tr {
       width: 100%;
-      left: 0px;
-      right: 0px;
-      // position: relative !important;
-        // position: static !important;
-        // transform: none !important;
+      display: flex;
     }
 
     th {
@@ -116,10 +96,4 @@
     font-weight: bold;
     padding: 10px;
   }
-
-  @include table()
-}
-
-.grid {
-    @include grid;
 }
