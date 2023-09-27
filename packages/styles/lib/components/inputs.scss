@@ -87,7 +87,8 @@
 
     @include fontSizes;
 
-    &:has(input:focus, input:focus-visible) {
+    // &:has(input:focus, input:focus-visible) {
+    &:has( input:focus-visible) {
       --border: var(--link-color);
       outline: 2px solid var(--outline);
     }
@@ -114,7 +115,7 @@
 
       background: transparent;
 
-      &:focus,
+      // &:focus,
       &:focus-visible {
         outline: 1px solid var(--primary-active);
         border-radius: 0;

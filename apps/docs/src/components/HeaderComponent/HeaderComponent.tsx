@@ -35,15 +35,9 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
         {tag} | {jsxTag}
       </code>
       <div className={styles.wrapper}>
-        <studs-chip
-          style={{ display: 'inherit' }}
-          ref={ref}
-          class="custom"
-          size="small"
-          variant="infor"
-        >
-          {version}
-        </studs-chip>
+        {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
+          {version || versionDefault}
+        </studs-chip> */}
 
         <studs-chip
           ref={ref}

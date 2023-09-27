@@ -48,3 +48,12 @@
 iframe#webpack-dev-server-client-overlay {
   display: none !important;
 }
+
+.custom-img {
+  height: 100%;
+}
+
+.navbar__item {
+  padding: 0;
+  height: 2rem;
+}
