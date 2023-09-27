@@ -41,7 +41,14 @@ export default function CodeBlocks({
 
   tabs.push({
     label: 'Live Editor',
-    children: <Playground scope={ReactLiveScope} children={html} />,
+    children: (
+      <Playground
+        scope={ReactLiveScope}
+        children={`<div className="codeblock-container">
+  ${html}</div>
+`}
+      />
+    ),
   });
 
   if (figmaUrl) {
