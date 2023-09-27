@@ -7,10 +7,6 @@ import { getParentNode } from '../utils/shared';
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 export declare class WithPopperInterface {
-  position: Placement;
-  disabled: boolean;
-  element: Element;
-  query?: string;
   popperController?: PopperController;
 }
 
@@ -18,13 +14,12 @@ export const WithPopper = <T extends Constructor<LitElement>>(
   superClass: T
 ) => {
   class WithPopperClass extends superClass {
-    @property({ type: String }) position: WithPopperInterface['position'] =
+    @property({ type: String }) position: Placement =
       'bottom';
-    @property({ type: Boolean }) disabled: WithPopperInterface['disabled'] =
+    @property({ type: Boolean }) disabled: boolean =
       false;
-    @property({ type: String }) query: WithPopperInterface['query'];
-    @property({ type: HTMLElement }) element: WithPopperInterface['element'] =
-      getParentNode(this) as Element;
+    @property({ type: String }) query?: string;
+    @property({ type: HTMLElement }) element!: Element;
 
     popperController = new PopperController(this, {
       options: { placement: this.position },
@@ -33,8 +28,9 @@ export const WithPopper = <T extends Constructor<LitElement>>(
     });
 
     connectedCallback(): void {
+      this.element = this.parentElement as HTMLElement;
+      console.log({element: this.element, parentNode: this.parentNode, parentElement: this.parentElement, parent: getParentNode(this)});
       super.connectedCallback();
-
       if (this.query) {
         this.element =
           (this.renderRoot.querySelector(this.query) as HTMLElement) ||
