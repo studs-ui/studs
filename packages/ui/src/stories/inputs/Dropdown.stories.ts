@@ -7,6 +7,7 @@ const meta = {
   title: "Studs/Inputs/Dropdown",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-dropdown
+    style="width: 300px"
     label=${ifDefined(args.label)}
     icon=${ifDefined(args.icon)}
     size=${ifDefined(args.size)}

@@ -222,7 +222,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
    */
   private renderAdornment(option: Option) {
     if (option.image) {
-      return html`<studs-image src=${option.image}></studs-image>`;
+      return html`<studs-image class="adornment" src=${option.image}></studs-image>`;
     } else if (option.icon) {
       return html`<span class="adornment"
         >${this.iconController.icon(option.icon)}</span

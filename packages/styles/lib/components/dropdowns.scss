@@ -1,8 +1,13 @@
 @use '../utilities' as *;
 @use './inputs.scss' as *;
 
+:host {
+  display: flex;
+}
+
 .dropdown {
   &.-wrapper {
+    flex-grow: 1;
     position: relative;
     display: flex;
     flex-direction: row;
@@ -16,6 +21,9 @@
       margin: 0;
       color: var(--text-color);
     }
+  }
+  &.-content {
+    flex-grow: 1;
   }
 
   &[disabled] {
@@ -55,7 +63,7 @@
     }
 
     &.-item {
-      max-width: 300px; // temporary until designers decide
+      flex-grow: 1;
       min-width: 150px; // temporary until designers decide
       padding: 0.3125rem 1rem;
       display: flex;
@@ -68,6 +76,7 @@
       }
 
       input {
+        flex-grow: 1;
         border: none;
         font-size: 1em;
         &:focus-visible {
@@ -172,6 +181,16 @@
     .adornment {
       margin-left: auto;
     }
+    studs-image {
+      display: none;
+      position: absolute;
+      background-color: var(--background-content);
+      padding: 0.25rem;
+      right: 0;
+      width: 75px;
+      height: 75px;
+  }
+    
     & + input:focus,
     & + input:focus-visible {
       background-color: var(--highlight);
@@ -180,6 +199,10 @@
     &:focus,
     &:focus-within {
       background-color: var(--highlight);
+      studs-image {
+        display: block;
+        background-color: var(--highlight);
+      }
     }
 
     &[aria-selected='true'] {
@@ -189,6 +212,10 @@
       }
       .adornment + .selected {
         margin-left: 0;
+      }
+      studs-image {
+        display: block;
+        background-color: var(--selected);
       }
     }
   }
