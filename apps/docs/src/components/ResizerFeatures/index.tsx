@@ -1,7 +1,10 @@
 import { RESIZER_THUMB_BACKGROUND } from '@site/src/utils/constants';
 import React from 'react';
 
-export default function ResizerFeatures({ children }): JSX.Element {
+export default function ResizerFeatures({
+  children,
+  minHeight = '8rem',
+}): JSX.Element {
   const wrapperRef = React.useRef();
   const [initialWidth, setInitialWidth] = React.useState(300);
 
@@ -27,7 +30,16 @@ export default function ResizerFeatures({ children }): JSX.Element {
         <studs-resizer-pane max={200} size={initialWidth}>
           <div style={{ paddingRight: '20px' }}>
             <div style={{ height: '0', width: '100%', maxWidth: '100%' }}></div>
-            {children}
+            <div
+              style={{
+                transform: 'scale(1)',
+                padding: '10px',
+                minHeight: minHeight,
+                overflowY: 'auto',
+              }}
+            >
+              {children}
+            </div>
           </div>
           <span
             style={{

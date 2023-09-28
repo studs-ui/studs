@@ -13,6 +13,9 @@ const meta = {
     ?checked=${args.checked}
     ?indeterminate=${args.indeterminate}
     ?disabled=${args.disabled}
+    @change=${
+      (event: CustomEvent) => console.log(event.detail)
+    }
   ></studs-checkbox>`,
   argTypes: {
     name: { control: "text" },

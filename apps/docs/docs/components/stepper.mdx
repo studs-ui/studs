@@ -15,3 +15,53 @@ description: Steppers convey progress through numbered steps. It provides a wiza
 
 Steppers convey progress through numbered steps. It provides a wizard-like workflow.
 
+## Default
+
+<ResizerFeatures>
+  <studs-stepper
+    step="0"
+    steps="[{label:'Step1',description:'Thisisstep1',},{label:'Step2',description:'Thisisstep2',},{label:'Step3',description:'Thisisstep3'}]"
+  ></studs-stepper>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-stepper step="0" steps="[{label:'Step1',description:'Thisisstep1',},{label:'Step2',description:'Thisisstep2',},{label:'Step3',description:'Thisisstep3'}]"></studs-stepper>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13022%3A125636&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'step',
+      description: <div>The current active step</div>,
+      reflects: false,
+      type: 'number',
+      default: '0',
+    },
+    {
+      name: 'steps',
+      description: <div>Array of steps data.</div>,
+      reflects: false,
+      type: "[{label:'Step1',description:'Thisisstep1',},...]",
+      default: '',
+    },
+    {
+      name: 'color',
+      description: <>Choose step color</>,
+      reflects: false,
+      type: 'primary | secondary | initial',
+      default: 'primary',
+    },
+    {
+      name: 'direction',
+      description: <>Disable the backdrop</>,
+      reflects: false,
+      type: 'horizontal | vertical',
+      default: 'horizontal',
+    },
+  ]}
+></Tables>
