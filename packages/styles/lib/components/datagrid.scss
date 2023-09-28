@@ -13,7 +13,20 @@
       width: 100%;
       overflow: auto;
     }
-  } 
+    tr {
+      width: 100%;
+      display: flex;
+      td {
+        width: 100%;
+        will-change: width;
+      }
+    }
+  }
+  &:not(.-virtualized) {
+    tbody {
+      display: table-row-group !important;
+    }
+  }
   
 
   table {
@@ -24,15 +37,8 @@
     border-spacing: 0;
     cursor: default;
 
-    tr {
-      width: 100%;
-      display: flex;
-      td {
-        width: 100%;
-      }
-    }
-
     th {
+      will-change: width;
       &:hover {
         .reorder-handle {
           opacity: 1;

@@ -14,6 +14,7 @@ import { IconController } from '../../controllers/iconController';
 import { StudsDropdown, StudsInput } from '../..';
 import { styleMap } from "lit/directives/style-map.js";
 import { queryAll } from 'lit/decorators.js';
+import { RangeChangedEvent } from '@lit-labs/virtualizer/events.js';
 
 
 interface FilteredColumns {
@@ -29,8 +30,8 @@ export class StudsGrid extends LitElement {
   @property({ type: Number }) pageSize: number = 10;
   @property({ type: Array })
   itemsPerPageSelector?: number[] = [10, 25, 50, 100];
-  @property({ type: Boolean }) showBorders: GridProps['showBorders'] = true;
-  @property({ type: Boolean }) enableFiltering: GridProps['enableFiltering'] =
+  @property({ type: Boolean }) showBorders: boolean = true;
+  @property({ type: Boolean }) enableFiltering: boolean =
     true;
   @property({ type: Boolean })
   enableColumnResizing: boolean = true;
@@ -342,7 +343,7 @@ export class StudsGrid extends LitElement {
               // Get correct width of the column
               const width = column?.getBoundingClientRect().width;
               return html`<td data-column=${columnKey} style=${styleMap({
-              width: column ? `${width}px` : 'auto',
+              width: column ? `${width - 25.6}px` : 'auto',
             })}>${row[key]}</td>`})}
           </tr>
         `;
@@ -377,20 +378,13 @@ export class StudsGrid extends LitElement {
       '-virtualized': this.isVirtualizedEnabled,
     })}>
         <div class="grid -header">
-          <input
-            type="text"
-            placeholder="Search..."
-            .value=${this._searchTerm}
-            @input=${this.onSearch}
-          />
+          <studs-input type="search" placeholder="Search..." .value=${this._searchTerm} @change=${this.onSearch}></studs-input>
         </div>
         <div class=${classMap({
             content: true,
             '-withBorder': this.showBorders,
           })}>
-          <table
-            @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : null}
-          >
+          <table>
             ${this.tableCaption ? html`<caption>${this.tableCaption}</caption>` : ''}
             <thead class=${classMap({
                 '-sticky': this.enableStickyHeader,
@@ -400,8 +394,10 @@ export class StudsGrid extends LitElement {
               </tr>
             </thead>
             <tbody
-              @rangeChanged=${(e: any) => {
-                this._lastVisible = e.last - 8;
+              @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : null}
+              @rangeChanged=${(e: RangeChangedEvent) => {
+                this._lastVisible = e.last - this.pageSize;
+                console.log(this._lastVisible);
               }}
             >
               ${this.renderRows()}
@@ -411,7 +407,7 @@ export class StudsGrid extends LitElement {
       </div>
       <div class="tableFooter -actions">
         ${this.enablePagination ? html`
-        <studs-pagination current-page=${this._psuedoCurrentPage} total-items=${this.totalPages} items-per-page=${this.pageSize} has-jumper has-select @changePage=${this.onPageClick} @changeItemsPerPage=${(e: CustomEvent) => {
+        <studs-pagination current-page=${this._psuedoCurrentPage} total-items=${this.totalPages} items-per-page=${this.pageSize} has-jumper ?has-select=${!this.isVirtualizedEnabled} @changePage=${this.onPageClick} @changeItemsPerPage=${(e: CustomEvent) => {
           this.pageSize = e.detail.itemsPerPage;
         }}></studs-pagination>
         ` : ''}
@@ -460,7 +456,7 @@ export class StudsGrid extends LitElement {
       if(th){
       th.style.width = `${width}px`;
       rows?.forEach((row) => {
-        (row as HTMLTableCellElement).style.width = `${width}px`;
+        (row as HTMLTableCellElement).style.width = `${width - 25.6}px`;
       })}
     }
   }
@@ -527,9 +523,9 @@ export class StudsGrid extends LitElement {
    * 4. Search
    */
 
-  private onSearch(e: any) {
+  private onSearch(e: CustomEvent) {
     this.setPage = 1;
-    this._searchTerm = e?.target.value;
+    this._searchTerm = e?.detail;
   }
 
   /**
