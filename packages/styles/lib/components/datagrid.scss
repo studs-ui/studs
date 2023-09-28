@@ -18,8 +18,7 @@
 
   table {
     position: relative;
-    width: -webkit-fill-available;
-    width: -moz-fit-content;
+    width: 100%;
     table-layout:fixed;
     border-collapse: collapse;
     border-spacing: 0;
@@ -28,6 +27,9 @@
     tr {
       width: 100%;
       display: flex;
+      td {
+        width: 100%;
+      }
     }
 
     th {

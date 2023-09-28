@@ -12,7 +12,9 @@ import {
 import { repeat } from 'lit/directives/repeat.js';
 import { IconController } from '../../controllers/iconController';
 import { StudsDropdown, StudsInput } from '../..';
-import {styleMap} from "lit/directives/style-map.js";
+import { styleMap } from "lit/directives/style-map.js";
+import { queryAll } from 'lit/decorators.js';
+
 
 interface FilteredColumns {
   key: string;
@@ -310,7 +312,6 @@ export class StudsGrid extends LitElement {
         return html`
           <tr
             data-index=${index}
-            data-column
             draggable=${this.enableColumnReordering}
             @dragstart=${(event: DragEvent) => {
               event?.dataTransfer?.setData('type', 'row');
@@ -338,8 +339,10 @@ export class StudsGrid extends LitElement {
             ${Object.keys(row).map((key, index) => {
               const columnKey = this.columns[index].key;
               const column = this.shadowRoot?.querySelector(`#${columnKey}`);
+              // Get correct width of the column
+              const width = column?.getBoundingClientRect().width;
               return html`<td data-column=${columnKey} style=${styleMap({
-              width: column ? `${column.clientWidth}px` : 'auto',
+              width: column ? `${width}px` : 'auto',
             })}>${row[key]}</td>`})}
           </tr>
         `;
@@ -452,9 +455,13 @@ export class StudsGrid extends LitElement {
       const th = this._pressed.closest('th');
       const delta = e.clientX - this._startX;
       const width = Math.max(this._startWidth + delta, 50);
-
-      // @ts-ignore
+      const id = th?.getAttribute("id");
+      const rows = this.shadowRoot?.querySelectorAll(`td[data-column=${id}]`);
+      if(th){
       th.style.width = `${width}px`;
+      rows?.forEach((row) => {
+        (row as HTMLTableCellElement).style.width = `${width}px`;
+      })}
     }
   }
 
