@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from 'lit';
+import { LitElement, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
@@ -37,7 +37,6 @@ export class StudsGrid extends LitElement {
   enableColumnResizing: boolean = true;
   @property({ type: Boolean })
   enableColumnReordering: boolean = true;
-  // @property({ type: Boolean }) enableColumnHiding: boolean = true;
   @property({ type: Boolean })
   enableInfiniteScroll: boolean = true;
   @property({ type: Boolean }) enablePagination: boolean =
@@ -302,12 +301,11 @@ export class StudsGrid extends LitElement {
 
   @state() protected _startIndex: number = 0;
   @state() protected _endIndex: number = 0;
-  @state() protected _offset: number = 0;
 
   protected renderRows() {
     if (this.data) {
       this._startIndex = (this._currentPage - 1) * this.pageSize;
-      this._endIndex = this._startIndex + this.pageSize + this._offset;
+      this._endIndex = this._startIndex + this.pageSize;
 
       const item = (row: { [x: string]: any }, index: number) => {
         return html`
@@ -394,11 +392,8 @@ export class StudsGrid extends LitElement {
               </tr>
             </thead>
             <tbody
-              @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : null}
-              @rangeChanged=${(e: RangeChangedEvent) => {
-                this._lastVisible = e.last - this.pageSize;
-                console.log(this._lastVisible);
-              }}
+              @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : nothing}
+              @rangeChanged=${this.isVirtualizedEnabled ? this.onRangeChange : nothing}
             >
               ${this.renderRows()}
             </tbody>
@@ -466,9 +461,23 @@ export class StudsGrid extends LitElement {
    */
   @query('tbody') tableBodyRef!: VirtualizerHostElement;
   @query('table') tableRef!: HTMLTableElement;
-  private _prevScrollDirection: number = 0;
 
-  private onTableScroll(e: any) {
+  private onRangeChange(e: RangeChangedEvent) {
+    const isFirst = e.first === 0;
+    const isLast = e.last === this.totalPages - 1;
+    const lastPage = this.totalPages / this.pageSize
+    if(isFirst) {
+      this._psuedoCurrentPage = 1
+      this._lastVisible = this.pageSize;
+    } else if(isLast) {
+      this._psuedoCurrentPage = lastPage
+      this._lastVisible = this.totalPages - 1;
+    } else {
+      this._lastVisible = e.last - this.pageSize;
+    }
+  }
+
+  private onTableScroll() {
     if (this.enablePagination) {
       if (this._currentPage > 1) {
         const page = Math.floor(
@@ -487,20 +496,6 @@ export class StudsGrid extends LitElement {
         }
       }
     }
-    const { scrollTop: scrollPosition } = e.target;
-    if (scrollPosition % 15 === 0) {
-      const scrollDirection =
-        scrollPosition > this._prevScrollDirection ? 'down' : 'up';
-      const end = this._offset;
-      if (scrollDirection === 'down') {
-        const endOffset =
-          end + 50 >= this.data?.length ? this.data?.length : end + 50;
-        this._offset = endOffset;
-        this.requestUpdate();
-      }
-
-      this._prevScrollDirection = scrollPosition;
-    }
   }
 
   /**
@@ -509,14 +504,18 @@ export class StudsGrid extends LitElement {
 
   private onPageClick(e: CustomEvent) {
     const page = e.detail.selectedPage;
-
-    this.setPage = page;
-    this._lastVisible = 0;
-    this._offset = 0;
-
+    const scrollToElement = page * this.pageSize - this.pageSize + 1;
     this.tableBodyRef[virtualizerRef]
-      ?.element(this._lastVisible)
+      ?.element(scrollToElement)
       ?.scrollIntoView();
+    this._lastVisible = scrollToElement;
+
+    // Calculate the correct page number based on the current scroll position
+    const firstVisibleIndex = this.tableBodyRef[virtualizerRef]?.firstVisibleIndex;
+    const currentPage = Math.ceil((firstVisibleIndex + 1) / this.pageSize);
+
+    // Set the correct page number
+    this.setPage = currentPage;
   }
 
   /**
