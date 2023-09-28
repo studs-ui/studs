@@ -1,4 +1,4 @@
-import { LitElement, html, nothing, unsafeCSS } from 'lit';
+import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
@@ -16,6 +16,7 @@ import { styleMap } from "lit/directives/style-map.js";
 import { queryAll } from 'lit/decorators.js';
 import { RangeChangedEvent } from '@lit-labs/virtualizer/events.js';
 
+// !TODO - Sort Breaks on Third Click
 
 interface FilteredColumns {
   key: string;
@@ -38,7 +39,7 @@ export class StudsGrid extends LitElement {
   @property({ type: Boolean })
   enableColumnReordering: boolean = true;
   @property({ type: Boolean })
-  enableInfiniteScroll: boolean = true;
+  enableInfiniteScroll: boolean = false;
   @property({ type: Boolean }) enablePagination: boolean =
     true;
   @property({ type: Boolean })
@@ -61,6 +62,13 @@ export class StudsGrid extends LitElement {
   static styles = [unsafeCSS(tableStyle), unsafeCSS(paginationStyle), IconController.styles];
 
   private iconController = new IconController();
+
+  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+      // Reset Properties on Load Type
+      if(_changedProperties.has('enableInfiniteScroll')) {
+        this.setPage = 1;
+      }
+  }
 
   protected get data() {
     return this.dataSource;
@@ -340,9 +348,9 @@ export class StudsGrid extends LitElement {
               const column = this.shadowRoot?.querySelector(`#${columnKey}`);
               // Get correct width of the column
               const width = column?.getBoundingClientRect().width;
-              return html`<td data-column=${columnKey} style=${styleMap({
+              return html`<td data-column=${columnKey} style=${this.isVirtualizedEnabled ? styleMap({
               width: column ? `${width - 25.6}px` : 'auto',
-            })}>${row[key]}</td>`})}
+            }) : nothing}>${row[key]}</td>`})}
           </tr>
         `;
       };
@@ -393,7 +401,7 @@ export class StudsGrid extends LitElement {
             </thead>
             <tbody
               @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : nothing}
-              @rangeChanged=${this.isVirtualizedEnabled ? this.onRangeChange : nothing}
+              @visibilityChanged=${this.isVirtualizedEnabled ? this.onVisibilityChanged : nothing}
             >
               ${this.renderRows()}
             </tbody>
@@ -421,10 +429,17 @@ export class StudsGrid extends LitElement {
   @state() protected _startX: number = 0;
   @state() protected _pressed: HTMLElement | undefined;
   @state() protected _startWidth: number = 0;
+  @state() protected _activeRows?: NodeListOf<Element>;
 
   private onMouseMoveDown(e: MouseEvent) {
     e.stopPropagation();
-    const target = e.target as HTMLTableCellElement;
+    const target = e.target as HTMLDivElement;
+    const th = target.closest('th');
+    const id = th?.getAttribute('id');
+    if(this.isVirtualizedEnabled){
+      const rows = this.shadowRoot?.querySelectorAll(`td[data-column=${id}]`);
+      if(rows) this._activeRows = rows;
+    }
     this._pressed = target;
     this._startX = e.clientX;
     this._startWidth = target.closest('th')?.offsetWidth || 0;
@@ -437,6 +452,7 @@ export class StudsGrid extends LitElement {
     this._pressed = undefined;
     this._startWidth = 0;
     this._startX = 0;
+    this._activeRows = undefined;
     this.removeEventListener('mousemove', this.onMouseMove);
     this.removeEventListener('mouseup', this.onMouseMoveUp);
   }
@@ -446,15 +462,18 @@ export class StudsGrid extends LitElement {
       const th = this._pressed.closest('th');
       const delta = e.clientX - this._startX;
       const width = Math.max(this._startWidth + delta, 50);
-      const id = th?.getAttribute("id");
-      const rows = this.shadowRoot?.querySelectorAll(`td[data-column=${id}]`);
       if(th){
-      th.style.width = `${width}px`;
-      rows?.forEach((row) => {
-        (row as HTMLTableCellElement).style.width = `${width - 25.6}px`;
-      })}
+        requestAnimationFrame(() => {
+          Object.assign(th.style, {
+            flex: `0 0 ${width}px`,
+          })
+          if(this.isVirtualizedEnabled) this._activeRows?.forEach((row) => {
+            (row as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+          })
+        });
     }
   }
+}
 
   /**
    * 2. Virtualized / Infinite Scroll
@@ -462,18 +481,20 @@ export class StudsGrid extends LitElement {
   @query('tbody') tableBodyRef!: VirtualizerHostElement;
   @query('table') tableRef!: HTMLTableElement;
 
-  private onRangeChange(e: RangeChangedEvent) {
-    const isFirst = e.first === 0;
-    const isLast = e.last === this.totalPages - 1;
-    const lastPage = this.totalPages / this.pageSize
-    if(isFirst) {
-      this._psuedoCurrentPage = 1
-      this._lastVisible = this.pageSize;
-    } else if(isLast) {
-      this._psuedoCurrentPage = lastPage
-      this._lastVisible = this.totalPages - 1;
-    } else {
-      this._lastVisible = e.last - this.pageSize;
+  private onVisibilityChanged(e: RangeChangedEvent) {
+    if(this.totalPages){
+      const isFirst = e.first === 0;
+      const isLast = e.last === this.totalPages - 1;
+      const lastPage = this.totalPages / this.pageSize
+      if(isFirst) {
+        this._psuedoCurrentPage = 1
+        this._lastVisible = this.pageSize;
+      } else if(isLast) {
+        this._psuedoCurrentPage = lastPage
+        this._lastVisible = this.totalPages - 1;
+      } else {
+        this._lastVisible = e.last;
+      }
     }
   }
 
@@ -504,18 +525,20 @@ export class StudsGrid extends LitElement {
 
   private onPageClick(e: CustomEvent) {
     const page = e.detail.selectedPage;
+    if(this.isVirtualizedEnabled) {
+
     const scrollToElement = page * this.pageSize - this.pageSize + 1;
     this.tableBodyRef[virtualizerRef]
       ?.element(scrollToElement)
       ?.scrollIntoView();
     this._lastVisible = scrollToElement;
+    // Force a recalculation
+    // @ts-ignore
+    this.setPage = null;
+    } else {
+      this.setPage = page;
+    }
 
-    // Calculate the correct page number based on the current scroll position
-    const firstVisibleIndex = this.tableBodyRef[virtualizerRef]?.firstVisibleIndex;
-    const currentPage = Math.ceil((firstVisibleIndex + 1) / this.pageSize);
-
-    // Set the correct page number
-    this.setPage = currentPage;
   }
 
   /**
@@ -524,7 +547,7 @@ export class StudsGrid extends LitElement {
 
   private onSearch(e: CustomEvent) {
     this.setPage = 1;
-    this._searchTerm = e?.detail;
+    this._searchTerm = e.detail;
   }
 
   /**

@@ -8,18 +8,35 @@
   flex-direction: column;
   gap: 5px;
   &.-virtualized {
+    thead {
+      display: flex;
+      tr {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        th {
+          flex: 100%;
+          form {
+            display: flex;
+          }
+        }
+      }
+    }
     tbody {
       min-height: 500px !important;
-      width: 100%;
       overflow: auto;
-    }
-    tr {
-      width: 100%;
-      display: flex;
-      td {
+      tr {
         width: 100%;
-        will-change: width;
+        display: flex;
+        td {
+          width: 100%;
+          display: flex;
+          text-overflow: ellipsis;
+        }
       }
+    }
+    td {
+      will-change: flex;
     }
   }
   &:not(.-virtualized) {
@@ -32,13 +49,13 @@
   table {
     position: relative;
     width: 100%;
-    table-layout:fixed;
+    table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
     cursor: default;
 
     th {
-      will-change: width;
+      will-change: flex;
       &:hover {
         .reorder-handle {
           opacity: 1;
