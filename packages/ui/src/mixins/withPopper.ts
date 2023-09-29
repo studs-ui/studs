@@ -2,12 +2,12 @@ import { Placement } from '@floating-ui/dom';
 import { LitElement, PropertyValueMap } from 'lit';
 import { property } from 'lit/decorators.js';
 import { PopperController } from '../controllers/popperController';
-import { getParentNode } from '../utils/shared';
 
 type Constructor<T = {}> = new (...args: any[]) => T;
 
 export declare class WithPopperInterface {
   popperController?: PopperController;
+  element?: HTMLElement;
 }
 
 export const WithPopper = <T extends Constructor<LitElement>>(
