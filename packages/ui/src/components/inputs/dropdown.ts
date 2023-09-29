@@ -379,7 +379,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
             placeholder=${this.placeholder || 'Search'}
             .value=${this._query}
             @input=${this.onSearchChange}
-          />${this.iconController.icon('expand_more')}</span
+          /><studs-badge position='center' count=${this.selected?.length || 0}></studs-badge>${this.iconController.icon('expand_more')}</span
         >`,
       ],
     ]);
