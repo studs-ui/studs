@@ -15,6 +15,7 @@ import { StudsDropdown, StudsInput } from '../..';
 import { styleMap } from "lit/directives/style-map.js";
 import { queryAll } from 'lit/decorators.js';
 import { RangeChangedEvent } from '@lit-labs/virtualizer/events.js';
+import { getWindow } from '../../utils/shared';
 
 // !TODO - Sort Multi Doesn't work anymore
 
@@ -63,11 +64,35 @@ export class StudsGrid extends LitElement {
 
   private iconController = new IconController();
 
+  protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+      // Set initial width of row cells
+      const cells = this.shadowRoot?.querySelectorAll('td');
+      cells?.forEach((cell) => {
+        const columnId = cell.getAttribute('data-column');
+        const column = this.shadowRoot?.querySelector(`#${columnId}`);
+        const width = column?.getBoundingClientRect().width;
+        if(width)
+        cell.style.width = `${width - 25.6}px`;
+      })
+  }
+
   protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
       // Reset Properties on Load Type
       if(_changedProperties.has('enableInfiniteScroll')) {
         this.setPage = 1;
       }
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    if(this.isVirtualizedEnabled)
+    getWindow(this).addEventListener('resize', this.onWindowResize);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if(this.isVirtualizedEnabled)
+    getWindow(this).removeEventListener('resize', this.onWindowResize);
   }
 
   protected get data() {
@@ -423,6 +448,21 @@ export class StudsGrid extends LitElement {
    */
 
   /**
+   *  Global Events
+   */
+  @queryAll('td') cells!: NodeListOf<Element>;
+  onWindowResize = (e: Event) => {
+    // Resize Cells on Window Resize
+    this.cells?.forEach((cell) => {
+      const columnId = cell.getAttribute('data-column');
+      const column = this.shadowRoot?.querySelector(`#${columnId}`);
+      const width = column?.getBoundingClientRect().width;
+      if(width)
+      (cell as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+    })
+  }
+
+  /**
    * 1. Resizable Columns
    */
 
@@ -631,6 +671,7 @@ export class StudsGrid extends LitElement {
 
     // Depending on the click count, set the sort order or reset the column to default order
     if (this.clickCounts[column] % 3 === 1) {
+      // Set Initial Data on First Click before Sorting Data
       this.originalData = [...this.dataSource];
       this.sortOrders[column] = true;
     } else if (this.clickCounts[column] % 3 === 2) {
@@ -641,7 +682,6 @@ export class StudsGrid extends LitElement {
     }
 
     if (this.sortOrders[column] === null) {
-      console.log(this.originalData);
       // If the sort order is null, revert to the original order
       this.dataSource = [...this.originalData];
     } else {
