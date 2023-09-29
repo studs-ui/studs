@@ -504,12 +504,18 @@ export class StudsGrid extends LitElement {
       const width = Math.max(this._startWidth + delta, 50);
       if(th){
         requestAnimationFrame(() => {
-          Object.assign(th.style, {
-            flex: `0 0 ${width}px`,
-          })
-          if(this.isVirtualizedEnabled) this._activeRows?.forEach((row) => {
-            (row as HTMLTableCellElement).style.width = `${width - 25.6}px`;
-          })
+          if(this.isVirtualizedEnabled) {
+            Object.assign(th.style, {
+              flex: `0 0 ${width}px`,
+            })
+            this._activeRows?.forEach((row) => {
+              (row as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+            })
+          } else {
+            Object.assign(th.style, {
+              width: `${width}px`,
+            })
+          }
         });
     }
   }

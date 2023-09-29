@@ -16,12 +16,6 @@
         justify-content: space-between;
         th {
           flex: 100%;
-          // disabled selection
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-          
           form {
             display: flex;
           }
@@ -41,9 +35,6 @@
         }
       }
     }
-    td {
-      will-change: flex;
-    }
   }
   &:not(.-virtualized) {
     tbody {
@@ -62,6 +53,11 @@
 
     th {
       will-change: flex;
+      // disabled selection
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       &:hover {
         .reorder-handle {
           opacity: 1;
@@ -72,6 +68,10 @@
           visibility: visible;
         }
       }
+    }
+
+    td {
+      will-change: width;
     }
 
 
