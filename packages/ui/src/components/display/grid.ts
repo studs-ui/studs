@@ -1,4 +1,4 @@
-import { LitElement, html, unsafeCSS } from 'lit';
+import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
 import { customElement, property, query, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
@@ -10,27 +10,14 @@ import {
   virtualizerRef,
 } from '@lit-labs/virtualizer/virtualize.js';
 import { repeat } from 'lit/directives/repeat.js';
+import { IconController } from '../../controllers/iconController';
+import { StudsDropdown, StudsInput } from '../..';
+import { styleMap } from "lit/directives/style-map.js";
+import { queryAll } from 'lit/decorators.js';
+import { RangeChangedEvent } from '@lit-labs/virtualizer/events.js';
+import { getWindow } from '../../utils/shared';
 
-export interface GridProps {
-  wrapperProps?: object;
-  tableCaption?: string;
-  pageSize: number;
-  itemsPerPageSelector?: Array<number>;
-  showBorders: boolean;
-  enableFiltering: boolean;
-  enableColumnResizing: boolean;
-  enableColumnReordering: boolean;
-  // enableColumnHiding: boolean;
-  enableInfiniteScroll: boolean;
-  enablePagination: boolean;
-  enableGlobalSearch: boolean;
-  enableStickyHeader: boolean;
-  enableSorting: boolean;
-  columns: Array<any>;
-  dataSource: Array<any>;
-  sortedColumns: Array<string>;
-  sortAscending: boolean;
-}
+// !TODO - Sort Multi Doesn't work anymore
 
 interface FilteredColumns {
   key: string;
@@ -41,55 +28,76 @@ interface FilteredColumns {
 @customElement('studs-grid')
 export class StudsGrid extends LitElement {
   // Table Properties
-  @property({ type: Object }) wrapperProps: GridProps['wrapperProps'] = {};
-  @property({ type: String }) tableCaption?: GridProps['tableCaption'];
-  @property({ type: Number }) pageSize: GridProps['pageSize'] = 10;
+  @property({ type: String }) tableCaption?: string;
+  @property({ type: Number }) pageSize: number = 10;
   @property({ type: Array })
-  itemsPerPageSelector?: GridProps['itemsPerPageSelector'] = [10, 25, 50, 100];
-  @property({ type: Boolean }) showBorders: GridProps['showBorders'] = true;
-  @property({ type: Boolean }) enableFiltering: GridProps['enableFiltering'] =
+  itemsPerPageSelector?: number[] = [10, 25, 50, 100];
+  @property({ type: Boolean }) showBorders: boolean = true;
+  @property({ type: Boolean }) enableFiltering: boolean =
     true;
   @property({ type: Boolean })
-  enableColumnResizing: GridProps['enableColumnResizing'] = true;
+  enableColumnResizing: boolean = true;
   @property({ type: Boolean })
-  enableColumnReordering: GridProps['enableColumnReordering'] = true;
-  // @property({ type: Boolean }) enableColumnHiding: boolean = true;
+  enableColumnReordering: boolean = true;
   @property({ type: Boolean })
-  enableInfiniteScroll: GridProps['enableInfiniteScroll'] = true;
-  @property({ type: Boolean }) enablePagination: GridProps['enablePagination'] =
+  enableInfiniteScroll: boolean = false;
+  @property({ type: Boolean }) enablePagination: boolean =
     true;
   @property({ type: Boolean })
-  enableGlobalSearch: GridProps['enableGlobalSearch'] = true;
+  enableGlobalSearch: boolean = true;
   @property({ type: Boolean })
-  enableStickyHeader: GridProps['enableStickyHeader'] = true;
-  @property({ type: Boolean }) enableSorting: GridProps['enableSorting'] = true;
+  enableStickyHeader: boolean = true;
+  @property({ type: Boolean }) enableSorting: boolean = true;
 
-  @property({ type: Array }) columns: GridProps['columns'] = [];
-  @property({ type: Array }) dataSource: GridProps['dataSource'] = [];
-  @property({ type: Array }) sortedColumns: GridProps['sortedColumns'] = [];
-  @property({ type: Boolean }) sortAscending: GridProps['sortAscending'] = true;
+  @property({ type: Array }) columns: any[] = [];
+  @property({ type: Array }) dataSource: any[] = [];
+  @property({ type: Array }) sortedColumns: string[] = [];
+  @property({ type: Boolean }) sortAscending: boolean = true;
 
   @state() protected _searchTerm: string = '';
   @state() protected _currentPage: number = 1;
   @state() protected _psuedoCurrentPage: number = this._currentPage;
-  @state() protected _filteredColumns: Array<FilteredColumns> = [];
+  @state() protected _filteredColumns: FilteredColumns[] = [];
   @state() protected _lastVisible: number = 0;
 
-  // protected updated(
-  //   _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  // ): void {
-  //   if (this.enableInfiniteScroll) this.addIntersectionObserver();
-  // }
+  static styles = [unsafeCSS(tableStyle), unsafeCSS(paginationStyle), IconController.styles];
 
-  static styles = [unsafeCSS(tableStyle), unsafeCSS(paginationStyle)];
+  private iconController = new IconController();
+
+  protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+      // Set initial width of row cells
+      const cells = this.shadowRoot?.querySelectorAll('td');
+      cells?.forEach((cell) => {
+        const columnId = cell.getAttribute('data-column');
+        const column = this.shadowRoot?.querySelector(`#${columnId}`);
+        const width = column?.getBoundingClientRect().width;
+        if(width)
+        cell.style.width = `${width - 25.6}px`;
+      })
+  }
+
+  protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+      // Reset Properties on Load Type
+      if(_changedProperties.has('enableInfiniteScroll')) {
+        this.setPage = 1;
+      }
+  }
+
+  connectedCallback(): void {
+    super.connectedCallback();
+    if(this.isVirtualizedEnabled)
+    getWindow(this).addEventListener('resize', this.onWindowResize);
+  }
+
+  disconnectedCallback(): void {
+    super.disconnectedCallback();
+    if(this.isVirtualizedEnabled)
+    getWindow(this).removeEventListener('resize', this.onWindowResize);
+  }
 
   protected get data() {
     return this.dataSource;
   }
-
-  /** Functions
-   * 1. Filters
-   */
 
   protected get filterSearchResults() {
     return this.data.filter((row) => {
@@ -158,7 +166,7 @@ export class StudsGrid extends LitElement {
 
   protected get totalPages() {
     if (this.filteredData)
-      return Math.ceil(this.filteredData.length / this.pageSize);
+      return Math.ceil(this.filteredData.length);
   }
 
   protected get startIndex() {
@@ -195,34 +203,34 @@ export class StudsGrid extends LitElement {
       const column = this._filteredColumns.find((column) => column.key === key);
       const inputValue = column ? column?.value : '';
       const selectValue = column ? column?.type : 'contains';
-      // TODO : Implement filtering for equals, not equals, greater than, less than, contains
-      // const type = "contains";
-
+      const options = [
+        {
+          label: "Contains",
+          value: "contains"
+        },
+        {
+          label: "Greater Than",
+          value: "greater than"
+        },
+        {
+          label: "Less Than",
+          value: "less than"
+        },
+        {
+          label: "Equals",
+          value: "equals"
+        },
+        {
+          label: "Not Equals",
+          value: "not equals"
+        }
+      ];
       return html`
         <form>
-          <select name="type" @input=${this.onFilterType} .value=${selectValue}>
-            <option>contains</option>
-            <option>greater than</option>
-            <option>less than</option>
-            <option>equals</option>
-            <option>not equals</option>
-          </select>
-          <input
-            name=${key}
-            type="text"
-            @input=${this.onFilterInput}
-            .value=${inputValue}
-          />
+          <studs-dropdown size="small" .options=${options} @change=${this.onFilterType} .selected=${selectValue}></studs-dropdown>
+          <studs-input size="small" name=${key} type="text" @change=${this.onFilterInput} .value=${inputValue}></studs-input>
         </form>
       `;
-    }
-  }
-
-  protected renderCaption() {
-    if (this.tableCaption) {
-      return html` <caption>
-        ${this.tableCaption}
-      </caption>`;
     }
   }
 
@@ -284,7 +292,10 @@ export class StudsGrid extends LitElement {
                   }}
                   @mouseup=${() => {}}
                 >
-                  ☰
+                ${this.iconController.icon("reorder", {
+                  color: 'primary',
+                  size: 'small',
+                })}
                 </div>`
               : ``}
             <p
@@ -309,7 +320,10 @@ export class StudsGrid extends LitElement {
                   class="resize-handle"
                   @mousedown=${this.onMouseMoveDown}
                 >
-                  ↔
+                  ${this.iconController.icon("width", {
+                    color: 'primary',
+                    size: 'small'
+                  })}
                 </div>`
               : ''}
           </th>
@@ -320,12 +334,11 @@ export class StudsGrid extends LitElement {
 
   @state() protected _startIndex: number = 0;
   @state() protected _endIndex: number = 0;
-  @state() protected _offset: number = 0;
 
   protected renderRows() {
     if (this.data) {
       this._startIndex = (this._currentPage - 1) * this.pageSize;
-      this._endIndex = this._startIndex + this.pageSize + this._offset;
+      this._endIndex = this._startIndex + this.pageSize;
 
       const item = (row: { [x: string]: any }, index: number) => {
         return html`
@@ -355,7 +368,14 @@ export class StudsGrid extends LitElement {
               event.preventDefault();
             }}
           >
-            ${Object.keys(row).map((key) => html`<td>${row[key]}</td>`)}
+            ${Object.keys(row).map((key, index) => {
+              const columnKey = this.columns[index].key;
+              const column = this.shadowRoot?.querySelector(`#${columnKey}`);
+              // Get correct width of the column
+              const width = column?.getBoundingClientRect().width;
+              return html`<td data-column=${columnKey} style=${this.isVirtualizedEnabled ? styleMap({
+              width: column ? `${width - 25.6}px` : 'auto',
+            }) : nothing}>${row[key]}</td>`})}
           </tr>
         `;
       };
@@ -363,7 +383,7 @@ export class StudsGrid extends LitElement {
       const rows = this.isVirtualizedEnabled
         ? virtualize({
             scroller: true,
-            items: this.filteredData?.slice(this._startIndex, this._endIndex),
+            items: this.filteredData,
             renderItem: (row, index) => {
               return item(row, index);
             },
@@ -382,150 +402,31 @@ export class StudsGrid extends LitElement {
     return null;
   }
 
-  private renderPaginationPages() {
-    if (this.totalPages) {
-      if (this.totalPages > 10) {
-        const _firstPages: number[] = Array.from(
-          { length: 3 },
-          (_, i) => i + 1
-        );
-        const _middlePages: number[] = [
-          this._psuedoCurrentPage - 2,
-          this._psuedoCurrentPage - 1,
-          this._psuedoCurrentPage,
-          this._psuedoCurrentPage + 1,
-          this._psuedoCurrentPage + 2,
-          // @ts-ignore
-        ].filter((page) => page > 3 && page < this.totalPages - 2);
-        const endingPages: number[] = Array.from(
-          { length: 3 },
-          // @ts-ignore
-          (_, i) => this.totalPages - i
-        ).reverse();
-        const pages = [..._firstPages, ..._middlePages, ...endingPages];
-        return pages.map(
-          (page) => html`
-            <li
-              class="page-item ${this._psuedoCurrentPage === page
-                ? 'active'
-                : ''}"
-            >
-              <a
-                class="page-link"
-                href="#"
-                @click=${
-                  // @ts-ignore
-                  () => this.onPageClick(page)
-                }
-                >${page}</a
-              >
-            </li>
-          `
-        );
-      } else {
-        const pages = Array.from({ length: this.totalPages }, (_, i) => i + 1);
-        return pages.map(
-          (page) => html`
-            <li
-              class="page-item ${this._psuedoCurrentPage === page
-                ? 'active'
-                : ''}"
-            >
-              <a
-                class="page-link"
-                href="#"
-                @click=${
-                  // @ts-ignore
-                  () => this.onPageClick(page)
-                }
-                >${page}</a
-              >
-            </li>
-          `
-        );
-      }
-    }
-  }
-
-  private renderPagination() {
-    if (this.enablePagination)
-      return html`
-        <nav>
-          <ul class="pagination">
-            <li
-              class="page-item ${this._psuedoCurrentPage === 1
-                ? 'disabled'
-                : ''}"
-            >
-              <a
-                class="page-link"
-                href="#"
-                aria-label="Previous"
-                @click=${this.onPreviousClick}
-              >
-                <span aria-hidden="true">&laquo;</span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            ${this.renderPaginationPages()}
-            <li
-              class="page-item ${this._psuedoCurrentPage === this.totalPages
-                ? 'disabled'
-                : ''}"
-            >
-              <a
-                class="page-link"
-                href="#"
-                aria-label="Next"
-                @click=${this.onNextClick}
-              >
-                <span aria-hidden="true">&raquo;</span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      `;
-  }
-
   render() {
-    const classes = {
+    return html`
+      <div class=${classMap({
       grid: true,
       '-virtualized': this.isVirtualizedEnabled,
-    };
-    const contentClasses = {
-      content: true,
-      '-withBorder': this.showBorders,
-    };
-    const theadClasses = {
-      '-sticky': this.enableStickyHeader,
-    };
-
-    return html`
-      <div class=${classMap(classes)} style=${this.wrapperProps}>
+    })}>
         <div class="grid -header">
-          <input
-            type="text"
-            placeholder="Search..."
-            .value=${this._searchTerm}
-            @input=${this.onSearch}
-          />
+          <studs-input type="search" placeholder="Search..." .value=${this._searchTerm} @change=${this.onSearch}></studs-input>
         </div>
-        <div class=${classMap(contentClasses)}>
-          <!-- @scroll=${this.onTableScroll} -->
-          <table
-            @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : null}
-          >
-            ${this.renderCaption()}
-            <thead class=${classMap(theadClasses)}>
+        <div class=${classMap({
+            content: true,
+            '-withBorder': this.showBorders,
+          })}>
+          <table>
+            ${this.tableCaption ? html`<caption>${this.tableCaption}</caption>` : ''}
+            <thead class=${classMap({
+                '-sticky': this.enableStickyHeader,
+              })}>
               <tr>
                 ${this.renderColumns()}
               </tr>
             </thead>
             <tbody
-              @rangeChanged=${(e: any) => {
-                this._lastVisible = e.last - 8;
-              }}
+              @scroll=${this.isVirtualizedEnabled ? this.onTableScroll : nothing}
+              @visibilityChanged=${this.isVirtualizedEnabled ? this.onVisibilityChanged : nothing}
             >
               ${this.renderRows()}
             </tbody>
@@ -533,37 +434,12 @@ export class StudsGrid extends LitElement {
         </div>
       </div>
       <div class="tableFooter -actions">
-        <div class="page-size">
-          <label for="pageSize">Page Size:</label>
-          <select
-            class="form-control"
-            id="pageSize"
-            .value=${this.pageSize}
-            @change="${(e: any) => {
-              this.pageSize = parseInt(e?.target.value);
-              this.setPage = 1; // Reset the pagination
-            }}"
-          >
-            ${map(this.itemsPerPageSelector, (item) => {
-              return html`
-                <option value="${item}" selected=${this.pageSize === item}>
-                  ${item}
-                </option>
-              `;
-            })}
-          </select>
-        </div>
-        <div class="page-input">
-          <label for="page">Page:</label>
-          <input
-            class="form-control"
-            type="number"
-            .value=${this._psuedoCurrentPage}
-            @input=${this.onPageInputChange}
-          />
-        </div>
+        ${this.enablePagination ? html`
+        <studs-pagination current-page=${this._psuedoCurrentPage} total-items=${this.totalPages} items-per-page=${this.pageSize} has-jumper ?has-select=${!this.isVirtualizedEnabled} @changePage=${this.onPageClick} @changeItemsPerPage=${(e: CustomEvent) => {
+          this.pageSize = e.detail.itemsPerPage;
+        }}></studs-pagination>
+        ` : ''}
       </div>
-      ${this.renderPagination()}
     `;
   }
 
@@ -572,18 +448,41 @@ export class StudsGrid extends LitElement {
    */
 
   /**
+   *  Global Events
+   */
+  @queryAll('td') cells!: NodeListOf<Element>;
+  onWindowResize = (e: Event) => {
+    // Resize Cells on Window Resize
+    this.cells?.forEach((cell) => {
+      const columnId = cell.getAttribute('data-column');
+      const column = this.shadowRoot?.querySelector(`#${columnId}`);
+      const width = column?.getBoundingClientRect().width;
+      if(width)
+      (cell as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+    })
+  }
+
+  /**
    * 1. Resizable Columns
    */
 
   @state() protected _startX: number = 0;
   @state() protected _pressed: HTMLElement | undefined;
   @state() protected _startWidth: number = 0;
+  @state() protected _activeRows?: NodeListOf<Element>;
 
-  private onMouseMoveDown(e: any) {
+  private onMouseMoveDown(e: MouseEvent) {
     e.stopPropagation();
-    this._pressed = e.target;
+    const target = e.target as HTMLDivElement;
+    const th = target.closest('th');
+    const id = th?.getAttribute('id');
+    if(this.isVirtualizedEnabled){
+      const rows = this.shadowRoot?.querySelectorAll(`td[data-column=${id}]`);
+      if(rows) this._activeRows = rows;
+    }
+    this._pressed = target;
     this._startX = e.clientX;
-    this._startWidth = e.target.closest('th').offsetWidth;
+    this._startWidth = target.closest('th')?.offsetWidth || 0;
 
     this.addEventListener('mousemove', this.onMouseMove);
     this.addEventListener('mouseup', this.onMouseMoveUp);
@@ -593,6 +492,7 @@ export class StudsGrid extends LitElement {
     this._pressed = undefined;
     this._startWidth = 0;
     this._startX = 0;
+    this._activeRows = undefined;
     this.removeEventListener('mousemove', this.onMouseMove);
     this.removeEventListener('mouseup', this.onMouseMoveUp);
   }
@@ -602,20 +502,49 @@ export class StudsGrid extends LitElement {
       const th = this._pressed.closest('th');
       const delta = e.clientX - this._startX;
       const width = Math.max(this._startWidth + delta, 50);
-
-      // @ts-ignore
-      th.style.width = `${width}px`;
+      if(th){
+        requestAnimationFrame(() => {
+          if(this.isVirtualizedEnabled) {
+            Object.assign(th.style, {
+              flex: `0 0 ${width}px`,
+            })
+            this._activeRows?.forEach((row) => {
+              (row as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+            })
+          } else {
+            Object.assign(th.style, {
+              width: `${width}px`,
+            })
+          }
+        });
     }
   }
+}
 
   /**
    * 2. Virtualized / Infinite Scroll
    */
   @query('tbody') tableBodyRef!: VirtualizerHostElement;
   @query('table') tableRef!: HTMLTableElement;
-  private _prevScrollDirection: number = 0;
 
-  private onTableScroll(e: any) {
+  private onVisibilityChanged(e: RangeChangedEvent) {
+    if(this.totalPages){
+      const isFirst = e.first === 0;
+      const isLast = e.last === this.totalPages - 1;
+      const lastPage = this.totalPages / this.pageSize
+      if(isFirst) {
+        this._psuedoCurrentPage = 1
+        this._lastVisible = this.pageSize;
+      } else if(isLast) {
+        this._psuedoCurrentPage = lastPage
+        this._lastVisible = this.totalPages - 1;
+      } else {
+        this._lastVisible = e.last;
+      }
+    }
+  }
+
+  private onTableScroll() {
     if (this.enablePagination) {
       if (this._currentPage > 1) {
         const page = Math.floor(
@@ -634,88 +563,46 @@ export class StudsGrid extends LitElement {
         }
       }
     }
-    const { scrollTop: scrollPosition } = e.target;
-    if (scrollPosition % 15 === 0) {
-      const scrollDirection =
-        scrollPosition > this._prevScrollDirection ? 'down' : 'up';
-      const end = this._offset;
-      if (scrollDirection === 'down') {
-        const endOffset =
-          end + 50 >= this.data?.length ? this.data?.length : end + 50;
-        this._offset = endOffset;
-        this.requestUpdate();
-      }
-
-      this._prevScrollDirection = scrollPosition;
-    }
   }
 
   /**
    * 3. Pagination
    */
 
-  private onPageClick(page: number) {
-    this.setPage = page;
-    this._lastVisible = 0;
-    this._offset = 0;
+  private onPageClick(e: CustomEvent) {
+    const page = e.detail.selectedPage;
+    if(this.isVirtualizedEnabled) {
 
+    const scrollToElement = page * this.pageSize - this.pageSize + 1;
     this.tableBodyRef[virtualizerRef]
-      ?.element(this._lastVisible)
+      ?.element(scrollToElement)
       ?.scrollIntoView();
-  }
-
-  private onPageInputChange(e: InputEvent) {
-    const value = (e.target as HTMLInputElement).value;
-    this.setPage = parseInt(value);
-    this._lastVisible = 0;
-    this._offset = 0;
-
-    this.tableBodyRef[virtualizerRef]
-      ?.element(this._lastVisible)
-      ?.scrollIntoView();
-  }
-
-  private onPreviousClick() {
-    if (this._currentPage > 1) {
-      this.setPage = this._currentPage - 1;
-      this._lastVisible = 0;
-      this._offset = 0;
-
-      this.tableBodyRef[virtualizerRef]
-        ?.element(this._lastVisible)
-        ?.scrollIntoView();
-    }
-  }
-
-  private onNextClick() {
+    this._lastVisible = scrollToElement;
+    // Force a recalculation
     // @ts-ignore
-    if (this._currentPage < this.totalPages) {
-      this.setPage = this._currentPage + 1;
-      this._lastVisible = 0;
-      this._offset = 0;
-
-      this.tableBodyRef[virtualizerRef]
-        ?.element(this._lastVisible)
-        ?.scrollIntoView();
+    this.setPage = null;
+    } else {
+      this.setPage = page;
     }
+
   }
 
   /**
    * 4. Search
    */
 
-  private onSearch(e: any) {
+  private onSearch(e: CustomEvent) {
     this.setPage = 1;
-    this._searchTerm = e?.target.value;
+    this._searchTerm = e.detail;
   }
 
   /**
    * 5. Filtering
    */
 
-  private onFilterType(e: InputEvent | any) {
-    const name = e?.target.parentElement?.querySelector('input')?.name;
-    const value = e?.target.value;
+  private onFilterType(e: CustomEvent) {
+    const name = (e?.target as StudsDropdown).parentElement?.querySelector('studs-input')?.name;
+    const value = e.detail.value;
     const column = this._filteredColumns.find((column) => column.key === name);
     if (column) {
       const newData = this._filteredColumns.map((el) => {
@@ -734,10 +621,10 @@ export class StudsGrid extends LitElement {
     }
   }
 
-  private onFilterInput(e: InputEvent | any) {
-    const name = e?.target.name;
-    const value = e?.target.value;
-    const select = e?.target.parentElement?.querySelector('select')?.value;
+  private onFilterInput(e: CustomEvent) {
+    const name = (e?.target as StudsInput).name;
+    const value = e?.detail;
+    const select = (e?.target as StudsInput).parentElement?.querySelector('studs-dropdown')?.selected;
     const column = this._filteredColumns.find((column) => column.key === name);
     if (column) {
       const newData = this._filteredColumns.map((el) => {
@@ -763,7 +650,7 @@ export class StudsGrid extends LitElement {
   public clickCounts: { [key: string]: number } = {};
 
   // Store the original order of the data
-  private originalData: Array<any> = [...this.dataSource];
+  @state() originalData: Array<any> = [...this.dataSource];
 
   private onSortTable(column: string, event: MouseEvent) {
     if (!this.enableSorting) {
@@ -790,6 +677,8 @@ export class StudsGrid extends LitElement {
 
     // Depending on the click count, set the sort order or reset the column to default order
     if (this.clickCounts[column] % 3 === 1) {
+      // Set Initial Data on First Click before Sorting Data
+      this.originalData = [...this.dataSource];
       this.sortOrders[column] = true;
     } else if (this.clickCounts[column] % 3 === 2) {
       this.sortOrders[column] = false;
@@ -836,19 +725,4 @@ export class StudsGrid extends LitElement {
     });
     return reordered;
   }
-
-  /**
-   * Bugs
-   * ?PageSize Option
-   * ?Page Change Scroll Reset
-   * ?Virtualize Scroll Apperance
-   */
-
-  /** Possible features to add
-   * !Checkbox Selection
-   */
-
-  /**
-   * !25 - 50 Row Offset
-   */
 }
