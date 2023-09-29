@@ -36,7 +36,7 @@ export class StudsAccordionItem extends LitElement {
         <slot name="toggle">Accordion Header</slot>
         <studs-button
           size="medium"
-          button-type="close"
+          button-type="tertiary"
           icon="chevron_right"
           ?disabled=${this.disabled}
         ></studs-button>
