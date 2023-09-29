@@ -239,7 +239,7 @@ export class StudsPagination extends LitElement {
           <div class="select">
             <label>${this.selectLabel}</label>
             <studs-dropdown
-              value=${this.itemsPerPage}
+              .selected=${String(this.itemsPerPage)}
               .options=${this.itemsPerPageOptions}
               @change="${this._selectHandler}"
             >
