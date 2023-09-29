@@ -2,55 +2,62 @@
 @use './inputs.scss' as *;
 @use './table.scss' as *;
 
-@mixin gridOperatorsOverlay {
-  height: auto;
-  .operatorIndicator {
-    margin-right: 10px;
-  }
-}
-
-@mixin gridSearchValueOverlay {
-  max-height: 300px;
-  height: auto;
-  [data-simplebar] {
-    max-height: 300px;
-    height: auto;
-    width: 100%;
-  }
-}
-
-@mixin grid {
+.grid {
+  @include table();
   display: flex;
   flex-direction: column;
   gap: 5px;
   &.-virtualized {
-    tbody {
-      height: 500px
+    thead {
+      display: flex;
+      tr {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        th {
+          flex: 100%;
+          form {
+            display: flex;
+          }
+        }
+      }
     }
-  } 
+    tbody {
+      min-height: 500px !important;
+      overflow: auto;
+      tr {
+        width: 100%;
+        display: flex;
+        td {
+          width: 100%;
+          display: flex;
+          text-overflow: ellipsis;
+        }
+      }
+    }
+  }
+  &:not(.-virtualized) {
+    tbody {
+      display: table-row-group !important;
+    }
+  }
+  
 
   table {
     position: relative;
-    width: max(fit-content, 100%);
+    width: 100%;
     table-layout: fixed;
     border-collapse: collapse;
     border-spacing: 0;
     cursor: default;
 
-    tbody {
-      display: table-row-group !important;
-    }
-
-    tr {
-      width: 100%;
-      left: 0px;
-      right: 0px;
-      // position: relative !important;
-        // position: static !important;
-        // transform: none !important;
-    }
-
     th {
+      will-change: flex;
+      // disabled selection
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
       &:hover {
         .reorder-handle {
           opacity: 1;
@@ -61,6 +68,10 @@
           visibility: visible;
         }
       }
+    }
+
+    td {
+      will-change: width;
     }
 
 
@@ -116,10 +127,4 @@
     font-weight: bold;
     padding: 10px;
   }
-
-  @include table()
-}
-
-.grid {
-    @include grid;
 }

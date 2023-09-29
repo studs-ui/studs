@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { BadgeProps } from "../../components/display/badge";
+import { BadgeProps, StudsBadge } from "../../components/display/badge";
 import { icon, size } from '../../utils/_argTypes';
 
 const meta = {
@@ -60,10 +60,10 @@ const meta = {
             },
         },
     }
-} satisfies Meta<BadgeProps>;
+} satisfies Meta<StudsBadge>;
 
 export default meta;
-type Story = StoryObj<BadgeProps>;
+type Story = StoryObj<StudsBadge>;
 
 export const Default: Story = {
     args: {

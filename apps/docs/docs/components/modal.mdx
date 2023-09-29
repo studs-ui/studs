@@ -15,3 +15,94 @@ description: Modals are used to display content that temporarily blocks interact
 
 Modals are used to display content that temporarily blocks interactions with the main view of an application. Modals should be used sparingly only when necessary.
 
+## Usage
+
+<ResizerFeatures minHeight="20rem">
+  <studs-modal>
+    <studs-button slot="toggle">Open</studs-button>
+    <h2 slot="header" class="modal -title" id="modal-1-title">
+      Micromodal
+    </h2>
+    <p>
+      Try hitting the <code>tab</code> key and notice how the focus stays within
+      the modal itself. Also, <code>esc</code> to close modal.
+    </p>
+    <div slot="footer">
+      <studs-button size="small" button-type="primary">
+        Action
+      </studs-button>
+      <studs-button
+        size="small"
+        button-type="secondary"
+        data-micromodal-close
+        aria-label="Close this dialog window"
+      >
+        Close
+      </studs-button>
+    </div>
+  </studs-modal>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-modal>
+  <studs-button slot="toggle">Open</studs-button>
+  <h2 slot="header" class="modal -title" id="modal-1-title">
+    Micromodal
+  </h2>
+  <p>
+    Try hitting the <code>tab</code> key and notice how the focus stays within
+    the modal itself. Also, <code>esc</code> to close modal.
+  </p>
+  <div slot="footer">
+    <studs-button size="small" button-type="primary">
+      Action
+    </studs-button>
+    <studs-button
+      size="small"
+      button-type="secondary"
+      data-micromodal-close
+      aria-label="Close this dialog window"
+    >
+      Close
+    </studs-button>
+  </div>
+</studs-modal>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73955&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'open',
+      description: <></>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'closeOnOverlayClick',
+      description: <></>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'closeOnEscape',
+      description: <></>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'children',
+      description: <></>,
+      reflects: false,
+      default: '',
+    },
+  ]}
+></Tables>
