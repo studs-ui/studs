@@ -16,6 +16,12 @@
         justify-content: space-between;
         th {
           flex: 100%;
+          // disabled selection
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          
           form {
             display: flex;
           }

@@ -16,7 +16,7 @@ import { styleMap } from "lit/directives/style-map.js";
 import { queryAll } from 'lit/decorators.js';
 import { RangeChangedEvent } from '@lit-labs/virtualizer/events.js';
 
-// !TODO - Sort Breaks on Third Click
+// !TODO - Sort Multi Doesn't work anymore
 
 interface FilteredColumns {
   key: string;
@@ -604,7 +604,7 @@ export class StudsGrid extends LitElement {
   public clickCounts: { [key: string]: number } = {};
 
   // Store the original order of the data
-  private originalData: Array<any> = [...this.dataSource];
+  @state() originalData: Array<any> = [...this.dataSource];
 
   private onSortTable(column: string, event: MouseEvent) {
     if (!this.enableSorting) {
@@ -631,6 +631,7 @@ export class StudsGrid extends LitElement {
 
     // Depending on the click count, set the sort order or reset the column to default order
     if (this.clickCounts[column] % 3 === 1) {
+      this.originalData = [...this.dataSource];
       this.sortOrders[column] = true;
     } else if (this.clickCounts[column] % 3 === 2) {
       this.sortOrders[column] = false;
@@ -640,6 +641,7 @@ export class StudsGrid extends LitElement {
     }
 
     if (this.sortOrders[column] === null) {
+      console.log(this.originalData);
       // If the sort order is null, revert to the original order
       this.dataSource = [...this.originalData];
     } else {
