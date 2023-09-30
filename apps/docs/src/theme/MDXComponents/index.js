@@ -5,7 +5,8 @@ import ResizerFeatures from '@site/src/components/ResizerFeatures';
 import FoundationComponents from '@site/src/components/foundations';
 import HeaderComponent from '@site/src/components/HeaderComponent/HeaderComponent';
 import Tables from '@site/src/components/Tables/index';
-
+import ColorsComponents from '@site/src/components/Colors';
+import SpacersTable from '@site/src/components/Spacers/SpacerTable'
 export default {
   ...MDXComponents,
   CodeBlocks,
@@ -14,4 +15,6 @@ export default {
   ResizerFeatures,
   EmbeddedFigma,
   ...FoundationComponents,
+  ...ColorsComponents,
+  SpacersTable
 };

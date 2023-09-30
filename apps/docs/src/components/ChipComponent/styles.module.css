@@ -1,0 +1,12 @@
+.content {
+    letter-spacing: 0.32px;
+    color: var(--text-color);
+}
+
+.wrapper {
+    width: max-content;
+    padding: 0.25rem 0.5rem;
+    background: var(--background);
+    border-radius: 3px;
+    border: 1px solid var(--border-color);
+}
