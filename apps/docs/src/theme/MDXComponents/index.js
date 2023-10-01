@@ -5,6 +5,7 @@ import ResizerFeatures from '@site/src/components/ResizerFeatures';
 import FoundationComponents from '@site/src/components/foundations';
 import HeaderComponent from '@site/src/components/HeaderComponent/HeaderComponent';
 import Tables from '@site/src/components/Tables/index';
+import TypographySection from '@site/src/components/Typography';
 
 export default {
   ...MDXComponents,
@@ -14,4 +15,5 @@ export default {
   ResizerFeatures,
   EmbeddedFigma,
   ...FoundationComponents,
+  TypographySection
 };
