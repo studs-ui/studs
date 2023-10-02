@@ -99,7 +99,7 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^4.4.7
-        version: 4.4.7(sass@1.64.1)
+        version: 4.4.7(sass@1.64.1)(terser@5.20.0)
 
   packages/react:
     dependencies:
@@ -148,7 +148,7 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^4.4.5
-        version: 4.4.7(sass@1.64.1)
+        version: 4.4.7(sass@1.64.1)(terser@5.20.0)
       vite-plugin-dts:
         specifier: ^3.5.3
         version: 3.5.3(typescript@5.1.6)(vite@4.4.7)
@@ -163,7 +163,7 @@ importers:
         version: 5.1.6
       vite:
         specifier: ^4.4.5
-        version: 4.4.7(sass@1.64.1)
+        version: 4.4.7(sass@1.64.1)(terser@5.20.0)
       vite-plugin-dts:
         specifier: ^3.5.3
         version: 3.5.3(typescript@5.1.6)(vite@4.4.7)
@@ -231,12 +231,15 @@ importers:
       storybook-addon-performance:
         specifier: ^0.17.1
         version: 0.17.1(react-dom@18.2.0)(react@18.2.0)
+      terser:
+        specifier: ^5.20.0
+        version: 5.20.0
       typescript:
         specifier: ^5.1.6
         version: 5.1.6
       vite:
         specifier: ^4.4.7
-        version: 4.4.7(sass@1.64.1)
+        version: 4.4.7(sass@1.64.1)(terser@5.20.0)
       vite-plugin-dts:
         specifier: ^3.5.3
         version: 3.5.3(typescript@5.1.6)(vite@4.4.7)
@@ -3237,7 +3240,7 @@ packages:
       magic-string: 0.27.0
       react-docgen-typescript: 2.2.2(typescript@5.1.6)
       typescript: 5.1.6
-      vite: 4.4.7(sass@1.64.1)
+      vite: 4.4.7(sass@1.64.1)(terser@5.20.0)
     dev: true
 
   /@jridgewell/gen-mapping@0.3.3:
@@ -3919,7 +3922,7 @@ packages:
       remark-slug: 6.1.0
       rollup: 3.28.1
       typescript: 5.1.6
-      vite: 4.4.7(sass@1.64.1)
+      vite: 4.4.7(sass@1.64.1)(terser@5.20.0)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -4326,7 +4329,7 @@ packages:
       react: 18.2.0
       react-docgen: 6.0.0-alpha.3
       react-dom: 18.2.0(react@18.2.0)
-      vite: 4.4.7(sass@1.64.1)
+      vite: 4.4.7(sass@1.64.1)(terser@5.20.0)
     transitivePeerDependencies:
       - '@preact/preset-vite'
       - encoding
@@ -5210,7 +5213,7 @@ packages:
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.22.15)
       magic-string: 0.27.0
       react-refresh: 0.14.0
-      vite: 4.4.7(sass@1.64.1)
+      vite: 4.4.7(sass@1.64.1)(terser@5.20.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -5225,7 +5228,7 @@ packages:
       '@babel/plugin-transform-react-jsx-self': 7.22.5(@babel/core@7.22.15)
       '@babel/plugin-transform-react-jsx-source': 7.22.5(@babel/core@7.22.15)
       react-refresh: 0.14.0
-      vite: 4.4.7(sass@1.64.1)
+      vite: 4.4.7(sass@1.64.1)(terser@5.20.0)
     transitivePeerDependencies:
       - supports-color
     dev: true
@@ -8621,7 +8624,7 @@ packages:
       he: 1.2.0
       param-case: 3.0.4
       relateurl: 0.2.7
-      terser: 5.19.4
+      terser: 5.20.0
     dev: false
 
   /html-tags@3.3.1:
@@ -13064,11 +13067,11 @@ packages:
       jest-worker: 27.5.1
       schema-utils: 3.3.0
       serialize-javascript: 6.0.1
-      terser: 5.19.4
+      terser: 5.20.0
       webpack: 5.88.2
 
-  /terser@5.19.4:
-    resolution: {integrity: sha512-6p1DjHeuluwxDXcuT9VR8p64klWJKo1ILiy19s6C9+0Bh2+NWTX6nD9EPppiER4ICkHDVB1RkVpin/YW2nQn/g==}
+  /terser@5.20.0:
+    resolution: {integrity: sha512-e56ETryaQDyebBwJIWYB2TT6f2EZ0fL0sW/JRXNMN26zZdKi2u/E/5my5lG6jNxym6qsrVXfFRmOdV42zlAgLQ==}
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
@@ -13834,7 +13837,7 @@ packages:
       debug: 4.3.4
       kolorist: 1.8.0
       typescript: 5.1.6
-      vite: 4.4.7(sass@1.64.1)
+      vite: 4.4.7(sass@1.64.1)(terser@5.20.0)
       vue-tsc: 1.8.8(typescript@5.1.6)
     transitivePeerDependencies:
       - '@types/node'
@@ -13842,7 +13845,7 @@ packages:
       - supports-color
     dev: true
 
-  /vite@4.4.7(sass@1.64.1):
+  /vite@4.4.7(sass@1.64.1)(terser@5.20.0):
     resolution: {integrity: sha512-6pYf9QJ1mHylfVh39HpuSfMPojPSKVxZvnclX1K1FyZ1PXDOcLBibdq5t1qxJSnL63ca8Wf4zts6mD8u8oc9Fw==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -13874,6 +13877,7 @@ packages:
       postcss: 8.4.29
       rollup: 3.28.1
       sass: 1.64.1
+      terser: 5.20.0
     optionalDependencies:
       fsevents: 2.3.3
     dev: true
