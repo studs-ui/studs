@@ -454,13 +454,15 @@ export class StudsGrid extends LitElement {
   @queryAll('td') cells!: NodeListOf<Element>;
   private onWindowResize = () => {
     // Resize Cells on Window Resize
-    this.cells?.forEach((cell) => {
-      const columnId = cell.getAttribute('data-column');
-      const column = this.shadowRoot?.querySelector(`#${columnId}`);
-      const width = column?.getBoundingClientRect().width;
-      if(width)
-      (cell as HTMLTableCellElement).style.width = `${width - 25.6}px`;
-    })
+    requestAnimationFrame(() => {
+      this.cells?.forEach((cell) => {
+        const columnId = cell.getAttribute('data-column');
+        const column = this.shadowRoot?.querySelector(`#${columnId}`);
+        const width = column?.getBoundingClientRect().width;
+        if(width)
+        (cell as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+      })
+    });
   }
 
   /**
