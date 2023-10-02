@@ -4,6 +4,7 @@ import EBusinessColorStyles from './EBusinessColorStyles';
 import PipelineColorStyles from './PipelineColorStyles';
 import SpecToolsColorStyles from './SpecToolsColorStyles';
 import CSSuiteColorStyles from './CSSuiteColorStyles';
+import Layouts from './Layouts';
 
 export default {
   GlobalColorStyles,
@@ -12,4 +13,5 @@ export default {
   PipelineColorStyles,
   SpecToolsColorStyles,
   CSSuiteColorStyles,
+  Layouts,
 };
