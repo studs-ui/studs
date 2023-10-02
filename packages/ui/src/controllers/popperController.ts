@@ -54,6 +54,7 @@ export class PopperController implements ReactiveController {
   hostUpdated(): void {
     this.host.updateComplete.then(() => {
       this._trigger = this.trigger || (this.host as unknown as HTMLElement);
+      console.log(this._trigger);
       if (!this.popper) {
         const popper = (
           this.host as unknown as LitElement
