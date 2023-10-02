@@ -38,6 +38,8 @@ import { StudsCoachMark } from './components/overlays/coachmark';
 import { StudsImage } from './components/display/image';
 import { StudsPagination } from './components/display/pagination';
 import { StudsNavbar } from './components/navigation/navbar';
+import { StudsMenu } from './components/display/menu';
+
 
 // Export Components
 export {
@@ -78,6 +80,7 @@ export {
   StudsImage,
   StudsPagination,
   StudsNavbar,
+  StudsMenu
 };
 
 declare global {
@@ -119,6 +122,7 @@ declare global {
     'studs-image': StudsImage;
     'studs-pagination': StudsPagination;
     'studs-navbar': StudsNavbar;
+    'studs-menu': StudsMenu;
   }
 }
 
