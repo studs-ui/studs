@@ -226,7 +226,6 @@ export default function Layouts() {
       >
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="10">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="10">
@@ -235,7 +234,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="12">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="12">
@@ -244,7 +242,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="14">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="14">
@@ -253,7 +250,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="16">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="16">
@@ -262,7 +258,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="18">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="18">
@@ -271,7 +266,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="20">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="20">
@@ -280,7 +274,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="22">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="22">
@@ -289,7 +282,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="24">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="24">
@@ -298,7 +290,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="32">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="32">
@@ -307,7 +298,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="48">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="48">
@@ -316,7 +306,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="64">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="64">
@@ -325,7 +314,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="104">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="104">
@@ -334,7 +322,6 @@ export default function Layouts() {
         </LayoutBlocks>
         <LayoutBlocks direction="vertical">
           <LayoutBlock size="108">
-            {/* <img src={star} alt="" /> */}
             <Star width="100%" height="auto" />
           </LayoutBlock>
           <LayoutBlock size="108">
