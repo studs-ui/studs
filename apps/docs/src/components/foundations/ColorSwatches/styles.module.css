@@ -1,0 +1,49 @@
+.colorSwatches {
+    display: flex;
+    flex-wrap: wrap;   
+    justify-content: space-around;
+    gap: 1rem;
+    row-gap: 3rem;
+}
+
+.container {
+    font-size: 12px;
+    font-style: normal;
+    font-weight: bold;
+    > div {
+        width: 250px;
+    }
+}
+
+.boxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 1rem;
+    height: 100%;
+
+    position: relative;
+}
+
+.body >div:first-child{
+    margin-bottom: 2rem;
+}
+
+.rightText {
+    position: absolute;
+    left: 100%;
+    z-index: 1;
+    margin-left: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.rightText span:last-child {
+    color: #799E7E;
+    margin-left: .625rem;    
+}
+
+.lightText {
+    color: #fff;
+}

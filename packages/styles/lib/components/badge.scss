@@ -74,6 +74,9 @@ $right: 0;
       bottom: -0.5em;
       left: -1.25em;
     }
+    &:where(.-center) {
+      position: relative;
+    }
   }
 
   .dot {

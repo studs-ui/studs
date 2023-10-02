@@ -173,6 +173,14 @@ export class StudsPagination extends LitElement {
   private _selectHandler(event: CustomEvent) {
     this.itemsPerPage = +event.detail.value || 100;
     this._changePage(1);
+    const changeItemsPerPage = new CustomEvent('changeItemsPerPage', {
+      detail: {
+        itemsPerPage: this.itemsPerPage,
+      },
+      bubbles: true,
+      composed: true,
+    });
+    this.dispatchEvent(changeItemsPerPage);
   }
 
   private _renderSinglePage(page: number | string) {
@@ -231,7 +239,7 @@ export class StudsPagination extends LitElement {
           <div class="select">
             <label>${this.selectLabel}</label>
             <studs-dropdown
-              value=${this.itemsPerPage}
+              .selected=${String(this.itemsPerPage)}
               .options=${this.itemsPerPageOptions}
               @change="${this._selectHandler}"
             >

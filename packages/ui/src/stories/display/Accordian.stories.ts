@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { AccordionProps } from '../../components/display/accordion';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { StudsAccordion } from '../../components/display/accordion';
 
 const meta = {
   title: 'Studs/Display/Accordion',
@@ -13,6 +13,7 @@ const meta = {
     variant=${ifDefined(args.variant)}
     direction=${ifDefined(args.direction)}
     ?disabled=${ifDefined(args.disabled)}
+    ?default-open=${ifDefined(args.defaultOpen)}
   >
     <studs-accordion-item>
       <div slot="toggle">Accordion One</div>
@@ -96,11 +97,20 @@ const meta = {
         defaultValue: { summary: 'false' },
       },
     },
+    defaultOpen: {
+      name: 'default-open',
+      type: { name: 'boolean', required: false },
+      description: 'Open all accordions by default',
+      table: {
+        type: { summary: 'boolean' },
+        defaultValue: { summary: 'false' },
+      },
+    },
   },
-} as Meta<AccordionProps>;
+} as Meta<StudsAccordion>;
 
 export default meta;
-type Story = StoryObj<AccordionProps>;
+type Story = StoryObj<StudsAccordion>;
 
 export const Default: Story = {
   args: {
@@ -112,3 +122,15 @@ export const Default: Story = {
     disabled: false,
   },
 };
+
+export const Open: Story = {
+  args: {
+    enableHeader: true,
+    enableSearch: true,
+    size: 'medium',
+    variant: 'borderless',
+    direction: 'end',
+    disabled: false,
+    defaultOpen: true,
+  },
+}

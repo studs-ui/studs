@@ -120,7 +120,7 @@ export const WithForm = <T extends Constructor<LitElement>>(superClass: T) => {
             default: {
               const target = e.target as HTMLInputElement | HTMLTextAreaElement;
               this.value = target.value;
-              if(this.value) this.dispatch(this.value);
+              this.dispatch(this.value);
               if(this.form) this.setFormValue(JSON.stringify(this.value));
               break;
           }
