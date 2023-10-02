@@ -74,3 +74,27 @@ export const Direction: Story = {
       tabDirection: "column",
     },
 };
+
+export const WithIcons: Story = {
+  render: () => html`
+    <studs-tabs tabdirection="row">
+      <studs-button slot="tab" button-type="tertiary" icon="settings">Tab 1</studs-button>
+      <section slot="panel">
+        <strong>Content for tab 1</strong>
+        <p>Lorem ipsum dolor sit amet eget fames facilisis mauris suspendisse nisl sed.</p>
+      </section>
+
+      <studs-button slot="tab" button-type="tertiary" icon="info">Tab 2</studs-button>
+      <section slot="panel">
+        <strong>Content for tab 2</strong>
+        <p>Tempus egestas volutpat sagittis cras nunc convallis dictum vestibulum justo.</p>
+      </section>
+
+      <studs-button slot="tab" button-type="tertiary" icon="group" disabled>Tab 3</studs-button>
+      <section slot="panel">
+        <strong>Content for tab 3</strong>
+        <p>Elementum pharetra velit rhoncus vel aliqua etiam a est incididunt lacus tortor tellus bibendum malesuada.</p>
+      </section>
+    </studs-tabs>
+  `,
+};
