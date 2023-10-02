@@ -17,7 +17,7 @@ type BLOCK_SIZES =
 
 type LayoutBlockProps = {
   size?: BLOCK_SIZES | string | undefined;
-  children?: JSX.Element | string | undefined;
+  children?: JSX.Element | React.Element | string | undefined;
   outerStyle?: object | undefined;
 };
 
