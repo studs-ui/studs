@@ -1,66 +1,39 @@
+import style from '@studs/styles/components/modals.scss?inline';
 import {
   LitElement,
-  PropertyValueMap,
-  TemplateResult,
   html,
-  unsafeCSS,
+  unsafeCSS
 } from 'lit';
 import {
   customElement,
-  property,
-  queryAssignedElements,
-  state,
+  property
 } from 'lit/decorators.js';
-import style from '@studs/styles/components/modals.scss?inline';
 import { classMap } from 'lit/directives/class-map.js';
-import { getDocumentElement } from '../../utils/shared';
-
-export interface ModalProps {
-  open: boolean;
-  closeOnOverlayClick?: boolean;
-  closeOnEscape?: boolean;
-  children?: TemplateResult | HTMLElement | string;
-}
 
 @customElement('studs-modal')
 export class StudsModal extends LitElement {
   @property({ type: String }) id: string = 'modal';
-  @property({ type: Boolean }) open: ModalProps['open'] = false;
+  @property({ type: Boolean }) open: boolean = false;
   @property({ type: Boolean })
-  closeOnOverlayClick: ModalProps['closeOnOverlayClick'] = true;
-  @property({ type: Boolean }) closeOnEscape: ModalProps['closeOnEscape'] =
+  closeOnOverlayClick: boolean = true;
+  @property({ type: Boolean }) closeOnEscape: boolean =
     true;
-
-  @state() private _hidden: boolean = !this.open;
-
-  @queryAssignedElements({ slot: 'toggle' }) toggle!: HTMLElement[];
 
   connectedCallback(): void {
     super.connectedCallback();
     if (this.closeOnEscape) {
-      getDocumentElement(this).addEventListener('keydown', this.onEscapeClose);
+      this.getRootNode().addEventListener('keydown', this.onEscapeClose);
     }
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
     if (this.closeOnEscape) {
-      getDocumentElement(this).removeEventListener(
+      this.getRootNode().removeEventListener(
         'keydown',
         this.onEscapeClose
       );
     }
-  }
-
-  protected firstUpdated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {
-    const toggle = this.toggle[0];
-
-    toggle.addEventListener('click', () => {
-      this._hidden = !this._hidden;
-      this.open = !this.open;
-    });
   }
 
   static styles = unsafeCSS(style);
@@ -73,8 +46,8 @@ export class StudsModal extends LitElement {
     };
 
     return html`
-      <slot name="toggle"></slot>
-      <div class=${classMap(classes)} id="modal-1" aria-hidden=${this._hidden}>
+      <slot name="toggle" @click=${this.toggle}></slot>
+      <div class=${classMap(classes)} id="modal-1" aria-hidden=${!this.open}>
         <div
           class="modal -overlay"
           tabindex="-1"
@@ -108,22 +81,27 @@ export class StudsModal extends LitElement {
     `;
   }
 
-  onOverlayClose(event: any) {
+  private onOverlayClose(event: any) {
     if (event.target?.classList?.contains('-overlay')) {
       this.onClose();
     }
   }
 
-  onEscapeClose = (event: KeyboardEvent) => {
+  private onEscapeClose = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       this.onClose();
     }
   };
 
-  onClose() {
-    this._hidden = true;
-    setTimeout(() => {
-      this.open = false;
-    }, 300);
+  public onOpen() {
+    this.open = true;
+  }
+
+  public toggle() {
+    this.open = !this.open;
+  }
+
+  public onClose() {
+    this.open = false;
   }
 }

@@ -403,6 +403,7 @@ export class StudsGrid extends LitElement {
   }
 
   render() {
+    
     return html`
       <div class=${classMap({
       grid: true,
@@ -435,7 +436,7 @@ export class StudsGrid extends LitElement {
       </div>
       <div class="tableFooter -actions">
         ${this.enablePagination ? html`
-        <studs-pagination current-page=${this._psuedoCurrentPage} total-items=${this.totalPages} items-per-page=${this.pageSize} has-jumper ?has-select=${!this.isVirtualizedEnabled} @changePage=${this.onPageClick} @changeItemsPerPage=${(e: CustomEvent) => {
+        <studs-pagination current-page=${this._psuedoCurrentPage} total-items=${this.totalPages} items-per-page=${String(this.pageSize)} has-jumper ?has-select=${!this.isVirtualizedEnabled} @changePage=${this.onPageClick} @changeItemsPerPage=${(e: CustomEvent) => {
           this.pageSize = e.detail.itemsPerPage;
         }}></studs-pagination>
         ` : ''}
@@ -451,15 +452,17 @@ export class StudsGrid extends LitElement {
    *  Global Events
    */
   @queryAll('td') cells!: NodeListOf<Element>;
-  onWindowResize = (e: Event) => {
+  private onWindowResize = () => {
     // Resize Cells on Window Resize
-    this.cells?.forEach((cell) => {
-      const columnId = cell.getAttribute('data-column');
-      const column = this.shadowRoot?.querySelector(`#${columnId}`);
-      const width = column?.getBoundingClientRect().width;
-      if(width)
-      (cell as HTMLTableCellElement).style.width = `${width - 25.6}px`;
-    })
+    requestAnimationFrame(() => {
+      this.cells?.forEach((cell) => {
+        const columnId = cell.getAttribute('data-column');
+        const column = this.shadowRoot?.querySelector(`#${columnId}`);
+        const width = column?.getBoundingClientRect().width;
+        if(width)
+        (cell as HTMLTableCellElement).style.width = `${width - 25.6}px`;
+      })
+    });
   }
 
   /**
@@ -621,7 +624,7 @@ export class StudsGrid extends LitElement {
     }
   }
 
-  private onFilterInput(e: CustomEvent) {
+  private onFilterInput = (e: CustomEvent) => {
     const name = (e?.target as StudsInput).name;
     const value = e?.detail;
     const select = (e?.target as StudsInput).parentElement?.querySelector('studs-dropdown')?.selected;

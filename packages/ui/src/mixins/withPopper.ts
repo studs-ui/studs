@@ -8,6 +8,9 @@ type Constructor<T = {}> = new (...args: any[]) => T;
 export declare class WithPopperInterface {
   popperController?: PopperController;
   element?: HTMLElement;
+  position?: Placement;
+  disabled?: boolean;
+  query?: string;
 }
 
 export const WithPopper = <T extends Constructor<LitElement>>(
