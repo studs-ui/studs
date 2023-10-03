@@ -63,3 +63,7 @@ iframe#webpack-dev-server-client-overlay {
   padding: 10px;
   min-height: 100px;
 }
+
+.version-dropdown {
+  min-width: 150px;
+}
