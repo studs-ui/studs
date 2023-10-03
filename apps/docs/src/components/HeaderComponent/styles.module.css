@@ -11,6 +11,26 @@
 
 .custom {
     margin: 0 0.5em;
+    display: inherit;
+    &::part(base) {
+        border-radius: 1rem; padding: 0.25rem 0.5rem
+    }
+    &.ready {
+        &::part(base) {
+            background-color: var(--primary)
+        }
+        
+    }
+    &.draft {
+        &::part(base) {
+            background-color: var(--text-disabled);
+        }
+    }
+    &.new {
+        &::part(base) {
+            background-color: var(--text-dark);
+        }
+    }
 }
 
 .wrapper {

@@ -67,7 +67,7 @@ export class StudsChip extends LitElement {
     };
 
     return html`
-      <div class="${classMap(classes)}" ?disabled=${this.disabled}>
+      <div part="base" class="${classMap(classes)}" ?disabled=${this.disabled}>
         <slot name="accessory"></slot>
         ${this.renderIcon()}
         <span class="text"><slot></slot></span>

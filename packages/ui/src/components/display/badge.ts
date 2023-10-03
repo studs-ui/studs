@@ -30,6 +30,7 @@ export class StudsBadge extends LitElement {
   render() {
     return html`
       <div
+        part="base"
         class=${classMap({
           badge: true,
           [`-${this.size}`]: true,
