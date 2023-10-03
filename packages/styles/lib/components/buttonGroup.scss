@@ -5,17 +5,23 @@
   align-items: center;
 }
 
+:host {
+  --br-t-l: 0px;
+  --br-t-r: 0px;
+  --br-b-l: 0px;
+  --br-b-r: 0px;
+}
+
 .buttonGroup {
   @include buttonGroup;
+
   ::slotted(studs-button:first-child) {
-    border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;
+    --br-t-l: .5em;
+    --br-b-l: .5em;
   }
-  ::slotted(studs-button) {
-    border-radius: 0px;
-  }
+
   ::slotted(studs-button:last-child) {
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
+    --br-t-r: .5em;
+    --br-b-r: .5em;
   }
 }
