@@ -55,7 +55,7 @@ $right: 0;
     position: absolute;
 
     &.-badge {
-      font-size: var(--size);
+      font-size: calc(var(--font-size) * .8);
     }
 
     &:where(.-top-right) {
