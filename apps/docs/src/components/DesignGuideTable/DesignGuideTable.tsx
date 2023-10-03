@@ -39,7 +39,7 @@ export default function DesignGuideTable({
         <tbody>
           {data.rows.map((row, rI) => {
             return (
-              <tr style={ isWhiteRow && {backgroundColor: "white"}} key={rI}>
+              <tr style={ isWhiteRow && {backgroundColor: "white", color: "#161616"}} key={rI}>
                 {row.map((cell, i) => {
                   return <td key={i}>{cell.content}</td>;
                 })}
