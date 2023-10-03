@@ -25,7 +25,10 @@
   border: none;
   outline: 2px solid $transparent;
   outline-offset: 2px;
-  border-radius: 0.25em;
+  border-radius: var(--br-t-l, 0.25em)
+                 var(--br-t-r, 0.25em)
+                 var(--br-b-r, 0.25em)
+                 var(--br-b-l, 0.25em);
 
   padding: 0.75em 1em;
   box-shadow: var(--interactive-shadow);
