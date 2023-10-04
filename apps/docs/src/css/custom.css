@@ -64,11 +64,12 @@ iframe#webpack-dev-server-client-overlay {
   min-height: 100px;
 }
 
-.version-dropdown {
+.version-dropdown,
+.theme-dropdown {
   min-width: 150px;
 }
 
-[class^="generatedIndexPage_"] {
+[class^='generatedIndexPage_'] {
   .row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -91,9 +92,9 @@ iframe#webpack-dev-server-client-overlay {
         height: 100%;
 
         .text--truncate {
-            overflow: initial;
-            text-overflow: initial;
-            white-space: initial;
+          overflow: initial;
+          text-overflow: initial;
+          white-space: initial;
         }
       }
     }
