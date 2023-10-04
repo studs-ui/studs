@@ -142,7 +142,7 @@
   --anchor-color-primary : #{colorVal("steel" ,30)};
 
 
-  --logo-text:       var(--background);
+  --logo-text:       #{$white};
   --logo-bkg-top:    var(--text-color);
   --logo-bkg-bottom: var(--text-color);
 
