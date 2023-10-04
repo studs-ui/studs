@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 const THEME_DROPDOWN_DEFAULT_SELECTED = 2;
 
@@ -28,7 +28,11 @@ export default function ThemeDropdownNavbarItem({
   const items = [...mapItems(options)];
   const dropdownRef = useRef();
 
+  const [activeTheme, setActiveTheme] = useState(items.find((x) => x.isActive()));
+
   useEffect(() => {
+    const body = document.querySelector('body');
+    body.classList.add(activeTheme.value.replaceAll(" ", "-").toLowerCase());
     dropdownRef?.current?.addEventListener('change', _selectHandler);
     return () => {
       dropdownRef?.current?.removeEventListener('change', _selectHandler);
@@ -36,9 +40,18 @@ export default function ThemeDropdownNavbarItem({
   }, []);
 
   const _selectHandler = (event) => {
-    const to = event.detail?.to;
-    if (!to) return;
-    history.push(to);
+    const body = document.querySelector('body');
+    const theme = event.detail?.value.replaceAll(" ", "-").toLowerCase();
+    setActiveTheme((prev) => {
+      if(body.classList.contains(prev.value.replaceAll(" ", "-").toLowerCase())) {
+        body.classList.remove(prev.value.replaceAll(" ", "-").toLowerCase());
+      }
+      body.classList.add(theme);
+      return event.detail;
+    })
+    // const to = event.detail?.to;
+    // if (!to) return;
+    // history.push(to);
   };
 
   const _items =
@@ -47,14 +60,12 @@ export default function ThemeDropdownNavbarItem({
       value: item.label,
     })) || [];
 
-  const activeTheme = items.find((x) => x.isActive());
-
   return (
     <studs-dropdown
       class="theme-dropdown"
       ref={dropdownRef}
       size="small"
-      selected={JSON.stringify(activeTheme)}
+      selected={JSON.stringify(activeTheme.value)}
       onChange={_selectHandler}
       options={JSON.stringify(_items)}
     ></studs-dropdown>
