@@ -387,6 +387,7 @@ export class StudsDropdown extends WithForm(WithPopper(LitElement)) {
 
   render() {
     return html` <div
+      part="base"
       class=${classMap({
         dropdown: true,
         '-wrapper': true,

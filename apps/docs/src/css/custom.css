@@ -64,6 +64,10 @@ iframe#webpack-dev-server-client-overlay {
   min-height: 100px;
 }
 
+.version-dropdown {
+  min-width: 150px;
+}
+
 [class^="generatedIndexPage_"] {
   .row {
     display: grid;

@@ -54,7 +54,7 @@ const config = {
         theme: {
           customCss: [
             require.resolve('./src/css/custom.css'),
-            require.resolve('@studs/styles/studs-base.css'),
+            require.resolve('@studs/ui/studs-base.css'),
           ],
         },
       }),
