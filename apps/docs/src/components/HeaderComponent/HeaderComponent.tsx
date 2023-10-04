@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
