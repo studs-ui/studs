@@ -64,17 +64,17 @@ iframe#webpack-dev-server-client-overlay {
   min-height: 100px;
 }
 
-.version-dropdown {
+.version-dropdown,
+.theme-dropdown {
   min-width: 150px;
 }
 
-[class^="generatedIndexPage_"] {
+[class^='generatedIndexPage_'] {
   .row {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1rem;
     margin: 0;
-
 
     .col {
       padding: 0;
@@ -94,13 +94,17 @@ iframe#webpack-dev-server-client-overlay {
         height: 100%;
         padding: 0 0 1rem !important;
 
+        .thumbnail {
+          max-height: 50%;
+          object-fit: cover;
+        }
+
 
         .text--truncate {
             overflow: initial;
             text-overflow: initial;
             white-space: initial;
             margin: 0 1rem;
-
         }
       }
     }
