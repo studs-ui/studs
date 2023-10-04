@@ -230,3 +230,79 @@
   @include light;
 }
 
+/* theme overrides.
+     move these to individual files in future
+     once we have final theme names.
+     These are for demonstration only
+                --Jp
+*/
+
+.builder-tools {
+  --primary:          #{colorVal("steel", 50)};
+  --primaryRgb:       #{toRGB(#657682)};
+  --primary-hover:    #{colorVal("steel", 40)};
+  --primary-active:   #{colorVal("steel", 60)};
+  --primary-disabled: #{colorVal("steel", 20)};
+
+  --link-active:  #{colorVal("steel", 70)};
+  --link-hover:   #{colorVal("steel", 50)};
+  --link-disabled:#{colorVal("steel", 20)};
+
+  --selected:     #{colorVal("steel", 0)};
+}
+
+.component-manufacturing-tools {
+  --primary:          #{colorVal("mauve", 50)};
+  --primaryRgb:       #{toRGB(#847087)};
+  --primary-hover:    #{colorVal("mauve", 40)};
+  --primary-active:   #{colorVal("mauve", 60)};
+  --primary-disabled: #{colorVal("mauve", 20)};
+
+  --link-active:  #{colorVal("mauve", 70)};
+  --link-hover:   #{colorVal("mauve", 50)};
+  --link-disabled:#{colorVal("mauve", 20)};
+
+  --selected:     #{colorVal("mauve", 0)};
+}
+
+.general-tools {
+  --primary:          #{colorVal("orange", 50)};
+  --primaryRgb:       #{toRGB(#df4907)};
+  --primary-hover:    #{colorVal("orange", 40)};
+  --primary-active:   #{colorVal("orange", 60)};
+  --primary-disabled: #{colorVal("orange", 20)};
+
+  --link-active:  #{colorVal("orange", 70)};
+  --link-hover:   #{colorVal("orange", 50)};
+  --link-disabled:#{colorVal("orange", 20)};
+
+  --selected:     #{colorVal("orange", 0)};
+}
+
+.specification-tools {
+  --primary:          #{colorVal("pumpkin", 50)};
+  --primaryRgb:       #{toRGB(#A8671D)};
+  --primary-hover:    #{colorVal("pumpkin", 40)};
+  --primary-active:   #{colorVal("pumpkin", 60)};
+  --primary-disabled: #{colorVal("pumpkin", 20)};
+
+  --link-active:  #{colorVal("pumpkin", 70)};
+  --link-hover:   #{colorVal("pumpkin", 50)};
+  --link-disabled:#{colorVal("pumpkin", 20)};
+
+  --selected:     #{colorVal("pumpkin", 0)};
+}
+
+.supplier-tools {
+  --primary:          #{colorVal("sage", 50)};
+  --primaryRgb:       #{toRGB(#607D64)};
+  --primary-hover:    #{colorVal("sage", 40)};
+  --primary-active:   #{colorVal("sage", 60)};
+  --primary-disabled: #{colorVal("sage", 20)};
+
+  --link-active:  #{colorVal("sage", 70)};
+  --link-hover:   #{colorVal("sage", 50)};
+  --link-disabled:#{colorVal("sage", 20)};
+
+  --selected:     #{colorVal("sage", 0)};
+}
