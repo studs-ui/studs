@@ -5,9 +5,8 @@ import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
 
-const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
+const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
   const { label: version, banner, badge, ...rest } = useDocsVersion();
-  const isUnreleased = banner === 'unreleased';
 
   const tag = `<${htmlTag}>`;
   const ref = useRef<HTMLDivElement>(null);
@@ -16,12 +15,7 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
   useEffect(() => {
     const query = document.querySelectorAll('.custom');
     query.forEach((item) => {
-      const statusElement = item.shadowRoot.querySelector('.chip');
       const versionElement = item.shadowRoot.querySelector('.-infor');
-      statusElement?.setAttribute(
-        'style',
-        'border-radius: 1rem; padding: 0.25rem 0.5rem'
-      );
       versionElement?.setAttribute(
         'style',
         'background-color: #444444; color: #fff; border: 1px solid transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
@@ -41,12 +35,11 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
 
         <studs-chip
           ref={ref}
-          style={{ display: 'inherit' }}
-          class={`custom ${styles.custom}`}
+          class={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
           size="small"
           selected
         >
-          {isUnreleased ? 'Unstable' : 'Stable'}
+          {status}
         </studs-chip>
         <Link
           to={`${BASE_URL_GITHUB}/${urlGithub}`}

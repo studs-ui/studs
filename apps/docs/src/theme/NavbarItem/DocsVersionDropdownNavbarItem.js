@@ -65,6 +65,7 @@ export default function DocsVersionDropdownNavbarItem({
 
   return (
     <studs-dropdown
+      class="version-dropdown"
       ref={dropdownRef}
       size="small"
       selected={JSON.stringify(activeVersion)}

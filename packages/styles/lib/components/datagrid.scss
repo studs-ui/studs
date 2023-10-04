@@ -15,10 +15,8 @@
         display: flex;
         justify-content: space-between;
         th {
+          will-change: flex;
           flex: 100%;
-          form {
-            display: flex;
-          }
         }
       }
     }
@@ -37,6 +35,9 @@
     }
   }
   &:not(.-virtualized) {
+    th {
+      will-change: width;
+    }
     tbody {
       display: table-row-group !important;
     }
@@ -52,12 +53,20 @@
     cursor: default;
 
     th {
-      will-change: flex;
       // disabled selection
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      > span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      form {
+        display: flex;
+      }
       &:hover {
         .reorder-handle {
           opacity: 1;
