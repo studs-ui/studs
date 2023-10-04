@@ -4,24 +4,26 @@ import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
+import { StudsChip } from '@studs/react';
 
 const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
   const { label: version, banner, badge, ...rest } = useDocsVersion();
+
 
   const tag = `<${htmlTag}>`;
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
 
-  useEffect(() => {
-    const query = document.querySelectorAll('.custom');
-    query.forEach((item) => {
-      const versionElement = item.shadowRoot.querySelector('.-infor');
-      versionElement?.setAttribute(
-        'style',
-        'background-color: #444444; color: #fff; border: 1px solid transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
-      );
-    });
-  }, [isVisible]);
+  // useEffect(() => {
+  //   const query = document.querySelectorAll('.custom');
+  //   query.forEach((item) => {
+  //     const versionElement = item.shadowRoot.querySelector('.-infor');
+  //     versionElement?.setAttribute(
+  //       'style',
+  //       'background-color: #444444; color: #fff; border: 1px solid transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
+  //     );
+  //   });
+  // }, [isVisible]);
 
   return (
     <div className={styles.header}>
@@ -32,7 +34,6 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
         {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
           {version || versionDefault}
         </studs-chip> */}
-
         <studs-chip
           ref={ref}
           class={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}

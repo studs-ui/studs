@@ -53,7 +53,7 @@ const config = {
         },
         theme: {
           customCss: [
-            require.resolve('@studs/ui/studs-base.css'),
+            require.resolve('@studs/react/studs-base.css'),
             require.resolve('./src/css/custom.scss'),
           ],
         },
