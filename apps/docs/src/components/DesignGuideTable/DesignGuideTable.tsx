@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles.module.css';
 
 interface Column {
-  title: string;
+  title?: string;
   styles?: React.CSSProperties;
 }
 
@@ -11,17 +11,19 @@ interface Row {
 }
 
 interface DesignGuideTableProps {
-  title: string;
+  title?: string;
   data: { columns: Array<Column>; rows: Array<Array<Row>> };
+  isWhiteRow?: boolean;
 }
 
 export default function DesignGuideTable({
   title = '',
   data,
+  isWhiteRow,
 }: DesignGuideTableProps): JSX.Element {
   return (
-    <section>
-      <h3>{title}</h3>
+    <>
+      {title && <h3>{title}</h3>}
       <table className={styles.table}>
         <thead>
           <tr>
@@ -37,7 +39,7 @@ export default function DesignGuideTable({
         <tbody>
           {data.rows.map((row, rI) => {
             return (
-              <tr key={rI}>
+              <tr style={ isWhiteRow && {backgroundColor: "white", color: "#161616"}} key={rI}>
                 {row.map((cell, i) => {
                   return <td key={i}>{cell.content}</td>;
                 })}
@@ -46,6 +48,6 @@ export default function DesignGuideTable({
           })}
         </tbody>
       </table>
-    </section>
+    </>
   );
 }

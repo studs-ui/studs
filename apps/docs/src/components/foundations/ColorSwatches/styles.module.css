@@ -10,9 +10,10 @@
     font-size: 12px;
     font-style: normal;
     font-weight: bold;
-    > div {
-        width: 250px;
-    }
+}
+
+.container > div {
+    width: 250px;
 }
 
 .boxContainer {
