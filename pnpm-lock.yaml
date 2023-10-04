@@ -44,12 +44,6 @@ importers:
       '@studs/react':
         specifier: workspace:*
         version: link:../../packages/react
-      '@studs/styles':
-        specifier: workspace:*
-        version: link:../../packages/styles
-      '@studs/ui':
-        specifier: workspace:*
-        version: link:../../packages/ui
       clsx:
         specifier: ^1.2.1
         version: 1.2.1
