@@ -6,6 +6,7 @@
 }
 
 .dropdown {
+  font-family: var(--font-family);
   &.-wrapper {
     flex-grow: 1;
     position: relative;
@@ -31,6 +32,7 @@
   }
 
   .toggle {
+    font-family: inherit;
     &.-wrapper {
       @include noSelect;
       position: relative;

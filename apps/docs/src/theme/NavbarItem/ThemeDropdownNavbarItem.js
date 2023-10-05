@@ -1,4 +1,5 @@
-import React, { useRef, useEffect, useState } from 'react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import React, { useEffect, useState } from 'react';
 
 const THEME_DROPDOWN_DEFAULT_SELECTED = 2;
 
@@ -26,17 +27,12 @@ export default function ThemeDropdownNavbarItem({
   ...props
 }) {
   const items = [...mapItems(options)];
-  const dropdownRef = useRef();
 
   const [activeTheme, setActiveTheme] = useState(items.find((x) => x.isActive()));
 
   useEffect(() => {
     const body = document.querySelector('body');
     body.classList.add(activeTheme.value.replaceAll(" ", "-").toLowerCase());
-    dropdownRef?.current?.addEventListener('change', _selectHandler);
-    return () => {
-      dropdownRef?.current?.removeEventListener('change', _selectHandler);
-    };
   }, []);
 
   const _selectHandler = (event) => {
@@ -49,9 +45,6 @@ export default function ThemeDropdownNavbarItem({
       body.classList.add(theme);
       return event.detail;
     })
-    // const to = event.detail?.to;
-    // if (!to) return;
-    // history.push(to);
   };
 
   const _items =
@@ -61,13 +54,18 @@ export default function ThemeDropdownNavbarItem({
     })) || [];
 
   return (
-    <studs-dropdown
+    <BrowserOnly>
+    {() => {
+    const StudsDropdown =
+      require('@studs/react').StudsDropdown;
+      return <StudsDropdown
       class="theme-dropdown"
-      ref={dropdownRef}
       size="small"
-      selected={JSON.stringify(activeTheme.value)}
+      selected={activeTheme.value}
       onChange={_selectHandler}
-      options={JSON.stringify(_items)}
-    ></studs-dropdown>
+      options={_items}
+    ></StudsDropdown>;
+  }}
+  </BrowserOnly>
   );
 }

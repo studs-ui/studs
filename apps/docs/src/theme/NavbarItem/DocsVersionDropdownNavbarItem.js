@@ -5,6 +5,7 @@ import {
 } from '@docusaurus/plugin-content-docs/client';
 import { useDocsPreferredVersion } from '@docusaurus/theme-common';
 import { useLocation, useHistory } from '@docusaurus/router';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const getVersionMainDoc = (version) =>
   version.docs.find((doc) => doc.id === version.mainDocId);
@@ -41,14 +42,6 @@ export default function DocsVersionDropdownNavbarItem({
     ...versionLinks,
     ...dropdownItemsAfter,
   ];
-  const dropdownRef = useRef();
-
-  useEffect(() => {
-    dropdownRef?.current?.addEventListener('change', _selectHandler);
-    return () => {
-      dropdownRef?.current?.removeEventListener('change', _selectHandler);
-    }
-  }, []);
 
   const _selectHandler = (event) => {
     const to = event.detail?.to;
@@ -64,13 +57,18 @@ export default function DocsVersionDropdownNavbarItem({
   const activeVersion = items.find(x => x.isActive());
 
   return (
-    <studs-dropdown
+    <BrowserOnly>
+    {() => {
+    const StudsDropdown =
+      require('@studs/react').StudsDropdown;
+      return <StudsDropdown
       class="version-dropdown"
-      ref={dropdownRef}
       size="small"
-      selected={JSON.stringify(activeVersion?.value)}
+      selected={activeVersion?.value}
       onChange={_selectHandler}
-      options={JSON.stringify(_items)}
-    ></studs-dropdown>
+      options={_items}
+    ></StudsDropdown>;
+  }}
+  </BrowserOnly>
   );
 }
