@@ -2,7 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import { StudsButton } from '@studs/react'
+import { StudsButton, StudsDropdown } from '@studs/react'
 import "@studs/react/studs-base.css";
 import { StudsChip } from '@studs/react'
 
@@ -25,6 +25,7 @@ function App() {
         <StudsButton button-type="primary" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </StudsButton>
+        <StudsDropdown options={[{label: "Test", value: "test"}]} />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>

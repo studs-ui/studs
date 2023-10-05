@@ -15,6 +15,7 @@ const meta = {
     ?disabled=${args.disabled}
     .options=${args.options}
     .selected=${args.selected}
+    @change=${(e) => console.log(e)}
   ></studs-dropdown>`,
   argTypes: {
     label: {
