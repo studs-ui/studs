@@ -31,7 +31,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       'classic',
@@ -60,7 +59,6 @@ const config = {
       }),
     ],
   ],
-
   plugins: ['docusaurus-plugin-sass'],
   themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/global.ts')],

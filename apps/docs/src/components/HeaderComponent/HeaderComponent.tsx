@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
-import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
+import { BASE_URL_GITHUB, BASE_URL_STRB, MAIN_GITHUB_URL } from '@site/src/utils/constants';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
@@ -24,7 +24,6 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
   //     );
   //   });
   // }, [isVisible]);
-
   return (
     <div className={styles.header}>
       <code>

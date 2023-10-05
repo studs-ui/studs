@@ -1,6 +1,7 @@
 {
   "name": "@studs/docs",
   "version": "0.1.0",
+  "private": true,
   "scripts": {
     "docusaurus": "docusaurus",
     "dev": "docusaurus start",
