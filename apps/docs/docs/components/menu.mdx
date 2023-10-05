@@ -1,0 +1,44 @@
+---
+description: A menu appears upon interaction with a button, action, pointer, or other control.
+---
+
+# Menu
+
+<HeaderComponent
+  htmlTag="studs-menu"
+  jsxTag="StudsMenu"
+  version="Since 2.0"
+  status="Draft"
+  urlStrbook="studs-display-menu--docs"
+/>
+
+A menu appears upon interaction with a button, action, pointer, or other control.
+
+<ResizerFeatures>
+  <studs-menu>
+    <button slot="trigger">Menu</button>
+    <a href="#">Item 1</a>
+    <a href="#">Item 2</a>
+  </studs-menu>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+  <studs-menu><button slot="trigger">Menu</button><a href="#">Item 1</a><a href="#">Item 2</a></studs-menu>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=14380%3A159737&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'children',
+      description: <></>,
+      reflects: false,
+      default: '',
+    },
+  ]}
+></Tables>

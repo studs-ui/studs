@@ -3,7 +3,7 @@ import styles from './styles.module.scss';
 import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
-import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
+import { BASE_URL_GITHUB, BASE_URL_STRB, MAIN_GITHUB_URL } from '@site/src/utils/constants';
 
 const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
   const { label: version, banner, badge, ...rest } = useDocsVersion();
@@ -42,7 +42,7 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
           {status}
         </studs-chip>
         <Link
-          to={`${BASE_URL_GITHUB}/${urlGithub}`}
+          to={urlGithub ? `${BASE_URL_GITHUB}/${urlGithub}`: MAIN_GITHUB_URL}
           target="_blank"
           className={styles.wrapper}
         >
