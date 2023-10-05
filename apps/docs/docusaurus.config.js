@@ -81,7 +81,7 @@ const config = {
             to: 'https://ux.strongtie.com',
             label: 'UX TEAM SITE',
             position: 'right',
-            class: 'ux-team-link',
+            className: 'ux-team-link',
           },
         ],
       },

@@ -63,6 +63,8 @@ iframe#webpack-dev-server-client-overlay {
 
 .navbar__items--right {
   .ux-team-link {
+    display: flex;
+    align-items: center;
     margin-right: 1rem;
   }
 }
