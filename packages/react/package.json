@@ -5,10 +5,7 @@
   "main": "src/index.tsx",
   "types": "dist/index.d.ts",
   "exports": {
-    "./studs-base.css": {
-      "require": "./dist/style.css",
-      "import": "./dist/style.css"
-    },
+    "./studs-base.css": "./dist/style.css",
     "./*": "./src/components/*",
     ".": {
       "require": "./dist/index.cjs",

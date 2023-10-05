@@ -1,17 +1,11 @@
 {
   "name": "@studs/ui",
-  "version": "0.1.5",
+  "version": "0.1.7",
   "type": "module",
   "main": "src/index.ts",
   "types": "dist/index.d.ts",
   "exports": {
-    "./studs-base.css": {
-      "development": "./src/index.ts",
-      "require": "./dist/style.css",
-      "import": "./dist/style.css",
-      "style": "./dist/style.css",
-      "scss": "./dist/style.css"
-    },
+    "./studs-base.css": "./dist/style.css",
     "./*": "./src/components/*",
     ".": {
       "require": "./dist/index.cjs",
