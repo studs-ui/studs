@@ -10,6 +10,10 @@ import { StudsChip } from '@studs/react'
 function App() {
   const [count, setCount] = useState(0)
 
+  function onChange() {
+    console.log('change');
+  }
+
   return (
     <>
       <div>
@@ -25,7 +29,7 @@ function App() {
         <StudsButton button-type="primary" onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </StudsButton>
-        <StudsDropdown options={[{label: "Test", value: "test"}]} />
+        <StudsDropdown options={[{label: "Option 1", value: "1"}, {label: "Option 2", value: "2"}]} selected="2" onChange={onChange} />
         <p>
           Edit <code>src/App.tsx</code> and save to test HMR
         </p>
