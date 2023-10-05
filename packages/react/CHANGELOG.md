@@ -1,5 +1,14 @@
 # @studs/react
 
+## 0.1.2
+
+### Patch Changes
+
+- Implementation of React Library and additional components
+- Updated dependencies
+  - @studs/styles@0.1.4
+  - @studs/ui@0.1.5
+
 ## 0.1.1
 
 ### Patch Changes

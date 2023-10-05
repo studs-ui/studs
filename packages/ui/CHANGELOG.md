@@ -1,5 +1,25 @@
 # @studs/ui
 
+## 0.1.7
+
+### Patch Changes
+
+- Resolve Sass issue + Link Packages
+
+## 0.1.6
+
+### Patch Changes
+
+- 679503b2: Additional Styles and Component Cleanup
+
+## 0.1.5
+
+### Patch Changes
+
+- Implementation of React Library and additional components
+- Updated dependencies
+  - @studs/styles@0.1.4
+
 ## 0.1.5
 
 ### Patch Changes
