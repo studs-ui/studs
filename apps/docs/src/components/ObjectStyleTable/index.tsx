@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import ContentImage from '../ContentImage';
 
 export default function ObjectStyleTable(props): JSX.Element {
