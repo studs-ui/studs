@@ -77,6 +77,12 @@ const config = {
           {
             type: 'docsVersionDropdown',
           },
+          {
+            to: 'https://ux.strongtie.com',
+            label: 'UX TEAM SITE',
+            position: 'right',
+            class: 'ux-team-link',
+          },
         ],
       },
       footer: {

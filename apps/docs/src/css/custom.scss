@@ -61,6 +61,12 @@ iframe#webpack-dev-server-client-overlay {
   height: 2rem;
 }
 
+.navbar__items--right {
+  .ux-team-link {
+    margin-right: 1rem;
+  }
+}
+
 .codeblock-container {
   transform: scale(1);
   padding: 10px;
