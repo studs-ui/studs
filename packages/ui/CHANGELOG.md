@@ -4,6 +4,14 @@
 
 ### Patch Changes
 
+- Implementation of React Library and additional components
+- Updated dependencies
+  - @studs/styles@0.1.4
+
+## 0.1.5
+
+### Patch Changes
+
 - Continued Testing
 - Updated dependencies
   - @studs/styles@0.1.3
