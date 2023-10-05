@@ -1,0 +1,47 @@
+---
+sidebar_position: 1
+---
+# Usage
+## How to use Studs Components
+
+export const Tabs = ({children}) => (
+  <studs-tabs tabdirection="row">
+    {children}
+  </studs-tabs>
+);
+
+<Tabs>
+  <button slot="tab">Vanilla JS \ HTML</button>
+  <section slot="panel">
+
+  #### Add to your Project
+  ```js
+  import "@studs/ui/studs-base.css"
+  import "@studs/ui"
+  ```
+  #### Use a component
+  Ensure that you have loaded in your javascript file before using the component.
+  ```html
+  <studs-button button-type="primary">Button</studs-button>
+  ```
+
+  </section>
+
+  <button slot="tab">React</button>
+  <section slot="panel">
+
+  #### Add to your Project
+  ```js
+  import "@studs/react/studs-base.css"
+  ```
+  #### Use a component
+  Import the component you want to use
+  ```js
+    import { StudsButton } from "@studs/react"
+  ```
+  ```jsx
+    <StudsButton button-type="primary">Button</StudsButton>
+  ```
+
+  </section>
+</Tabs>
