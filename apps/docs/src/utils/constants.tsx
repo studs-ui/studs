@@ -55,6 +55,8 @@ export const RESIZER_THUMB_BACKGROUND = `url("data:image/svg+xml,%3Csvg xmlns='h
 export const BASE_URL_GITHUB =
   'https://github.com/studs-ui/studs/blob/main/packages/ui/src/components';
 
+export const MAIN_GITHUB_URL = 'https://github.com/studs-ui/studs/tree/main';
+
 function getStorybookBaseUrl() {
   if (typeof window !== 'undefined') {
     const { hostname } = window.location;
