@@ -4,7 +4,7 @@ import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
-import { StudsChip } from '@studs/react';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
 const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
   const { label: version, banner, badge, ...rest } = useDocsVersion();
@@ -34,14 +34,21 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
         {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
           {version || versionDefault}
         </studs-chip> */}
-        <StudsChip
+        <BrowserOnly>
+          {() => {
+          const StudsChip =
+            require('@studs/react').StudsChip;
+          return <StudsChip
           ref={ref}
           className={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
           size="small"
           selected
         >
           {status}
-        </StudsChip>
+        </StudsChip>;
+        }}
+          
+        </BrowserOnly>
         {/* <studs-chip
           ref={ref}
           class={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}

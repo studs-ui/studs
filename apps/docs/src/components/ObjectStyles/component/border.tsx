@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import ObjectStyleTable from '../../ObjectStyleTable';
 
 export default function BorderTable(props): JSX.Element {

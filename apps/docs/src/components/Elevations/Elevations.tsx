@@ -3,7 +3,7 @@ import DistinguishSvg from './assets/distinguish.svg';
 import OverlapSvg from './assets/overlap.svg';
 import DistanceAndHighlightSvg from './assets/distanceAndHighlight.svg';
 import LightMode from './assets/lightMode.svg';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import DistanceAndHighlight3DImage from './assets/distanceAndHighlight3D.png';
 import ElevationA from './assets/elevationA.svg';
 import ElevationAContent from './assets/elevationAContent.svg';

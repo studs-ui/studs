@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 
 export default function ContentImage(props): JSX.Element {
   const { title, content, image } = props;

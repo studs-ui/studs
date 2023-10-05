@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import DesktopTypo from './component/desktop-table';
 import TabletTable from './component/tablet-table';
 
