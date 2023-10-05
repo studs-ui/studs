@@ -34,14 +34,22 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
         {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
           {version || versionDefault}
         </studs-chip> */}
-        <studs-chip
+        <StudsChip
+          ref={ref}
+          className={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
+          size="small"
+          selected
+        >
+          {status}
+        </StudsChip>
+        {/* <studs-chip
           ref={ref}
           class={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
           size="small"
           selected
         >
           {status}
-        </studs-chip>
+        </studs-chip> */}
         <Link
           to={`${BASE_URL_GITHUB}/${urlGithub}`}
           target="_blank"
