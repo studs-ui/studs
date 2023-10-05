@@ -47,7 +47,6 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
           {status}
         </StudsChip>;
         }}
-          
         </BrowserOnly>
         {/* <studs-chip
           ref={ref}
@@ -58,7 +57,7 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => 
           {status}
         </studs-chip> */}
         <Link
-          to={`${BASE_URL_GITHUB}/${urlGithub}`}
+          to={urlGithub ? `${BASE_URL_GITHUB}/${urlGithub}`: MAIN_GITHUB_URL}
           target="_blank"
           className={styles.wrapper}
         >

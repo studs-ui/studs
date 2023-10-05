@@ -6,10 +6,10 @@ export default function TypographySection(props): JSX.Element {
   const { title, data } = props;
   return (
     <section className={styles.typography}>
-      <div className="title">{title}</div>
+      <div className={styles.title}>{title}</div>
       {data.map((item) => {
         return (
-          <label className="label" style={item.style}>
+          <label className={styles.label} style={item.style}>
             {item.content}
           </label>
         );
