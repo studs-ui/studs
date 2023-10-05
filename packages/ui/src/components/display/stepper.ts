@@ -29,18 +29,7 @@ export class StudsStepper extends LitElement {
 
   private renderNumber(index: number) {
     if (index < this.step) {
-      return html`<svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        viewBox="0 0 16 16"
-        fill="none"
-      >
-        <path
-          d="M15.1437 2.25H13.8955C13.7205 2.25 13.5544 2.33036 13.4472 2.46786L6.08475 11.7946L2.55439 7.32143C2.50098 7.25362 2.43291 7.1988 2.35528 7.16106C2.27765 7.12333 2.19249 7.10368 2.10617 7.10357H0.857959C0.738316 7.10357 0.672245 7.24107 0.745459 7.33393L5.63653 13.5304C5.8651 13.8196 6.30439 13.8196 6.53475 13.5304L15.2562 2.47857C15.3294 2.3875 15.2633 2.25 15.1437 2.25Z"
-          fill="#607D64"
-        />
-      </svg>`;
+      return html`<i class="icon">check</i>`;
     } else {
       return html`<span>${index + 1}</span>`;
     }

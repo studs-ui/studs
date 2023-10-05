@@ -298,11 +298,7 @@ export class StudsGrid extends LitElement {
                 })}
                 </div>`
               : ``}
-            <p
-              @click=${(event: MouseEvent) =>
-                this.onSortTable(column.key, event)}
-            >
-              ${column.label}
+              <span>
               ${this.sortedColumns.includes(column.key) &&
               this.sortOrders[column.key] !== null
                 ? html`<span
@@ -313,8 +309,16 @@ export class StudsGrid extends LitElement {
                       : ''}</span
                   >`
                 : ''}
+            <p
+              @click=${(event: MouseEvent) =>
+                this.onSortTable(column.key, event)}
+            >
+            
+              ${column.label}
             </p>
-            ${this.renderColumnFilterField(column.key)}
+            <studs-button button-type="tertiary" size="small" icon="filter_list"></studs-button>
+            </span>
+
             ${this.enableColumnResizing
               ? html`<div
                   class="resize-handle"
@@ -326,6 +330,10 @@ export class StudsGrid extends LitElement {
                   })}
                 </div>`
               : ''}
+            <studs-popover>
+              <p slot="title">Filter</p>
+              ${this.renderColumnFilterField(column.key)}
+            </studs-popover>
           </th>
         `;
       });

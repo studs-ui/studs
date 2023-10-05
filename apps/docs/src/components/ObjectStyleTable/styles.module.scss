@@ -1,0 +1,17 @@
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  >div {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+.rowWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  /* flex-direction: column; */
+  /* height: calc(20px * 11 + 11rem); */
+  align-content: flex-start;
+}

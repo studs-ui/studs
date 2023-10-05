@@ -1,33 +1,29 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import useOnScreen from '@site/src/hooks/use0nScreen';
 import { useDocsVersion } from '@docusaurus/theme-common/internal';
 import Link from '@docusaurus/Link';
 import { BASE_URL_GITHUB, BASE_URL_STRB } from '@site/src/utils/constants';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 
-const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
+const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
   const { label: version, banner, badge, ...rest } = useDocsVersion();
-  const isUnreleased = banner === 'unreleased';
+
 
   const tag = `<${htmlTag}>`;
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useOnScreen(ref);
 
-  useEffect(() => {
-    const query = document.querySelectorAll('.custom');
-    query.forEach((item) => {
-      const statusElement = item.shadowRoot.querySelector('.chip');
-      const versionElement = item.shadowRoot.querySelector('.-infor');
-      statusElement?.setAttribute(
-        'style',
-        'border-radius: 1rem; padding: 0.25rem 0.5rem'
-      );
-      versionElement?.setAttribute(
-        'style',
-        'background-color: #444444; color: #fff; border: 1px solid transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
-      );
-    });
-  }, [isVisible]);
+  // useEffect(() => {
+  //   const query = document.querySelectorAll('.custom');
+  //   query.forEach((item) => {
+  //     const versionElement = item.shadowRoot.querySelector('.-infor');
+  //     versionElement?.setAttribute(
+  //       'style',
+  //       'background-color: #444444; color: #fff; border: 1px solid transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
+  //     );
+  //   });
+  // }, [isVisible]);
 
   return (
     <div className={styles.header}>
@@ -38,18 +34,30 @@ const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook }) => {
         {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
           {version || versionDefault}
         </studs-chip> */}
-
-        <studs-chip
+        <BrowserOnly>
+          {() => {
+          const StudsChip =
+            require('@studs/react').StudsChip;
+          return <StudsChip
           ref={ref}
-          style={{ display: 'inherit' }}
-          class={`custom ${styles.custom}`}
+          className={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
           size="small"
           selected
         >
-          {isUnreleased ? 'Unstable' : 'Stable'}
-        </studs-chip>
+          {status}
+        </StudsChip>;
+        }}
+        </BrowserOnly>
+        {/* <studs-chip
+          ref={ref}
+          class={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
+          size="small"
+          selected
+        >
+          {status}
+        </studs-chip> */}
         <Link
-          to={`${BASE_URL_GITHUB}/${urlGithub}`}
+          to={urlGithub ? `${BASE_URL_GITHUB}/${urlGithub}`: MAIN_GITHUB_URL}
           target="_blank"
           className={styles.wrapper}
         >

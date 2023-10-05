@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import { TextColorStyles } from './components/TextColorStyles';
 import { PrimaryColorStyles } from './components/PrimaryColorStyles';
 import { ActionColorStyles } from './components/ActionColorStyles';

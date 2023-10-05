@@ -17,9 +17,6 @@
         th {
           will-change: flex;
           flex: 100%;
-          form {
-            display: flex;
-          }
         }
       }
     }
@@ -61,6 +58,15 @@
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
+      > span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.25rem;
+      }
+      form {
+        display: flex;
+      }
       &:hover {
         .reorder-handle {
           opacity: 1;
