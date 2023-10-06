@@ -1,6 +1,6 @@
 {
   "name": "@studs/react",
-  "version": "0.1.2",
+  "version": "1.0.0-alpha.0",
   "type": "module",
   "main": "src/index.tsx",
   "types": "dist/index.d.ts",
@@ -24,8 +24,8 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
-    "@studs/styles": "workspace: *",
-    "@studs/ui": "workspace: *",
+    "@studs/styles": "workspace:1.0.0-alpha.0",
+    "@studs/ui": "workspace:1.0.0-alpha.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

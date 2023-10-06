@@ -10,5 +10,7 @@
     "@studs/styles": "0.1.4",
     "@studs/ui": "0.1.7"
   },
-  "changesets": []
+  "changesets": [
+    "lucky-ghosts-promise"
+  ]
 }

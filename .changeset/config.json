@@ -6,6 +6,5 @@
   "access": "public",
   "baseBranch": "origin/master",
   "updateInternalDependencies": "patch",
-  "linked": [["@studs/ui", "@studs/react", "@studs/styles"]],
   "ignore": ["**/web", "**/docs", "**/react-test", "**/next-test"]
 }
