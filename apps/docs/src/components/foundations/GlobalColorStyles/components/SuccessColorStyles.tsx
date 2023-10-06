@@ -8,7 +8,7 @@ export const SuccessColorStyles = () => (
     data={{
       columns: [
         {
-          title: 'Variable name',
+          title: 'Variable Name',
           styles: {
             whiteSpace: 'nowrap',
           },
