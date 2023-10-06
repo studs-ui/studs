@@ -57,6 +57,23 @@ export const Default: Story = {
   },
 };
 
+export const WithoutDescription: Story = {
+  args: {
+    step: 0,
+    steps: [
+      {
+        label: 'Step 1',
+      },
+      {
+        label: 'Step 2',
+      },
+      {
+        label: 'Step 3',
+      },
+    ],
+  },
+}
+
 export const Vertical: Story = {
   args: {
     step: 0,
