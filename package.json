@@ -8,6 +8,7 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "serve": "turbo run serve",
     "clean": "turbo run clean && rm -rf node_modules",
     "storybook": "turbo run storybook",
     "changeset": "changeset",

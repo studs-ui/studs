@@ -1,15 +1,12 @@
 {
   "name": "@studs/react",
-  "version": "0.1.0",
-  
+  "version": "0.1.2",
   "type": "module",
   "main": "src/index.tsx",
   "types": "dist/index.d.ts",
   "exports": {
-    "./studs-base.css": {
-      "require": "./dist/style.css",
-      "import": "./dist/style.css"
-    },
+    "./studs-base.css": "./dist/style.css",
+    "./*": "./src/components/*",
     ".": {
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
@@ -21,7 +18,6 @@
     "test"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
     "lint": "tsc",
     "preview": "vite preview",

@@ -28,6 +28,11 @@
       "cache": false,
       "persistent": false
     },
+    "serve": {
+      "dependsOn": ["^build"],
+      "cache": false,
+      "persistent": true
+    },
     "lint": {}
   }
 }

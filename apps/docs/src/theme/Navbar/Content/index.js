@@ -12,7 +12,7 @@ import NavbarLogo from '@theme/Navbar/Logo';
 import NavbarSearch from '@theme/Navbar/Search';
 import ThemeDropdownNavbarItem from '@theme/NavbarItem/ThemeDropdownNavbarItem';
 import { THEME_DROPDOWN_OPTIONS } from '@site/src/utils/constants';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items;

@@ -1,27 +1,23 @@
 {
   "name": "@studs/styles",
-  
-  "version": "0.1.0",
+  "version": "0.1.4",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "./index.ts",
   "exports": {
     "./components/*.scss": "./lib/components/*.scss",
+    "./components/*.scss?inline": "./lib/components/*.scss?inline",
     "./studs-base.css": {
-      "development": "./lib/styles.scss",
       "require": "./dist/style.css",
       "import": "./dist/style.css"
     },
     ".": {
-      "development": "./lib/styles.scss",
       "require": "./dist/style.css",
       "import": "./dist/style.css"
     }
   },
   "files": [
     "dist",
-    "src",
-    "test"
+    "lib"
   ],
   "scripts": {
     "dev": "vite",

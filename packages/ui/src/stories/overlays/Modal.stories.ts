@@ -43,7 +43,6 @@ export const Default: Story = {
 };
 
 export const Controlled: Story = {
-
   render: (args) => {
   function onClick() {
     const modal = document.querySelector('#modal-1') as unknown as StudsModal;

@@ -1,0 +1,19 @@
+import { createComponent } from '@lit-labs/react';
+import { StudsIcon as StudsIconClass } from '@studs/ui';
+import React from 'react';
+
+// icon
+
+const StudsIcon = createComponent({
+    tagName: 'studs-icon',
+    elementClass: StudsIconClass,
+    react: React,
+    events: {
+        onchange: 'change',
+        onclick: 'click',
+        onfocus: 'focus',
+        onblur: 'blur',
+    },
+});
+
+export default StudsIcon;

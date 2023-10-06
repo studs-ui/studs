@@ -108,7 +108,7 @@ export class StudsButton extends LitElement {
     };
 
     return html`<button
-      part="studs-button"
+      part="base"
       class="${classMap(classes)}"
       ?disabled=${this.disabled}
       type=${ifDefined(this.type)}

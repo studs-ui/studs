@@ -31,7 +31,6 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       'classic',
@@ -53,14 +52,13 @@ const config = {
         },
         theme: {
           customCss: [
-            require.resolve('@studs/ui/studs-base.css'),
+            require.resolve('@studs/react/studs-base.css'),
             require.resolve('./src/css/custom.scss'),
           ],
         },
       }),
     ],
   ],
-
   plugins: ['docusaurus-plugin-sass'],
   themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/global.ts')],
@@ -78,6 +76,12 @@ const config = {
         items: [
           {
             type: 'docsVersionDropdown',
+          },
+          {
+            to: 'https://ux.strongtie.com',
+            label: 'UX TEAM SITE',
+            position: 'right',
+            className: 'ux-team-link',
           },
         ],
       },

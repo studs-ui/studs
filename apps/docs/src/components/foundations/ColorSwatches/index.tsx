@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 import SampleColor from '../../SampleColor/SampleColor';
 
 const tones = new Array(11).fill('00').map((v, i) => `${i}0`);

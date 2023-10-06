@@ -22,6 +22,7 @@ const meta = {
     adornment=${ifDefined(args.adornment)}
     adornment-position=${ifDefined(args.adornmentPosition)}
     adornment-type=${ifDefined(args.adornmentType)}
+    @change=${(e) => console.log(e)}
   ></studs-input>`,
   argTypes: {
     type: {

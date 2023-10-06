@@ -1,4 +1,8 @@
-import { StudsAccordion, StudsAccordionItem, StudsButton, StudsChip, StudsDropdown } from "."
+import { StudsDropdown } from './components/StudsDropdown'
+import { StudsChip } from './components/StudsChip'
+import { StudsAccordionItem } from './components/StudsAccordionItem'
+import { StudsAccordion } from './components/StudsAccordion'
+import { StudsButton } from './components/StudsButton'
 
 export const App = () => {
     return (
