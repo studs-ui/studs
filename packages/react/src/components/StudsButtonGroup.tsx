@@ -8,10 +8,10 @@ const StudsButtonGroup = createComponent({
     elementClass: StudsButtonGroupClass,
     react: React,
     events: {
-        onchange: 'change',
-        onclick: 'click',
-        onfocus: 'focus',
-        onblur: 'blur',
+        onChange: 'change',
+        onClick: 'click',
+        onFocus: 'focus',
+        onBlur: 'blur',
     },
 });
 

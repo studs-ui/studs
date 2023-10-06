@@ -14,7 +14,7 @@
         lastVersion: 'current',
         versions: {
             current: {
-                label: '1.0.0-alpha.1',
+                label: '1.0.0-alpha.0',
                 path: '',
             },
         },

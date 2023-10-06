@@ -2,10 +2,9 @@
   "$schema": "https://unpkg.com/@changesets/config@2.3.1/schema.json",
   "changelog": "@changesets/cli/changelog",
   "commit": false,
-  "fixed": [],
+  "fixed": [["@studs/ui", "@studs/react", "@studs/styles"]],
   "access": "public",
   "baseBranch": "origin/master",
   "updateInternalDependencies": "patch",
-  "linked": [["@studs/ui", "@studs/react", "@studs/styles"]],
   "ignore": ["**/web", "**/docs", "**/react-test", "**/next-test"]
 }

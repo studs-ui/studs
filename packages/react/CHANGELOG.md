@@ -1,5 +1,17 @@
 # @studs/react
 
+## 1.0.0-alpha.0
+
+### Major Changes
+
+- 06a65218: Alpha Release
+
+### Patch Changes
+
+- Updated dependencies [06a65218]
+  - @studs/styles@1.0.0-alpha.0
+  - @studs/ui@1.0.0-alpha.0
+
 ## 0.1.2
 
 ### Patch Changes

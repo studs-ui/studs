@@ -1,5 +1,11 @@
 # @studs/styles
 
+## 1.0.0-alpha.0
+
+### Major Changes
+
+- 06a65218: Alpha Release
+
 ## 0.1.4
 
 ### Patch Changes
