@@ -320,7 +320,7 @@ footer {
           transition: color var(--tr-m);
         }
 
-        &:focus,
+        // &:focus,
         &:focus-visible {
           --placeholder-color: transparent;
           outline: 0;

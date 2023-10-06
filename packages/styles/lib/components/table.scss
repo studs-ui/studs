@@ -1,81 +1,78 @@
-@use '../utilities' as *;
-@use './tables' as *;
-
-table {
-  box-sizing: border-box;
-  border-spacing: 0px;
-  position: relative;
-  border-collapse: collapse;
-  font-family: var(--font-family);
-  width: max-content;
-  overflow-y: scroll;
-
-  &:hover {
-    td {
-      border-color: #d2d7d3;
-    }
-  }
-
-  caption {
-    font-size: 2rem;
-    font-weight: bold;
-    padding: 10px;
-  }
-
- .-sticky-header & {
-    thead {
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
- }
-  thead {
-    /* Table Header */
-     background: var(--background-content);
-     border-color: transparent;
-     border-bottom: 1px solid var(--border-color);
-     font-size: 0.9em;
-     color: var(--text-color);
-     th {
-        &:not(:last-child) {
-            &::after {
-                content: '';
-                position: absolute;
-                right: 0;
-                top: 50%;
-                transform: translateY(-50%);
-                height: 50%;
-                width: 1px;
-                background-color: var(--border-color);
-            }
-        }
-     }
-  }
-
-
-  th, td {
-    border-bottom: 1px solid var(--border-color);
-    padding: 0.8rem;
+@mixin table() {
+  table {
+    box-sizing: border-box;
+    border-spacing: 0px;
     position: relative;
-    transition: border-color .12s ease-out;
-    thead & {
+    border-collapse: collapse;
+    font-family: var(--font-family);
+    width: max-content;
+    overflow-y: scroll;
+  
+    &:hover {
+      td {
+        border-color: #d2d7d3;
+      }
+    }
+  
+    caption {
+      font-size: 2rem;
       font-weight: bold;
+      padding: 10px;
     }
-  }
-
-  .-small & {
+  
+   &.-sticky-header {
+      thead {
+          position: sticky;
+          top: 0;
+          z-index: 10;
+      }
+   }
     thead {
-        th {
-            padding: 0.5rem;
-        }
+      /* Table Header */
+       background: var(--background-content);
+       border-color: transparent;
+       border-bottom: 1px solid var(--border-color);
+       font-size: 0.9em;
+       color: var(--text-color);
+       th {
+          &:not(:last-child) {
+              &::after {
+                  content: '';
+                  position: absolute;
+                  right: 0;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  height: 50%;
+                  width: 1px;
+                  background-color: var(--border-color);
+              }
+          }
+       }
     }
- }
-
-  tfoot td {
-    background-color: whitesmoke;
+  
+  
+    th, td {
+      border-bottom: 1px solid var(--border-color);
+      padding: 0.8rem;
+      position: relative;
+      transition: border-color .12s ease-out;
+      thead & {
+        font-weight: bold;
+      }
+    }
+  
+    .-small & {
+      thead {
+          th {
+              padding: 0.5rem;
+          }
+      }
+   }
+  
+    tfoot td {
+      background-color: whitesmoke;
+    }
   }
 }
 
-.grid {
-    @include grid;
-}
+@include table();

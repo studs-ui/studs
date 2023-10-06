@@ -25,7 +25,10 @@
   border: none;
   outline: 2px solid $transparent;
   outline-offset: 2px;
-  border-radius: 0.25em;
+  border-radius: var(--br-t-l, 0.25em)
+                 var(--br-t-r, 0.25em)
+                 var(--br-b-r, 0.25em)
+                 var(--br-b-l, 0.25em);
 
   padding: 0.75em 1em;
   box-shadow: var(--interactive-shadow);
@@ -48,6 +51,7 @@
      --color: #{$transparent};
    }
   }
+
 
   &.-primary {
     --color:     var(--primary);
@@ -78,7 +82,7 @@
     box-shadow: none;
     background-color: $transparent;
 
-    &:focus,
+    // &:focus,
     &:focus-visible {
       --color: var(--primary-hover);
     }
@@ -129,6 +133,10 @@
     &:hover {
       border-color: var(--primary);
     }
+    &:active {
+      translate: 0 0;
+      color: var(--active);
+    }
   }
 
   &.-reverse {
@@ -140,6 +148,48 @@
 
     &.-reverse {
       flex-direction: column-reverse;
+    }
+  }
+
+  &.-outline {
+    --color: var(--tab-background);
+    --border: var(--border-color);
+    --text: var(--text-color);
+    border: 1px solid var(--border);
+    box-shadow: none;
+
+    &.-primary {
+      --border: var(--primary);
+      --color: var(--tab-selected);
+    }
+
+    &:hover {
+      --text: var(--primary);
+      --color: var(--tab-border);
+    }
+  }
+
+
+  &.-image {
+    --imageSize: 1rem;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    gap: .5em;
+    padding: 0.5em;
+
+    &.-small  { --imageSize: 0.75rem }
+    &.-medium { --imageSize: 1rem }
+    &.-large  { --imageSize: 2rem }
+
+    ::slotted(img) {
+      object-fit: cover;
+      display: inline-block;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      height: 100%;
+      max-width: calc(var(--imageSize) * 5.75);
     }
   }
 
@@ -159,7 +209,7 @@
     --text:  var(--disabled-text);
   }
 
-  &:focus,
+  // &:focus,
   &:focus-visible {
     outline-color: var(--border);
   }

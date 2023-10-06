@@ -1,18 +1,27 @@
 {
-  "name": "studs",
-  "private": true,
+  "name": "studs-ui",
+  "version": "0.0.8",
+  
   "scripts": {
     "build-lib": "turbo run build",
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "serve": "turbo run serve",
     "clean": "turbo run clean && rm -rf node_modules",
     "storybook": "turbo run storybook",
+    "changeset": "changeset",
+    "changeset-version": "changeset version",
+    "publish-packages": "turbo run build && changeset version && changeset publish",
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
-    "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
+    "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d",
+    "github-dev": "git push -u github dev",
+    "github-staging": "git push -u github staging",
+    "github-main": "git push -u github main"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.26.2",
     "eslint": "^7.32.0",
     "prettier": "^2.5.1",
     "turbo": "^1.10.13"

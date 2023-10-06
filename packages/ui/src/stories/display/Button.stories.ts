@@ -3,6 +3,7 @@ import { html } from "lit";
 import { contentDirection, icon, size, variants } from '../../utils/_argTypes';
 import { ifDefined } from "lit/directives/if-defined.js";
 import { ButtonProps } from '../../components/display/button';
+import { unsafeHTML } from "lit/directives/unsafe-html.js";
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
@@ -11,13 +12,14 @@ const meta = {
   render: (args: any) => html`<studs-button
     button-type="${ifDefined(args.buttonType)}"
     size="${ifDefined(args.size)}"
+    variant="${ifDefined(args.variant)}"
     icon-position="${ifDefined(args.iconPosition)}"
     content-direction="${ifDefined(args.contentDirection)}"
     class="${ifDefined(args.class)}"
     icon="${ifDefined(args.icon)}"
     ?disabled="${args.disabled}"
     onclick="alert('clicked')"
-    >${args.children}</studs-button
+    >${unsafeHTML(args.children)}</studs-button
   >`,
   argTypes: {
     ...variants({
@@ -27,6 +29,10 @@ const meta = {
     ...size,
     ...contentDirection,
     ...icon,
+    variant: {
+      control: { type: "select" },
+      options: ["outline"],
+    },
   },
 } satisfies Meta<ButtonProps>;
 
@@ -87,6 +93,13 @@ export const Close: Story = {
   args: {
     buttonType: "close",
     icon: 'close',
+  }
+}
+
+export const Image: Story = {
+  args: {
+    buttonType: "image",
+    children: `<img slot="media" src="https://picsum.photos/200/300" /> Image Button`,
   }
 }
 

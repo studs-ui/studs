@@ -1,4 +1,754 @@
+---
+description: Tables display sets of data. They can be fully customized.
+---
+
 # Table
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+<HeaderComponent
+  htmlTag="studs-table"
+  jsxTag="StudsTable"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="display/table.ts"
+  urlStrbook="studs-display-table--docs"
+/>
 
+Tables display sets of data. They can be fully customized.
+
+## Default
+
+<ResizerFeatures maxHeight="500px">
+  <studs-table>
+    <table>
+      <caption>Table</caption>
+      <colgroup span="2">
+        <col span="2"></col>
+        <col></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>first column</th>
+          <th>second column</th>
+          <th>third column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tfoot>
+    </table>
+  </studs-table>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-table>
+    <table>
+      <caption>Table</caption>
+      <colgroup span="2">
+        <col span="2"></col>
+        <col></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>first column</th>
+          <th>second column</th>
+          <th>third column</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tfoot>
+    </table>
+  </studs-table>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73959&mode=dev"
+/>
+
+## Fixed header
+
+<ResizerFeatures maxHeight="500px">
+  <studs-table fixed-header>
+    <table style={{ height: '300px' }}>
+      <caption>Table</caption>
+      <colgroup span="2">
+        <col width="300"></col>
+        <col></col>
+        <col></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>first column</th>
+          <th>second column</th>
+          <th>
+            third column
+            <studs-tooltip>
+              <studs-icon icon="info"></studs-icon> A Column Header
+            </studs-tooltip>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tfoot>
+    </table>
+  </studs-table>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-table fixed-header>
+    <table>
+      <caption>Table</caption>
+      <colgroup span="2">
+        <col width="300"></col>
+        <col></col>
+        <col></col>
+      </colgroup>
+      <thead>
+        <tr>
+          <th>first column</th>
+          <th>second column</th>
+          <th>
+            third column
+            <studs-tooltip>
+              <studs-icon icon="info"></studs-icon> A Column Header
+            </studs-tooltip>
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td>1</td>
+          <td>
+            <studs-chip deletable>Chip</studs-chip>
+            <studs-chip deletable>Chip</studs-chip>
+          </td>
+          <td>3</td>
+        </tr>
+      </tfoot>
+    </table>
+  </studs-table>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73959&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'fixed-header',
+      description: (
+        <div>Fixes the header of the table to the top of the table.</div>
+      ),
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'fixed-offset',
+      description: <>The offset of the fixed header.</>,
+      reflects: false,
+      type: 'string',
+      default: '0px',
+    },
+    {
+      name: 'size',
+      description: <>The size of the table.</>,
+      reflects: false,
+      type: 'medium | small | large',
+      default: 'medium',
+    },
+    {
+      name: 'sortable',
+      description: <>Makes the table sortable.</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'filterable',
+      description: <>Makes the table filterable.</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'disabled',
+      description: <>Disables the table.</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'searchable',
+      description: <>Makes the table searchable.</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'children',
+      description: <>The table content.</>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+  ]}
+></Tables>

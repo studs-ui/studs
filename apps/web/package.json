@@ -1,13 +1,14 @@
 {
   "name": "web",
-  "private": false,
   "type": "module",
   "main": "src/index.ts",
+  "version": "0.0.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "lint": "tsc",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
     "@studs/ui": "workspace:*",

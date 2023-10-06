@@ -1,4 +1,129 @@
+---
+description: The Resizer component features two side-by-side panels with the capability for user-driven resizing. It enables intricate layouts by allowing nested instances of Resizer for independent adjustability.
+---
+
 # Resizer
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+<HeaderComponent
+  htmlTag="studs-resizer"
+  jsxTag="StudsResizer"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="display/resizer.ts"
+  urlStrbook="studs-display-resizer--docs"
+/>
 
+The Resizer component features two side-by-side panels with the capability for user-driven resizing. It enables intricate layouts by allowing nested instances of Resizer for independent adjustability.
+
+## Usage
+
+<ResizerFeatures>
+  <studs-resizer direction="horizontal">
+    <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+    <studs-resizer-pane>Panel Two</studs-resizer-pane>
+  </studs-resizer>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-resizer direction="horizontal">
+  <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+  <studs-resizer-pane>Panel Two</studs-resizer-pane>
+</studs-resizer>
+  `}
+/>
+
+## Examples
+
+### Horizontal
+
+<ResizerFeatures>
+  <studs-resizer
+    style={{ height: '300px', display: 'block' }}
+    direction="horizontal"
+  >
+    <studs-resizer-pane>
+      <h3 slot="header">Panel One</h3>
+      <div slot="content">Padded Content</div>
+    </studs-resizer-pane>
+    <studs-resizer-pane>
+      <h3 slot="header">Panel Two</h3>
+      <div slot="content">Padded Content</div>
+    </studs-resizer-pane>
+  </studs-resizer>
+</ResizerFeatures>
+
+### Vertical
+
+<ResizerFeatures>
+  <studs-resizer
+    style={{ width: '300px', display: 'block' }}
+    direction="vertical"
+  >
+    <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+    <studs-resizer-pane>Panel Two</studs-resizer-pane>
+  </studs-resizer>
+</ResizerFeatures>
+
+### Single
+
+<ResizerFeatures>
+  <studs-resizer direction="horizontal">
+    <studs-resizer-pane fullwidth>Panel One</studs-resizer-pane>
+  </studs-resizer>
+</ResizerFeatures>
+
+### Two Panels
+
+<ResizerFeatures>
+  <studs-resizer direction="horizontal">
+    <studs-resizer-pane size="150">Panel One</studs-resizer-pane>
+    <studs-resizer-pane size="250">
+      <studs-resizer direction="vertical">
+        <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+        <studs-resizer-pane>Panel Two</studs-resizer-pane>
+      </studs-resizer>
+    </studs-resizer-pane>
+  </studs-resizer>
+</ResizerFeatures>
+
+### Three Panels
+
+<ResizerFeatures>
+  <studs-resizer direction="horizontal">
+    <studs-resizer-pane size="150">Panel One</studs-resizer-pane>
+    <studs-resizer-pane size="250">
+      <studs-resizer direction="vertical">
+        <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+        <studs-resizer-pane>Panel Two</studs-resizer-pane>
+      </studs-resizer>
+    </studs-resizer-pane>
+    <studs-resizer-pane size="250">
+      <studs-resizer direction="vertical">
+        <studs-resizer-pane size="50">Panel One</studs-resizer-pane>
+        <studs-resizer-pane>Panel Two</studs-resizer-pane>
+      </studs-resizer>
+    </studs-resizer-pane>
+  </studs-resizer>
+</ResizerFeatures>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'direction',
+      description: <></>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+    {
+      name: 'children',
+      description: <></>,
+      reflects: false,
+      default: '<studs-resizer-pane></studs-resizer-pane>',
+    },
+  ]}
+></Tables>

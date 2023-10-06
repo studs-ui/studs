@@ -1,44 +1,86 @@
+---
+description: Switches allow the user to toggle an option on or off.
+---
+
 # Switch
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+<HeaderComponent
+  htmlTag="studs-switch"
+  jsxTag="StudsSwitch"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="inputs/switch.ts"
+  urlStrbook="studs-inputs-switch--docs"
+/>
+
+Switches allow the user to toggle an option on or off.
 
 ## Default
 
-<studs-switch></studs-switch>
+<ResizerFeatures>
+  <studs-switch></studs-switch>
+</ResizerFeatures>
 
-```html
+<CodeBlocks
+  html={`
 <studs-switch></studs-switch>
-```
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
+/>
 
 ## Checked
 
-<studs-switch checked="true" label="Checked"></studs-switch>
+<ResizerFeatures>
+  <studs-switch checked="true" label="Checked"></studs-switch>
+</ResizerFeatures>
 
-```html
+<CodeBlocks
+  html={`
 <studs-switch checked="true" label="Checked"></studs-switch>
-```
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
+/>
 
 ## Disabled
 
-<studs-switch disabled="" label="Disabled"></studs-switch>
+<ResizerFeatures>
+  <studs-switch disabled="" label="Disabled"></studs-switch>
+</ResizerFeatures>
 
-```html
+<CodeBlocks
+  html={`
 <studs-switch disabled="" label="Disabled"></studs-switch>
-```
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
+/>
 
 ## Size medium
 
-<studs-switch size="medium" checked="true"></studs-switch>
+<ResizerFeatures>
+  <studs-switch size="medium" checked="true"></studs-switch>
+</ResizerFeatures>
 
-```html
+<CodeBlocks
+  html={`
 <studs-switch size="medium" checked="true"></studs-switch>
-```
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
+/>
 
 ## Lable position start
 
-<studs-switch size="small" checked="true" label="Switch" label-position="start" name="test-switch"></studs-switch>
+<ResizerFeatures>
+  <studs-switch
+    size="small"
+    checked="true"
+    label="Switch"
+    label-position="start"
+    name="test-switch"
+  ></studs-switch>
+</ResizerFeatures>
 
-```html
+<CodeBlocks
+  html={`
 <studs-switch
   size="small"
   checked="true"
@@ -46,13 +88,24 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   label-position="start"
   name="test-switch"
 ></studs-switch>
-```
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
+/>
 
 ## Lable position bottom
 
-<studs-switch size="small" checked="true" label="Bottom label" label-position="bottom" name="test-switch"></studs-switch>
+<ResizerFeatures>
+  <studs-switch
+    size="small"
+    checked="true"
+    label="Bottom label"
+    label-position="bottom"
+    name="test-switch"
+  ></studs-switch>
+</ResizerFeatures>
 
-```html
+<CodeBlocks
+  html={`
 <studs-switch
   size="small"
   checked="true"
@@ -60,4 +113,33 @@ Lorem ipsum dolor, sit amet consectetur adipisicing elit.
   label-position="bottom"
   name="test-switch"
 ></studs-switch>
-```
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12042%3A85086&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'checked',
+      description: <>Draws the switch in a checked state.</>,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'label-position',
+      description: <>The position of label.</>,
+      type: "'start' | 'end' | 'top' | 'bottom'",
+      default: 'end',
+    },
+    {
+      name: 'size',
+      description: <>The switch's size.</>,
+      type: "'small' | 'medium' | 'large'",
+      default: 'medium',
+    },
+  ]}
+></Tables>

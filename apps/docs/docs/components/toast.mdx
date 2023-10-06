@@ -1,4 +1,176 @@
+---
+description: The Toast component displays brief, auto-dismissing notifications to provide information to the user.
+---
+
 # Toast
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+<HeaderComponent
+  htmlTag="studs-toast"
+  jsxTag="StudsToast"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="overlays/toast.ts"
+  urlStrbook="studs-overlays-toasts--docs"
+/>
 
+The Toast component displays brief, auto-dismissing notifications to provide information to the user.
+
+## Default
+
+<ResizerFeatures>
+  <studs-toast
+    open=""
+    position="bottom-left"
+    type="info"
+    message="This is an info toast"
+  ></studs-toast>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-toast open="" position="bottom-left" type="info" message="This is an info toast"></studs-toast>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12993%3A118299&mode=dev"
+/>
+
+## Success
+
+<ResizerFeatures>
+  <studs-toast
+    open=""
+    position="bottom-left"
+    type="success"
+    message="This is a success toast"
+  ></studs-toast>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-toast open="" position="bottom-left" type="success" message="This is a success toast"></studs-toast>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12993%3A118299&mode=dev"
+/>
+
+## Warning
+
+<ResizerFeatures>
+  <studs-toast
+    open=""
+    position="bottom-left"
+    type="warning"
+    message="This is a warning toast"
+  ></studs-toast>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-toast open="" position="bottom-left" type="warning" message="This is a warning toast"></studs-toast>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12993%3A118299&mode=dev"
+/>
+
+## Error
+
+<ResizerFeatures>
+  <studs-toast
+    open=""
+    position="bottom-left"
+    type="error"
+    message="This is an error toast"
+  ></studs-toast>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-toast open="" position="bottom-left" type="error" message="This is an error toast"></studs-toast>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12993%3A118299&mode=dev"
+/>
+
+## Closeable
+
+<ResizerFeatures>
+  <studs-toast
+    open=""
+    type="info"
+    message="This is an info toast"
+    closeable=""
+  ></studs-toast>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`<studs-toast
+    open=""
+    type="info"
+    message="This is an info toast"
+    closeable=""
+  ></studs-toast>
+`}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=12993%3A118299&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'type',
+      description: <div>Variants of toast</div>,
+      reflects: false,
+      type: 'info | error | warning | success',
+      default: 'info',
+    },
+    {
+      name: 'position',
+      description: <>Choose the toast position</>,
+      reflects: false,
+      type: 'top-left | top-right | bottom-left | bottom-right',
+      default: 'bottom-right',
+    },
+    {
+      name: 'heading',
+      description: <>The heading of toast</>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+    {
+      name: 'message',
+      description: <>The content of the toast</>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+    {
+      name: 'duration',
+      description: <>The delay time to automatically close the toast</>,
+      reflects: false,
+      type: 'number',
+      default: 'undefined',
+    },
+    
+    {
+      name: 'open',
+      description: <>Show/hide the toast</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'closeable',
+      description: <>Make toast closeable</>,
+      reflects: false,
+      type: 'boolean',
+      default: 'false',
+    },
+  ]}
+></Tables>
+
+## Method
+
+<Tables
+  headers={['name', 'description']}
+  args={[
+    {
+      name: 'onActionClick()',
+      description: <div>Action on click toast</div>,
+    },
+  ]}
+></Tables>

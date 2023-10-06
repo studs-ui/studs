@@ -1,4 +1,83 @@
+---
+description: A Popover can be used to display some content on top of another.
+---
+
 # Popover
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+<HeaderComponent
+  htmlTag="studs-popover"
+  jsxTag="StudsPopover"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="overlays/popover.ts"
+  urlStrbook="studs-overlays-popover--docs"
+/>
 
+A Popover can be used to display some content on top of another.
+
+## Usage
+
+<ResizerFeatures minHeight="40rem">
+  <studs-button>
+    Popover
+    <studs-popover position="bottom" icon="info">
+      <p slot="title">This is a popover</p>
+      <studs-image
+        src="https://ssttoolbox.widen.net/content/cusbzivu9t/jpeg/C_SCLC_InstPho_RI_Inst_StairCassetteLedgerConnector-exploded_C0.jpg?crop=true&amp;keep=c&amp;q=60&amp;w=900&amp;h=675"
+        slot="media"
+      ></studs-image>
+      <main>Popover content</main>
+      <studs-button button-type="primary" size="small" slot="footer">
+        Yes
+      </studs-button>
+    </studs-popover>
+  </studs-button>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-button>
+  Popover
+  <studs-popover position="bottom" icon="info">
+    <p slot="title">This is a popover</p>
+    <studs-image
+      src="https://ssttoolbox.widen.net/content/cusbzivu9t/jpeg/C_SCLC_InstPho_RI_Inst_StairCassetteLedgerConnector-exploded_C0.jpg?crop=true&amp;keep=c&amp;q=60&amp;w=900&amp;h=675"
+      slot="media"
+    ></studs-image>
+    <main>Popover content</main>
+    <studs-button button-type="primary" size="small" slot="footer">
+      Yes
+    </studs-button>
+  </studs-popover>
+</studs-button>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73957&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'position',
+      description: <></>,
+      reflects: false,
+      type: "'top' | 'top-start' | 'top-end' | 'bottom' | 'bottom-start' | 'bottom-end' | 'left' | 'left-start' | 'left-end' | 'right' | 'right-start' | 'right-end'",
+      default: 'bottom',
+    },
+    {
+      name: 'icon',
+      description: <></>,
+      reflects: false,
+      type: 'string',
+      default: 'info',
+    },
+    {
+      name: 'children',
+      description: <></>,
+      reflects: false,
+      default: '',
+    },
+  ]}
+></Tables>

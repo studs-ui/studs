@@ -4,28 +4,17 @@ import { Icon, IconController } from '../../controllers/iconController';
 import { classMap } from 'lit/directives/class-map.js';
 import style from '@studs/styles/components/badge.scss?inline';
 
-export interface BadgeProps {
-  icon?: Icon;
-  count: number;
-  max?: number;
-  showZero?: boolean;
-  size?: 'small' | 'medium' | 'large';
-  position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left';
-  color?: string;
-  marker?: boolean;
-}
-
 @customElement('studs-badge')
 export class StudsBadge extends LitElement {
-  @property({ type: String }) icon: BadgeProps['icon'];
-  @property({ type: Number }) count: BadgeProps['count'] = 0;
-  @property({ type: Number }) max: BadgeProps['max'] = 99;
+  @property({ type: String }) icon?: Icon;
+  @property({ type: Number }) count: number = 0;
+  @property({ type: Number }) max: number = 99;
   @property({ type: Boolean, attribute: 'show-zero' })
-  showZero?: BadgeProps['showZero'] = false;
-  @property({ type: String }) size: BadgeProps['size'] = 'medium';
-  @property({ type: String }) position: BadgeProps['position'] = 'top-right';
-  @property({ type: String }) color: BadgeProps['color'] = 'primary';
-  @property({ type: Boolean }) marker?: BadgeProps['marker'] = false;
+  showZero?: boolean = false;
+  @property({ type: String }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ type: String }) position: 'top-right' | 'top-left' | 'bottom-right' | 'bottom-left' | 'center' = 'top-right';
+  @property({ type: String }) color: string = 'primary';
+  @property({ type: Boolean }) marker?: boolean = false;
 
   static styles = [unsafeCSS(style), IconController.styles];
 
@@ -41,6 +30,7 @@ export class StudsBadge extends LitElement {
   render() {
     return html`
       <div
+        part="base"
         class=${classMap({
           badge: true,
           [`-${this.size}`]: true,

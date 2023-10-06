@@ -66,6 +66,15 @@ export const Disabled: Story = {
   },
 }
 
+export const ChipIcon: Story = {
+  args: {
+    deletable: false,
+    clickable: true,
+    icon: "add",
+    children: "Icon",
+  },
+}
+
 export const ChipAvatar: Story = {
   args: {
     deletable: false,

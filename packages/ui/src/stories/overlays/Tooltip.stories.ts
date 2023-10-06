@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { TooltipProps } from '../../components/overlays/tooltip';
+import { StudsTooltip } from '../../components/overlays/tooltip';
 import { position } from '../../utils/_argTypes';
 
 const meta = {
@@ -19,10 +19,10 @@ const meta = {
   argTypes: {
     ...position,
   },
-} as Meta<TooltipProps>;
+} as Meta<StudsTooltip>;
 
 export default meta;
-type Story = StoryObj<TooltipProps>;
+type Story = StoryObj<StudsTooltip>;
 
 export const Default: Story = {
   args: {

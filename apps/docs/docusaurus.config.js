@@ -21,7 +21,7 @@ const config = {
   organizationName: 'Simpson Strong-Tie', // Usually your GitHub org/user name.
   projectName: 'studs', // Usually your repo name.
 
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internalization, you can use this field to set useful
@@ -31,30 +31,36 @@ const config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
-
   presets: [
     [
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         docs: {
-                    sidebarPath: require.resolve('./sidebars.js'),
+          sidebarPath: require.resolve('./sidebars.js'),
+          routeBasePath: '/',
+          versions: {
+            current: {
+              label: '1.0.0-alpha.0',
+              path: '',
+            },
+          },
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // editUrl:
+          //   'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
         },
         theme: {
           customCss: [
-            require.resolve('./src/css/custom.css'),
-            require.resolve('@studs/styles/studs-base.css'),
+            require.resolve('@studs/react/studs-base.css'),
+            require.resolve('./src/css/custom.scss'),
           ],
         },
       }),
     ],
   ],
-
   plugins: ['docusaurus-plugin-sass'],
+  themes: ['@docusaurus/theme-live-codeblock'],
   clientModules: [require.resolve('./src/global.ts')],
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
@@ -64,32 +70,29 @@ const config = {
       navbar: {
         title: 'STUDS',
         logo: {
-          alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          alt: 'Simpson Strong-Tie',
+          src: 'img/sst_logo.svg',
         },
         items: [
           {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Docs',
+            type: 'docsVersionDropdown',
           },
           {
-            href: 'https://github.com/facebook/docusaurus',
-            label: 'GitHub',
+            to: 'https://ux.strongtie.com',
+            label: 'UX TEAM SITE',
             position: 'right',
+            className: 'ux-team-link',
           },
         ],
       },
       footer: {
-        style: 'dark',
         links: [
           {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Installation',
+                to: '/getting-started/installation',
               },
             ],
           },
@@ -97,36 +100,45 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
+                label: 'Simpson Strongtie',
+                href: 'https://www.strongtie.com/',
               },
               {
-                label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                label: 'Strongtie UX',
+                href: 'https://ux.strongtie.com/',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/strongtie',
               },
             ],
           },
           {
-            title: 'More',
+            title: 'More Resources',
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/studs-ui/studs',
+              },
+              {
+                label: 'Storybook',
+                href: `https://studs-staging.strongtie.com/storybook/?path=/docs/example-introduction--docs`,
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc. Built with Docusaurus.`,
+        logo: {
+          alt: 'Simpson Strong-Tie',
+          src: 'img/hangerman.svg',
+          width: 100,
+        },
+        copyright: `Copyright © ${new Date().getFullYear()} Simpson Strong-Tie, Inc.`,
       },
       prism: {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-          }),
+    }),
 };
 
 module.exports = config;

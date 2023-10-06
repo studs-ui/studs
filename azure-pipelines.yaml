@@ -1,0 +1,34 @@
+#trigger test
+trigger:
+- staging
+
+pool: 
+  name: StudsTest3
+  demands:
+    - Agent.Name -equals 242jnkdev01
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.17.1'
+  displayName: 'install node.js'
+
+- checkout: self
+- script: |
+    npm install pnpm -g
+    pnpm i
+  displayName: 'npm install and build'
+
+- script:
+    pnpm build
+  displayName: build storybooks
+
+- task: CopyFilesOverSSH@0
+  inputs:
+    sshEndpoint: 'agent'
+    sourceFolder: 'apps/docs/build'
+    contents: '**/*'
+    targetFolder: '/var/www/studs'
+    cleanTargetFolder: true
+    cleanHiddenFilesInTarget: true
+    readyTimeout: 120000

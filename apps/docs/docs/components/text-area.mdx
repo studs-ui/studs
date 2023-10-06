@@ -1,0 +1,181 @@
+---
+description: Textareas collect data from the user and allow multiple lines of text.
+---
+
+# Text Area
+
+<HeaderComponent
+  htmlTag="studs-textarea"
+  jsxTag="StudsTextarea"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="inputs/textarea.ts"
+  urlStrbook="studs-inputs-textarea--docs"
+/>
+
+Textareas collect data from the user and allow multiple lines of text.
+
+## Default
+
+<ResizerFeatures>
+  <studs-textarea></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## Standard
+
+<ResizerFeatures>
+  <studs-textarea label="Standard Textarea" variant="standard"></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea label="Standard Textarea" variant="standard"></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## Outlined
+
+<ResizerFeatures>
+  <studs-textarea label="Outlined Textarea" variant="outlined"></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea label="Outlined Textarea" variant="outlined"></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## Filled
+
+<ResizerFeatures>
+  <studs-textarea label="Filled Textarea" variant="filled"></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea label="Filled Textarea" variant="filled"></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## Disabled
+
+<ResizerFeatures>
+  <studs-textarea disabled=""></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea disabled=""></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## Error Message
+
+<ResizerFeatures>
+  <studs-textarea label="Label" error="" messagetype="error"></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea label="Label" error="" messagetype="error"></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## With Character Counter
+
+<ResizerFeatures>
+  <studs-textarea
+    maxlength="100"
+    label="Textarea with Character Counter"
+    character-counter
+  ></studs-textarea>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-textarea
+  maxlength="100"
+  label="Textarea with Character Counter"
+  character-counter
+></studs-textarea>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73960&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  includesFormProps
+  args={[
+    {
+      name: 'value',
+      description: (
+        <>
+          The current value of the textarea, submitted as a name/value pair with
+          form data.
+        </>
+      ),
+      type: 'string',
+      default: "''",
+    },
+    {
+      name: 'rows',
+      description: <>The number of rows to display by default.</>,
+      type: 'number',
+      default: 3,
+    },
+    {
+      name: 'character-counter',
+      description: <>Show the character counter per limit length.</>,
+      type: 'boolean',
+      default: 'false',
+    },
+    {
+      name: 'maxlength',
+      description: (
+        <>The maximum length of textarea that will be considered valid.</>
+      ),
+      type: 'number',
+      default: 100,
+    },
+    {
+      name: 'variant',
+      description: <>The textarea's theme variant.</>,
+      type: "standard' | 'outlined' | 'filled'",
+    },
+    {
+      name: 'size',
+      description: <>The textarea's size.</>,
+      type: "'small' | 'medium' | 'large'",
+    },
+    {
+      name: 'messagetype',
+      description: <>The textarea's helper text theme.</>,
+      type: "'error' | 'success' | 'warning'",
+    },
+    {
+      name: 'helper-text',
+      description: (
+        <>
+          The textarea's error text. This is only enabled with{' '}
+          <code>error</code> is true.
+        </>
+      ),
+      type: 'string[]',
+      default: '[]',
+    },
+  ]}
+></Tables>

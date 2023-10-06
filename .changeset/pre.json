@@ -1,0 +1,16 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@studs/docs": "0.1.0",
+    "next-test": "0.1.0",
+    "react-test": "0.0.0",
+    "web": "0.0.0",
+    "@studs/react": "0.1.2",
+    "@studs/styles": "0.1.4",
+    "@studs/ui": "0.1.7"
+  },
+  "changesets": [
+    "lucky-ghosts-promise"
+  ]
+}

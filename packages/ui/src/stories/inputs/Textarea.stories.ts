@@ -57,6 +57,7 @@ export const Default: Story = {
     label: "Default Textarea",
     variant: "outlined",
     helperText: ["First error", "Second error"],
+    value: 'Default Value'
   },
 };
 

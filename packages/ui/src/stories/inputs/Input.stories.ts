@@ -22,6 +22,7 @@ const meta = {
     adornment=${ifDefined(args.adornment)}
     adornment-position=${ifDefined(args.adornmentPosition)}
     adornment-type=${ifDefined(args.adornmentType)}
+    @change=${(e) => console.log(e)}
   ></studs-input>`,
   argTypes: {
     type: {
@@ -76,6 +77,14 @@ export const Disabled: Story = {
     disabled: true,
   },
 };
+
+export const DefaultValue: Story = {
+  args: {
+    type: "text",
+    label: "Default Value",
+    value: "Default Value",
+  },
+}
 
 export const LabelBlock: Story = {
   args: {

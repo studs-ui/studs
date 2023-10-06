@@ -2,10 +2,13 @@
 @use "../themes" as *;
 
 .checkbox {
+  display: flex;
   [type=checkbox] {
     opacity: 0;
     width: 0;
     height: 0;
+    overflow: hidden;
+    position: absolute;
   }
 
   label {
@@ -37,7 +40,7 @@
     }
   }
 
-  [type=checkbox]:focus,
+  // [type=checkbox]:focus,
   [type=checkbox]:focus-visible {
     + label::before {
       border-color: var(--primary);
