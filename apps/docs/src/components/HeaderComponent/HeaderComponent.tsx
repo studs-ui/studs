@@ -1,49 +1,56 @@
-import React, { useEffect, useRef } from 'react';
-import styles from './styles.module.css';
-import useOnScreen from '@site/src/hooks/use0nScreen';
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import Link from '@docusaurus/Link';
+import { useDocsVersion } from '@docusaurus/theme-common/internal';
+import { BASE_URL_GITHUB, BASE_URL_STRB, MAIN_GITHUB_URL } from '@site/src/utils/constants';
+import React from 'react';
+import styles from './styles.module.scss';
 
-const versionDefault = 'Since 2.0';
-const statusDefault = 'Stable';
+const HeaderComponent = ({ htmlTag, jsxTag, urlGithub, urlStrbook, status }) => {
+  const { label: version, banner, badge, ...rest } = useDocsVersion();
 
-const HeaderComponent = ({ htmlTag, jsxTag, version, status }) => {
+
   const tag = `<${htmlTag}>`;
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useOnScreen(ref);
-
-  useEffect(() => {
-    const query = document.querySelectorAll('.custom');
-    query.forEach((item) => {
-      const statusElement = item.shadowRoot.querySelector('.chip');
-      const versionElement = item.shadowRoot.querySelector('.-infor');
-      statusElement?.setAttribute(
-        'style',
-        'border-radius: 1rem; padding: 0.25rem 0.5rem'
-      );
-      versionElement?.setAttribute(
-        'style',
-        'background-color: #444444; color: #fff; border: transparent; border-radius: 1rem; padding: 0.25rem 0.5rem'
-      );
-    });
-  }, [isVisible]);
-
   return (
     <div className={styles.header}>
       <code>
         {tag} | {jsxTag}
       </code>
-      <div>
-        <studs-chip ref={ref} class="custom" variant="infor" size="small">
+      <div className={styles.wrapper}>
+        {/* <studs-chip ref={ref} class="custom" variant="infor" size="small">
           {version || versionDefault}
-        </studs-chip>
-
-        <studs-chip
-          ref={ref}
-          class={`custom ${styles.custom}`}
+        </studs-chip> */}
+        <BrowserOnly>
+          {() => {
+          const StudsChip =
+            require('@studs/react').StudsChip;
+          return <StudsChip
+          className={`custom ${styles.custom} ${styles[status.toLowerCase()]}`}
           size="small"
           selected
         >
-          {status || statusDefault}
-        </studs-chip>
+          {status}
+        </StudsChip>;
+        }}
+        </BrowserOnly>
+        <Link
+          to={urlGithub ? `${BASE_URL_GITHUB}/${urlGithub}`: MAIN_GITHUB_URL}
+          target="_blank"
+        >
+          <studs-button button-type='link' size="small"><img src="/img/github.svg" alt="github" className={styles.img} /> Github</studs-button>
+        </Link>
+        <Link
+          to={`${BASE_URL_STRB}/${urlStrbook}`}
+          target="_blank"
+        >
+          <studs-button button-type='link' size="small">
+          <img
+            src="/img/storybook.svg"
+            alt="storybook"
+            className={styles.img}
+          />
+          Storybook
+          </studs-button>
+        </Link>
       </div>
     </div>
   );

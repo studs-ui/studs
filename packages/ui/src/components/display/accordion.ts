@@ -1,3 +1,5 @@
+import style from '@studs/styles/components/accordion.scss?inline';
+import inputStyle from '@studs/styles/components/inputs.scss?inline';
 import { LitElement, PropertyValueMap, html, nothing, unsafeCSS } from 'lit';
 import {
   customElement,
@@ -5,40 +7,25 @@ import {
   queryAssignedElements,
   state,
 } from 'lit/decorators.js';
-import style from '@studs/styles/components/accordion.scss?inline';
-import inputStyle from '@studs/styles/components/inputs.scss?inline';
-import { StudsAccordionItem } from './accordion-item';
 import { classMap } from 'lit/directives/class-map.js';
-import { ResponsiveController } from '../../controllers/responsiveController';
+import { StudsAccordionItem } from './accordion-item';
 
-export interface BaseAccordionProps {
-  size: 'small' | 'medium' | 'large';
-  variant: 'border' | 'borderless';
-  direction: 'start' | 'end';
-  disabled: boolean;
-}
-
-export interface AccordionProps extends BaseAccordionProps {
-  enableHeader: boolean;
-  enableSearch: boolean;
-}
 
 @customElement('studs-accordion')
 export class StudsAccordion extends LitElement {
   @property({ type: Boolean, attribute: 'enable-header' })
-  enableHeader: AccordionProps['enableHeader'] = false;
+  enableHeader: boolean = false;
   @property({ type: Boolean, attribute: 'enable-search' })
-  enableSearch: AccordionProps['enableSearch'] = false;
-  @property({ type: String, reflect: true }) size: AccordionProps['size'] =
+  enableSearch: boolean = false;
+  @property({ type: String, reflect: true }) size: 'small' | 'medium' | 'large' =
     'medium';
   @property({ type: String, reflect: true })
-  variant: AccordionProps['variant'] = 'borderless';
+  variant: 'border' | 'borderless' = 'borderless';
   @property({ type: String, reflect: true })
-  direction: AccordionProps['direction'] = 'end';
+  direction: 'start' | 'end' = 'end';
   @property({ type: Boolean, reflect: true })
-  disabled: AccordionProps['disabled'] = false;
-
-  private responsive = new ResponsiveController(this);
+  disabled: boolean = false;
+  @property({type: Boolean, attribute: 'default-open', reflect: true}) defaultOpen: boolean = false;
 
   @queryAssignedElements({ selector: 'studs-accordion-item' })
   items?: StudsAccordionItem[];
@@ -77,6 +64,12 @@ export class StudsAccordion extends LitElement {
         </div>
       </header>`;
     }
+  }
+
+  protected firstUpdated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+      if(this.defaultOpen) {
+        this.onExpandAll();
+      }
   }
 
   protected updated(
@@ -140,12 +133,12 @@ export class StudsAccordion extends LitElement {
   }
 
   onExpandAll() {
-    this.items.forEach((item) => {
+    if(this.items) this.items.forEach((item) => {
       (item as StudsAccordionItem).show();
     });
   }
   onCollapseAll() {
-    this.items.forEach((item) => {
+    if(this.items) this.items.forEach((item) => {
       (item as StudsAccordionItem).hide();
     });
   }

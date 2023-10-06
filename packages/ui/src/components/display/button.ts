@@ -25,6 +25,7 @@ export interface ButtonProps {
     | 'close'
     | 'image';
   size: 'small' | 'medium' | 'large';
+  variant?: 'outline';
   disabled: boolean;
   iconPosition: 'start' | 'end';
   contentDirection: 'horizontal' | 'vertical';
@@ -40,6 +41,7 @@ export class StudsButton extends LitElement {
   @property({ type: String, attribute: 'button-type' })
   buttonType: ButtonProps['buttonType'] = 'cta';
   @property({ type: String }) size: ButtonProps['size'] = 'medium';
+  @property({ type: String }) variant?: ButtonProps['variant'];
   @property({ type: Boolean }) disabled: ButtonProps['disabled'] = false;
   @property({ type: String, attribute: 'icon-position' })
   iconPosition: ButtonProps['iconPosition'] = 'start';
@@ -60,12 +62,19 @@ export class StudsButton extends LitElement {
       this._internals = this.attachInternals();
       this.addEventListener('click', this.submit);
     }
+    if(this.type === 'reset') {
+      this._internals = this.attachInternals();
+      this.addEventListener('click', this.reset);
+    }
   }
 
   disconnectedCallback(): void {
     super.disconnectedCallback();
     if (this.type === 'submit') {
       this.removeEventListener('click', this.submit);
+    }
+    if(this.type === 'reset') {
+      this.removeEventListener('click', this.reset);
     }
   }
 
@@ -93,12 +102,13 @@ export class StudsButton extends LitElement {
       button: true,
       [`-${this.buttonType}`]: this.buttonType,
       [`-${this.size}`]: true,
+      '-outline': this.variant === 'outline',
       '-vertical': this.contentDirection === 'vertical',
       '-reverse': this.iconPosition === 'end',
     };
 
     return html`<button
-      part="studs-button"
+      part="base"
       class="${classMap(classes)}"
       ?disabled=${this.disabled}
       type=${ifDefined(this.type)}
@@ -110,8 +120,12 @@ export class StudsButton extends LitElement {
 
   public submit() {
     if (this._internals?.form) {
-      this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
-      this._internals.form.submit();
+      // this._internals.setFormValue(this._internals.form.noValidate ? '' : null);
+      this.dispatchEvent(new SubmitEvent('submit', { bubbles: true, composed: true }));
     }
+  }
+
+  public reset() {
+    if(this._internals?.form) this._internals.form.reset();
   }
 }

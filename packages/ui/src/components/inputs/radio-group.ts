@@ -1,69 +1,35 @@
 import style from '@studs/styles/components/radioGroup.scss?inline';
 import { LitElement, html, nothing, unsafeCSS } from 'lit';
-import { customElement, property, state } from 'lit/decorators.js';
+import { customElement } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { generateUniqueId } from '../../utils/shared';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { WithForm, WithFormInterface } from '../../mixins/withForm';
+import { StudsRadio } from './radio';
 
-export interface RadioGroupProps {
-  name: string;
-  label?: string;
-  display: 'inline' | 'block';
-  selectedValue: string;
+export interface RadioGroupProps extends WithFormInterface {
+  
 }
 
 @customElement('studs-radio-group')
-export class StudsRadioGroup extends LitElement {
-  private inputId = generateUniqueId('radio-group');
+export class StudsRadioGroup extends WithForm(LitElement) {
   static styles = unsafeCSS(style);
 
-  @property({ type: String }) name!: RadioGroupProps['name'];
-  @property({ type: String }) label?: RadioGroupProps['label'];
-  @property({ type: String }) selectedValue: RadioGroupProps['selectedValue'] =
-    '';
-  @property({ type: String }) display: RadioGroupProps['display'] = 'block';
-
-  static formAssociated = true;
-  @state() _internals?: ElementInternals;
-
-  connectedCallback() {
-    super.connectedCallback();
-    this.addEventListener('change', (event: Event) =>
-      this.handleGroupChange(event as CustomEvent)
-    );
-    this._internals = this.attachInternals();
-  }
-
-  handleGroupChange = (event: CustomEvent) => {
-    if (event.detail) {
-      this.selectedValue = event.detail;
-      this._internals?.setFormValue(event.detail);
-    }
-    this.requestUpdate();
-  };
-
-  // This method updates the checked status of each STUDS-RADIO element in the slot based on the selectedValue of the StudsRadioGroup.
-  updated() {
-    // Add Internals if not added
-    if (!this._internals) {
-      this._internals = this.attachInternals();
-    }
-
-    const slot = this.shadowRoot?.querySelector('slot');
-    const radios = slot
-      ?.assignedElements()
-      .filter(
-        (el: Element) =>
-          el.tagName === 'STUDS-RADIO' && (el as any).name === this.name
-      );
+  // This method updates the checked status of each STUDS-RADIO element in the slot based on the valueValue of the StudsRadioGroup.
+  initRadios(e: Event) {
+    const radios = (e.target as HTMLSlotElement).assignedElements();
     radios?.forEach((radio: Element) => {
-      const studsRadio = radio as any;
-      studsRadio.checked = studsRadio.value === this.selectedValue;
-      const radioButton = studsRadio.shadowRoot?.querySelector(
-        'input[type="radio"]'
-      );
-      if (radioButton) {
-        radioButton.checked = studsRadio.checked;
-      }
+      const studsRadio = radio as StudsRadio;
+      const isChecked = studsRadio.value === this.value;
+      studsRadio.name = this.name;
+      studsRadio.setAttribute('role', 'radio');
+      if(isChecked) {
+        studsRadio.setAttribute('aria-checked', 'true')
+        studsRadio.checked = isChecked
+      } else {
+        studsRadio.setAttribute('aria-checked', 'false')
+        studsRadio.checked = false
+      };
+      radio.addEventListener('change', this.onChange);
     });
   }
 
@@ -71,13 +37,17 @@ export class StudsRadioGroup extends LitElement {
     return html`<fieldset
       name=${this.name}
       id=${this.inputId}
+      role='radiogroup'
+      aria-labelledby=${this.name}
+      ?aria-required=${this.required}
+      aria-errormessage=${ifDefined(this.error)}
       class=${classMap({
         radioGroup: true,
         '-inline': this.display === 'inline',
       })}
     >
       ${this.label ? html`<legend>${this.label}</legend>` : nothing}
-      <slot></slot>
+      <slot @slotchange=${this.initRadios}></slot>
     </fieldset>`;
   }
 }

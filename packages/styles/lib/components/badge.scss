@@ -55,7 +55,7 @@ $right: 0;
     position: absolute;
 
     &.-badge {
-      font-size: var(--size);
+      font-size: calc(var(--font-size) * .8);
     }
 
     &:where(.-top-right) {
@@ -73,6 +73,9 @@ $right: 0;
     &:where(.-bottom-left) {
       bottom: -0.5em;
       left: -1.25em;
+    }
+    &:where(.-center) {
+      position: relative;
     }
   }
 

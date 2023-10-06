@@ -1,5 +1,239 @@
+---
+description: Dropdown components are used for collecting user provided information from a list of options.
+---
+
 # Dropdown
 
-<HeaderComponent htmlTag="studs-dropdown" jsxTag="StudsDropdown" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-dropdown"
+  jsxTag="StudsDropdown"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="inputs/dropdown.ts"
+  urlStrbook="studs-inputs-dropdown--docs"
+/>
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+Dropdown components are used for collecting user provided information from a list of options.
+
+## Default
+
+<ResizerFeatures minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"
+    size="medium"
+  ></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    selected="2"
+    options='{
+    "value": "1",
+    "label": "Option 1"
+  },
+  {
+    "value": "2",
+    "label": "Option 2"
+  },
+  {
+    "value": "3",
+    "label": "Option 3"
+  }></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Disabled
+
+<ResizerFeatures   minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"
+    disabled
+  ></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    disabled
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Without Selected
+
+<ResizerFeatures   minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Searchable
+
+<ResizerFeatures   minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"
+    type="search"></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    type="search"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Multi Select
+
+<ResizerFeatures   minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected='["2", "1"]'
+    type="multi"></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    type="multi"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+   selected='["2", "1"]'></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Dropdown with Icon
+
+<ResizerFeatures   minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"
+    icon="search"></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    disabled
+    options='[{"label": "Option 1","value":"1"}, {"label":"Option 2","value":"2"}, {"label":"Option 3","value":"3"}]'
+    selected="2"></studs-dropdown>
+    icon="search"
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Options with Icon
+
+<ResizerFeatures  minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1","icon":"apps"}, {"label":"Option 2","value":"2","icon":"terminal"}, {"label":"Option 3","value":"3","icon":"home"}]'
+    selected="2"></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1","icon":"apps"}, {"label":"Option 2","value":"2","icon":"terminal"}, {"label":"Option 3","value":"3","icon":"home"}]'
+    selected="2"></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Options with Image
+
+<ResizerFeatures  minHeight="12rem">
+  <studs-dropdown
+    label="Dropdown"
+    options='[{"label": "Option 1","value":"1","image":"https://picsum.photos/200"}, {"label":"Option 2","value":"2","image":"https://picsum.photos/200"}, {"label":"Option 3","value":"3","image":"https://picsum.photos/200"}]'
+    selected="2"
+  ></studs-dropdown>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-dropdown
+    label="Dropdown"
+     options='[{"label": "Option 1","value":"1","image":"https://picsum.photos/200"}, {"label":"Option 2","value":"2","image":"https://picsum.photos/200"}, {"label":"Option 3","value":"3","image":"https://picsum.photos/200"}]'
+    selected="2"></studs-dropdown>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73941&mode=dev"
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'options',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: `[{"label": string,"value": string}, ...]`
+    },
+    {
+      name: 'selected',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: `{
+      "value": string,
+      "label": string}`
+    },
+    {
+      name: 'type',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'icon',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'disabled',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean"
+    },
+  ]} />

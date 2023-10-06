@@ -46,6 +46,8 @@
   --link-disabled:#{colorVal("orange", 20)};
 
   --disabled:     #{colorVal("gray", 0)};
+  --highlight:    #{colorVal("gray", 0)};
+  --selected:     #{colorVal("orange", 0)};
 
   --background:          #{colorVal("gray", 10)};
   --background-featured: #{colorVal("gray", 90)};
@@ -75,7 +77,6 @@
 
   --accordion-bkg: #{colorVal("gray", 0)};
   --accordion-hover: #{colorVal("gray", 10)};
-  
 
   --chip-bkg:    #{colorVal("gray" ,10)};
   --chip-hover:  #{colorVal("gray",0)};
@@ -83,19 +84,23 @@
   --chip-text:   #{colorVal("gray", 90)};
   --chip-border: #{colorVal("gray", 50)};
 
+  --tab-background: white;
+  --tab-border: #{colorVal("gray", 10)};
+  --tab-selected: var(--highlight);
+
   --breadcrumb-color:   #{colorVal("gray", 40)};
   --breadcrumb-hover:   #{colorVal("gray", 90)};
   --breadcrumb-current: var(--primary);
 
 
  /* feedback colors */
-  --info-color:    #{colorVal("gray", 80)};
-  --info-bkg:      #{colorVal("gray", 0)};
-  --info-rgb:      #{toRGB(#444444)};
+  --info-color:    #1890FF;
+  --info-bkg:      #e0f0ff;
+  --info-rgb:      #{toRGB(#1890FF)};
 
-  --success-color: #{colorVal("sage", 50)};
-  --success-bkg:   #{colorVal("sage", 0)};
-  --success-rgb:   #{toRGB(#799e7e)};
+  --success-color: #3AAD49;
+  --success-bkg:   #e8f7ea;
+  --success-rgb:   #{toRGB(#3AAD49)};
 
   --warning-color: #FBBD08;
   --warning-bkg:   #fdf6e1;
@@ -137,19 +142,23 @@
   --anchor-color-primary : #{colorVal("steel" ,30)};
 
 
-  --logo-text:       var(--background);
+  --logo-text:       #{$white};
   --logo-bkg-top:    var(--text-color);
   --logo-bkg-bottom: var(--text-color);
 
   --card-background: #{$white};
   --card-border:     #{$transparent};
 
-
   --dropdown-background-outline: #{colorVal("gray", 20)};
   --dropdown-background: #{$white};
 
   --switch-color:    #{colorVal("orange", 50)};
   --switch-disabled: #{colorVal("gray", 30)};
+
+
+
+
+
 
   @media (prefers-contrast: more) {
     --text-color: #{$black};
@@ -221,3 +230,79 @@
   @include light;
 }
 
+/* theme overrides.
+     move these to individual files in future
+     once we have final theme names.
+     These are for demonstration only
+                --Jp
+*/
+
+.builder-tools {
+  --primary:          #{colorVal("steel", 50)};
+  --primaryRgb:       #{toRGB(#657682)};
+  --primary-hover:    #{colorVal("steel", 40)};
+  --primary-active:   #{colorVal("steel", 60)};
+  --primary-disabled: #{colorVal("steel", 20)};
+
+  --link-active:  #{colorVal("steel", 70)};
+  --link-hover:   #{colorVal("steel", 50)};
+  --link-disabled:#{colorVal("steel", 20)};
+
+  --selected:     #{colorVal("steel", 0)};
+}
+
+.component-manufacturing-tools {
+  --primary:          #{colorVal("mauve", 50)};
+  --primaryRgb:       #{toRGB(#847087)};
+  --primary-hover:    #{colorVal("mauve", 40)};
+  --primary-active:   #{colorVal("mauve", 60)};
+  --primary-disabled: #{colorVal("mauve", 20)};
+
+  --link-active:  #{colorVal("mauve", 70)};
+  --link-hover:   #{colorVal("mauve", 50)};
+  --link-disabled:#{colorVal("mauve", 20)};
+
+  --selected:     #{colorVal("mauve", 0)};
+}
+
+.general-tools {
+  --primary:          #{colorVal("orange", 50)};
+  --primaryRgb:       #{toRGB(#df4907)};
+  --primary-hover:    #{colorVal("orange", 40)};
+  --primary-active:   #{colorVal("orange", 60)};
+  --primary-disabled: #{colorVal("orange", 20)};
+
+  --link-active:  #{colorVal("orange", 70)};
+  --link-hover:   #{colorVal("orange", 50)};
+  --link-disabled:#{colorVal("orange", 20)};
+
+  --selected:     #{colorVal("orange", 0)};
+}
+
+.specification-tools {
+  --primary:          #{colorVal("pumpkin", 50)};
+  --primaryRgb:       #{toRGB(#A8671D)};
+  --primary-hover:    #{colorVal("pumpkin", 40)};
+  --primary-active:   #{colorVal("pumpkin", 60)};
+  --primary-disabled: #{colorVal("pumpkin", 20)};
+
+  --link-active:  #{colorVal("pumpkin", 70)};
+  --link-hover:   #{colorVal("pumpkin", 50)};
+  --link-disabled:#{colorVal("pumpkin", 20)};
+
+  --selected:     #{colorVal("pumpkin", 0)};
+}
+
+.supplier-tools {
+  --primary:          #{colorVal("sage", 50)};
+  --primaryRgb:       #{toRGB(#607D64)};
+  --primary-hover:    #{colorVal("sage", 40)};
+  --primary-active:   #{colorVal("sage", 60)};
+  --primary-disabled: #{colorVal("sage", 20)};
+
+  --link-active:  #{colorVal("sage", 70)};
+  --link-hover:   #{colorVal("sage", 50)};
+  --link-disabled:#{colorVal("sage", 20)};
+
+  --selected:     #{colorVal("sage", 0)};
+}

@@ -41,49 +41,23 @@ export class StudsTable extends LitElement {
   @state() rows?: Array<any>;
   @state() _children?: Element[];
 
-  protected updated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {
-    super.updated(_changedProperties);
-    if (this.fixedHeader && this.fixedOffset) {
-      if (!this.thead?.style?.top)
-        this.thead?.style.setProperty('top', this.fixedOffset);
-    }
-
-    if (!this.rows) {
-      const rows = this.renderRoot.querySelectorAll('tbody tr');
-      const data: Array<string[]> = [];
-      rows.forEach((row) => {
-        const rowData: string[] = [];
-        row.querySelectorAll('td').forEach((cell) => {
-          rowData.push(cell.innerHTML);
-        });
-        data.push(rowData);
-      });
-      // this.rows = data;
-    }
-  }
-
   render() {
-    return html`<div
-        class=${classMap({
-          table: true,
-          '-sticky-header': this.fixedHeader,
-          [`-${this.size}`]: true,
-        })}
-      >
-        ${map(this._children, (child) => {
-          return html`${child}`;
-        })}
-      </div>
-      ${!this._children
-        ? html`<slot @slotchange=${this.onSlotChange}></slot>`
-        : nothing} `;
+    return html`
+        <slot @slotchange=${this.onSlotChange}></slot>  
+      `
   }
 
   onSlotChange(e: Event) {
     const assignedElements = (e.target as HTMLSlotElement).assignedElements();
-    if (assignedElements.length > 0)
-      this._children = (e.target as HTMLSlotElement).assignedElements();
+    if (assignedElements.length > 0) {
+      const table = assignedElements.find((el) => el.tagName === 'TABLE');
+      table?.classList.add('table');
+      table?.classList.add(`-${this.size}`)
+      if(this.fixedHeader) {
+        table?.classList.add('-sticky-header');
+        const thead = table?.querySelector('thead')
+      }
+    }
+      
   }
 }

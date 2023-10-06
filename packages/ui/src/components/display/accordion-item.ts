@@ -1,22 +1,17 @@
 import style from '@studs/styles/components/accordion.scss?inline';
 import { LitElement, html, unsafeCSS } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { BaseAccordionProps } from './accordion';
 import { classMap } from 'lit/directives/class-map.js';
-
-export interface AccordionItemProps extends BaseAccordionProps {
-  open: boolean;
-}
 @customElement('studs-accordion-item')
 export class StudsAccordionItem extends LitElement {
-  @property({ type: Boolean, reflect: true }) open: AccordionItemProps['open'] =
+  @property({ type: Boolean, reflect: true }) open: boolean =
     false;
   @property({ type: Boolean, reflect: true })
-  disabled: AccordionItemProps['disabled'] = false;
-  @property({ type: String }) size: AccordionItemProps['size'] = 'medium';
-  @property({ type: String }) variant: AccordionItemProps['variant'] =
+  disabled: boolean = false;
+  @property({ type: String }) size: 'small' | 'medium' | 'large' = 'medium';
+  @property({ type: String }) variant: 'border' | 'borderless' =
     'borderless';
-  @property({ type: String }) direction: AccordionItemProps['direction'] =
+  @property({ type: String }) direction: 'start' | 'end' =
     'end';
 
   static styles = unsafeCSS(style);
@@ -30,19 +25,18 @@ export class StudsAccordionItem extends LitElement {
         [`-${this.direction}`]: true,
       })}
       ?disabled=${this.disabled}
-      aria-hidden=${!this.open}
+      aria-expanded=${this.open}
     >
-      <header class="accordion -header">
+      <header class="accordion -header" @click=${this.onToggle}>
         <slot name="toggle">Accordion Header</slot>
         <studs-button
           size="medium"
-          button-type="close"
+          button-type="tertiary"
           icon="chevron_right"
-          @click=${this.onToggle}
           ?disabled=${this.disabled}
         ></studs-button>
       </header>
-      <main>
+      <main aria-hidden=${!this.open}>
         <div class="content"><slot></slot></div>
       </main>
     </div>`;

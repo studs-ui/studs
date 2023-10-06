@@ -1,6 +1,182 @@
+---
+description: Sliders allow users to make selections from a range of values.
+---
+
 # Slider
 
-<HeaderComponent htmlTag="studs-slider" jsxTag="StudsSlider" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-slider"
+  jsxTag="StudsSlider"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="inputs/slider.ts"
+  urlStrbook="studs-inputs-slider--docs"
+/>
 
-Lorem ipsum dolor, sit amet consectetur adipisicing elit.
+Sliders allow users to make selections from a range of values.
 
+## Usage
+
+<ResizerFeatures>
+  <studs-slider
+    label="Peanut Butter"
+    rightlabel="Jelly"
+    enableinput=""
+    enabletooltip=""
+    enablelabel=""
+  ></studs-slider>
+</ResizerFeatures>
+
+<CodeBlocks
+  html={`
+<studs-slider
+  label="Peanut Butter"
+  rightlabel="Jelly"
+  enableinput=""
+  enabletooltip=""
+  enablelabel=""
+></studs-slider>
+  `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?type=design&node-id=12239%3A90766&mode=dev"
+/>
+
+## Examples
+
+### Single Slider
+
+<ResizerFeatures>
+  <studs-slider
+    min="0"
+    max="100"
+    step="1"
+    enableinput="true"
+    marks="[
+      { value: 0, label: '0°' },
+      { value: 25, label: '25' },
+      { value: 50, label: '50' },
+      { value: 75, label: '75' },
+      { value: 100, label: '100°' },
+    ]"
+  ></studs-slider>
+</ResizerFeatures>
+
+### Range
+
+<ResizerFeatures>
+  <studs-slider></studs-slider>
+</ResizerFeatures>
+
+### Marks
+
+<ResizerFeatures>
+  <studs-slider
+    range="[0, 50]"
+    marks="[
+      { value: 0, label: '0°' },
+      { value: 25, label: '25' },
+      { value: 50, label: '50' },
+      { value: 75, label: '75' },
+      { value: 100, label: '100°' },
+    ]"
+    min="0"
+    max="100"
+    step="1"
+  ></studs-slider>
+</ResizerFeatures>
+
+### Input
+
+<ResizerFeatures>
+  <studs-slider
+    range="[0, 50]"
+    enableinput="true"
+    min="0"
+    max="100"
+    step="1"
+  ></studs-slider>
+</ResizerFeatures>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'rangeValue',
+      description: <></>,
+      reflects: false,
+      type: '',
+      default: '',
+    },
+    {
+      name: 'min',
+      description: <></>,
+      reflects: false,
+      type: 'number',
+      default: '',
+    },
+    {
+      name: 'max',
+      description: <></>,
+      reflects: false,
+      type: 'number',
+      default: '',
+    },
+    {
+      name: 'step',
+      description: <></>,
+      reflects: false,
+      type: 'number',
+      default: '',
+    },
+    {
+      name: 'label',
+      description: <></>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+    {
+      name: 'rightLabel',
+      description: <></>,
+      reflects: false,
+      type: 'string',
+      default: '',
+    },
+    {
+      name: 'enableTooltip',
+      description: <></>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'enableLabel',
+      description: <></>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'enableInput',
+      description: <></>,
+      reflects: false,
+      type: 'boolean',
+      default: 'true',
+    },
+    {
+      name: 'marks',
+      description: <></>,
+      reflects: false,
+      type: '',
+      default: '',
+    },
+    {
+      name: 'calculateTooltipLabel',
+      description: <></>,
+      reflects: false,
+      type: '',
+      default: '',
+    },
+  ]}
+></Tables>

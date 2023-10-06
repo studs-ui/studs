@@ -1,18 +1,32 @@
+---
+description: Badge generates a small badge to the top-right of its child(ren).
+---
+
 # Badge
-<HeaderComponent htmlTag="studs-badge" jsxTag="StudsBadge" version="Since 2.0" status="Stable" />
+
+<HeaderComponent
+  htmlTag="studs-badge"
+  jsxTag="StudsBadge"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="display/badge.ts"
+  urlStrbook="studs-display-badge--docs"
+/>
 
 Badge generates a small badge to the top-right of its child(ren).
 
 ## Default
 
-<studs-badge
-  icon="info"
-  count="1"
-  max="99"
-  size="medium"
-  position="top-right"
-  color="primary">
-</studs-badge>
+<ResizerFeatures>
+  <studs-badge
+    icon="info"
+    count="1"
+    max="99"
+    size="medium"
+    position="top-right"
+    color="primary"
+  ></studs-badge>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -25,54 +39,169 @@ Badge generates a small badge to the top-right of its child(ren).
   color="primary">
 </studs-badge>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13203%3A126849&mode=dev"
 />
 
 ## Icon
 
-<studs-badge icon="info" count="0"></studs-badge>
+<ResizerFeatures>
+  <studs-badge icon="info" count="0"></studs-badge>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
 <studs-badge icon="info" count="0"></studs-badge>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13203%3A126849&mode=dev"
 />
 
 ## Info
 
-<studs-badge count="5" max="99" size="medium" position="top-right" color="info"></studs-badge>
+<ResizerFeatures>
+  <studs-badge
+    count="5"
+    max="99"
+    size="medium"
+    position="top-right"
+    color="info"
+  ></studs-badge>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
 <studs-badge count="5" max="99" size="medium" position="top-right" color="info"></studs-badge>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13203%3A126849&mode=dev"
 />
 
 ## Warning
 
-<studs-badge count="17" max="99" size="medium" position="top-right" color="warning"></studs-badge>
+<ResizerFeatures>
+  <studs-badge
+    count="17"
+    max="99"
+    size="medium"
+    position="top-right"
+    color="warning"
+  ></studs-badge>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
 <studs-badge count="17" max="99" size="medium" position="top-right" color="warning"></studs-badge>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13203%3A126849&mode=dev"
 />
 
 ## Error
 
-<studs-badge count="102" max="99" size="medium" position="top-right" color="error"></studs-badge>
+<ResizerFeatures>
+  <studs-badge
+    count="102"
+    max="99"
+    size="medium"
+    position="top-right"
+    color="error"
+  ></studs-badge>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
 <studs-badge count="102" max="99" size="medium" position="top-right" color="error"></studs-badge>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13203%3A126849&mode=dev"
 />
 
 ## Success
 
-<studs-badge count="22" max="99" size="medium" position="top-right" color="success"></studs-badge>
+<ResizerFeatures>
+  <studs-badge
+    count="22"
+    max="99"
+    size="medium"
+    position="top-right"
+    color="success"
+  ></studs-badge>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
 <studs-badge count="22" max="99" size="medium" position="top-right" color="success"></studs-badge>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=13203%3A126849&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'icon',
+      description: (
+        <div>
+          Define display icon (class) of the button component using html svg or font icon
+        </div>
+      ),
+      reflects: false,
+      type: 'string',
+    },
+    {
+      name: 'count',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: 'number',
+    },
+    {
+      name: 'max',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: 'number',
+    },
+    {
+      name: 'showZero',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "boolean",
+    },
+    {
+      name: 'size',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'small' | 'medium' | 'large'",
+      default: "medium",
+    },
+    {
+      name: 'position',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'top-right' | 'top-left' | 'bottom-right' | 'bottom-left'",
+    },
+    {
+      name: 'color',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string",
+    },
+    {
+      name: 'marker	',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "'boolean",
+    },
+  ]}
+></Tables>

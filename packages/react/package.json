@@ -1,14 +1,13 @@
 {
   "name": "@studs/react",
-  "version": "0.0.7",
+  "version": "1.0.0-alpha.0",
   "type": "module",
-  "main": "dist/index.cjs",
-  "module": "dist/index.js",
+  "main": "src/index.tsx",
   "types": "dist/index.d.ts",
   "exports": {
+    "./studs-base.css": "./dist/style.css",
     "./*": "./src/components/*",
     ".": {
-      "development": "./src/index.tsx",
       "require": "./dist/index.cjs",
       "import": "./dist/index.js"
     }
@@ -19,22 +18,21 @@
     "test"
   ],
   "scripts": {
-    "dev": "vite",
     "build": "vite build",
     "lint": "tsc",
     "preview": "vite preview",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
   },
   "dependencies": {
-    "@studs/styles": "workspace: *",
-    "@studs/ui": "workspace: *",
+    "@studs/styles": "workspace:*",
+    "@studs/ui": "workspace:*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@lit-labs/react": "^2.0.2",
-    "@types/react": "^18.2.15",
-    "@types/react-dom": "^18.2.7",
+    "@lit-labs/react": "^2.1.0",
+    "@types/react": "^18.2.24",
+    "@types/react-dom": "^18.2.8",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "@vitejs/plugin-react": "^4.0.3",

@@ -1,116 +1,138 @@
-@use "../utilities" as *;
+@use '../utilities' as *;
 
 .accordion {
-    &.-container {
-        display: flex;
+  &.-container {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border-color);
+    border-radius: 0.2em;
+
+    > header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2em 1em;
+
+      @media (max-width: $screen-xs) {
         flex-direction: column;
-        border: 1px solid var(--border-color);
-        border-radius: 0.2em;
+      }
+    }
+  }
 
-        > header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.2em 1em;
-            @media(max-width: $screen-xs) {
-                flex-direction: column;
-            }
-        }
+  &.-search {
+    @media (max-width: $screen-xs) {
+      width: 100%;
+
+      studs-input,
+      .inputComponent,
+      .inputWrapper {
+        width: 100%;
+      }
     }
-    &.-search {
-        @media(max-width: $screen-xs) {
-            width: 100%;
-            studs-input, .inputComponent, .inputWrapper {
-                width: 100%;
-            }
-        }
-    }
-    &.-actions {
-        @media (min-width: $screen-xs) {
-            margin-left: auto;
-            justify-self: flex-end;
-        }
-        display: flex;
-        gap: 1em;
-        ::part(studs-icon) {
-            color: var(--primary);
-        }
+  }
+
+  &.-actions {
+    @media (min-width: $screen-xs) {
+      margin-left: auto;
+      justify-self: flex-end;
     }
 
-    &.-panel {
+    display: flex;
+    gap: 1em;
+
+    ::part(studs-icon) {
+      color: var(--primary);
+    }
+  }
+
+  &.-panel {
+    overflow: hidden;
+
+    header {
+      transition: var(--transition-m) ease-in-out;
+      display: flex;
+      flex-direction: row;
+      padding: 1.2em 1em;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.25em;
+      border: none;
+      background-color: var(--accordion-bkg);
+      cursor: pointer;
+
+      ::part(studs-icon) {
+        color: var(--primary);
+      }
+
+      studs-button {
+        rotate: 0deg;
+        transition: rotate var(--transition-m);
+      }
+    }
+
+    main {
+      overflow: hidden;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows var(--transition-m);
+      opacity: 0;
+      background: var(--background-content);
+
+      > div.content {
         overflow: hidden;
-
-        header {
-            transition: var(--transition-m) ease-in-out;
-            display: flex;
-            flex-direction: row;
-            padding: 1.2em 1em;
-            flex-grow: 1;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.25em;
-            border: none;
-            background-color: var(--accordion-bkg);
-            ::part(studs-icon) {
-                color: var(--primary);
-            }
-        }
-        main {
-            overflow: hidden;
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows .5s;
-            opacity: 0;
-            background: var(--background-content);
-            
-            > div.content {
-                overflow: hidden;
-                margin: 0;
-              }
-            
-        }
-        &.-small {
-            header {
-                padding: 0.5em 1em;
-            }
-        }
-        &.-large {
-            header {
-                padding: 1.5em 1em;
-            }
-        }
-        &:not([disabled]):hover {
-            header {
-                background-color: var(--accordion-hover);
-            }
-        }
-        &[disabled] {
-            header {
-                background-color: var(--disabled);
-                color: var(--text-disabled)
-            }
-        }
-        &.-start {
-            header {
-                flex-direction: row-reverse;
-                justify-content: flex-end;
-            }
-        }
-        &.-border {
-            border: 1px solid var(--border-color);
-        }
-        &[aria-hidden="false"] {
-            header {
-                studs-button {
-                    transform: rotate(90deg);
-                }
-            }
-            main {
-                grid-template-rows: 1fr;
-                padding: 1em;
-                opacity: 1;
-            }
-        }
-        
+        margin: 0;
+      }
     }
+
+    &.-small {
+      header {
+        padding: 0.5em 1em;
+      }
+    }
+
+    &.-large {
+      header {
+        padding: 1.5em 1em;
+      }
+    }
+
+    &:not([disabled]):hover {
+      header {
+        background-color: var(--accordion-hover);
+      }
+    }
+
+    &[disabled] {
+      header {
+        background-color: var(--disabled);
+        color: var(--text-disabled);
+      }
+    }
+
+    &.-start {
+      header {
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+      }
+    }
+
+    &.-border {
+      border: 1px solid var(--border-color);
+    }
+
+    &[aria-expanded='true'] {
+      header {
+        studs-button {
+          rotate: 90deg;
+        }
+      }
+
+      main {
+        grid-template-rows: 1fr;
+        padding: 1em;
+        opacity: 1;
+      }
+    }
+  }
 }

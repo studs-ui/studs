@@ -5,7 +5,6 @@
 .pane {
     &.-wrapper {
         position: relative;
-        min-width: max-content;
     }
     &.-header {
         &::slotted(*) {
@@ -28,7 +27,6 @@
             padding-inline-end: 10px;
         }
     }
-
     &[disabled] {
         flex: 1;
     }

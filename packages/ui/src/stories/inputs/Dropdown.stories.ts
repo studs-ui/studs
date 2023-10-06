@@ -1,19 +1,21 @@
 import type { Meta, StoryObj } from "@storybook/web-components";
 import { html } from "lit";
 import { ifDefined } from "lit/directives/if-defined.js";
-import { DropdownProps } from '../../components/inputs/dropdown';
+import { StudsDropdown } from '../../components/inputs/dropdown';
 
 const meta = {
   title: "Studs/Inputs/Dropdown",
   tags: ["autodocs"],
   render: (args: any) => html`<studs-dropdown
+    style="width: 300px"
     label=${ifDefined(args.label)}
     icon=${ifDefined(args.icon)}
     size=${ifDefined(args.size)}
     type=${ifDefined(args.type)}
     ?disabled=${args.disabled}
-    .options=${ifDefined(args.options)}
-    .selected=${ifDefined(args.selected)}
+    .options=${args.options}
+    .selected=${args.selected}
+    @change=${(e) => console.log(e)}
   ></studs-dropdown>`,
   argTypes: {
     label: {
@@ -80,11 +82,11 @@ const meta = {
       options: ["small", "medium"],
     }
   },
-} satisfies Meta<DropdownProps>;
+} satisfies Meta<StudsDropdown>;
 
 export default meta;
 
-type Story = StoryObj<DropdownProps>;
+type Story = StoryObj<StudsDropdown>;
 
 export const Default: Story = {
   args: {
@@ -95,12 +97,30 @@ export const Default: Story = {
       { value: "3", label: "Option 3" },
       { value: "4", label: "Option 4" },
     ],
-    selected: {
-      value: "2",
-      label: "Option 2",
-    },
+    selected: "2",
     size: "medium"
   },
+};
+
+export const Groups: Story = {
+  args: {
+    options: [
+      {
+        name: "Group 1", 
+        options: [
+          { value: "1", label: "Cat" },
+          { value: "2", label: "Dog" },
+      ]
+      },
+      {
+        name: "Group 2", 
+        options: [
+          { value: "5", label: "Lion" },
+          { value: "9", label: "Dog"}
+      ]
+      }
+    ]
+  }
 };
 
 export const Disabled: Story = {
@@ -112,10 +132,7 @@ export const Disabled: Story = {
       { value: "3", label: "Option 3" },
       { value: "4", label: "Option 4" },
     ],
-    selected: {
-      value: "2",
-      label: "Option 2",
-    },
+    selected: "3"
   },
 };
 
@@ -139,10 +156,7 @@ export const Searchable: Story = {
       { value: "3", label: "Rat" },
       { value: "4", label: "Monkey" },
     ],
-    selected: {
-      value: "2",
-      label: "Dog",
-    },
+    selected: "2",
   },
 }
 
@@ -182,22 +196,71 @@ export const MultiSelect: Story = {
       { value: "30", label: "Sparrow" },
     ],
     selected: [
-      {
-        value: "2",
-        label: "Dog",
-      },
-      {
-        value: "3",
-        label: "Rat",
-      },
-      {
-        value: "4",
-        label: "Monkey",
-      },
-      {
-        value: "5",
-        label: "Lion",
-      }
+      "2", "3", "4", "5"
     ],
+  },
+}
+
+export const MultiSelectGroup: Story = {
+  args: {
+    type: "multi",
+    options: [
+      {
+        name: "Group 1", 
+        options: [
+          { value: "1", label: "Cat" },
+          { value: "2", label: "Dog" },
+          { value: "3", label: "Rat" },
+          { value: "4", label: "Monkey" },
+      ]
+      },
+      {
+        name: "Group 2", 
+        options: [
+          { value: "5", label: "Lion" },
+          { value: "6", label: "Tiger" },
+          { value: "7", label: "Bear" },
+          { value: "8", label: "Elephant" },
+          { value: "9", label: "Dog"}
+      ]
+      }
+    ]
+  }
+}
+
+export const DropdownWithIcon: Story = {
+  args: {
+    icon: "search",
+    options: [
+      { value: "1", label: "Cat" },
+      { value: "2", label: "Dog" },
+      { value: "3", label: "Rat" },
+      { value: "4", label: "Monkey" },
+    ],
+    selected: "2",
+  },
+}
+
+export const OptionsWithIcon: Story = {
+  args: {
+    options: [
+      { value: "1", label: "Cat", icon: "apps" },
+      { value: "2", label: "Dog", icon: "arrow_circle_right" },
+      { value: "3", label: "Rat", icon: "terminal" },
+      { value: "4", label: "Monkey", icon: "123" },
+    ],
+    selected: "2",
+  },
+}
+
+export const OptionsWithImage: Story = {
+  args: {
+    options: [
+      { value: "1", label: "Cat", image: "https://picsum.photos/200" },
+      { value: "2", label: "Dog", image: "https://picsum.photos/200" },
+      { value: "3", label: "Rat", image: "https://picsum.photos/200" },
+      { value: "4", label: "Monkey", image: "https://picsum.photos/200" },
+    ],
+    selected: "2"
   },
 }

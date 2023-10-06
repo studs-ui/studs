@@ -1,17 +1,18 @@
 import style from '@studs/styles/components/slider.scss?inline';
 import {
   LitElement,
-  PropertyValueMap,
   TemplateResult,
   html,
   nothing,
-  unsafeCSS,
+  unsafeCSS
 } from 'lit';
 import { customElement, property, queryAsync, state } from 'lit/decorators.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { map } from 'lit/directives/map.js';
 import { styleMap } from 'lit/directives/style-map.js';
 import { WithForm, WithFormInterface } from '../../mixins/withForm';
+
+// #ref: https://github.com/carbon-design-system/carbon-web-components/tree/main
 
 interface MarkProps {
   value: number;
@@ -67,27 +68,15 @@ export class StudsSlider extends WithForm(LitElement) {
   @state() _dragging: boolean = false;
   @state() _targetHandle?: HTMLElement | TemplateResult | null;
 
-  protected updated(
-    _changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>
-  ): void {}
-
   static styles = unsafeCSS(style);
 
-  private handleMinValue(event: ChangeEvent<HTMLInputElement>) {
-    let value = Number(event.target.value);
+  private handleMinValue(event: Event) {
+    const target = (event.target as HTMLInputElement)
+    let value = Number(target.value);
     if (this.rangeValue?.length > 1) {
-      value =
-        event.target.value === ''
-          ? ''
-          : (Math.min(
-              Number(event.target.value),
-              this._maxValue - this.step
-            ) as any);
+      value = target.value === '' ? '' : (Math.min(Number(target.value),this._maxValue - this.step)) as any;
     } else {
-      value =
-        event.target.value === ''
-          ? ''
-          : (Math.min(Number(event.target.value)) as any);
+      value = target.value === '' ? '' : (Math.min(Number(target.value)) as any);
     }
     this._minValue = value;
     this._minPercentage = this.getPercent(value);
@@ -100,6 +89,7 @@ export class StudsSlider extends WithForm(LitElement) {
 
     this.requestUpdate();
 
+    this.setFormValue(JSON.stringify(value));
     this.dispatch({
       name: this.name,
       min: this._minValue,
@@ -107,14 +97,9 @@ export class StudsSlider extends WithForm(LitElement) {
     });
   }
 
-  private handleMaxValue(event: ChangeEvent<HTMLInputElement>) {
-    const value =
-      event.target.value === ''
-        ? ''
-        : (Math.max(
-            Number(event.target.value),
-            this._minValue + this.step
-          ) as any);
+  private handleMaxValue(event: Event) {
+    const target = (event.target as HTMLInputElement)
+    const value = target.value === '' ? '' : (Math.max(Number(target.value),this._minValue + this.step) as any);
     this._maxValue = value;
     this._maxPercentage = this.getPercent(value);
 
@@ -125,6 +110,7 @@ export class StudsSlider extends WithForm(LitElement) {
 
     this.requestUpdate();
 
+    this.setFormValue(JSON.stringify(value));
     this.dispatch({
       name: this.name,
       min: this._minValue,
@@ -341,8 +327,4 @@ export class StudsSlider extends WithForm(LitElement) {
       ${this.renderLabel('right')} ${this.renderInput('max')}
     </div> `;
   }
-
-  // protected createRenderRoot(): Element | ShadowRoot {
-  //   return this;
-  // }
 }

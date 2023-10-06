@@ -1,3 +1,4 @@
+import { FIGMA_EMBED_URL, FIGMA_URL_REGEX } from '@site/src/utils/constants';
 import CodeBlock from '@theme/CodeBlock';
 import Playground from '@theme/Playground';
 import ReactLiveScope from '@theme/ReactLiveScope';
@@ -7,12 +8,14 @@ interface CodeBlocksProps {
   html: string;
   jsx?: string;
   preview?: boolean;
+  figmaUrl?: string;
 }
 
 export default function CodeBlocks({
   preview,
   html,
   jsx,
+  figmaUrl,
 }: CodeBlocksProps): JSX.Element {
   const tabs = [
     {
@@ -38,8 +41,36 @@ export default function CodeBlocks({
 
   tabs.push({
     label: 'Live Editor',
-    children: <Playground scope={ReactLiveScope} children={html} />,
+    children: (
+      <Playground
+        scope={ReactLiveScope}
+        children={`<div className="codeblock-container">
+  ${html}</div>
+`}
+      />
+    ),
   });
+
+  if (figmaUrl) {
+    const _figmaUrl = `${FIGMA_EMBED_URL}${figmaUrl}`;
+    const isValidFigmaUrl = figmaUrl.match(FIGMA_URL_REGEX);
+    tabs.push({
+      label: 'Figma',
+      children: isValidFigmaUrl ? (
+        <iframe
+          style={{ height: '70vh', maxHeight: '600px' }}
+          height="100%"
+          width="100%"
+          src={_figmaUrl}
+          allowFullScreen
+        />
+      ) : (
+        <>
+          <code>Invalid Figma URL: {figmaUrl}</code>
+        </>
+      ),
+    });
+  }
 
   if (!html) {
     return (

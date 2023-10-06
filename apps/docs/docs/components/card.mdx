@@ -1,15 +1,36 @@
+---
+description: Cards can be used to group related subjects in a container.
+---
+
 # Card
 
-<HeaderComponent htmlTag="studs-card" jsxTag="StudsCard" version="Since 2.0" status="Stable" />
+<HeaderComponent
+  htmlTag="studs-card"
+  jsxTag="StudsCard"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="display/card.ts"
+  urlStrbook="studs-surfaces-card--docs"
+/>
 
 Cards can be used to group related subjects in a container.
 
-## Card with Button 
+## Card with Button
 
-<studs-card imageUrl="https://via.placeholder.com/200x200" altText="Studs Card Media" title="Title">
-  <div slot="main">This is my custom body content.</div>
-  <div slot="footer"><studs-button button-type="primary" onclick="alert('clicked')">Learn more</studs-button></div>
-</studs-card>
+<ResizerFeatures>
+  <studs-card
+    imageUrl="https://via.placeholder.com/200x200"
+    altText="Studs Card Media"
+    title="Title"
+  >
+    <div slot="main">This is my custom body content.</div>
+    <div slot="footer">
+      <studs-button button-type="primary" onclick="alert('clicked')">
+        Learn more
+      </studs-button>
+    </div>
+  </studs-card>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
@@ -18,22 +39,62 @@ Cards can be used to group related subjects in a container.
   <div slot="footer"><studs-button button-type="primary" onclick="alert('clicked')">Learn more</studs-button></div>
 </studs-card>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73935&mode=dev"
 />
 
 ## Card with Footer
 
-<studs-card imageurl="https://via.placeholder.com/200x200" alttext="placeholder image" title="Title">
+<ResizerFeatures>
+  <studs-card
+    imageurl="https://via.placeholder.com/200x200"
+    alttext="placeholder image"
+    title="Title"
+  >
     <div slot="main">This is my custom body content.</div>
     <div slot="footer">Footer</div>
   </studs-card>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
-<studs-card imageurl="https://via.placeholder.com/200x200" 
-    alttext="placeholder 
+<studs-card imageurl="https://via.placeholder.com/200x200"
+    alttext="placeholder
     image" title="Title">
     <div slot="main">This is my custom body content.</div>
     <div slot="footer">Footer</div>
 </studs-card>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=10076%3A73935&mode=dev"
 />
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'imageUrl',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'altText',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+    {
+      name: 'title',
+      description: (
+        <></>
+      ),
+      reflects: false,
+      type: "string"
+    },
+  ]}
+></Tables>

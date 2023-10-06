@@ -1,22 +1,57 @@
+---
+description: Button groups can be used to group related buttons into sections.
+---
+
 # Button Group
-<HeaderComponent htmlTag="studs-button-group" jsxTag="StudsButtonGroup" version="Since 2.0" status="Stable" />
+
+<HeaderComponent
+  htmlTag="studs-button-group"
+  jsxTag="StudsButtonGroup"
+  version="Since 2.0"
+  status="Draft"
+  urlGithub="display/buttonGroup.ts"
+  urlStrbook="studs-display-buttonGroup--docs"
+/>
 
 Button groups can be used to group related buttons into sections.
 
 ## Usage
 
-<studs-button-group> 
-    <studs-button button-type="primary" btnclasses="-group">Button 1</studs-button>
-    <studs-button button-type="primary" btnclasses="-group">Button 2</studs-button>
-    <studs-button button-type="primary" btnclasses="-group">Button 3</studs-button>
-</studs-button-group>
+<ResizerFeatures>
+  <studs-button-group>
+    <studs-button button-type="primary" btnclasses="-group">
+      Button 1
+    </studs-button>
+    <studs-button button-type="primary" btnclasses="-group">
+      Button 2
+    </studs-button>
+    <studs-button button-type="primary" btnclasses="-group">
+      Button 3
+    </studs-button>
+  </studs-button-group>
+</ResizerFeatures>
 
 <CodeBlocks
   html={`
-<studs-button-group> 
+<studs-button-group>
     <studs-button button-type="primary" btnclasses="-group">Button 1</studs-button>
     <studs-button button-type="primary" btnclasses="-group">Button 2</studs-button>
     <studs-button button-type="primary" btnclasses="-group">Button 3</studs-button>
 </studs-button-group>
   `}
+  figmaUrl="https://www.figma.com/file/REEM2zSoF2qoLpXTYfYhih/STUDS?node-id=15041%3A6924&mode=dev"
 />
+/>
+
+## Properties
+
+<Tables
+  headers={['name', 'description', 'reflects', 'type', 'default']}
+  args={[
+    {
+      name: 'children',
+      description: <></>,
+      reflects: false,
+    },
+  ]}
+></Tables>
