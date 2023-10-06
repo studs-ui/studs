@@ -1,5 +1,8 @@
 import BrowserOnly from '@docusaurus/BrowserOnly';
-import React, { useRef, useEffect, useState } from 'react';
+import useIsBrowser from '@docusaurus/useIsBrowser';
+import { THEME_DROPDOWN_DEFAULT_SELECTED } from '@site/src/utils/constants';
+import React, { useEffect, useState } from 'react';
+import {useLocation} from '@docusaurus/router';
 
 const mapItems = (options, defaultSelected) =>
   options.map((opt) => {
@@ -26,8 +29,9 @@ export default function ThemeDropdownNavbarItem({
   defaultSelected,
   ...props
 }) {
-  const items = [...mapItems(options, defaultSelected)];
-  const dropdownRef = useRef();
+  const isBrowser = useIsBrowser();
+  const location = useLocation();
+  const items = [...mapItems(options, defaultSelected)]
 
   const [activeTheme, setActiveTheme] = useState(
     items.find((x) => x.isActive())
@@ -35,12 +39,10 @@ export default function ThemeDropdownNavbarItem({
 
   useEffect(() => {
     const body = document.querySelector('body');
-    body.classList.add(activeTheme.value.replaceAll(' ', '-').toLowerCase());
-    dropdownRef?.current?.addEventListener('change', _selectHandler);
-    return () => {
-      dropdownRef?.current?.removeEventListener('change', _selectHandler);
-    };
-  }, []);
+    if(!body.classList.contains(activeTheme.value.replaceAll(' ', '-').toLowerCase())) {
+      body.classList.add(activeTheme.value.replaceAll(' ', '-').toLowerCase());
+    }
+  }, [location])
 
   const _selectHandler = (event) => {
     const body = document.querySelector('body');
@@ -54,7 +56,9 @@ export default function ThemeDropdownNavbarItem({
       body.classList.add(theme);
       return event.detail;
     });
-    window.localStorage.setItem('activeTheme', event.detail.value);
+    if (isBrowser) {
+      window.localStorage.setItem('activeTheme', event.detail.value)
+    };
   };
 
   const _items =
