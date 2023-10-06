@@ -99,3 +99,6 @@ export const THEME_DROPDOWN_OPTIONS = [
     label: 'Supplier Tools',
   },
 ];
+
+export const THEME_DROPDOWN_DEFAULT_SELECTED =
+  window.localStorage.getItem('activeTheme') || 'General Tools';

@@ -11,7 +11,10 @@ import NavbarMobileSidebarToggle from '@theme/Navbar/MobileSidebar/Toggle';
 import NavbarLogo from '@theme/Navbar/Logo';
 import NavbarSearch from '@theme/Navbar/Search';
 import ThemeDropdownNavbarItem from '@theme/NavbarItem/ThemeDropdownNavbarItem';
-import { THEME_DROPDOWN_OPTIONS } from '@site/src/utils/constants';
+import {
+  THEME_DROPDOWN_OPTIONS,
+  THEME_DROPDOWN_DEFAULT_SELECTED,
+} from '@site/src/utils/constants';
 import styles from './styles.module.scss';
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
@@ -66,7 +69,10 @@ export default function NavbarContent() {
         // Ask the user to add the respective navbar items => more flexible
         <>
           <NavbarItems items={rightItems} />
-          <ThemeDropdownNavbarItem options={THEME_DROPDOWN_OPTIONS} />
+          <ThemeDropdownNavbarItem
+            options={THEME_DROPDOWN_OPTIONS}
+            defaultSelected={THEME_DROPDOWN_DEFAULT_SELECTED}
+          />
           <NavbarColorModeToggle className={styles.colorModeToggle} />
           {
             <NavbarSearch
