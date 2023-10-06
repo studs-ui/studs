@@ -13,6 +13,7 @@ const StudsDropdown = createComponent({
         onClick: 'click',
         onFocus: 'focus',
         onBlur: 'blur',
+        onActionButtonClick: 'action-button-click'
     },
 });
 
