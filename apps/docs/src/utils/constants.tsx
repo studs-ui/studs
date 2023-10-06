@@ -1,4 +1,5 @@
 import React from 'react';
+import ExecutionEnvironment from '@docusaurus/ExecutionEnvironment';
 
 export const FORM_PROPS = [
   {
@@ -100,5 +101,5 @@ export const THEME_DROPDOWN_OPTIONS = [
   },
 ];
 
-export const THEME_DROPDOWN_DEFAULT_SELECTED =
+export const THEME_DROPDOWN_DEFAULT_SELECTED = ExecutionEnvironment.canUseDOM &&
   window.localStorage.getItem('activeTheme') || 'General Tools';
