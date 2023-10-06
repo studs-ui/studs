@@ -15,7 +15,10 @@
     "changeset-version": "changeset version",
     "publish-packages": "turbo run build && changeset version && changeset publish",
     "clean-dev": "git branch --merged origin/dev | grep -vw dev | xargs git branch -d",
-    "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d"
+    "clean-main": "git branch --merged origin/main | grep -vw main | xargs git branch -d",
+    "github-dev": "git push -u github dev",
+    "github-staging": "git push -u github staging",
+    "github-main": "git push -u github main"
   },
   "devDependencies": {
     "@changesets/cli": "^2.26.2",
