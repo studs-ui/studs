@@ -15,7 +15,7 @@ import {
   THEME_DROPDOWN_OPTIONS,
   THEME_DROPDOWN_DEFAULT_SELECTED,
 } from '@site/src/utils/constants';
-import styles from './styles.module.css';
+import styles from './styles.module.scss';
 function useNavbarItems() {
   // TODO temporary casting until ThemeConfig type is improved
   return useThemeConfig().navbar.items;
